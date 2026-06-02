@@ -26,84 +26,167 @@ function lazyLoad(view : any){
   return() => import(`@/views/${view}.vue`)
 }
 
+function getAuthToken() {
+  return localStorage.getItem('token');
+}
+
+function setAuthorizationHeader() {
+  const token = getAuthToken();
+  if (token)
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+}
+
+function clearAuthToken() {
+  localStorage.removeItem("token");
+  delete axios.defaults.headers.common['Authorization'];
+}
+
+function getErrorStatus(error: any) {
+  return error?.response?.status;
+}
+
+function needsNickname(user: any) {
+  return user.id > 0 && (user.nickname == null || user.nickname == '');
+}
+
+function getLoginDestination(user: any) {
+  if (needsNickname(user))
+    return { name: 'info' };
+  if (user.id != 0 && user.nickname != null)
+    return { name: 'home' };
+  return null;
+}
+
+async function fetchCurrentUser() {
+  setAuthorizationHeader();
+  const res = await axios.get('/user/me');
+  store.commit('setUser', res.data);
+  return res.data;
+}
+
+async function updateUserStatus(value: string) {
+  try {
+    setAuthorizationHeader();
+    await axios.patch("/user/status", {value: value});
+    return null;
+  } catch (error) {
+    const status = getErrorStatus(error);
+    if(status == 401)
+    {
+      clearAuthToken();
+      return { name: 'login' };
+    }
+    else if(status == 403)
+      return { name: 'tfa' };
+    console.log(error);
+    return null;
+  }
+}
+
 async function login_check()
 {
-  axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-
-  await axios.get('/user/me')
-  .then(res => {
-    store.commit('setUser', res.data);
-    if(store.state.user.id > 0 && (store.state.user.nickname == null || store.state.user.nickname == ''))
-      router.push('/info');
-    else if(store.state.user.id != 0 && store.state.user.nickname != null)
-      router.push('/');
-  })
-  .catch(error => {
-    if(error.response.status == 401)
+  try {
+    const user = await fetchCurrentUser();
+    return getLoginDestination(user);
+  } catch (error) {
+    const status = getErrorStatus(error);
+    if(status == 401)
     {
-      router.push('/login');
+      clearAuthToken();
+      return { name: 'login' };
     }
-    else if(error.response.status == 403)
-    {
-      router.push('/tfa');
-    }
+    else if(status == 403)
+      return { name: 'tfa' };
     console.log(error);
-  });
-
+    return null;
+  }
 }
-async function error_check()
+async function error_check(toName: any)
 {
-  axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+  try {
+    const user = await fetchCurrentUser();
+    if(user.id > 0 && user.status == 'offline')
+    {
+      const destination = await updateUserStatus('online');
+      if (destination)
+        return destination;
+      user.status = 'online';
+      store.commit('setUser', user);
+    }
 
-  await axios.get('/user/me')
-  .then(res => {
-    store.commit('setUser', res.data);
-    if(store.state.user.id > 0 && store.state.user.status == 'offline')
+    if (needsNickname(user) && toName != 'info')
+      return { name: 'info' };
+    return null;
+  } catch (error) {
+    const status = getErrorStatus(error);
+    if(status == 401)
     {
-      alert("로그아웃 되었습니다. 다시 로그인해주세요. [2]");
-      localStorage.removeItem("token");
-      router.push('/login');
+      clearAuthToken();
+      return { name: 'login' };
     }
-    else if (store.state.user.id > 0 && (store.state.user.nickname == null || store.state.user.nickname == ''))
+    else if(status == 403)
     {
-      router.push('/info');
-      // alert("닉네임을 입력 해주세요. [4]");
-    }
-  })
-  .catch(error => {
-    if(error.response.status == 401)
-    {
-			alert("유효한 token이 없습니다. 다시 로그인해주세요. [1]");
-      localStorage.removeItem("token");
-      router.push('/login');
-    }
-    else if(error.response.status == 403)
-    {
-      router.push('/tfa');
+      if (toName != 'tfa')
+        return { name: 'tfa' };
+      return null;
     }
     console.log(error);
-  })
+    return null;
+  }
 }
 async function match_check()
 {
-  axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-
-  await axios.get('/user/match')
-  .then(res => { store.commit('setMatch', res.data);})
-  .catch(error => {
-    if(error.response.status == 401)
+  try {
+    setAuthorizationHeader();
+    const res = await axios.get('/user/match');
+    store.commit('setMatch', res.data);
+    return await updateUserStatus('online');
+  } catch (error) {
+    const status = getErrorStatus(error);
+    if(status == 401)
     {
-			localStorage.removeItem("token");
-      router.push('/login');
-			alert("유효한 token이 없습니다. 다시 로그인해주세요. [3]");
+      clearAuthToken();
+      return { name: 'login' };
     }
-    else if(error.response.status == 403)
-    {
-      router.push('/tfa');
-    }
+    else if(status == 403)
+      return { name: 'tfa' };
     console.log(error);
-  })
-  await axios.patch("/user/status", {value: "online"});
+    return null;
+  }
+}
+
+function connectSocket(toName: any) {
+  if (store.getters.socket == null && (toName == 'chat' || toName == 'tempchat')) {
+    store.commit("setSocket", io(`ws://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/chat`, {
+    transports: ['websocket'],
+    auth:
+    {
+      token: getAuthToken()
+    }
+    }))
+  }
+  else if (store.getters.gameSocket == null &&
+      (toName == 'game' || toName == 'tempgamepage'
+      || toName == 'invite' ||toName == 'tempinvitepage'
+      || toName == 'spectate' || toName == 'tempwatchpage'))
+  {
+    const gameSocket = io(`ws://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/game`, {
+      transports: ['websocket'],
+      auth:
+      {
+        token: getAuthToken()
+      }
+    });
+    store.commit("setGameSocket", gameSocket)
+  }
+}
+
+async function updateRouteStatus(toName: any) {
+  if ((store.getters.userstatus == 'online') && ( toName == 'game' || toName == 'invite' || toName == 'spectate'))
+    return await updateUserStatus('ingame');
+  else if ((store.getters.userstatus == 'ingame')  && (toName == 'home' || toName == 'chat' || toName == 'tfa' || toName == 'board' || toName == 'info'))
+    return await updateUserStatus('online');
+  return null;
 }
 
 const routes: Array<RouteRecordRaw> = [
@@ -199,79 +282,71 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (to.name === 'login')
   {
     if(to.query.token)
     {
-      if(cookies.get('token') != null)
+      const token = cookies.get('token');
+      if(token != null)
       {
         localStorage.removeItem('token');
-        localStorage.setItem('token', cookies.get('token'));
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-				axios.patch("/user/status", {value: "online"});
+        localStorage.setItem('token', token);
       }
       cookies.remove('token');
-      login_check();
-      // router.push('/');
+
+      if (!getAuthToken())
+        return next({ name: 'login' });
+
+      setAuthorizationHeader();
+      const statusDestination = await updateUserStatus('online');
+      if (statusDestination)
+        return next(statusDestination);
+
+      const destination = await login_check();
+      if (destination && destination.name != 'login')
+        return next(destination);
+      return next({ name: 'login' });
     }
-    else
-      login_check();
+
+    if (!getAuthToken())
+      return next();
+
+    const destination = await login_check();
+    if (destination && destination.name != 'login')
+      return next(destination);
+    return next();
   }
-  // else if (to.name === 'board')
-  // {
-  //   error_check();
-  //   match_check();
-  // }
 	else
   {
-    error_check();
+    if (!getAuthToken())
+      return next({ name: 'login' });
 
     if (to.name == 'board')
-      match_check();
-
-    // if (localStorage.getItem('token') === null)
-		// 	router.push('/login')
-
-    if (localStorage.getItem('token'))
     {
-			if (store.getters.socket == null && (to.name == 'chat' || to.name == 'tempchat')) {
-				store.commit("setSocket", io(`ws://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/chat`, {
-				transports: ['websocket'],
-				auth:
-				{
-					token: localStorage.getItem('token')
-				}
-				}))
-			}
-			else if (store.getters.gameSocket == null &&
-					(to.name == 'game' || to.name == 'tempgamepage'
-					|| to.name == 'invite' ||to.name == 'tempinvitepage'
-					|| to.name == 'spectate' || to.name == 'tempwatchpage'))
-      {
-				const gameSocket = io(`ws://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/game`, {
-					transports: ['websocket'],
-					auth:
-					{
-						token: localStorage.getItem('token')
-					}
-				});
-				store.commit("setGameSocket", gameSocket)
-			}
-		}
+      const authDestination = await error_check(to.name);
+      if (authDestination)
+        return next(authDestination);
 
-		if ((store.getters.userstatus == 'online') && ( to.name == 'game' || to.name == 'invite' || to.name == 'spectate'))
+      const matchDestination = await match_check();
+      if (matchDestination)
+        return next(matchDestination);
+    }
+    else
     {
-      axios.patch("/user/status", {value: "ingame"});
-		}
+      const authDestination = await error_check(to.name);
+      if (authDestination)
+        return next(authDestination);
+    }
 
-    else if ((store.getters.userstatus == 'ingame')  && (to.name == 'home' || to.name == 'chat' || to.name == 'tfa' || to.name == 'board' || to.name == 'info'))
-    {
-			axios.patch("/user/status", {value: "online"});
-		}
+    connectSocket(to.name);
 
+    const routeStatusDestination = await updateRouteStatus(to.name);
+    if (routeStatusDestination)
+      return next(routeStatusDestination);
+
+    return next();
   }
-  next()
 })
 
 export default router

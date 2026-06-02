@@ -42,6 +42,7 @@ export class UserService {
 				email: email,
 				profileUrl: process.env.DEFAULT_IMG,
 				nickname: guestId,
+				status: UserStatus.online,
 			});
 
 			try {
