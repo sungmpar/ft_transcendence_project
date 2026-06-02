@@ -20,6 +20,49 @@ export class UserService {
 		return await this.userRepository.save(newUser);
 	}
 
+	async createGuest() {
+		const maxAttempts = 20;
+
+		for (let attempt = 0; attempt < maxAttempts; attempt++) {
+			const guestId = this.generateGuestId();
+			const email = `${guestId}@guest.local`;
+			const duplicateUser = await this.userRepository.findOne({
+				where: [
+					{ name: guestId },
+					{ email: email },
+					{ nickname: guestId },
+				],
+			});
+
+			if (duplicateUser)
+				continue;
+
+			const guestUser = this.userRepository.create({
+				name: guestId,
+				email: email,
+				profileUrl: process.env.DEFAULT_IMG,
+				nickname: guestId,
+			});
+
+			try {
+				return await this.userRepository.save(guestUser);
+			} catch (error) {
+				if (this.isUniqueConstraintError(error))
+					continue;
+				throw error;
+			}
+		}
+		throw new Error('Failed to create a unique guest user');
+	}
+
+	private generateGuestId() {
+		return `g${Date.now().toString(36).slice(-7)}`;
+	}
+
+	private isUniqueConstraintError(error: any) {
+		return error?.code === '23505' || error?.driverError?.code === '23505';
+	}
+
 	async getOneByName(name: string) {
 		const user = await this.userRepository.findOne({
 			where: { name: name },

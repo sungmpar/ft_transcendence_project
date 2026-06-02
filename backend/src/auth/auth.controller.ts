@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Res, Req, Query, UseGuards } from '@nestjs/common';
+import { Controller, ForbiddenException, Get, Post, Res, Req, Query, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiParam } from '@nestjs/swagger'
 import { AuthService } from './auth.service';
 import { FtAuthGuard } from './ft.guard';
@@ -24,6 +24,20 @@ export class AuthController {
 	@UseGuards(FtAuthGuard)
 	async redirect(@Req() req: any, @Res() res: any) {
 		const token = await this.authService.issueJwtToken(req.user['name']);
+		res.cookie('token', token, {
+			httpOnly: false,
+		});
+		res.redirect(`${process.env.FRONT_URL}/login?token=check`);
+	}
+
+	@ApiOperation({summary: '포트폴리오 데모용 게스트 계정 생성 후 로그인'})
+	@Get('guest')
+	async guestLogin(@Res() res: any) {
+		if (process.env.ENABLE_GUEST_LOGIN !== 'true')
+			throw new ForbiddenException('Guest login is disabled');
+
+		const guest = await this.userService.createGuest();
+		const token = await this.authService.issueJwtToken(guest.name);
 		res.cookie('token', token, {
 			httpOnly: false,
 		});

@@ -236,7 +236,7 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem('token'))
     {
 			if (store.getters.socket == null && (to.name == 'chat' || to.name == 'tempchat')) {
-				store.commit("setSocket", io('ws://:5000/chat', {
+				store.commit("setSocket", io(`ws://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/chat`, {
 				transports: ['websocket'],
 				auth:
 				{
@@ -249,7 +249,7 @@ router.beforeEach((to, from, next) => {
 					|| to.name == 'invite' ||to.name == 'tempinvitepage'
 					|| to.name == 'spectate' || to.name == 'tempwatchpage'))
       {
-				const gameSocket = io('ws://:5000/game', {
+				const gameSocket = io(`ws://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/game`, {
 					transports: ['websocket'],
 					auth:
 					{
