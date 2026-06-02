@@ -1,15 +1,13 @@
-FROM node:17-alpine
+FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
-COPY ./yarn.lock ./
+COPY package.json yarn.lock ./
 
-RUN yarn global add @vue/cli && yarn global upgrade --latest @vue/cli
+RUN yarn install --frozen-lockfile
 
 COPY . .
 
 EXPOSE 3000
 
-RUN yarn install
-
-CMD yarn serve
+CMD ["yarn", "serve", "--host", "0.0.0.0"]
