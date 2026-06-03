@@ -1,25 +1,29 @@
 <template>
 	<div class= "game_container  bg-gray-700">
 		<div class="game-scale-shell">
-			<div class="game-scale-wrapper" :style="{ transform: `scale(${gameScale})` }">
-				<div id = "full-screen">
-					<div class = "flex flex-row items-center justify-center w-[1200px]">
-						<div class = "flex flex-row items-center justify-center w-[350px]">
-							<span class = "text-3xl mx-20 my-8 text-purple-200"> {{store.getters.room.leftName}} </span>
+			<div
+				class="game-scale-placeholder"
+				:style="{ width: `${GAME_VIEW_WIDTH * gameScale}px`, height: `${GAME_VIEW_HEIGHT * gameScale}px` }"
+			>
+				<div class="game-scale-wrapper" :style="{ transform: `scale(${gameScale})` }">
+					<div id = "full-screen">
+						<div class = "flex flex-row items-center justify-center w-[1200px]">
+							<div class = "flex flex-row items-center justify-center w-[350px]">
+								<span class = "text-3xl mx-20 my-8 text-purple-200"> {{store.getters.room.leftName}} </span>
+							</div>
+							<div class = "flex flex-row items-center justify-center w-[150px]">
+								<span class = "text-4xl mx-20 my-8 text-purple-200"> {{store.getters.gameData.score.left}} </span>
+							</div>
+							<div class = "flex flex-row items-center justify-center w-[200px]">
+								<span class = "text-4xl mx-20 my-8 text-purple-400 "> vs </span>
+							</div>
+							<div class = "flex flex-row items-center justify-center w-[150px]">
+								<span class = "text-4xl mx-20 my-8 text-purple-200"> {{store.getters.gameData.score.right}} </span>
+							</div>
+							<div class = "flex flex-row items-center justify-center w-[350px]">
+								<span class = "text-3xl mx-20 my-8 text-purple-200"> {{store.getters.room.rightName}} </span>
+							</div>
 						</div>
-						<div class = "flex flex-row items-center justify-center w-[150px]">
-							<span class = "text-4xl mx-20 my-8 text-purple-200"> {{store.getters.gameData.score.left}} </span>
-						</div>
-						<div class = "flex flex-row items-center justify-center w-[200px]">
-							<span class = "text-4xl mx-20 my-8 text-purple-400 "> vs </span>
-						</div>
-						<div class = "flex flex-row items-center justify-center w-[150px]">
-							<span class = "text-4xl mx-20 my-8 text-purple-200"> {{store.getters.gameData.score.right}} </span>
-						</div>
-						<div class = "flex flex-row items-center justify-center w-[350px]">
-							<span class = "text-3xl mx-20 my-8 text-purple-200"> {{store.getters.room.rightName}} </span>
-						</div>
-					</div>
 						<canvas id = "gameCanvas" class="canvas"></canvas>
 						<button type="button" class = "wide-user-button" @click="modeChange"> mode </button>
 						<div class = "flex flex-row">
@@ -27,6 +31,7 @@
 							<button type="button" class = "user-play-button mb-10" @click="joinToGame">play</button>
 							<button type="button" class = "user-play-button mb-10" @click="changeMapB">▷</button>
 						</div>
+					</div>
 				</div>
 			</div>
 		</div>

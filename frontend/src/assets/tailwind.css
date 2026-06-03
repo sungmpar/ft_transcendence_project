@@ -338,11 +338,18 @@
 		@apply flex items-center justify-center h-screen w-full overflow-hidden;
 	}
 
+	.game-scale-placeholder {
+		@apply relative flex-none;
+	}
+
 	.game-scale-wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 1400px;
 		height: 1000px;
 		flex: none;
-		transform-origin: center center;
+		transform-origin: top left;
 	}
 
 	.game_container{
