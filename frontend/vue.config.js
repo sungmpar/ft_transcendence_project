@@ -8,5 +8,8 @@ module.exports = defineConfig({
       'transcendence.koreacentral.cloudapp.azure.com',
       '4.218.8.163',
     ],
+    client: {
+      webSocketURL: 'wss://transcendence.koreacentral.cloudapp.azure.com/ws',
+    },
   },
 })
