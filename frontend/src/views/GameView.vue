@@ -1,36 +1,40 @@
 <template>
 	<div class= "game_container  bg-gray-700">
-		<div id = "full-screen">
-			<div class = "w-full max-w-[1000px] flex flex-row items-center justify-center gap-2 sm:gap-4 px-3">
-				<div class = "min-w-0 flex-1 text-right">
-					<span class = "block truncate text-lg sm:text-2xl md:text-3xl font-bold text-purple-200"> {{store.getters.room.leftName}} </span>
-				</div>
-				<div class = "w-10 sm:w-14 text-center">
-					<span class = "text-2xl sm:text-4xl font-extrabold text-purple-200"> {{store.getters.gameData.score.left}} </span>
-				</div>
-				<div class = "w-10 sm:w-14 text-center">
-					<span class = "text-xl sm:text-3xl font-extrabold text-purple-400 "> vs </span>
-				</div>
-				<div class = "w-10 sm:w-14 text-center">
-					<span class = "text-2xl sm:text-4xl font-extrabold text-purple-200"> {{store.getters.gameData.score.right}} </span>
-				</div>
-				<div class = "min-w-0 flex-1 text-left">
-					<span class = "block truncate text-lg sm:text-2xl md:text-3xl font-bold text-purple-200"> {{store.getters.room.rightName}} </span>
+		<div class="game-scale-shell">
+			<div class="game-scale-wrapper" :style="{ transform: `scale(${gameScale})` }">
+				<div id = "full-screen">
+					<div class = "flex flex-row items-center justify-center w-[1200px]">
+						<div class = "flex flex-row items-center justify-center w-[350px]">
+							<span class = "text-3xl mx-20 my-8 text-purple-200"> {{store.getters.room.leftName}} </span>
+						</div>
+						<div class = "flex flex-row items-center justify-center w-[150px]">
+							<span class = "text-4xl mx-20 my-8 text-purple-200"> {{store.getters.gameData.score.left}} </span>
+						</div>
+						<div class = "flex flex-row items-center justify-center w-[200px]">
+							<span class = "text-4xl mx-20 my-8 text-purple-400 "> vs </span>
+						</div>
+						<div class = "flex flex-row items-center justify-center w-[150px]">
+							<span class = "text-4xl mx-20 my-8 text-purple-200"> {{store.getters.gameData.score.right}} </span>
+						</div>
+						<div class = "flex flex-row items-center justify-center w-[350px]">
+							<span class = "text-3xl mx-20 my-8 text-purple-200"> {{store.getters.room.rightName}} </span>
+						</div>
+					</div>
+						<canvas id = "gameCanvas" class="canvas"></canvas>
+						<button type="button" class = "wide-user-button" @click="modeChange"> mode </button>
+						<div class = "flex flex-row">
+							<button type="button" class = "user-play-button mb-10" @click="changeMapA">◁</button>
+							<button type="button" class = "user-play-button mb-10" @click="joinToGame">play</button>
+							<button type="button" class = "user-play-button mb-10" @click="changeMapB">▷</button>
+						</div>
 				</div>
 			</div>
-				<canvas id = "gameCanvas" class="canvas"></canvas>
-				<button type="button" class = "wide-user-button" @click="modeChange"> mode </button>
-				<div class = "flex flex-row flex-wrap justify-center gap-2">
-					<button type="button" class = "user-play-button" @click="changeMapA">◁</button>
-					<button type="button" class = "user-play-button" @click="joinToGame">play</button>
-					<button type="button" class = "user-play-button" @click="changeMapB">▷</button>
-				</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { GameImageService } from '@/models/GameImageService';
 import { GameplayService } from '@/plugins/gamePlayService';
 import store from '@/store';
@@ -44,6 +48,20 @@ let map: string[] = ["winter", "black", "space"];
 let count = 1;
 let mode = true;
 let mapChange = true;
+const gameScale = ref(1);
+const GAME_VIEW_WIDTH = 1400;
+const GAME_VIEW_HEIGHT = 1000;
+const SIDEBAR_WIDTH = 80;
+
+function updateGameScale() {
+	const availableWidth = Math.max(window.innerWidth - SIDEBAR_WIDTH, 0);
+	const availableHeight = window.innerHeight;
+	gameScale.value = Math.min(
+		availableWidth / GAME_VIEW_WIDTH,
+		availableHeight / GAME_VIEW_HEIGHT,
+		1,
+	);
+}
 
 function changeMapA(){
 	if (!ready){
@@ -151,6 +169,8 @@ function setStatus(status: string) {
 onMounted(() => {
 	// console.log("Game view mounted 되었습니다.");
 	// setStatus("ingame");
+	updateGameScale();
+	window.addEventListener('resize', updateGameScale);
 	setTimeout(async () => {
 		await GameImageService.loadImages();
 	}),
@@ -159,6 +179,7 @@ onMounted(() => {
 
 onUnmounted(() => {
 	// console.log("Game view unmounted 되었습니다.");
+	window.removeEventListener('resize', updateGameScale);
 	if (store.getters.gameSocket != null)
 		store.getters.gameSocket.emit("end");
 	store.commit("setGameData",
