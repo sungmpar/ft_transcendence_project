@@ -71,18 +71,19 @@ let input_text = '';
 let image = '';
 let file = '';
 let users = store.getters.usermatch;
+const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin
 
 function defaultImage(event :Event) {
 	(event.target as HTMLInputElement).src = require('../assets/dafault.jpeg');
 }
 
 async function goTomain(){
-	var url = `http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_FRONTEND_PORT}/`;
+	var url = `${window.location.origin}/`;
 	document.location = url;
 }
 
 function get_avatar(str :string) {
-	return (`http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/user/image/`+ str);
+	return (`${backendBaseUrl}/user/image/`+ str);
 }
 
 function my_name(){

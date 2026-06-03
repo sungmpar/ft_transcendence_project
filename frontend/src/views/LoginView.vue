@@ -14,14 +14,15 @@
 <script setup lang="ts">
 
 const isGuestLoginEnabled = process.env.VUE_APP_ENABLE_GUEST_LOGIN === 'true'
+const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin
 
 async function signin42(){
-	var url = `http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/auth/42`
+	var url = `${backendBaseUrl}/auth/42`
 	document.location = url
 }
 
 async function signinGuest(){
-	var url = `http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/auth/guest`
+	var url = `${backendBaseUrl}/auth/guest`
 	document.location = url
 }
 

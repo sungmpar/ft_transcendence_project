@@ -46,6 +46,8 @@ import router from '@/router';
 import store from '@/store';
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
+const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin
+
 function closeSlider() {
 	store.commit('setOpenFriends', false);
 	console.log('closeSlider' + store.getters.openFriends);
@@ -63,7 +65,7 @@ async function goPong(friendId: number, friendName: number) {
 }
 
 function get_avatar(id: number) {
-	return (`http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/user/image/${id}`);
+	return (`${backendBaseUrl}/user/image/${id}`);
 }
 
 </script>

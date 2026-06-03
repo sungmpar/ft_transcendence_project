@@ -105,7 +105,7 @@
       },
 
       async goTomain(){
-        var url = `http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_FRONTEND_PORT}/`;
+        var url = `${window.location.origin}/`;
         document.location = url;
       },
 

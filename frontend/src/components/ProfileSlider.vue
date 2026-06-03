@@ -51,6 +51,8 @@ import store from '@/store';
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import axios from 'axios';
 
+const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin
+
 function closeModal() {
 	store.commit("setOpenProfile", false);
 	console.log("open profile: " + store.getters.openProfile);
@@ -97,7 +99,7 @@ function addFriends() {
 }
 
 function get_avatar(id: number) {
-	return (`http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/user/image/${id}`);
+	return (`${backendBaseUrl}/user/image/${id}`);
 }
 
 </script>

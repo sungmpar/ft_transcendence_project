@@ -30,6 +30,8 @@ import router from '@/router';
 import store from '@/store';
 import axios from 'axios';
 
+const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin
+
 async function logout() {
 	await axios.get('/auth/logout')
 	.then((response) => {
@@ -43,7 +45,7 @@ async function logout() {
 }
 
 function get_avatar(str :string) {
-	return (`http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/user/image/`+ str);
+	return (`${backendBaseUrl}/user/image/`+ str);
 }
 
 </script>

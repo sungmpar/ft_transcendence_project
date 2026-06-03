@@ -92,6 +92,8 @@ import { defineComponent } from "vue";
 
 import store from '../store';
 
+const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin
+
 export default defineComponent({
   methods: {
     defaultImage(event :Event) {
@@ -99,7 +101,7 @@ export default defineComponent({
     },
 
     async goTomain(){
-      document.location = `http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_FRONTEND_PORT}/`;
+      document.location = `${window.location.origin}/`;
     },
 
     input_words: function(event:Event) {
@@ -180,7 +182,7 @@ export default defineComponent({
     },
 
 		get_avatar(id: number) {
-			return (`http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/user/image/`+ id);
+			return (`${backendBaseUrl}/user/image/`+ id);
 		},
     my_name()
     {

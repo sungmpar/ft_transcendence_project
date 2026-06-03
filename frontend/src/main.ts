@@ -12,8 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {faHandshake, faUserLarge, faLock, faList, faVideoCamera, faHouse, faTableTennisPaddleBall, faComment, faUserGroup, faGear, faCircleNotch, faChevronDown, faChevronRight, faPlus, faSearch, faX, faKey, faSignOut } from '@fortawesome/free-solid-svg-icons'
 /* add icons to the library */
 library.add(faHandshake, faUserLarge, faLock, faList, faVideoCamera, faHouse, faTableTennisPaddleBall, faComment, faUserGroup, faGear, faCircleNotch, faChevronDown, faChevronRight, faPlus, faSearch, faX, faKey, faSignOut )
-// axios.defaults.baseURL = 'http://localhost:5000'
-axios.defaults.baseURL = `http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}`
+const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin
+axios.defaults.baseURL = backendBaseUrl
 
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 

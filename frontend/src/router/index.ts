@@ -21,6 +21,7 @@ import io from 'socket.io-client'
 
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
+const socketBaseUrl = process.env.VUE_APP_WS_URL || window.location.origin.replace(/^http/, 'ws');
 
 function lazyLoad(view : any){
   return() => import(`@/views/${view}.vue`)
@@ -157,7 +158,7 @@ async function match_check()
 
 function connectSocket(toName: any) {
   if (store.getters.socket == null && (toName == 'chat' || toName == 'tempchat')) {
-    store.commit("setSocket", io(`ws://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/chat`, {
+    store.commit("setSocket", io(`${socketBaseUrl}/chat`, {
     transports: ['websocket'],
     auth:
     {
@@ -170,7 +171,7 @@ function connectSocket(toName: any) {
       || toName == 'invite' ||toName == 'tempinvitepage'
       || toName == 'spectate' || toName == 'tempwatchpage'))
   {
-    const gameSocket = io(`ws://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/game`, {
+    const gameSocket = io(`${socketBaseUrl}/game`, {
       transports: ['websocket'],
       auth:
       {

@@ -93,7 +93,7 @@ import store from '@/store';
 import axios from 'axios';
 import {onUnmounted} from 'vue';
 
-const link = `http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_FRONTEND_PORT}`
+const link = window.location.origin
 async function openFriends() {
 	store.commit('setOpenFriends', true);
 	console.log('openFriends' + store.state.openFriends);

@@ -19,6 +19,8 @@ import store from '@/store';
 import axios from 'axios';
 import { defineProps } from 'vue';
 
+const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin
+
 defineProps({
 	userId: {
 		type: Number,
@@ -44,7 +46,7 @@ async function openModal(userId: number) {
 }
 
 function get_avatar(id: number) {
-	return (`http://${process.env.VUE_APP_SERVER_IP}:${process.env.VUE_APP_BACKEND_PORT}/user/image/${id}`);
+	return (`${backendBaseUrl}/user/image/${id}`);
 }
 
 </script>
