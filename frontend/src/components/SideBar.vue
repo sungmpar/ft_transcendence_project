@@ -42,6 +42,12 @@
 		</div>
 
 		<div>
+			<router-link to="/play" aria-label="로그인 없는 로컬 및 AI Arcade">
+				<div class="sidebar-icon group"><span class="text-sm font-bold">2P</span><span class="sidebar-tooltip group-hover:scale-100">local / AI arcade</span></div>
+			</router-link>
+		</div>
+
+		<div>
 			<router-link to="/tempinvitepage">
 				<div class="sidebar-icon group">
 					<font-awesome-icon icon="fa-solid fa-handshake" />

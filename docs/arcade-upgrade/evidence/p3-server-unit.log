@@ -1,0 +1,8 @@
+PASS src/game/game-session.spec.ts (6.544 s)
+PASS src/game/server-match-runner.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        6.903 s
+Ran all test suites.

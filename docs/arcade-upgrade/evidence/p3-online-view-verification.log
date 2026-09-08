@@ -1,0 +1,23 @@
+P3 online view integration checks
+Scope: GameView.vue, InviteGameView.vue, SpectateView.vue, OnlineGameShell.vue, Vuex game display state.
+
+Command (frontend): PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit
+Exit code: 2
+Output:
+../shared/protocol.ts(106,7): error TS7034: Variable 'config' implicitly has type 'any' in some locations where its type cannot be determined.
+../shared/protocol.ts(108,41): error TS7005: Variable 'config' implicitly has an 'any' type.
+../shared/protocol.ts(108,68): error TS7005: Variable 'config' implicitly has an 'any' type.
+This check is blocked by the concurrently edited shared protocol's config annotation; not marked as a passing frontend build.
+
+Command (frontend): PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src/components/game/OnlineGameShell.vue src/views/GameView.vue src/views/InviteGameView.vue src/views/SpectateView.vue
+Exit code: 0
+Output: (empty)
+Earlier lint run found missing ESLint compiler-macro globals in the new SFC (defineProps/defineEmits). Added their actual compile-time global declarations; no rules or tests disabled.
+
+Command (repository): git diff --check
+Exit code: 0
+
+Source searches: no alert() or old update socket subscriptions remain in the three online views.
+Behavior implemented: canonical ready/setData validation before session start, all named socket handler teardown, inline waiting/connection/error/result messages, real rematch/menu actions, map and key-layout controls, authoritative side-based winner display, completed-match finish payload preservation, snapshot phase/score/Power display through Vuex.
+Pending validation: Vue CLI build after the shared-protocol type correction, actual authenticated browser matching/invites/spectating, backend persistence and reconnect behavior.
+Client achievement event preserved per P3 coordination until server-side result/achievement ownership is changed.

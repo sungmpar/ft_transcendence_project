@@ -1,0 +1,50 @@
+Repository: /Users/sm/dev_park/ft_transcendence_project
+Branch during verification: main; HEAD unchanged by this agent. Working tree intentionally dirty.
+Runtime prefix: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH
+No commit, push, PR, GitHub message, deployment or production data changes.
+
+P3, cwd frontend:
+COMMAND: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit
+RESULT: exit 0; p3-frontend-tsc-final.log is empty successful stdout/stderr.
+COMMAND: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_ARCADE_DEBUG=true yarn build
+RESULT: exit 0; p3-frontend-build-final.log; 2026-09-07T05:43:59.969Z hash cc14fa265328eea7. Existing service-view lint and bundle-size warnings remain. This build includes actual transport RTT HUD and does not include the later P4 persistence changes.
+
+P4, cwd backend:
+COMMAND: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/jest/bin/jest.js --config test/online-result-jest.json --runInBand
+RESULT: exit 0, 7/7 PASS; p4-online-result-tests.log. Tests are new persistence-notice contract checks, not an asserted execution of the former Vue views.
+
+P4, cwd frontend:
+COMMAND: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit
+RESULT: exit 0; p4-frontend-tsc.log.
+COMMAND: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src/components/game/OnlineGameShell.vue src/views/GameView.vue src/views/InviteGameView.vue src/views/SpectateView.vue src/arcade/online-result.ts --max-warnings 0
+RESULT: exit 0; p4-online-view-eslint.log. Executed before the subsequently authorized removal of three client achievement emits; root owns subsequent final build.
+COMMAND: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/prettier/bin-prettier.js --write src/components/game/OnlineGameShell.vue src/views/GameView.vue src/views/InviteGameView.vue src/views/SpectateView.vue src/arcade/online-result.ts
+RESULT: exit 0; scoped owned files formatted. No unrelated formatter or dependency/lockfile changes.
+
+Service preservation, cwd backend:
+COMMAND: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/service-jest.json --runInBand
+ATTEMPT 1: exit 1; service-preservation.log. All 4 cases blocked in fixture initialization with sandbox EPERM, no feature result.
+ATTEMPT 2: same command with approved sandbox escalation, exit 1; service-preservation-rerun.log. Actual chat case PASS, 3 HTTP tests hit a test-code CommonJS supertest import mismatch.
+ATTEMPT 3: import fixed to TypeScript import=require; same escalated command exit 1; service-preservation-final.log. 3 PASS, guest test had an incorrect assumed 'guest' prefix. Read actual UserService.generateGuestId() and corrected test expectation to its existing g + 7 base36-character contract.
+ATTEMPT 4: same escalated command, exit 0; service-preservation-verified.log. 4/4 PASS, 5.958 seconds.
+Actual paths covered: anonymous /user/me, /user/friends, /user/image/me -> 401; /auth/guest off -> 403 and no row, on -> 302 and issued cookie -> authenticated profile/image/friends; nickname and friend updates persisted; unmet 2FA HTTP gate -> 403 then restored -> 200; real unauthenticated chat rejection; two valid Socket.IO chat clients create/join/message/history/leave with PostgreSQL row and membership checks.
+Fixture uses only hard-allowlisted 127.0.0.1:55432 arcade_fixture and its generated schema, dropped at close. JWTs, cookies and fixture user identifiers are kept out of evidence; legacy console.log is suppressed inside this test. Temporary guest/default-image/front-url process settings restored. External OAuth and email delivery were not attempted and are not claimed as verified. Production auth/chat source unchanged.
+
+Read-only independent review:
+Accepted: matching copy now describes existing BOTH-request-Power agreement; disposed guards on queued view callbacks; strict roomId resultStatus filtering; saved/failed terminal persistence notice; match outcome does not infer storage success; stored spectator history preserves confirmed saved status; server-owned achievements removed from all three views after parent confirmed migration.
+Service preservation: publicArcade meta guard exempts only /play, /play/local, /play/ai; existing authenticated service paths retain prior guards and shell. Auth/User/Profile/Friends/Chat production source not changed in this agent's work. Existing disabled frontend 42 button and baseline websocket-vs-HTTP 2FA guard differences were not relabeled as new regressions.
+Remaining limits: actual external 42 OAuth/mail and production deployment not verified. P4 browser reconnect/failure and final aggregate builds are parent-owned; this log does not claim their results.
+
+FINAL ADDENDUM after reviewer corrections and abort support:
+Online notice test command now uses node --no-experimental-fetch, same --config test/online-result-jest.json --runInBand: 8/8 PASS exit0 in p4-online-result-release.log.
+frontend tsc same command: final-frontend-tsc.log exit0.
+Scoped frontend eslint same command: final-online-view-eslint.log exit0.
+Whole frontend COMMAND: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH yarn lint --no-fix; final-frontend-nonfix-lint.log exit1, 2 baseline errors and64 warnings; affected error files unchanged.
+Frontend debug build same command: final-frontend-build.log exit0, 2026-09-07T05:56:42.844Z hash d171d1e2f5671b8b; includes Korean layout/copy corrections.
+Service command unchanged with local-TCP sandbox escalation: final-service-preservation.log exit0,5/5 PASS5.971s; production ValidationPipe configured, valid create/join DTOs, unfinished-match HTTP history check included.
+Additional read-only review: frontend-and-service-review.md.
+
+Latest manual-fixture build (no environment file edited):
+COMMAND (frontend cwd): PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_ENABLE_GUEST_LOGIN=true VUE_APP_ARCADE_DEBUG=true yarn build
+RESULT: exit0; final-frontend-fixture-build.log; 2026-09-07T05:57:50.159Z hash705af758a21aa3ca,14.08s. Guest button enabled only by this build flag to support the root-owned disposable fixture walkthrough. This command is not a deployment.
+Final git diff --check exit0; git diff --exit-code -- frontend/src/plugins/score.ts frontend/tailwind.config.js frontend/yarn.lock backend/package-lock.json exit0.

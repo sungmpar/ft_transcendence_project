@@ -1,0 +1,74 @@
+FAIL src/game/legacy-regression.spec.ts (5.955 s)
+  legacy normal-rally characterization (observed rules, not new contracts)
+    ✓ moves a free ball by the legacy per-call velocity (1 ms)
+    ✓ reflects the vertical velocity at the upper wall (1 ms)
+    ✓ uses the legacy center-hit bias and charges only once while touching (1 ms)
+    ✓ clamps upward movement at the top edge
+    ✓ activates a fully charged Power paddle at its valid lower bound (1 ms)
+    ✓ keeps at most one waiting player through the current sequential join path (1 ms)
+  expected contracts: baseline regression candidates
+    ✓ C01 removes only the requested user and preserves unrelated invitations (1 ms)
+    ✓ C02 leaves unrelated invitations intact when the requested invite is absent (2 ms)
+    ✓ C02 leaves present spectators intact when the requested spectator is absent (1 ms)
+    ✓ C07 preserves a legal full downward step near the lower bound
+    ✕ C09 publishes the actual generated match id returned by persistence (3 ms)
+    ✕ C10 rejects a result update that affected no database row (5 ms)
+    ✕ C10 reserves finalization before waiting for persistence during disconnect (1 ms)
+
+  ● expected contracts: baseline regression candidates › C09 publishes the actual generated match id returned by persistence
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "41"
+    Received: "2"
+
+      106 |     await game.joinMatch(first, { friendId: 0, mode: false });
+      107 |     await game.joinMatch(second, { friendId: 0, mode: false });
+    > 108 |     expect(matchesReadyId(first)).toBe('41');
+          |                                   ^
+      109 |     expect(matchesReadyId(second)).toBe('41');
+      110 |     expect(internals.rooms.has('41')).toBe(true);
+      111 |   });
+
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:108:35)
+
+  ● expected contracts: baseline regression candidates › C10 rejects a result update that affected no database row
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: null
+
+      117 |     };
+      118 |     const matches = new MatchService(repository as any);
+    > 119 |     await expect(matches.update('41', {
+          |           ^
+      120 |       winner: socket(1).user, loser: socket(2).user, winnerScore: 6, loserScore: 0,
+      121 |     })).rejects.toThrow();
+      122 |   });
+
+      at expect (node_modules/expect/build/index.js:128:15)
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:119:11)
+
+  ● expected contracts: baseline regression candidates › C10 reserves finalization before waiting for persistence during disconnect
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 2
+
+      137 |     resolveSave({ id: 41 });
+      138 |     await disconnect;
+    > 139 |     expect(matches.update).toHaveBeenCalledTimes(1);
+          |                            ^
+      140 |   });
+      141 | });
+      142 |
+
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:139:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 10 passed, 13 total
+Snapshots:   0 total
+Time:        6.033 s, estimated 8 s
+Ran all test suites.

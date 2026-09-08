@@ -1,0 +1,48 @@
+{
+  "status": "MATCH_ASSERTIONS_PASSED_BUT_SUITE_FAILED",
+  "browser": "152.0.7977.77",
+  "clock": "real browser/server wall clock",
+  "input": "synthetic held keyboard input; no game-state injection",
+  "durationMs": 27116,
+  "lastObservedTick": 967,
+  "score": [
+    6,
+    0
+  ],
+  "rematchStarted": true,
+  "menuDisposed": true,
+  "telemetry": [
+    {
+      "receivedFrames": 412,
+      "websocketPayloadBytes": 303679,
+      "lastMetrics": {
+        "fps": 60,
+        "snapshots": 322,
+        "inputMessages": 108,
+        "ackRoundTripMs": 669.7999998569503,
+        "transportRoundTripMs": 0.7999999523162842,
+        "bufferDepth": 32,
+        "displayDelayMs": 100,
+        "underflows": 6
+      }
+    },
+    {
+      "receivedFrames": 419,
+      "websocketPayloadBytes": 309603,
+      "lastMetrics": {
+        "fps": 60,
+        "snapshots": 324,
+        "inputMessages": 105,
+        "ackRoundTripMs": 19.39999995231483,
+        "transportRoundTripMs": 1.2000000476837158,
+        "bufferDepth": 32,
+        "displayDelayMs": 100,
+        "underflows": 7
+      }
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "bytesDefinition": "Received WebSocket payload bytes including Socket.IO framing, not TCP/TLS or total network bandwidth",
+  "failure": "Existing profile HTTP stream was given a nonexistent fixture avatar file; Jest suite exit 1 despite match assertions passing."
+}

@@ -1,0 +1,22 @@
+{
+  "browser": "152.0.7977.77",
+  "routes": {
+    "play": {
+      "destination": "/login",
+      "public_game_available": false
+    },
+    "play/local": {
+      "destination": "/login",
+      "public_game_available": false
+    },
+    "play/ai": {
+      "destination": "/login",
+      "public_game_available": false
+    },
+    "game": {
+      "destination": "/login",
+      "public_game_available": false
+    }
+  },
+  "blocked_external_requests": []
+}

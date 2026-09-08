@@ -1,0 +1,27 @@
+Command (cwd: backend):
+/private/tmp/ft-transcendence-runtime/node_modules/.bin/node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/core-jest.json --runInBand --runTestsByPath src/game/ai.spec.ts
+
+Captured command result: exit 0
+PASS src/game/ai.spec.ts
+  delayed rule-based AI
+    ✓ predicts a multi-bounce intercept using the playable ball-center interval (2 ms)
+    ✓ predicts symmetrically for the other side (1 ms)
+    ✓ returns no intercept for retreating, almost vertical, passed or scored balls (1 ms)
+    ✓ does not react until an owned observation has completed its latency (3 ms)
+    ✓ holds the last movement between decisions and updates only on the configured period (1 ms)
+    ✓ returns toward center when a delayed observed ball is moving away (1 ms)
+    ✓ keeps the same core movement speed as a human instead of altering state (15 ms)
+    ✓ requests Power from delayed charge observations and emits only a press pulse (1 ms)
+    ✓ exposes real difficulty differences without increasing paddle speed (1 ms)
+    ✓ replays the same seed and changes aim with a different seed (19 ms)
+    ✓ cannot observe future human inputs or source mutations and resets its delayed queue (7 ms)
+    ✓ stops issuing held movement immediately when a match finishes (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       12 passed, 12 total
+Snapshots:   0 total
+Time:        4.5 s
+Ran all test suites within paths "src/game/ai.spec.ts".
+
+This is a captured pure-controller/core automated test result. It is not a
+browser playthrough or a measured human win-rate experiment.

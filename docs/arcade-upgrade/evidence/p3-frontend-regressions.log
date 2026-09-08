@@ -1,0 +1,76 @@
+Scope: synthetic DOM, RAF clock and in-memory transport tests of actual frontend
+classes. This log does not establish a real browser, authentication, database or
+Socket.IO network playthrough.
+
+Baseline contract migration:
+- All 9 original C03/C04/C08 behavioral cases remain in frontend-lifecycle.spec.ts.
+- GameplayService.start now requires the server's validated v1 ReadyMessage, so
+  each start receives a canonicalReady fixture with mode, side, generation and
+  captured core state. The old payload-less call no longer starts a match.
+- C04 events execute KeyboardController -> OnlineSession -> MatchInput. The legacy
+  Bar string encoder is no longer used by production GameplayService.
+- Opposite movement still must be neutral. DTO sequence advances on refresh, so
+  the comparison asserts movement plus runtime-valid DTOs instead of requiring
+  identical sequence metadata. Movement+Power asserts both up=true and a new
+  actionId in the same packet.
+- Replacing a session may send one intentional neutral teardown packet. Calls
+  are cleared immediately after replacement; invoking captured OLD callbacks
+  must produce no packets and must not add a RAF. The replacement's first packet
+  must use its new generation and neutral movement.
+- No behavioral case was skipped, removed, or given a weakened success outcome.
+
+Environment: Node 18.20.8, existing backend Jest/ts-jest; commands run in backend.
+
+COMMAND A:
+/private/tmp/ft-transcendence-runtime/node_modules/.bin/node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/frontend-contract-jest.json --runInBand
+Initial result: exit 0; 1 suite passed; 9 tests passed; 1.997 s.
+C08 repeated start, stop cleanup, late stopped callback, repeated disposal,
+replaced generation; C03 true/false authoritative mode; C04 neutral opposition
+and simultaneous held movement+Power all passed.
+
+COMMAND B:
+/private/tmp/ft-transcendence-runtime/node_modules/.bin/node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-session-jest.json --runInBand
+Initial result: exit 1; 11 passed, 1 failed; 1.812 s.
+Failure: ready.snapshot.state.ball.x changed externally to 999 also changed
+OnlineSession.latest.ball.x (expected owned value 600, received 999).
+
+Expanded lifetime check, same COMMAND B:
+Result after fixture clock correction: exit 1; 11 passed, 2 failed; 1.037 s.
+Failures:
+1. The owned-ready/received-snapshot contract above.
+2. Calling captured disconnect/connect/resultStatus/sessionStatus callbacks after
+   dispose produced 4 status updates; expected 0 updates from a disposed owner.
+
+Fixture correction (not a production defect): one intermediate 13-case run also
+failed the 80ms ack check because swapping Jest's global performance object did
+not consistently replace the module's clock reference. The fixture now installs
+and restores performance.now on the existing object; the unchanged 80ms assertion
+passed. That intermediate run was 10 passed/3 failed, exit 1, 1.053 s.
+
+Accepted production fixes (implemented by the root agent):
+- Initial and received network snapshots use captureSnapshot to own their data.
+- Disposed status/motion callbacks return without changing the former owner's UI.
+
+Final rerun of the SAME COMMAND A:
+PASS src/game/frontend-lifecycle.spec.ts
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        1.424 s, estimated 2 s
+Exit code: 0
+
+Final rerun of the SAME COMMAND B:
+PASS src/game/online-session.spec.ts
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        1.148 s
+Exit code: 0
+
+The final 13-case session suite passes 20Hz reception without RAF creation,
+owned listener disposal and late status callbacks, movement+ability DTO/edge
+contracts, 100ms held-input refresh, form/focus/blur/hidden neutrality, spectator
+input rejection, stale/wrong snapshot rejection, owned snapshot data, final-score
+flush, reconnect-generation suppression and an 80ms local-clock ack round trip.
+
+No real network latency or real browser result is inferred from these fixtures.

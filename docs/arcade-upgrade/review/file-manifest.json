@@ -1,0 +1,1101 @@
+{
+  "generatedAt": "2026-09-07T06:12:10.505080+00:00",
+  "repository": "sungmpar/ft_transcendence_project",
+  "branch": "main",
+  "head": "f970554de528b2fceb46aa7aa3a10d43c192b65b",
+  "originMain": "f970554de528b2fceb46aa7aa3a10d43c192b65b",
+  "stagedFiles": [],
+  "modifiedTrackedFiles": [
+    "README.md",
+    "backend/Dockerfile",
+    "backend/nest-cli.json",
+    "backend/package.json",
+    "backend/src/game/game.gateway.ts",
+    "backend/src/game/game.service.ts",
+    "backend/src/game/interface/room.state.ts",
+    "backend/src/game/pong-model/player.ts",
+    "backend/src/user/match.service.ts",
+    "backend/tsconfig.json",
+    "docker-compose.yml",
+    "frontend/Dockerfile",
+    "frontend/src/App.vue",
+    "frontend/src/components/SideBar.vue",
+    "frontend/src/plugins/bar.ts",
+    "frontend/src/plugins/gamePlayService.ts",
+    "frontend/src/router/index.ts",
+    "frontend/src/store/index.ts",
+    "frontend/src/views/GameView.vue",
+    "frontend/src/views/InviteGameView.vue",
+    "frontend/src/views/LoginView.vue",
+    "frontend/src/views/SpectateView.vue",
+    "frontend/vue.config.js"
+  ],
+  "sourcePatchReverseCheck": "PASS",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "bytes": 78,
+      "sha256": "2d6f15130022446b824c2890898ce22f8805a7588922d98b35b036bd5ecec509"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8068,
+      "sha256": "7c6d00848fded96931ac4d1889c6c26d56756402ad27e4e4aef190e6fe84e80d"
+    },
+    {
+      "path": "backend/Dockerfile",
+      "bytes": 172,
+      "sha256": "aadfb67dc5f321b700eff76fddf9919a48e5a3dfac274ff2b272cdeb13179fbb"
+    },
+    {
+      "path": "backend/nest-cli.json",
+      "bytes": 153,
+      "sha256": "37db813e2d6c1f966fae2c3335ed0f7c61df04ba4b656ed1cc3ed0edbab17086"
+    },
+    {
+      "path": "backend/package.json",
+      "bytes": 2840,
+      "sha256": "8422e3bf6b90fea5adb4da7c4186c4cf7fd659c00f5de79e5848ab56b6dadfa3"
+    },
+    {
+      "path": "backend/src/game/ai.spec.ts",
+      "bytes": 8894,
+      "sha256": "daf94786c599653919dfdff9b66c1fc09bebeafa2852da90ea14f9e35fc19b4e"
+    },
+    {
+      "path": "backend/src/game/core.spec.ts",
+      "bytes": 11617,
+      "sha256": "a041e815696a30a1db05afad01794658b93e22e1042158c2ccb718f47433905e"
+    },
+    {
+      "path": "backend/src/game/frontend-lifecycle.spec.ts",
+      "bytes": 5447,
+      "sha256": "5216190af9e8a34c95754868643c2cb9f69a04f8b56ed3d8407b5d33bb1cb747"
+    },
+    {
+      "path": "backend/src/game/game-session.spec.ts",
+      "bytes": 10052,
+      "sha256": "541068a78eca327a7ac97c95e41b1cf60e18f4755972ffd0d63164063acd6b1f"
+    },
+    {
+      "path": "backend/src/game/game.gateway.ts",
+      "bytes": 3856,
+      "sha256": "075b66d989268147659f20a799cd649f058dfd02e3bac21be972bb9c966cc1b1"
+    },
+    {
+      "path": "backend/src/game/game.service.ts",
+      "bytes": 22996,
+      "sha256": "e1fb38f9a9713770eaffddceda7707a67618c9e2841b53f9f7fc76d684f537ce"
+    },
+    {
+      "path": "backend/src/game/interface/room.state.ts",
+      "bytes": 961,
+      "sha256": "66436740fa8a6f20a87eab1cc1100fd7fc997af986662df9e88a3010c12f49c7"
+    },
+    {
+      "path": "backend/src/game/legacy-regression.spec.ts",
+      "bytes": 7429,
+      "sha256": "40afb3a490cb10a33eecc57cd6315406370bf2c2ac09770cd02e50ea89b33dca"
+    },
+    {
+      "path": "backend/src/game/local-runner.spec.ts",
+      "bytes": 13336,
+      "sha256": "aa335f43a4bb8a26bc9a3a1acbfe790eafb24abf12511a503a2e36326a1577b6"
+    },
+    {
+      "path": "backend/src/game/online-result.spec.ts",
+      "bytes": 2926,
+      "sha256": "7071ef4783e74ec6f50d2297e2f9709d940c0d1dec669976db4f0e33000ab3ae"
+    },
+    {
+      "path": "backend/src/game/online-session.spec.ts",
+      "bytes": 10352,
+      "sha256": "a49e282348d2d3692dd273dacc2e191028976e83c90bcd2c591aaa5358417eaa"
+    },
+    {
+      "path": "backend/src/game/pong-model/player.ts",
+      "bytes": 1063,
+      "sha256": "9fc169116aab3012f75dae163b7e2d0a15c51c5be4c786f78c8e9c12c61eb98d"
+    },
+    {
+      "path": "backend/src/game/protocol.spec.ts",
+      "bytes": 4595,
+      "sha256": "741f70b2efb64362661953eff12114bb9a86f09a5b2b3fc6830135e71289a93c"
+    },
+    {
+      "path": "backend/src/game/server-match-runner.spec.ts",
+      "bytes": 3390,
+      "sha256": "34f4487159d8512aefd066918f0325fd22bbd1dcf53a98cab5b730f313d190da"
+    },
+    {
+      "path": "backend/src/game/server-match-runner.ts",
+      "bytes": 3683,
+      "sha256": "c8ad402d58c6e8d656bf8428c12e246950c855213dff2b4966ff689ec446f72a"
+    },
+    {
+      "path": "backend/src/game/snapshot-buffer.spec.ts",
+      "bytes": 9019,
+      "sha256": "e4409b37a385c23759b2ae1b18d4c8fb5859735c16e5935d319dbe6a5a4ee087"
+    },
+    {
+      "path": "backend/src/user/match.service.ts",
+      "bytes": 3890,
+      "sha256": "47315d9f81a8f7b342a3a375d7596cde7677763dbba987e207665240ac667e68"
+    },
+    {
+      "path": "backend/test/arcade-jest.json",
+      "bytes": 283,
+      "sha256": "12b6af67213d20e3d84a0b526c345bbb284430287c59381e12ca800c6796c821"
+    },
+    {
+      "path": "backend/test/core-jest.json",
+      "bytes": 422,
+      "sha256": "cdd97260118ab9a966f030a7a44fbb7d02f3aebd97b8e23990af41bf5bd58a2d"
+    },
+    {
+      "path": "backend/test/frontend-contract-jest.json",
+      "bytes": 702,
+      "sha256": "aa67a47ca46ba4070a28b9c5c7af0caa716617bc74e00f7e162cd7f45dd0eb36"
+    },
+    {
+      "path": "backend/test/lifecycle-jest.json",
+      "bytes": 421,
+      "sha256": "2e7676f19c52d7cd719f17ab65a83512ad99af451472c0d9e9d7c78c881494fb"
+    },
+    {
+      "path": "backend/test/local-jest.json",
+      "bytes": 335,
+      "sha256": "16420194ebb3e68021931afdf8dab432977621ffa5f3dc0ec7bb6bb7b06ba490"
+    },
+    {
+      "path": "backend/test/measure-network.e2e-spec.ts",
+      "bytes": 9158,
+      "sha256": "6da1da791a5424ecad9c67c3e6d875bc8c7cae8e8334a2e35486d6a16384b5ad"
+    },
+    {
+      "path": "backend/test/measurement-jest.json",
+      "bytes": 391,
+      "sha256": "249ef310e85db083d68fbf39a71c0495654d3bf8de10b579fafc3002eded064a"
+    },
+    {
+      "path": "backend/test/online-browser-jest.json",
+      "bytes": 390,
+      "sha256": "336a7234a14dfa848994e7cf0a23534afbbbe853fa03abd51535740f50ab5908"
+    },
+    {
+      "path": "backend/test/online-browser-unit-fixture.ts",
+      "bytes": 5718,
+      "sha256": "502f2a8dd2f907639e94514a675dda4616e25482bc6b90808d5bbde0f4288e5f"
+    },
+    {
+      "path": "backend/test/online-browser.e2e-spec.ts",
+      "bytes": 5834,
+      "sha256": "ff37862081909c9e2772cfc056cff5d8c7ff12eaa80260433552c1747b712774"
+    },
+    {
+      "path": "backend/test/online-fixture.ts",
+      "bytes": 11113,
+      "sha256": "0b68393c2bc91caa9e09a212f50b29a2ec55e9008d17e8afdef4a0d375bc4730"
+    },
+    {
+      "path": "backend/test/online-integration.e2e-spec.ts",
+      "bytes": 6109,
+      "sha256": "e57d716a470a8ca1149ca458f5652961e280e3a7e7da7329a76d4c3de9d26c99"
+    },
+    {
+      "path": "backend/test/online-jest.json",
+      "bytes": 437,
+      "sha256": "3480a6156105c7d51e31183ba7f2da5aa0e378aca6f09a25b7a38a5b50ba3b27"
+    },
+    {
+      "path": "backend/test/online-lifecycle-browser-jest.json",
+      "bytes": 399,
+      "sha256": "fc6e91cde6b02030e3100721ab2b43d69f2a6fb12d07e40a486b0c21ac900c77"
+    },
+    {
+      "path": "backend/test/online-lifecycle-browser.e2e-spec.ts",
+      "bytes": 4385,
+      "sha256": "aa0106db0d9d216353cd71a12de7e94942b1d413dab1fde492d9c20b6e64a86f"
+    },
+    {
+      "path": "backend/test/online-lifecycle.e2e-spec.ts",
+      "bytes": 16879,
+      "sha256": "8ba780d3a4a7f87ed232b32abf4a5cc5dfafde64b8fc10897242c05ba5a18194"
+    },
+    {
+      "path": "backend/test/online-result-jest.json",
+      "bytes": 751,
+      "sha256": "fbb9d0d4d7113c528acf00f57faae2da3f50549a189c22cb422756d0a9f0d501"
+    },
+    {
+      "path": "backend/test/online-session-jest.json",
+      "bytes": 608,
+      "sha256": "6371932f5617550592abd934a5da14f13244d2dc71ee1dbd469fa0f620c10ebc"
+    },
+    {
+      "path": "backend/test/server-jest.json",
+      "bytes": 436,
+      "sha256": "0fbba163208aa690ee69bccbc35fd2c6b2f92608aee8733e4b59d9b03c33e1d5"
+    },
+    {
+      "path": "backend/test/service-jest.json",
+      "bytes": 497,
+      "sha256": "1c7b38df5779cfe6b216454f9fc8f020949d9020264ba19a83963dc7104f242c"
+    },
+    {
+      "path": "backend/test/service-preservation.e2e-spec.ts",
+      "bytes": 8973,
+      "sha256": "65643bc33dfd46952d46a58610040b15ce9414682040c4ae642be0a3d3f940bd"
+    },
+    {
+      "path": "backend/test/snapshot-jest.json",
+      "bytes": 345,
+      "sha256": "7e96b899397a21ab77becb8581689a1f96f5175155e81241b2529a263bacfc78"
+    },
+    {
+      "path": "backend/tsconfig.json",
+      "bytes": 630,
+      "sha256": "23fcfe260c7b86c0ed9e6cee753b1b6b1a1c44fb870e6a4caf4ecb82602433dd"
+    },
+    {
+      "path": "docker-compose.yml",
+      "bytes": 1117,
+      "sha256": "beb0bd041edd9dc89cb5ed1e1da5f875192ae1b1bdb4d821ec1fa03db7e9d75d"
+    },
+    {
+      "path": "docs/arcade-upgrade/AI_COLLABORATION.md",
+      "bytes": 13332,
+      "sha256": "65f5bcf2e109dd0a9fe72a6458cd2dc48d847103de7e957d9091e601ecd2c4f9"
+    },
+    {
+      "path": "docs/arcade-upgrade/BASELINE.md",
+      "bytes": 5278,
+      "sha256": "b73d7688d016258cd2598a1159a7ddde1d9a5e2d54df032b3af4ca22cf7d48d8"
+    },
+    {
+      "path": "docs/arcade-upgrade/DESIGN.md",
+      "bytes": 12424,
+      "sha256": "f565312679c071faa5cbfb5f6ecf7be7aa15bbac52f45acf6e29b7f0f6a9985b"
+    },
+    {
+      "path": "docs/arcade-upgrade/MEASUREMENTS.md",
+      "bytes": 16619,
+      "sha256": "189fb7f898706d253ae046a12c5af424473c86e36f2516565d205a68c61ba2ec"
+    },
+    {
+      "path": "docs/arcade-upgrade/PORTFOLIO_CASE_STUDY.md",
+      "bytes": 16453,
+      "sha256": "819b2236466f2ca6878b5956fcaaa353b65ebe21cdb9dd1ca9f0fb86d44e8316"
+    },
+    {
+      "path": "docs/arcade-upgrade/REVIEW_PACKET.md",
+      "bytes": 6913,
+      "sha256": "b00ab15150558bdc6d5dbd68c80941cfb7a0e17fe5a609c2e788abc376de8401"
+    },
+    {
+      "path": "docs/arcade-upgrade/TEST_REPORT.md",
+      "bytes": 23242,
+      "sha256": "d929e4980caff698a0be116083857fe2ed7d234ddcd1c159977507881a37a03e"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/ai-finished.png",
+      "bytes": 184523,
+      "sha256": "9c09a0634750d69967f2deda19d4f36b95c3f37497d4f709e6eee02eed0f962d"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/ai-playing.png",
+      "bytes": 148151,
+      "sha256": "1fc14f0aca822d34ad936328224cc71f18baf4590dc5f46b28e4fbc5552f023f"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/backend-owned-format.log",
+      "bytes": 386,
+      "sha256": "5fc15215f0a0bf5a12485d0679708815c4c28262de96f66f17205da9e0e73d74"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/backend-owned-nonfix-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-backend-build.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-backend-lint.log",
+      "bytes": 708906,
+      "sha256": "8ee2a15e85f9191b8449e1531ee315f9c05509965a1778d2cb2532cd277d14f3"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-backend-regressions-environment.log",
+      "bytes": 1538,
+      "sha256": "d6a5584d5247f2446ccef40cea054f7891a776871ee3c9e361ee5b882585c896"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-backend-regressions.log",
+      "bytes": 6798,
+      "sha256": "5b60a3a1e6c65f4fa3881ed0e4c0e26d0b0f25c1a629684540609ab9ccf5e5c7"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-browser.json",
+      "bytes": 450,
+      "sha256": "acfc09946e73d304054729ed5e84fec1ce38cbfee7ad6d90f370b57ad8a68b9f"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-frontend-build.log",
+      "bytes": 15157,
+      "sha256": "e09f3d8b6decfc49686709a936e67b81926815cd76d859b810502f488948eef4"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-frontend-lint.log",
+      "bytes": 10332,
+      "sha256": "7c5ad04a1af41879eb8f7d95d3e34596963c3c25b5b9fdfb020bef372c52702a"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-frontend-regressions.log",
+      "bytes": 6045,
+      "sha256": "bbfa83cdac593c9a4f057e9d3d54d817eefac86fcbc3712f07ed36086005f145"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/baseline-login.png",
+      "bytes": 82028,
+      "sha256": "2c9711e767ebb90e40b9df5c367bf090addbdeef7633a40d5e579ffc6101d7a9"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-backend-build.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-backend-nonfix-lint.log",
+      "bytes": 567222,
+      "sha256": "a1bfb75abcd756f3e1021f3a660e2323dacc71ee47fa3569e551c39567463f6e"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-backend-regressions.log",
+      "bytes": 1341,
+      "sha256": "758e7e281c3efa532ba3bec77bbd72da375a27baadc2d4122440827419010659"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-fixture-cleanup.log",
+      "bytes": 94,
+      "sha256": "659874f0727d1a95524e19443c864cbfcf55b2f0f8021437e8044cc9689bacde"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-frontend-build.log",
+      "bytes": 11376,
+      "sha256": "725d431c1d43097aed8f6ad6706940b4500e0d3b1a0e1f57a2b4c508766f2dbd"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-frontend-fixture-build.log",
+      "bytes": 11376,
+      "sha256": "a77c3b89bc491994f2e74c9445cec05d0df69541ad95a85ee0d93e67a49a8b85"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-frontend-nonfix-lint.log",
+      "bytes": 8304,
+      "sha256": "226e00f7e49ef7639cf27cca9a6eba2e2ec6a1ea6ab7286eea82a9764b1c55e5"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-frontend-tsc.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-import-boundary.json",
+      "bytes": 1176,
+      "sha256": "03facb1c34f795374712b580fe1d50e21ce51908154c1ee26c9fab4da52c4b74"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-local-browser-command.log",
+      "bytes": 61,
+      "sha256": "dca0ee3d06c1094ed9babf730328762e89d17c7afb4ae829c508c0a89364d58c"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-local-browser/ai-finished.png",
+      "bytes": 184523,
+      "sha256": "9c09a0634750d69967f2deda19d4f36b95c3f37497d4f709e6eee02eed0f962d"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-local-browser/ai-playing.png",
+      "bytes": 148153,
+      "sha256": "1495c17ca4c01490abc404df5f235acfd009894f1fdc09852dd74bbf771cea6b"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-local-browser/hub-small-screen.png",
+      "bytes": 517635,
+      "sha256": "662c9c8e059405ddba61cd1976dbefe6b49b605bcc74e1e6294fd14ffe4b09d0"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-local-browser/local-finished.png",
+      "bytes": 146577,
+      "sha256": "ee58b509da6c9a7eade1fc521796e7091c2d8eaa4b5a421488ae1024dad28997"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-local-browser/local-hub.png",
+      "bytes": 598620,
+      "sha256": "a2a3a3bb9eaffab02137069178b20be30b3d4f2a49e6762b44b150019a5143f5"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-local-browser/p2-browser-report.json",
+      "bytes": 3542,
+      "sha256": "7ebb142b7e4f8293b10163186d8f3f8c2f4c05bf027696e05dc261af363213ec"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-online-guest-browser-command.log",
+      "bytes": 362,
+      "sha256": "75fb3cffadccad296c1089a82508c01df238de2d15fc150b93eb90c2c014b28c"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-online-guest-browser.json",
+      "bytes": 383,
+      "sha256": "1ca0e34f3dbdd0e92f8db7e1bfb77f6b4c2cc4d7e058dbfbd13fe8f986558a75"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-online-guest-finished.png",
+      "bytes": 81553,
+      "sha256": "c96e5aff735f3f48e1c16db75410e1902004c0b48cd871da4870ab0dbd696d6c"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-online-integration.log",
+      "bytes": 523,
+      "sha256": "44a38dfc86487e2e96f960b743bf7083d0a53401e713b6a1fa529adf11075394"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-online-lifecycle.log",
+      "bytes": 981,
+      "sha256": "3d1279fd813c1e172229a9f99d2b294108b5fb0448885d7a472a5571f7e2cb49"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-online-view-eslint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-server-unit.log",
+      "bytes": 215,
+      "sha256": "53c3c1baa78df2c76ef0781364c3a24820dab0dc3b37a7ec1f26905ecd6ee583"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-service-preservation.log",
+      "bytes": 718,
+      "sha256": "deee6cbc48c63572d262e93e280f2ac4598d6cbd40d71209bd9c5dd10d465e4b"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-unit-check.log",
+      "bytes": 10096,
+      "sha256": "b88d054e817ee845e80d23f613a4e1fc5da98f382450d7b8ecac0ce509cba00d"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/final-unit-watchman-failure.log",
+      "bytes": 9771,
+      "sha256": "bb4222117bd10630ba43689d616160f6baff1f877a4dfef77aa90afaf75ff586"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/frontend-agent-command-record.log",
+      "bytes": 6633,
+      "sha256": "187a97ce5fd315c2af4ed9721be5006ced75a086957a26cb082a0281e3a57de3"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/frontend-and-service-review.md",
+      "bytes": 6786,
+      "sha256": "2a2c8dcc3e7fc3b0929b6aca726bca21edd198df219a433faa94a74bb338ea7d"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/hub-small-screen.png",
+      "bytes": 517635,
+      "sha256": "662c9c8e059405ddba61cd1976dbefe6b49b605bcc74e1e6294fd14ffe4b09d0"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/local-finished.png",
+      "bytes": 146577,
+      "sha256": "ee58b509da6c9a7eade1fc521796e7091c2d8eaa4b5a421488ae1024dad28997"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/local-hub.png",
+      "bytes": 598620,
+      "sha256": "a2a3a3bb9eaffab02137069178b20be30b3d4f2a49e6762b44b150019a5143f5"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/local-live-rally.png",
+      "bytes": 50990,
+      "sha256": "27763b0c473e057477d7548de7777e302914621f5d4d6ec43dbe371ca0855c71"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/manual-online-classified-type.log",
+      "bytes": 225,
+      "sha256": "1b8bf4ad92fd76a8e7e2f1ac054073177ebe1005f4fde579cf61b9472ed891ba"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/manual-online-classified.log",
+      "bytes": 210,
+      "sha256": "a5a4deae53deb7ff1a421b28dcd11d5a61aca1f8ee2d9035a9e4826857e9ea0a"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/manual-online-command.txt",
+      "bytes": 321,
+      "sha256": "5a62f070ba9bbfcad83c5f54978c973db577badaa6d24bdbf3032bd5d49ba817"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/manual-online-http-status.log",
+      "bytes": 4,
+      "sha256": "c11e3f4837efde2441e23a7b9da02131f53bf59fddeb7147c4ab81afe400460f"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/manual-online-initial.log",
+      "bytes": 189,
+      "sha256": "76e13c695dbf4f462ad92875c0929fa4bc51c5a13e18fcbab69600e27de3131f"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/manual-online-runtime.log",
+      "bytes": 391,
+      "sha256": "4ede081f693fc70639cacdb98f41f0dc0b0346cddcc28f81942ad59447829d53"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/online-browser-1-finished.png",
+      "bytes": 83555,
+      "sha256": "737e5e8d8a8ba53bf4521ecd10f9fd292efc319e11883e6e727bddacf05cbc65"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/online-browser-2-finished.png",
+      "bytes": 81041,
+      "sha256": "6cbc71cc5a025eccdba1a473fd7a2765e8129b6de58958e7ba07a8afb4dd8697"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/online-reconnected.png",
+      "bytes": 70068,
+      "sha256": "3b0cca9aeca893a6ab2e14eb943a9731741a504da5be29e86edd6f9ee6c4bd35"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p1-backend-regressions.log",
+      "bytes": 3289,
+      "sha256": "e085db332c537d1a64ff0bb3710e9f0be23b3064e1774107db678513a56c4cbd"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p1-core-protocol.log",
+      "bytes": 186,
+      "sha256": "52125b634096395842ba204efe4bd2481248fff87a0cbd3f77fd53600c46ce3e"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p1-frontend-regressions.log",
+      "bytes": 2709,
+      "sha256": "718dceb4e0e62b684656276ca99cf8213355641bab7ad1a281a5af583c7186b7"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p1-review-regressions-after.log",
+      "bytes": 1135,
+      "sha256": "3159303b962d31844efbe30bb8eff09741a1c5f42ab8f63b3e6d51db9d4c45dd"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p1-review-regressions-before.log",
+      "bytes": 2288,
+      "sha256": "e8518c95aac59b0d7ec525f941980ebe7faea8ad1bb07cca15218b0d85f10cff"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p1-shared-backend-build.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p2-ai-regressions.log",
+      "bytes": 1613,
+      "sha256": "62e49ee73ad923b2cefa52854011e0e04eaaf07713cfceb3f307cc0223ed0020"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p2-browser-command.log",
+      "bytes": 61,
+      "sha256": "dca0ee3d06c1094ed9babf730328762e89d17c7afb4ae829c508c0a89364d58c"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p2-browser-report.json",
+      "bytes": 3542,
+      "sha256": "7ebb142b7e4f8293b10163186d8f3f8c2f4c05bf027696e05dc261af363213ec"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p2-core-ai-protocol.log",
+      "bytes": 227,
+      "sha256": "f09ee2f13f073aad1565a89fe6ccc3e713c4ff68d19e52062a3be00be794e5f0"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p2-live-smoke-command.log",
+      "bytes": 61,
+      "sha256": "95939374526630491cd2dca3a3ae5924c6060e0e0b1df4c2dc90cdc981db02b5"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p2-live-smoke.json",
+      "bytes": 116,
+      "sha256": "6cf55bb3e08c0e12045b6293a8be7c595b01a5c73825a3cfd72e15a996436acd"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p2-local-verification.log",
+      "bytes": 3662,
+      "sha256": "4c3aa1d17a68a0a4890099f3c6290c9152ca8105a9f243076c99ea2c906d2c9f"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-backend-regressions.log",
+      "bytes": 1311,
+      "sha256": "580ad5721c39992df9669f2028737758c89d82dcc540343fd8cee585baa75cf8"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-frontend-build-final.log",
+      "bytes": 11376,
+      "sha256": "166711910a59b359fd25920aa06ae9ddb3046d75270dc99612f7e31904b5c72e"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-frontend-regressions.log",
+      "bytes": 4081,
+      "sha256": "8cf6513748fb5a7ec8518d1bb3afd3bfc4aeac68b1d80f31d34db24ef417c868"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-frontend-tsc-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-online-browser-command.log",
+      "bytes": 904,
+      "sha256": "fe617b6ba078c9e2f58b17ebe5d37c987f1dbf21c56921c5911998a8f2bb0fd0"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-online-browser-fixture-failure.json",
+      "bytes": 1395,
+      "sha256": "5a4b8ed47e129998f9ab8b34365c2097f899613d338f390f2239ffb39afae7db"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-online-browser-fixture-failure.log",
+      "bytes": 801,
+      "sha256": "a2ae26815eff23683c272ae8d7eaf1248fb062e80feecd59d549eeb68939bcb8"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-online-browser.json",
+      "bytes": 1215,
+      "sha256": "ebcba4565e65ed539ea883fa361d94b8f25d162c7cfbf53e6c6c3d082d4b61f8"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-online-integration.log",
+      "bytes": 507,
+      "sha256": "a4d93c75736cdc3de29ed98f7901928aa168f791107bf318b1536cb8cc7737d6"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-online-view-verification.log",
+      "bytes": 2005,
+      "sha256": "e43c370175698625b4f58a5b068a756072dc9d118ffae6c49b5ec7ee62aacf6b"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p3-server-unit.log",
+      "bytes": 215,
+      "sha256": "1f8fa2dd199d5160a2621fea3feec96a74d912254f4794369dc4787a96ffa96e"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-backend-regressions.log",
+      "bytes": 1340,
+      "sha256": "cc051e301bdb1ff27a51d9a44f57b68b1d7390b796e28a4d107b05c972584997"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-debug-build.log",
+      "bytes": 11376,
+      "sha256": "7153b931fec9146308fb55252b439699155ba8399b373fd7eb6829134fafd84a"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-failed-history-before.log",
+      "bytes": 2042,
+      "sha256": "892ba12ccbaf92b5ad670db0ad307ccc242c413efb38d3e71e9669538710e087"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-frontend-build-final.log",
+      "bytes": 11376,
+      "sha256": "acb11e11c98f7aad8f9d1bf73f82f4217342a9f9b485bdf4f18c4cac4559dcd5"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-frontend-build-release.log",
+      "bytes": 11376,
+      "sha256": "dcc77b353ad174393f8b884be807b97717ca4959b0846a8df5c9441c06f321e2"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-frontend-nonfix-lint-release.log",
+      "bytes": 8304,
+      "sha256": "226e00f7e49ef7639cf27cca9a6eba2e2ec6a1ea6ab7286eea82a9764b1c55e5"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-frontend-tsc-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-frontend-tsc-release.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-frontend-tsc.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-lifecycle-browser-command.log",
+      "bytes": 885,
+      "sha256": "4cb27956c08d26e2a1b888e59244f2c3722834878f1efbb4f29aaaa2d4b0c9a2"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-lifecycle-browser.json",
+      "bytes": 339,
+      "sha256": "777449aefc31b475bbc74161bbca7d068253abb3b97a4cd665b24e0c1d4a11d4"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-lifecycle-expanded.log",
+      "bytes": 966,
+      "sha256": "0831a82bf55390827c613a810d295f0a317481c82d85463afe7be076a90b377b"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-lifecycle-final.log",
+      "bytes": 966,
+      "sha256": "271c1a9823c5ec5d83abe0f1ac5e22bcbb7af9e98cf5ac309d53f94f9dcad1e0"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-lifecycle.log",
+      "bytes": 752,
+      "sha256": "1ceafaaac3fed8e8978cc7e718770e566d0c573186307942c2da58334c56f7d7"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-result-final.log",
+      "bytes": 850,
+      "sha256": "1f1d22a78baa60c4dfa4359e4113467bbbf979f37530a2d155a1fdb346176073"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-result-release.log",
+      "bytes": 850,
+      "sha256": "78c2b0e364264ae6cf04a4a37a1863e5f9f2a0c5156a2fe0367a767cb831b4e3"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-result-tests.log",
+      "bytes": 736,
+      "sha256": "4d4a120e7736abce14c92bfbc09182916d4f3f76b58335e6b95043c2fae7b3ff"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-view-eslint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-online-view-eslint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-server-unit-final.log",
+      "bytes": 230,
+      "sha256": "34aa8596db4b03dc984c6ff7c42e2b5b47fc7b01760679152ef4b275be27889e"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-server-unit-initial.log",
+      "bytes": 6288,
+      "sha256": "7641778adbdf41f7fdacbe51c8e39b73d2020dad68c447be14c03e00c6aa0672"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-server-unit.log",
+      "bytes": 230,
+      "sha256": "12ff9f1d9b3152488d097d7efe2757589b3cc8516cbcff63a03bde074a543c4a"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p4-shared-review-regressions.log",
+      "bytes": 3234,
+      "sha256": "2a82aec1844675eab9d5df643586d98670e7011344352d4d116f1015ebfcc4a0"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p5-application-measurement.log",
+      "bytes": 12398,
+      "sha256": "fd0a3fa151b02b047a4ac546df46199827bb4e2beae49dde4c809f7ee1c5d1d0"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p5-local-input-stage.log",
+      "bytes": 475,
+      "sha256": "92a4f283f7d7dc7f80b41304e6c14abf02580d39d9f11cabecb3f5c4cccbf49b"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/p5-real-socket-measurement.log",
+      "bytes": 370,
+      "sha256": "3f65d397a47c37ed7477a013637f9170d93ef755245db818fc2e7eb04d7eb7f9"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/service-history-regression.log",
+      "bytes": 704,
+      "sha256": "304d5f0179b38c208d2037a919128f5017e1ca35dfe9cf4700be389c656e544d"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/service-preservation-final.log",
+      "bytes": 1441,
+      "sha256": "1dfcc7e66670dc4467156d3b35741db19761a8551f0f2443c945c87b9ac15c4f"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/service-preservation-rerun.log",
+      "bytes": 2849,
+      "sha256": "aa309401191a0a80238e163e26e88b425501428e023a2935f16076154f851c06"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/service-preservation-verified.log",
+      "bytes": 639,
+      "sha256": "4d2a412b3277e437ebb614cf5588aaf36ae93b18d47967fe400147e4bf2d2414"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/service-preservation-with-validation.log",
+      "bytes": 719,
+      "sha256": "72088924e7ddc9042b2dde0005a99b05d39c79d8fc7f20227a9be080a2b36d5b"
+    },
+    {
+      "path": "docs/arcade-upgrade/evidence/service-preservation.log",
+      "bytes": 3494,
+      "sha256": "6727835ef9d65f73e85fb4746cb5f54e04c7f29ce36507b8e93db085776c48c9"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/clock-policy.json",
+      "bytes": 581,
+      "sha256": "2f12c604e5db9b60f512ecdec94fe4ad2f4b54d646b8d175230b187ca8ca0a7d"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/frames.csv",
+      "bytes": 14481629,
+      "sha256": "1abd1de71809f915201c5027db944c316ea19c3e4f278ba9c67953cb3a3ed89c"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/input-trace.json",
+      "bytes": 166131,
+      "sha256": "826b13bc790fc2d7c94797b5c7dde7c37578e4940990dbf0aa0b2cdca60c5d4e"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/local-input-stages.json",
+      "bytes": 6234,
+      "sha256": "6e5b9d5f485774ca71415dc6d33ea2f7e573989b92f23feeb2334427aceef0db"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/packets.csv",
+      "bytes": 1383242,
+      "sha256": "b823aa6a05217608e714823c11db7216be96d134397f7e04826d8e80dbed1d40"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/real-socket-runs.json",
+      "bytes": 277243,
+      "sha256": "50c12ec92d40d81b33722b3cc8fd0f4f102e36109d7b263766441a3c3a89f789"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/real-socket-summary.csv",
+      "bytes": 2132,
+      "sha256": "5432d833452409825b63baf870e666542ac6ab7ac90226a229ae3415bc0c5ca5"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/scenario-runs.csv",
+      "bytes": 18739,
+      "sha256": "1c0ecb4a1cd2411c5d91d0754f9c11f3a12b6cbc52e70eceb4584dba83346d5f"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/simulation-steps.csv",
+      "bytes": 165838,
+      "sha256": "064b8f364b8dd9004add2ae31a9602314525d7b180a38e06c8029bab34486d89"
+    },
+    {
+      "path": "docs/arcade-upgrade/measurements/summary.json",
+      "bytes": 171095,
+      "sha256": "115d698dd2fd4bc89865bc34a0d4c74c4482c60ddc0abdf05a613c01c841d03e"
+    },
+    {
+      "path": "docs/arcade-upgrade/review/source-changes.patch",
+      "bytes": 469698,
+      "sha256": "b66c4ac4ba182b9e3013e6fc78a86a07d36937cf92f9d1ae032d7fead167f9ab"
+    },
+    {
+      "path": "frontend/Dockerfile",
+      "bytes": 232,
+      "sha256": "8d560531ed9fac1eb8d59f18476173d48ff40f56a1012431536ad7ef59e81fa8"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "bytes": 475,
+      "sha256": "6e33f3bed376c59543e3292cd49a7421fad52381fdaa274d7004cc91beb35610"
+    },
+    {
+      "path": "frontend/src/arcade/arcade.css",
+      "bytes": 19913,
+      "sha256": "884f31e6fa89d65eb38714daafae1146743dabfb545410e85db07d8f2655b12f"
+    },
+    {
+      "path": "frontend/src/arcade/audio-feedback.ts",
+      "bytes": 1441,
+      "sha256": "e06d8bb010f910b1a97331253e8b6e4766c3976dddd35b68ffe744c6997b0809"
+    },
+    {
+      "path": "frontend/src/arcade/court-renderer.ts",
+      "bytes": 3612,
+      "sha256": "ddcbc20f2c034d0a6a6f5cd04600a509cfda4867be78b947dd9701934b1c179b"
+    },
+    {
+      "path": "frontend/src/arcade/keyboard-controller.ts",
+      "bytes": 5610,
+      "sha256": "382df58ab8665a65c52e6d6dea1795aed5c0537f6cccea0b342d1736018433b0"
+    },
+    {
+      "path": "frontend/src/arcade/local-match-runner.ts",
+      "bytes": 4576,
+      "sha256": "e61551b6f7dafc42008fa3a481d4ae6d63b1b9b2cc024c064b122619c33fd1e7"
+    },
+    {
+      "path": "frontend/src/arcade/online-result.ts",
+      "bytes": 2142,
+      "sha256": "332c7dc6d250b16c82bab4f8c6cce29c2136d349ad3f8e31ad69499c05b10665"
+    },
+    {
+      "path": "frontend/src/arcade/online-session.ts",
+      "bytes": 11434,
+      "sha256": "2c0d852adc26de97b2ac2095e6fa497397272e1f7e6dacfb53b30dbbab62b7b9"
+    },
+    {
+      "path": "frontend/src/arcade/preferences.ts",
+      "bytes": 1551,
+      "sha256": "bf55fe3a7ebe7a72ddcb9b5445cca866e2cce5e52c950a6733028f05b9831e6f"
+    },
+    {
+      "path": "frontend/src/arcade/snapshot-buffer.ts",
+      "bytes": 8471,
+      "sha256": "68341003cff847c9e2582a570db3891341053504c6caa23fdc705a95107a8d5e"
+    },
+    {
+      "path": "frontend/src/components/SideBar.vue",
+      "bytes": 3176,
+      "sha256": "622ccf86ab8bd6abc25d71d9c8925d71c528c97d8f3f4c3fc5be4c2a8db43267"
+    },
+    {
+      "path": "frontend/src/components/game/OnlineGameShell.vue",
+      "bytes": 11114,
+      "sha256": "fea194d2db5d68413e15a96c2d993b6eda67f06206563e31fa5f5306b672d525"
+    },
+    {
+      "path": "frontend/src/plugins/bar.ts",
+      "bytes": 1296,
+      "sha256": "6fdc14ba9a6f8b3332685bd32ed150015c3a57e77d746d1e59f7f28dda5b1a72"
+    },
+    {
+      "path": "frontend/src/plugins/gamePlayService.ts",
+      "bytes": 3284,
+      "sha256": "9b52a826d94dcb52e2c8fc0e0794158dc20ea2322b12483a644e99afd68514a8"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "bytes": 8862,
+      "sha256": "806517cd97b26402457a2ef389d24c9a15395bcb01a0b9e4f7af12f4bacfd3b8"
+    },
+    {
+      "path": "frontend/src/store/index.ts",
+      "bytes": 8719,
+      "sha256": "3c2397171fa6b155f69d91cb6c241ee83dfc8ecdb3fc5c3d0acf68247202bc5b"
+    },
+    {
+      "path": "frontend/src/views/GameView.vue",
+      "bytes": 6894,
+      "sha256": "24c9f7b9b8a7a9ef501d8d107a71490e8b50df888f61e26fa89d0f1731c325d7"
+    },
+    {
+      "path": "frontend/src/views/InviteGameView.vue",
+      "bytes": 8989,
+      "sha256": "6baaba58a19be6ea94e9495b7f170ca2c5d94a5f9d99278a782d64333af20c29"
+    },
+    {
+      "path": "frontend/src/views/LocalPlayView.vue",
+      "bytes": 20816,
+      "sha256": "9fd270353e43ae521cb9750d9476340acbf578cd1bed9cdbe0fb03452791d4c2"
+    },
+    {
+      "path": "frontend/src/views/LoginView.vue",
+      "bytes": 4694,
+      "sha256": "a05f8f61469e695913e87552aa75f4172cc02a504a990e80014a4c4829bf3349"
+    },
+    {
+      "path": "frontend/src/views/PlayHubView.vue",
+      "bytes": 5798,
+      "sha256": "6f8d8e4f374edb908bf525f8b477e11d9333962240d27dce34a80f96bb77d3b8"
+    },
+    {
+      "path": "frontend/src/views/SpectateView.vue",
+      "bytes": 8560,
+      "sha256": "14933d832ac7f244970056fce40836a2c1da6f806ff7d1f38180c4a6dccec252"
+    },
+    {
+      "path": "frontend/vue.config.js",
+      "bytes": 457,
+      "sha256": "f53686aa0c25554e97046131fa1dd683bbce6a1766146f4bcc0d30739d3dd626"
+    },
+    {
+      "path": "scripts/browser-baseline.py",
+      "bytes": 1381,
+      "sha256": "3392f9970129219744ca6bf2738be64440ede5cc0e6b8ecfd236b9c53ea7d105"
+    },
+    {
+      "path": "scripts/browser-check.py",
+      "bytes": 9599,
+      "sha256": "0be571e4d92f204611912a7978bda622d1fa6202cd4cdf6cddc24b34bf9eb80d"
+    },
+    {
+      "path": "scripts/browser-guest-demo.py",
+      "bytes": 3323,
+      "sha256": "c1b6055f20aa933f453c5525b8ce0eb2d6e59bc16da6106241288234fcc7cab7"
+    },
+    {
+      "path": "scripts/browser-live-smoke.py",
+      "bytes": 1349,
+      "sha256": "6397b363849a74a7393d894288a075ff363dffb2eb0b01f62be2488e28c4e9e6"
+    },
+    {
+      "path": "scripts/check-arcade.cjs",
+      "bytes": 1097,
+      "sha256": "c5ced3dcf63aa6507a1ac84637b21bd3996abd517e2739be91942376189f9b7b"
+    },
+    {
+      "path": "scripts/measure-arcade.ts",
+      "bytes": 16725,
+      "sha256": "cbbb49193feef3ce895c879eb334b7fed7d74788f42aeb7158bc632d8769497b"
+    },
+    {
+      "path": "scripts/measure-local-input.py",
+      "bytes": 3122,
+      "sha256": "250234831eecd6fdc1d83dea5ea853f54724ae7aab3eab3a66bc7cc8ad4a04a8"
+    },
+    {
+      "path": "scripts/package-review.py",
+      "bytes": 3195,
+      "sha256": "b32e9c9cb6be29f7c78f6fb6a22bc6de75e176e04953fa83e7eb2551894d3859"
+    },
+    {
+      "path": "scripts/serve-frontend.cjs",
+      "bytes": 1293,
+      "sha256": "e31c65a341ad70ddefd4c9c19306006251fa7e95d9ce0fc9cbd04f8f6d6c3089"
+    },
+    {
+      "path": "scripts/serve-online-fixture.ts",
+      "bytes": 1630,
+      "sha256": "f4cf5f2a45e9d1b89c8fcafe50b3d81459c27ddb8bde0bb3250b1cfb6bd5cd15"
+    },
+    {
+      "path": "scripts/test-postgres.cjs",
+      "bytes": 3099,
+      "sha256": "64f0e0e9108fbfe1750afaaeb8e0a90f42dd91968ed5f795f12b8546b30fbcd7"
+    },
+    {
+      "path": "shared/ai.ts",
+      "bytes": 6364,
+      "sha256": "f90c7d3900b9551cf302ef35b9a255887662503e1787f2713ad322e77b091ce4"
+    },
+    {
+      "path": "shared/fixed-clock.ts",
+      "bytes": 1383,
+      "sha256": "7905068e6fea0c4d92f1879cfe172a578d101d32142d78593fb5c29001aaecdf"
+    },
+    {
+      "path": "shared/game-core.ts",
+      "bytes": 12221,
+      "sha256": "bafd18217f19cc1a13b2490f88387ac11c599ef0d29229549807657db56fd37f"
+    },
+    {
+      "path": "shared/protocol.ts",
+      "bytes": 7049,
+      "sha256": "1394779df3879ae8e51bb15c72dd7009b1f43a4bbdfeb9eda694413f0a44d073"
+    }
+  ]
+}

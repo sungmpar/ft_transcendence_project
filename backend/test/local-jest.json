@@ -1,0 +1,10 @@
+{
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "watchman": false,
+  "moduleFileExtensions": ["ts", "js", "json"],
+  "testMatch": ["<rootDir>/src/game/local-runner.spec.ts"],
+  "transform": {
+    "^.+\\.ts$": ["ts-jest", { "tsconfig": { "target": "es2019", "module": "commonjs", "strict": true, "lib": ["es2020", "dom"] } }]
+  }
+}

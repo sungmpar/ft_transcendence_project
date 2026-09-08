@@ -1,0 +1,29 @@
+{
+  "rootDir": "../..",
+  "testEnvironment": "node",
+  "watchman": false,
+  "moduleFileExtensions": ["ts", "js", "json"],
+  "testMatch": ["<rootDir>/backend/src/game/frontend-lifecycle.spec.ts"],
+  "moduleDirectories": [
+    "node_modules",
+    "<rootDir>/backend/node_modules",
+    "<rootDir>/frontend/node_modules"
+  ],
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/frontend/src/$1"
+  },
+  "transform": {
+    "^.+\\.ts$": "<rootDir>/backend/node_modules/ts-jest"
+  },
+  "globals": {
+    "ts-jest": {
+      "isolatedModules": true,
+      "tsconfig": {
+        "target": "ES2017",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "lib": ["es2020", "dom"]
+      }
+    }
+  }
+}

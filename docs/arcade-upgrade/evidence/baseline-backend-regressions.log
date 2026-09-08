@@ -1,0 +1,185 @@
+FAIL src/game/legacy-regression.spec.ts (7.992 s)
+  legacy normal-rally characterization (observed rules, not new contracts)
+    ✓ moves a free ball by the legacy per-call velocity (2 ms)
+    ✓ reflects the vertical velocity at the upper wall (1 ms)
+    ✓ uses the legacy center-hit bias and charges only once while touching (3 ms)
+    ✓ clamps upward movement at the top edge (1 ms)
+    ✓ activates a fully charged Power paddle at its valid lower bound (3 ms)
+    ✓ keeps at most one waiting player through the current sequential join path (7 ms)
+  expected contracts: baseline regression candidates
+    ✕ C01 removes only the requested user and preserves unrelated invitations (8 ms)
+    ✕ C02 leaves unrelated invitations intact when the requested invite is absent (67 ms)
+    ✕ C02 leaves present spectators intact when the requested spectator is absent (9 ms)
+    ✕ C07 preserves a legal full downward step near the lower bound (5 ms)
+    ✕ C09 publishes the actual generated match id returned by persistence (4 ms)
+    ✕ C10 rejects a result update that affected no database row (1 ms)
+    ✕ C10 reserves finalization before waiting for persistence during disconnect (2 ms)
+
+  ● expected contracts: baseline regression candidates › C01 removes only the requested user and preserves unrelated invitations
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 7
+
+      Array [
+        Object {
+          "emit": [Function mockConstructor],
+          "user": Object {
+    +       "id": 1,
+    +       "nickname": "fixture-1",
+    +     },
+    +   },
+    +   Object {
+    +     "emit": [Function mockConstructor],
+    +     "user": Object {
+            "id": 2,
+            "nickname": "fixture-2",
+          },
+        },
+      ]
+
+      76 |     internals.inviteList = [invitation];
+      77 |     await game.deleteUser(first);
+    > 78 |     expect(internals.userList).toEqual([second]);
+         |                                ^
+      79 |     expect(internals.inviteList).toEqual([invitation]);
+      80 |   });
+      81 |
+
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:78:32)
+
+  ● expected contracts: baseline regression candidates › C02 leaves unrelated invitations intact when the requested invite is absent
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 13
+    + Received  +  1
+
+    - Array [
+    -   Object {
+    -     "from": Object {
+    -       "emit": [Function mockConstructor],
+    -       "user": Object {
+    -         "id": 1,
+    -         "nickname": "fixture-1",
+    -       },
+    -     },
+    -     "mode": true,
+    -     "to": 2,
+    -   },
+    - ]
+    + Array []
+
+      85 |     internals.inviteList = [invitation];
+      86 |     await game.deleteInviteList(socket(3));
+    > 87 |     expect(internals.inviteList).toEqual([invitation]);
+         |                                  ^
+      88 |   });
+      89 |
+      90 |   it('C02 leaves present spectators intact when the requested spectator is absent', async () => {
+
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:87:34)
+
+  ● expected contracts: baseline regression candidates › C02 leaves present spectators intact when the requested spectator is absent
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 9
+    + Received  + 1
+
+    - Array [
+    -   Object {
+    -     "emit": [Function mockConstructor],
+    -     "user": Object {
+    -       "id": 1,
+    -       "nickname": "fixture-1",
+    -     },
+    -   },
+    - ]
+    + Array []
+
+      92 |     const room = new Room('1', GameState.ready, false, {} as any, [], [present]);
+      93 |     await room.removeSpectator(socket(2));
+    > 94 |     expect(room.spectators).toEqual([present]);
+         |                             ^
+      95 |   });
+      96 |
+      97 |   it('C07 preserves a legal full downward step near the lower bound', () => {
+
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:94:29)
+
+  ● expected contracts: baseline regression candidates › C07 preserves a legal full downward step near the lower bound
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 590
+    Received: 600
+
+       97 |   it('C07 preserves a legal full downward step near the lower bound', () => {
+       98 |     const paddle = new Bar(20, 575);
+    >  99 |     expect(paddle.update('down', false).y).toBe(590);
+          |                                            ^
+      100 |   });
+      101 |
+      102 |   it('C09 publishes the actual generated match id returned by persistence', async () => {
+
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:99:44)
+
+  ● expected contracts: baseline regression candidates › C09 publishes the actual generated match id returned by persistence
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "41"
+    Received: "2"
+
+      106 |     await game.joinMatch(first, { friendId: 0, mode: false });
+      107 |     await game.joinMatch(second, { friendId: 0, mode: false });
+    > 108 |     expect(matchesReadyId(first)).toBe('41');
+          |                                   ^
+      109 |     expect(matchesReadyId(second)).toBe('41');
+      110 |     expect(internals.rooms.has('41')).toBe(true);
+      111 |   });
+
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:108:35)
+
+  ● expected contracts: baseline regression candidates › C10 rejects a result update that affected no database row
+
+    expect(received).rejects.toThrow()
+
+    Received promise resolved instead of rejected
+    Resolved to value: null
+
+      117 |     };
+      118 |     const matches = new MatchService(repository as any);
+    > 119 |     await expect(matches.update('41', {
+          |           ^
+      120 |       winner: socket(1).user, loser: socket(2).user, winnerScore: 6, loserScore: 0,
+      121 |     })).rejects.toThrow();
+      122 |   });
+
+      at expect (node_modules/expect/build/index.js:128:15)
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:119:11)
+
+  ● expected contracts: baseline regression candidates › C10 reserves finalization before waiting for persistence during disconnect
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 2
+
+      137 |     resolveSave({ id: 41 });
+      138 |     await disconnect;
+    > 139 |     expect(matches.update).toHaveBeenCalledTimes(1);
+          |                            ^
+      140 |   });
+      141 | });
+      142 |
+
+      at Object.<anonymous> (src/game/legacy-regression.spec.ts:139:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 6 passed, 13 total
+Snapshots:   0 total
+Time:        8.104 s
+Ran all test suites.

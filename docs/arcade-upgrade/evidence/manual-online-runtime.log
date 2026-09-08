@@ -1,0 +1,9 @@
+WS ChatGateway init
+Disposable online demo: http://127.0.0.1:65054/login
+Use two separate browser profiles and the existing guest login. All new accounts and matches stay in the disposable fixture schema.
+Ctrl+C closes this server and removes only its owned test schema. No production OAuth/mail is configured.
+value :  online
+value :  ingame
+value :  online
+value :  ingame
+value :  online

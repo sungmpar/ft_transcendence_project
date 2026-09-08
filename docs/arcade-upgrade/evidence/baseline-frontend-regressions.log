@@ -1,0 +1,159 @@
+Baseline frontend contract regressions
+Command: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/frontend-contract-jest.json --runInBand
+Working directory: /Users/sm/dev_park/ft_transcendence_project/backend
+Runtime: Node v18.20.8
+Exit code: 1
+Result: 6 behavioral regressions failed, 1 normal stop characterization passed.
+
+Harness preparation failures (not product regression evidence):
+1. Default Watchman access was denied by the sandbox. Dedicated config now sets watchman=false.
+2. Test-relative import had one excess parent segment; corrected within the new test.
+3. Fake window was installed before Vuex import, causing missing document; actual store now loads in Node before the window scheduling stub.
+4. Node 18 global fetch caused existing source-map to request a mappings.wasm URL; --no-experimental-fetch avoids this runtime compatibility issue.
+
+  console.log
+    up
+
+      at Bar.processKeyboardEvent (frontend/src/plugins/bar.ts:36:12)
+
+  console.log
+    up
+
+      at Bar.processKeyboardEvent (frontend/src/plugins/bar.ts:36:12)
+
+  console.log
+    up
+
+      at Bar.processKeyboardEvent (frontend/src/plugins/bar.ts:36:12)
+
+FAIL src/game/frontend-lifecycle.spec.ts
+  frontend game lifecycle and input contracts
+    ✕ C08: repeated start owns only one RAF loop and one listener per event (108 ms)
+    ✓ C08: stop removes the current loop and keyboard listeners (19 ms)
+    ✕ C08: a late callback from a stopped generation cannot restart rendering (18 ms)
+    ✕ C03: server ready roomMode=true is retained (19 ms)
+    ✕ C03: server ready roomMode=false is retained (17 ms)
+    ✕ C04: opposing held movement keys produce neutral input (84 ms)
+    ✕ C04: held movement and a Power press are both represented (41 ms)
+
+  ● frontend game lifecycle and input contracts › C08: repeated start owns only one RAF loop and one listener per event
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 3
+
+      Object {
+    -   "frames": 1,
+    -   "keydown": 1,
+    -   "keyup": 1,
+    +   "frames": 2,
+    +   "keydown": 2,
+    +   "keyup": 2,
+      }
+
+      74 |       frames: callbacks.size,
+      75 |       keydown: listeners.get('keydown')?.size,
+    > 76 |       keyup: listeners.get('keyup')?.size,
+         |            ^
+      77 |     }).toEqual({ frames: 1, keydown: 1, keyup: 1 });
+      78 |   });
+      79 |
+
+      at Object.<anonymous> (backend/src/game/frontend-lifecycle.spec.ts:76:12)
+
+  ● frontend game lifecycle and input contracts › C08: a late callback from a stopped generation cannot restart rendering
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      89 |   test('C08: a late callback from a stopped generation cannot restart rendering', () => {
+      90 |     service.start(context, 'black');
+    > 91 |     const lateFrame = [...callbacks.values()][0];
+         |                                ^
+      92 |     service.stop('left');
+      93 |     lateFrame(100);
+      94 |
+
+      at Object.<anonymous> (backend/src/game/frontend-lifecycle.spec.ts:91:32)
+
+  ● frontend game lifecycle and input contracts › C03: server ready roomMode=true is retained
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: undefined
+
+       98 |   test.each([true, false])('C03: server ready roomMode=%s is retained', (roomMode) => {
+       99 |     store.commit('setRoom', {
+    > 100 |       roomId: 19,
+          |                  ^
+      101 |       leftName: 'left fixture',
+      102 |       rightName: 'right fixture',
+      103 |       roomMode,
+
+      at backend/src/game/frontend-lifecycle.spec.ts:100:41
+
+  ● frontend game lifecycle and input contracts › C03: server ready roomMode=false is retained
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: undefined
+
+       98 |   test.each([true, false])('C03: server ready roomMode=%s is retained', (roomMode) => {
+       99 |     store.commit('setRoom', {
+    > 100 |       roomId: 19,
+          |                  ^
+      101 |       leftName: 'left fixture',
+      102 |       rightName: 'right fixture',
+      103 |       roomMode,
+
+      at backend/src/game/frontend-lifecycle.spec.ts:100:41
+
+  ● frontend game lifecycle and input contracts › C04: opposing held movement keys produce neutral input
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+        "keyboardEvent",
+    -   "none",
+    +   "up",
+      ]
+
+      111 |     const { Bar } = require('../../../frontend/src/plugins/bar');
+      112 |     const { Keyboard } = require('../../../frontend/src/plugins/keyboard');
+    > 113 |     const keyboard = new Keyboard();
+          |                                     ^
+      114 |     const bar = new Bar(0, 0);
+      115 |     bar.processKeyboardEvent(keyboard);
+      116 |     const neutralInput = emit.mock.calls[emit.mock.calls.length - 1];
+
+      at Object.<anonymous> (backend/src/game/frontend-lifecycle.spec.ts:113:61)
+
+  ● frontend game lifecycle and input contracts › C04: held movement and a Power press are both represented
+
+    expect(received).not.toEqual(expected) // deep equality
+
+    Expected: not ["keyboardEvent", "up"]
+
+      125 |     const { Bar } = require('../../../frontend/src/plugins/bar');
+      126 |     const { Keyboard } = require('../../../frontend/src/plugins/keyboard');
+    > 127 |     const keyboard = new Keyboard();
+          |                                     ^
+      128 |     const bar = new Bar(0, 0);
+      129 |     keyboard.set('ArrowUp', { pressed: true });
+      130 |     bar.processKeyboardEvent(keyboard);
+
+      at Object.<anonymous> (backend/src/game/frontend-lifecycle.spec.ts:127:65)
+
+Test Suites: 1 failed, 1 total
+Tests:       6 failed, 1 passed, 7 total
+Snapshots:   0 total
+Time:        0.768 s, estimated 2 s
+Ran all test suites.

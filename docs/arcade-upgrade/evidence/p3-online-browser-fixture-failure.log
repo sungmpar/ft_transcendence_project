@@ -1,0 +1,37 @@
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+FAIL test/online-browser.e2e-spec.ts (54.498 s)
+
+
+  ● Test suite failed to run
+
+    ENOENT: no such file or directory, open '/fixture-avatar'
+
+Test Suites: 1 failed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        54.552 s
+Ran all test suites.

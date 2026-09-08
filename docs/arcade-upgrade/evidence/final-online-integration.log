@@ -1,0 +1,11 @@
+PASS test/online-integration.e2e-spec.ts (20.636 s)
+  real isolated online game service
+    ✓ rejects missing, malformed, and signed-but-unknown-user authentication (57 ms)
+    ✓ matches two authenticated clients, advances a full score-ended game, and stores that result (12482 ms)
+    ✓ preserves friend invitation/refusal, accepted matches, and spectator updates (126 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        20.688 s, estimated 21 s
+Ran all test suites.

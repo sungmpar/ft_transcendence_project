@@ -1,0 +1,30 @@
+[
+  {
+    "suppliedElapsedMs": 16.666666666666668,
+    "stepCalls": 1,
+    "reportedSteps": 1,
+    "droppedMs": 0,
+    "alpha": 0
+  },
+  {
+    "suppliedElapsedMs": 33.333333333333336,
+    "stepCalls": 2,
+    "reportedSteps": 2,
+    "droppedMs": 0,
+    "alpha": 0
+  },
+  {
+    "suppliedElapsedMs": 250,
+    "stepCalls": 8,
+    "reportedSteps": 8,
+    "droppedMs": 116.66666666666667,
+    "alpha": 3.4106051316484808e-15
+  },
+  {
+    "suppliedElapsedMs": 5000,
+    "stepCalls": 8,
+    "reportedSteps": 8,
+    "droppedMs": 4866.666666666667,
+    "alpha": 3.4106051316484808e-15
+  }
+]

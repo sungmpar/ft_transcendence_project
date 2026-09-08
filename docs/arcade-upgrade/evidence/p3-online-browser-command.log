@@ -1,0 +1,34 @@
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+PASS test/online-browser.e2e-spec.ts (48.758 s)
+  two real browser clients with actual HTTP and Socket.IO authentication
+    ✓ runs a real-time authenticated match from the existing /game route and persists its result (38289 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        48.805 s, estimated 55 s
+Ran all test suites.

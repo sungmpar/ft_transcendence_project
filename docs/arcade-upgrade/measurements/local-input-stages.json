@@ -1,0 +1,301 @@
+{
+  "status": "PASS",
+  "browser": "152.0.7977.77",
+  "samples": 30,
+  "warmupSamples": 2,
+  "method": "Real browser clock, synthetic keydown. Same performance.now clock from the key listener to first RAF observer that sees changed logical paddle after runner rendering; software-stage observation upper bound, not optical or physical-key latency. No game-state writes.",
+  "meanMs": 9.836666679382324,
+  "p50Ms": 4.300000190734863,
+  "p95Ms": 19.700000047683716,
+  "maxMs": 83.60000014305115,
+  "rows": [
+    {
+      "milliseconds": 9,
+      "tick": 141,
+      "previousY": 300,
+      "currentY": 285,
+      "trial": 0,
+      "warmup": true,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 14.5,
+      "tick": 148,
+      "previousY": 255,
+      "currentY": 270,
+      "trial": 1,
+      "warmup": true,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 3.700000047683716,
+      "tick": 151,
+      "previousY": 270,
+      "currentY": 255,
+      "trial": 2,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 4.099999904632568,
+      "tick": 154,
+      "previousY": 255,
+      "currentY": 270,
+      "trial": 3,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 0.9000000953674316,
+      "tick": 157,
+      "previousY": 270,
+      "currentY": 255,
+      "trial": 4,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 14,
+      "tick": 161,
+      "previousY": 255,
+      "currentY": 270,
+      "trial": 5,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 83.60000014305115,
+      "tick": 165,
+      "previousY": 270,
+      "currentY": 255,
+      "trial": 6,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 12.5,
+      "tick": 173,
+      "previousY": 195,
+      "currentY": 210,
+      "trial": 7,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 2.8999998569488525,
+      "tick": 176,
+      "previousY": 210,
+      "currentY": 195,
+      "trial": 8,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 19.700000047683716,
+      "tick": 185,
+      "previousY": 135,
+      "currentY": 150,
+      "trial": 9,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 11.700000047683716,
+      "tick": 192,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 10,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 11.299999952316284,
+      "tick": 196,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 11,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 3.700000047683716,
+      "tick": 199,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 12,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 6.400000095367432,
+      "tick": 202,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 13,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 3.200000047683716,
+      "tick": 205,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 14,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 4.300000190734863,
+      "tick": 208,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 15,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 1.6999998092651367,
+      "tick": 212,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 16,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 8.5,
+      "tick": 216,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 17,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 13,
+      "tick": 220,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 18,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 8.799999952316284,
+      "tick": 223,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 19,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 13.700000047683716,
+      "tick": 227,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 20,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 9.700000047683716,
+      "tick": 230,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 21,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 15.100000143051147,
+      "tick": 234,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 22,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 3.1999998092651367,
+      "tick": 237,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 23,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 3.5999999046325684,
+      "tick": 240,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 24,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 2.799999952316284,
+      "tick": 243,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 25,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 1.2999999523162842,
+      "tick": 246,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 26,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 3,
+      "tick": 249,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 27,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 10.699999809265137,
+      "tick": 252,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 28,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 11.900000095367432,
+      "tick": 256,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 29,
+      "warmup": false,
+      "key": "KeyS"
+    },
+    {
+      "milliseconds": 1.8000001907348633,
+      "tick": 259,
+      "previousY": 195,
+      "currentY": 180,
+      "trial": 30,
+      "warmup": false,
+      "key": "KeyW"
+    },
+    {
+      "milliseconds": 4.300000190734863,
+      "tick": 262,
+      "previousY": 180,
+      "currentY": 195,
+      "trial": 31,
+      "warmup": false,
+      "key": "KeyS"
+    }
+  ]
+}

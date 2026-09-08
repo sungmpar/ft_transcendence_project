@@ -8,8 +8,9 @@ module.exports = defineConfig({
       'transcendence.koreacentral.cloudapp.azure.com',
       '4.218.8.163',
     ],
-    client: {
-      webSocketURL: 'wss://transcendence.koreacentral.cloudapp.azure.com/ws',
-    },
+    // Default to this dev server. A reverse proxy can explicitly set its URL.
+    ...(process.env.VUE_APP_DEV_WEBSOCKET_URL ? {
+      client: { webSocketURL: process.env.VUE_APP_DEV_WEBSOCKET_URL },
+    } : {}),
   },
 })

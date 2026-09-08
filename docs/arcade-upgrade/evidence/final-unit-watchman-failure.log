@@ -1,0 +1,155 @@
+
+[core] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/core-jest.json --runInBand (backend cwd)
+PASS src/game/ai.spec.ts
+PASS src/game/core.spec.ts
+PASS src/game/protocol.spec.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       43 passed, 43 total
+Snapshots:   0 total
+Time:        4.116 s, estimated 6 s
+Ran all test suites.
+
+[local] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/local-jest.json --runInBand (backend cwd)
+PASS src/game/local-runner.spec.ts
+  local keyboard ownership and simultaneous input
+    ✓ both players hold movement while each action edge is consumed once (3 ms)
+    ✓ opposite held keys are neutral, preserving an independent action (1 ms)
+    ✓ only owned game keys prevent defaults; form/contenteditable input stays untouched (3 ms)
+    ✓ blur/hidden clear held state and request pause; visibility return never requests resume (2 ms)
+    ✓ surface blur, remapping, disable, and disposal release input (1 ms)
+    ✓ attach is idempotent, Escape is a command edge, key repeat does not retrigger pause (1 ms)
+    ✓ duplicate, reserved, and missing binding fields are rejected (4 ms)
+    ✓ malformed persisted key fields and unavailable storage fall back to usable defaults (2 ms)
+  local fixed-tick runner lifecycle
+    ✓ start/stop/dispose are idempotent and late generations cannot create another RAF (1 ms)
+    ✓ pause/resume drops hidden wall time and restarts with a neutral clock
+    ✓ a long frame advances at most eight ticks and reports dropped time (1 ms)
+    ✓ same seed/tick input yields identical states at 30, 60 and 120 RAF Hz (26 ms)
+    ✓ separate matches, returned snapshots and restart do not share mutable state (5 ms)
+    ✓ a full real-core match finishes once and restart creates another ready match (57 ms)
+    ✓ restarting in an event callback cannot spend the old frame backlog on the new match (3 ms)
+    ✓ a step failure stops the runner and reports the real error (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        3.902 s, estimated 5 s
+Ran all test suites.
+
+[snapshot] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/snapshot-jest.json --runInBand (backend cwd)
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+PASS src/game/snapshot-buffer.spec.ts
+  captured snapshot presentation buffer
+    ✓ presents real 60Hz core snapshots captured at 20Hz with 200ms injected arrival delay (23 ms)
+    ✓ validates packets and caller time at runtime without changing valid state (1 ms)
+    ✓ captures owned scalars and returns independently owned display state (1 ms)
+    ✓ interpolates ball and both paddles with one common tick axis
+    ✓ does not move presentation backward after a later jittered arrival or regressing local call (2 ms)
+    ✓ discards late/duplicate sequences, backwards ticks and backwards arrival times (2 ms)
+    ✓ freezes on underflow without extrapolation and counts underflow episodes (1 ms)
+    ✓ holds across a point reset, then snaps without drawing the goal-to-center path (1 ms)
+    ✓ does not interpolate across a rallyId discontinuity (2 ms)
+    ✓ does not interpolate across a score discontinuity
+    ✓ does not interpolate across a height discontinuity
+    ✓ does not interpolate across a config discontinuity (1 ms)
+    ✓ clears state on match replacement and explicit full resynchronization (1 ms)
+    ✓ bounds retained snapshots at 32 and records actual sequence gaps/arrival jitter (5 ms)
+    ✓ computes arrival interval statistics from actual accepted arrival times
+    ✓ supports a latest-state comparator using the same captured snapshots
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        4.814 s, estimated 5 s
+Ran all test suites.
+
+[frontend-contract] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/frontend-contract-jest.json --runInBand (backend cwd)
+PASS src/game/frontend-lifecycle.spec.ts
+  frontend game lifecycle and input contracts
+    ✓ C08: repeated start owns only one RAF loop and one listener per event (1035 ms)
+    ✓ C08: stop removes the current loop and keyboard listeners (19 ms)
+    ✓ C08: a late callback from a stopped generation cannot restart rendering (16 ms)
+    ✓ C08: dispose is safe before start and when repeated (20 ms)
+    ✓ C08: callbacks from a replaced generation cannot affect the new game (19 ms)
+    ✓ C03: server ready roomMode=true is retained (19 ms)
+    ✓ C03: server ready roomMode=false is retained (18 ms)
+    ✓ C04: opposing held movement keys produce neutral input (23 ms)
+    ✓ C04: held movement and a Power press are both represented (23 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        1.605 s, estimated 2 s
+Ran all test suites.
+
+[online-session] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-session-jest.json --runInBand (backend cwd)
+PASS src/game/online-session.spec.ts
+  actual online session class with owned fake DOM and transport
+    ✓ receives 20Hz snapshots without adding RAF loops or advancing simulation (11 ms)
+    ✓ restores every owned listener and cancels late callbacks when disposed repeatedly (4 ms)
+    ✓ ignores late transport status callbacks after the session owner is disposed (4 ms)
+    ✓ ignores missing or wrong match IDs in result and connection status events (4 ms)
+    ✓ sends held movement plus one ability edge using valid increasing DTOs (6 ms)
+    ✓ refreshes a held movement at 100ms without manufacturing action presses (6 ms)
+    ✓ ignores form typing and returns neutral input on focus loss (7 ms)
+    ✓ clears held movement on window blur and hidden without stopping server rendering (5 ms)
+    ✓ never emits spectator input, including blur, layout changes and disposal (5 ms)
+    ✓ rejects invalid, wrong-match, duplicate and old snapshots (3 ms)
+    ✓ owns ready and received snapshot data used for latest state and completion (2 ms)
+    ✓ flushes the authoritative winning score on completion ahead of interpolation delay (3 ms)
+    ✓ blocks old-generation input after reconnect until a new session supplies full ready (3 ms)
+    ✓ measures input-to-ack round trip using the same injected local clock (2 ms)
+    ✓ measures a matching latency probe with one local clock and rejects unknown nonce values (2 ms)
+    ✓ does not accept a superseded probe callback as the current round trip (1 ms)
+    ✓ does not change metrics from a latency probe callback after disposal (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        1.142 s, estimated 2 s
+Ran all test suites.
+
+[online-result] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-result-jest.json --runInBand (backend cwd)
+PASS src/game/online-result.spec.ts
+  online result persistence notice
+    ✓ never infers durable success from a match ending alone (6 ms)
+    ✓ retains a failed save when the outcome screen requests its status
+    ✓ reports saved only after the matching room receives saved confirmation (1 ms)
+    ✓ ignores stale rooms, missing identity and malformed persistence states (2 ms)
+    ✓ does not regress terminal saved on late retry events
+    ✓ does not regress terminal failed on late retry events (2 ms)
+    ✓ clears notices for new ready and ignores the previous match thereafter (2 ms)
+    ✓ accepts only a current-room simulation abort and never turns it into a saved result (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        0.412 s, estimated 1 s
+Ran all test suites.
+
+[arcade] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/arcade-jest.json --runInBand (backend cwd)
+2026-09-07T14:59:33,319: [cli] unable to talk to your watchman on /var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T//sm-state/sock! (Operation not permitted)
+
+Watchman:  watchman --no-pretty get-sockname returned with exit code=1, signal=null, stderr= 2026-09-07T14:59:33,319: [cli] unable to talk to your watchman on /var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T//sm-state/sock! (Operation not permitted)
+
+node:events:495
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: watchman --no-pretty get-sockname returned with exit code=1, signal=null, stderr= 2026-09-07T14:59:33,319: [cli] unable to talk to your watchman on /var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T//sm-state/sock! (Operation not permitted)
+
+    at ChildProcess.<anonymous> (/Users/sm/dev_park/ft_transcendence_project/backend/node_modules/fb-watchman/index.js:198:18)
+    at ChildProcess.emit (node:events:517:28)
+    at maybeClose (node:internal/child_process:1098:16)
+    at Socket.<anonymous> (node:internal/child_process:450:11)
+    at Socket.emit (node:events:517:28)
+    at Pipe.<anonymous> (node:net:350:12)
+Emitted 'error' event on Client instance at:
+    at spawnError (/Users/sm/dev_park/ft_transcendence_project/backend/node_modules/fb-watchman/index.js:170:10)
+    at ChildProcess.<anonymous> (/Users/sm/dev_park/ft_transcendence_project/backend/node_modules/fb-watchman/index.js:198:7)
+    at ChildProcess.emit (node:events:517:28)
+    [... lines matching original stack trace ...]
+    at Pipe.<anonymous> (node:net:350:12)
+
+Node.js v18.20.8

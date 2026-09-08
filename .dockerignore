@@ -1,0 +1,6 @@
+.git
+**/node_modules
+**/dist
+**/.env
+**/coverage
+docs/arcade-upgrade/evidence

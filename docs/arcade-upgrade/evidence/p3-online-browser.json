@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "browser": "152.0.7977.77",
+  "clock": "real browser/server wall clock",
+  "input": "synthetic held keyboard input; no game-state injection",
+  "durationMs": 23870,
+  "lastObservedTick": 937,
+  "score": [
+    6,
+    0
+  ],
+  "rematchStarted": true,
+  "menuDisposed": true,
+  "telemetry": [
+    {
+      "receivedFrames": 405,
+      "websocketPayloadBytes": 300382,
+      "lastMetrics": {
+        "fps": 60,
+        "snapshots": 309,
+        "inputMessages": 95,
+        "ackRoundTripMs": 3289.6999999523177,
+        "transportRoundTripMs": 4.200000047683716,
+        "bufferDepth": 32,
+        "displayDelayMs": 100,
+        "underflows": 7
+      }
+    },
+    {
+      "receivedFrames": 418,
+      "websocketPayloadBytes": 307253,
+      "lastMetrics": {
+        "fps": 60,
+        "snapshots": 307,
+        "inputMessages": 97,
+        "ackRoundTripMs": 14.40000014305042,
+        "transportRoundTripMs": 11.700000047683716,
+        "bufferDepth": 32,
+        "displayDelayMs": 100,
+        "underflows": 7
+      }
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "bytesDefinition": "Received WebSocket payload bytes including Socket.IO framing, not TCP/TLS or total network bandwidth"
+}

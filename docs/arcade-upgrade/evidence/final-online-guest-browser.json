@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "authentication": "Actual /auth/guest cookie and existing browser router; no credential injection",
+  "clock": "real browser/server clock; synthetic key input; no game-state writes",
+  "browser": "152.0.7977.77",
+  "completeMatch": true,
+  "savedResultVisible": true,
+  "rematch": true,
+  "menuDisposed": true,
+  "pageErrors": [],
+  "elapsedSeconds": 25.594
+}

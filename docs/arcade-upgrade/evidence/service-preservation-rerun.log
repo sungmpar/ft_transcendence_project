@@ -1,0 +1,54 @@
+FAIL test/service-preservation.e2e-spec.ts
+  preserved services against disposable PostgreSQL and real HTTP/Socket.IO
+    ✕ keeps protected profile and friends endpoints unauthorized without JWT
+    ✕ preserves guest flag off/on, issued cookie, profile, profile image and friends (6 ms)
+    ✕ preserves profile edits, friend persistence and the unmet-2FA HTTP guard (12 ms)
+    ✓ authenticates two real chat clients and persists channel join, messages and leave (182 ms)
+
+  ● preserved services against disposable PostgreSQL and real HTTP/Socket.IO › keeps protected profile and friends endpoints unauthorized without JWT
+
+    TypeError: (0 , supertest_1.default) is not a function
+
+      35 |   it('keeps protected profile and friends endpoints unauthorized without JWT', async () => {
+      36 |     for (const path of ['/user/me', '/user/friends', '/user/image/me']) {
+    > 37 |       const response = await request(fixture.httpUrl).get(path);
+         |                                     ^
+      38 |       expect(response.status).toBe(401);
+      39 |     }
+      40 |   });
+
+      at Object.<anonymous> (test/service-preservation.e2e-spec.ts:37:37)
+
+  ● preserved services against disposable PostgreSQL and real HTTP/Socket.IO › preserves guest flag off/on, issued cookie, profile, profile image and friends
+
+    TypeError: (0 , supertest_1.default) is not a function
+
+      43 |     const users = fixture.dataSource.getRepository(User);
+      44 |     const before = await users.count();
+    > 45 |     const disabled = await request(fixture.httpUrl).get('/auth/guest').redirects(0);
+         |                                   ^
+      46 |     expect(disabled.status).toBe(403);
+      47 |     expect(await users.count()).toBe(before);
+      48 |
+
+      at Object.<anonymous> (test/service-preservation.e2e-spec.ts:45:35)
+
+  ● preserved services against disposable PostgreSQL and real HTTP/Socket.IO › preserves profile edits, friend persistence and the unmet-2FA HTTP guard
+
+    TypeError: (0 , supertest_1.default) is not a function
+
+      73 |     const friend = await fixture.createPlayer();
+      74 |     const headers = { Authorization: `Bearer ${fixture.browserCredential(player)}` };
+    > 75 |     const nickname = await request(fixture.httpUrl).patch('/user/nickname').set(headers).send({ nickname: 'SmokeUser' });
+         |                                   ^
+      76 |     expect(nickname.status).toBe(200);
+      77 |     const added = await request(fixture.httpUrl).patch('/user/friends').set(headers).send({ id: friend.id });
+      78 |     expect(added.status).toBe(200);
+
+      at Object.<anonymous> (test/service-preservation.e2e-spec.ts:75:35)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 1 passed, 4 total
+Snapshots:   0 total
+Time:        4.915 s, estimated 8 s
+Ran all test suites.

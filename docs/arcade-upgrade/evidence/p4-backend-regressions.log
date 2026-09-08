@@ -1,0 +1,22 @@
+PASS src/game/legacy-regression.spec.ts (5.184 s)
+  legacy normal-rally characterization (observed rules, not new contracts)
+    ✓ moves a free ball by the legacy per-call velocity (2 ms)
+    ✓ reflects the vertical velocity at the upper wall (1 ms)
+    ✓ uses the legacy center-hit bias and charges only once while touching (1 ms)
+    ✓ clamps upward movement at the top edge
+    ✓ activates a fully charged Power paddle at its valid lower bound (3 ms)
+    ✓ keeps at most one waiting player through the current sequential join path (3 ms)
+  expected contracts: baseline regression candidates
+    ✓ C01 removes only the requested user and preserves unrelated invitations (1 ms)
+    ✓ C02 leaves unrelated invitations intact when the requested invite is absent (2 ms)
+    ✓ C02 leaves present spectators intact when the requested spectator is absent (1 ms)
+    ✓ C07 preserves a legal full downward step near the lower bound (1 ms)
+    ✓ C09 publishes the actual generated match id returned by persistence (2 ms)
+    ✓ C10 rejects a result update that affected no database row (2 ms)
+    ✓ C10 reserves finalization before waiting for persistence during disconnect (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        5.25 s, estimated 8 s
+Ran all test suites.

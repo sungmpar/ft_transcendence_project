@@ -1,0 +1,1 @@
+TS_NODE_PROJECT=backend/tsconfig.json PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch -r ./backend/node_modules/ts-node/register -r ./backend/node_modules/tsconfig-paths/register scripts/serve-online-fixture.ts > docs/arcade-upgrade/evidence/manual-online-runtime.log 2>&1

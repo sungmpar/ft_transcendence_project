@@ -29,6 +29,8 @@
             </p>
           </div>
 
+          <router-link to="/play" class="block mt-6 text-center rounded-md border border-emerald-300 px-4 py-4 font-bold text-emerald-200 hover:bg-gray-700" data-testid="login-arcade-link">로그인 없이 로컬 · AI Pong 시작 ↗</router-link>
+
           <button
             v-if="isGuestLoginEnabled"
             class="w-full bg-violet-500 hover:bg-violet-600 text-white text-lg font-extrabold rounded-md px-6 py-4 transition duration-200 shadow-lg"

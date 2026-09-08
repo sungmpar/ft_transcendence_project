@@ -1,5 +1,6 @@
 <template>
-<div class="flex ...">
+<router-view v-if="route.meta.publicArcade" :key="route.fullPath" />
+<div v-else class="flex ...">
 	<div class="w-20">
 		<side-bar/>
 	</div>
@@ -15,5 +16,8 @@
 <script setup lang="ts">
 import SideBar from "@/components/SideBar.vue";
 import FriendsSlider from "@/components/friends/FriendsSlider.vue";
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 </script>

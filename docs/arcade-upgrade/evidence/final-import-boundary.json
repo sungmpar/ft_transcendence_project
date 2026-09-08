@@ -1,0 +1,24 @@
+{
+  "mapsInspected": 10,
+  "serverSourcesInFrontend": [],
+  "sharedImportGraph": {
+    "shared/fixed-clock.ts": [],
+    "shared/game-core.ts": [],
+    "shared/protocol.ts": [
+      "./game-core"
+    ],
+    "shared/ai.ts": []
+  },
+  "frontendJsSha256": {
+    "chunk-vendors.17bcf9ea.js": "4286bb5db4813833af988c77679f9bfed6720f3d6fc80b43ad6d062072e859e0",
+    "app.663f1352.js": "53c92095a1d58b386a3f42636518162af5310a82611a91ae20c5a950f9f6153c",
+    "80.2cd08060.js": "376042661ba56c0682de7b58d8fd5a3950d1bd23bc9b91ce90e48660482c30c9",
+    "236.3685636d.js": "ac10eded6523a71c229841720df588f1f9ed0bb9f149be8b6694f27b41faf613",
+    "787.07a6ddb5.js": "5bd1b7c07a3c931b5cb9d84288939377fcced297d673c6021868a2f89a2a23e6",
+    "633.b5557b69.js": "eee52b98f833584719802396fd4645738acb0a0034f06a5cdf78525338eac6ec",
+    "944.2f7896b1.js": "1f8cb062bb59dc5b84b81a8e53a884c24353ebcde18a62907ff59087d99cac7e",
+    "77.fb179a5f.js": "4ffa98c717f91b16d576c0e12be33a2006cdae563fd14daec0d5801ff9924a02",
+    "378.ec8eac30.js": "6a038a3800dc9f9587cbfe1a87cf2435523eb71b5970ee08380e4ed83f9a1b88",
+    "341.87f16da9.js": "563fa8fb7031e6a69cd2ece6a3635356ee1666d271578c3b1b48daecbcd5dd9d"
+  }
+}

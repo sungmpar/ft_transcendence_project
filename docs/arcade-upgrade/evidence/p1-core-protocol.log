@@ -1,0 +1,8 @@
+PASS src/game/core.spec.ts
+PASS src/game/protocol.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       28 passed, 28 total
+Snapshots:   0 total
+Time:        5.249 s
+Ran all test suites.

@@ -32,10 +32,12 @@ export class Bar {
 	}
 
 	public processKeyboardEvent(keyboard: Keyboard){
-		if (keyboard.isKeyPressed('Up') || keyboard.isKeyPressed('ArrowUp')) {
+		const up = keyboard.isKeyPressed('Up') || keyboard.isKeyPressed('ArrowUp');
+		const down = keyboard.isKeyPressed('Down') || keyboard.isKeyPressed('ArrowDown');
+		if (up && !down) {
 			console.log('up');
 			store.getters.gameSocket.emit("keyboardEvent", "up");
-		} else if (keyboard.isKeyPressed('Down') || keyboard.isKeyPressed('ArrowDown')){
+		} else if (down && !up){
 			store.getters.gameSocket.emit("keyboardEvent", "down");
 		} else if (keyboard.isKeyPressed('Space')){
 			store.getters.gameSocket.emit("keyboardEvent", "space");
@@ -44,4 +46,3 @@ export class Bar {
 		}
 	}
 }
-

@@ -1,0 +1,9 @@
+PASS backend/test/measure-network.e2e-spec.ts (57.342 s)
+  measured real Socket.IO transport with separately labeled application delay
+    ✓ records actual input ACK, immediate probe RTT, delayed application RTT and payload volume (50603 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        57.39 s
+Ran all test suites.

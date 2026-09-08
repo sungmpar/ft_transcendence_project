@@ -1,0 +1,15 @@
+PASS src/game/online-result.spec.ts
+  online result persistence notice
+    ✓ never infers durable success from a match ending alone (1 ms)
+    ✓ retains a failed save when the outcome screen requests its status (1 ms)
+    ✓ reports saved only after the matching room receives saved confirmation (1 ms)
+    ✓ ignores stale rooms, missing identity and malformed persistence states (1 ms)
+    ✓ does not regress terminal saved on late retry events (1 ms)
+    ✓ does not regress terminal failed on late retry events (1 ms)
+    ✓ clears notices for new ready and ignores the previous match thereafter
+
+Test Suites: 1 passed, 1 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        0.599 s
+Ran all test suites.

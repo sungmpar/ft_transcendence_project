@@ -1,114 +1,70 @@
-import { Ball } from "@/plugins/ball";
-import { Score } from "@/plugins/score";
-import { Constants } from "@/models/GameState";
-import { Bar } from "@/plugins/bar";
-import { Background } from "@/plugins/background";
-import { Keyboard } from "@/plugins/keyboard";
-import { Line } from "@/plugins/line";
-import store from "@/store";
-import {GameState} from "@/interfaces/Game";
-import { EndText } from "./text";
-import { SpectatorEndText } from "./text";
+import store from '@/store';
+import { isReadyMessage } from '../../../shared/protocol';
+import { OnlineKeyLayout, OnlineSession } from '../arcade/online-session';
 
-
-/* 추상 클래스는 부모 클래스 새로운 일반 클래스를 위한 부모 클래스로 사용*/
-/* game에 쓰이는 모든 요소를 모아둔 service */
+/** Compatibility entry point for the three existing online routes. */
 export class GameplayService {
-	/* canvas 요소들을 저장 */
-	private static ctx: CanvasRenderingContext2D;
-	private static canvasWidth: number;
-	private static canvasHeight: number;
-	private static background : Background;
-	private static line : Line;
-	private static renderRequestId: number;
+  private static session: OnlineSession | null = null;
+  private static layout: OnlineKeyLayout = 'arrows';
+  private static debugApi: object | null = null;
+  private static activeRoom: string | null = null;
+  private static activeGeneration = 0;
+  private static canvas: HTMLCanvasElement | null = null;
 
-	private static processKeyDownEventThunk: (e: KeyboardEvent) => void;
-  private static processKeyUpEventThunk: (e: KeyboardEvent) => void;
-
-	private static nowTime: number;
-	private static deltaTime: number;
-	private static thenTime = performance.now();
-
-	private static keyboard: Keyboard;
-	private static rightPlayer: Bar;
-	private static leftPlayer: Bar;
-	private static player: Bar;
-	private static ball: Ball;
-
-	private static endText: EndText;
-	private static spectatorEndText: SpectatorEndText;
-
-	public static processFrame(){
-		this.nowTime = performance.now();
-		this.deltaTime = this.nowTime - this.thenTime;
-		this.thenTime = this.nowTime;
-
-		const data = store.getters.gameData;
-		// console.log(data.leftPlayer.y);
-
-		this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
-		this.background.draw(this.ctx, this.canvasWidth * 2, this.canvasHeight*2);
-		this.line.draw(this.ctx, this.canvasWidth, this.canvasHeight);
-		this.ball.draw(this.ctx, data.ball.x, data.ball.y);
-		this.leftPlayer.draw(this.ctx, data.leftPlayer.x, data.leftPlayer.y, data.leftPlayer.power);
-		this.rightPlayer.draw(this.ctx, data.rightPlayer.x, data.rightPlayer.y, data.rightPlayer.power);
-
-		this.renderRequestId = window.requestAnimationFrame(this.processFrame.bind(this));
-	}
-
-	private static processKeyboardDownInput(e: KeyboardEvent): void {
-    if (e.defaultPrevented) {
-      return;
+  static start(ctx: CanvasRenderingContext2D, backgroundImage: string, ready?: unknown,
+    onStatus: (message: string) => void = () => undefined): boolean {
+    if (!isReadyMessage(ready) || !store.getters.gameSocket) {
+      onStatus('서버 경기 정보를 확인하지 못했습니다');
+      return false;
     }
-    this.keyboard.set(e.code, {
-      pressed: true,
+    if (this.session && this.activeRoom === ready.roomId &&
+      this.activeGeneration === ready.generation && this.canvas === ctx.canvas) return true;
+    this.dispose();
+    const session = new OnlineSession({
+      canvas: ctx.canvas, background: backgroundImage, ready,
+      socket: store.getters.gameSocket, keyLayout: this.layout,
+      displayMode: new URLSearchParams(window.location.search).get('display') === 'latest' ? 'latest' : 'interpolate',
+      onStatus,
+      onState: (state, metrics) => {
+        store.commit('setOnlineState', state);
+        store.commit('setOnlineMetrics', metrics);
+        store.commit('setGameData', {
+          ball: { x: state.ball.x, y: state.ball.y },
+          leftBar: { x: state.players.left.x, y: state.players.left.y, power: state.players.left.powered },
+          rightBar: { x: state.players.right.x, y: state.players.right.y, power: state.players.right.powered },
+          score: { left: state.players.left.score, right: state.players.right.score },
+        });
+      },
     });
-    this.player.processKeyboardEvent(this.keyboard);
+    this.session = session;
+    this.activeRoom = ready.roomId;
+    this.activeGeneration = ready.generation;
+    this.canvas = ctx.canvas;
+    if ((process.env.NODE_ENV !== 'production' || process.env.VUE_APP_ARCADE_DEBUG === 'true') &&
+      new URLSearchParams(window.location.search).get('debug') === '1') {
+      this.debugApi = Object.freeze({ snapshot: () => session.state, latest: () => session.latest,
+        metrics: () => session.measurement,
+        identity: () => ({ matchId: ready.roomId, generation: ready.generation, side: ready.side }) });
+      Object.defineProperty(window, '__ONLINE_DEBUG__', { configurable: true, value: this.debugApi });
+    }
+    return true;
   }
 
-  private static processKeyboardUpInput(e: KeyboardEvent): void {
-    if (e.defaultPrevented) {
-      return;
-    }
-    this.keyboard.set(e.code, {
-      pressed: false,
-    });
-    this.player.processKeyboardEvent(this.keyboard);
+  static useKeyLayout(layout: OnlineKeyLayout): void {
+    this.layout = layout;
+    this.session?.useKeyLayout(layout);
   }
-
-
-	public static stop(data: string){
-		this.endText.draw(this.ctx, this.canvasWidth/4, this.canvasHeight/2, data);
-		window.cancelAnimationFrame(this.renderRequestId);
-		window.removeEventListener('keydown', this.processKeyDownEventThunk);
-		window.removeEventListener('keyup', this.processKeyUpEventThunk);
-	}
-
-	public static stopSpectate(data: string){
-		this.spectatorEndText.draw(this.ctx, this.canvasWidth/4, this.canvasHeight/2, data);
-		window.cancelAnimationFrame(this.renderRequestId);
-		window.removeEventListener('keydown', this.processKeyDownEventThunk);
-		window.removeEventListener('keyup', this.processKeyUpEventThunk);
-	}
-
-
-	public static start(ctx: CanvasRenderingContext2D, backgroundImage: string){
-		this.ctx = ctx;
-		this.canvasHeight = ctx.canvas.height;
-		this.canvasWidth = ctx.canvas.width;
-		this.background = new Background(this.ctx, backgroundImage);
-		this.rightPlayer = new Bar(this.canvasWidth - Constants.playerWidth - 30, this.canvasHeight / 2 - Constants.playerHeight / 2);
-		this.leftPlayer = new Bar(30, this.canvasHeight / 2 - Constants.playerHeight / 2);
-		this.player = new Bar(0,0);
-		this.line = new Line;
-		this.ball = new Ball(this.canvasWidth/2, this.canvasHeight/2);
-		this.endText = new EndText();
-		this.spectatorEndText = new SpectatorEndText();
-		this.keyboard = new Keyboard();
-		this.processKeyDownEventThunk = this.processKeyboardDownInput.bind(this);
-		window.addEventListener('keydown', this.processKeyDownEventThunk);
-		this.processKeyUpEventThunk = this.processKeyboardUpInput.bind(this);
-		window.addEventListener('keyup', this.processKeyUpEventThunk);
-		this.renderRequestId = window.requestAnimationFrame(this.processFrame.bind(this));
-	}
+  static stop(_winner?: unknown): void { void _winner; this.session?.complete(); this.dispose(); }
+  static stopSpectate(winner?: unknown): void { this.stop(winner); }
+  static dispose(): void {
+    this.session?.dispose();
+    this.session = null;
+    this.activeRoom = null;
+    this.activeGeneration = 0;
+    this.canvas = null;
+    if (this.debugApi && Object.getOwnPropertyDescriptor(window, '__ONLINE_DEBUG__')?.value === this.debugApi) {
+      Reflect.deleteProperty(window, '__ONLINE_DEBUG__');
+    }
+    this.debugApi = null;
+  }
 }

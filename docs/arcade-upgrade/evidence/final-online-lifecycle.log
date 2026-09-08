@@ -1,0 +1,15 @@
+PASS test/online-lifecycle.e2e-spec.ts (14.12 s)
+  real PostgreSQL result transactions and Socket.IO lifecycle
+    ✓ uses unique real IDs for concurrent creation and after deletion (44 ms)
+    ✓ commits concurrent wins and duplicate requests once with atomic nonduplicate achievements (192 ms)
+    ✓ pauses short disconnects, resynchronizes new generations, rejects another active tab, and preserves spectators (531 ms)
+    ✓ expires the real five-second grace and stores one disconnect result (5056 ms)
+    ✓ rolls back a real database failure then retries the same result without duplicate achievements (320 ms)
+    ✓ resolves an injected lost post-commit response by reading the real committed result on retry (319 ms)
+    ✓ reports terminal storage failure after three real rollbacks and permits a fresh match (1369 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        14.166 s, estimated 15 s
+Ran all test suites.

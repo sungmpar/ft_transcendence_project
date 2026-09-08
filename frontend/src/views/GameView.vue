@@ -1,209 +1,230 @@
 <template>
-	<div class= "game_container  bg-gray-700">
-		<div class="game-scale-shell">
-			<div
-				class="game-scale-placeholder"
-				:style="{ width: `${GAME_VIEW_WIDTH * gameScale}px`, height: `${GAME_VIEW_HEIGHT * gameScale}px` }"
-			>
-				<div class="game-scale-wrapper" :style="{ transform: `scale(${gameScale})` }">
-					<div id = "full-screen">
-						<div class = "flex flex-row items-center justify-center w-[1200px]">
-							<div class = "flex flex-row items-center justify-center w-[350px]">
-								<span class = "text-3xl mx-20 my-8 text-purple-200"> {{store.getters.room.leftName}} </span>
-							</div>
-							<div class = "flex flex-row items-center justify-center w-[150px]">
-								<span class = "text-4xl mx-20 my-8 text-purple-200"> {{store.getters.gameData.score.left}} </span>
-							</div>
-							<div class = "flex flex-row items-center justify-center w-[200px]">
-								<span class = "text-4xl mx-20 my-8 text-purple-400 "> vs </span>
-							</div>
-							<div class = "flex flex-row items-center justify-center w-[150px]">
-								<span class = "text-4xl mx-20 my-8 text-purple-200"> {{store.getters.gameData.score.right}} </span>
-							</div>
-							<div class = "flex flex-row items-center justify-center w-[350px]">
-								<span class = "text-3xl mx-20 my-8 text-purple-200"> {{store.getters.room.rightName}} </span>
-							</div>
-						</div>
-						<canvas id = "gameCanvas" class="canvas"></canvas>
-						<button type="button" class = "wide-user-button" @click="modeChange"> mode </button>
-						<div class = "flex flex-row">
-							<button type="button" class = "user-play-button mb-10" @click="changeMapA">◁</button>
-							<button type="button" class = "user-play-button mb-10" @click="joinToGame">play</button>
-							<button type="button" class = "user-play-button mb-10" @click="changeMapB">▷</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <OnlineGameShell
+    title="랜덤 매칭"
+    :status="status"
+    :active="active"
+    :waiting="waiting"
+    :result="result"
+    v-model:mode="mode"
+    v-model:map="map"
+    v-model:layout="layout"
+    @context-ready="setContext"
+  >
+    <template #start-action
+      ><button
+        class="arcade-button primary mint-button"
+        :disabled="waiting || !connected"
+        @click="joinToGame"
+        data-testid="online-play"
+      >
+        {{ waiting ? "매칭 중…" : "상대 찾기" }}
+      </button></template
+    >
+    <template #actions
+      ><button
+        class="arcade-button"
+        :disabled="active || waiting || !connected"
+        @click="joinToGame"
+      >
+        {{ result ? "다시 매칭" : "상대 찾기" }}</button
+      ><button v-if="waiting" class="quiet-button" @click="cancelWaiting">
+        매칭 취소
+      </button></template
+    >
+    <template #result-actions
+      ><button
+        class="arcade-button primary mint-button"
+        :disabled="!connected"
+        @click="joinToGame"
+        data-testid="online-rematch"
+      >
+        다시 매칭 ↻
+      </button></template
+    >
+  </OnlineGameShell>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
-import { GameImageService } from '@/models/GameImageService';
-import { GameplayService } from '@/plugins/gamePlayService';
-import store from '@/store';
-import { GameState } from '@/interfaces/Game';
-import { StartText } from '@/plugins/text';
-import axios from 'axios';
+import { onUnmounted, ref, watch } from "vue";
+import type { Socket } from "socket.io-client";
+import { isReadyMessage, ReadyMessage } from "../../../shared/protocol";
+import { GameplayService } from "@/plugins/gamePlayService";
+import OnlineGameShell from "@/components/game/OnlineGameShell.vue";
+import store from "@/store";
+import { OnlineResultNotice } from "@/arcade/online-result";
 
-let backgroundImage = "black";
-let ready = false;
-let map: string[] = ["winter", "black", "space"];
-let count = 1;
-let mode = true;
-let mapChange = true;
-const gameScale = ref(1);
-const GAME_VIEW_WIDTH = 1400;
-const GAME_VIEW_HEIGHT = 1000;
-const SIDEBAR_WIDTH = 80;
+const socket = store.getters.gameSocket as Socket | null;
+const active = ref(false);
+const waiting = ref(false);
+const connected = ref(socket?.connected || false);
+const result = ref("");
+const status = ref(
+  connected.value
+    ? "규칙을 고르고 상대 찾기를 눌러 주세요."
+    : "게임 서버에 연결 중입니다."
+);
+const mode = ref(true);
+const map = ref("black");
+const layout = ref<"arrows" | "wasd">("arrows");
+let context: CanvasRenderingContext2D | undefined;
+let pendingReady: ReadyMessage | undefined;
+const persistence = new OnlineResultNotice();
+let disposed = false;
+let ownSide: ReadyMessage["side"] = "spectator";
 
-function updateGameScale() {
-	const availableWidth = Math.max(window.innerWidth - SIDEBAR_WIDTH, 0);
-	const availableHeight = window.innerHeight;
-	gameScale.value = Math.min(
-		availableWidth / GAME_VIEW_WIDTH,
-		availableHeight / GAME_VIEW_HEIGHT,
-		1,
-	);
+function setContext(value: CanvasRenderingContext2D) {
+  if (disposed) return;
+  context = value;
+  if (pendingReady) startGame(pendingReady);
 }
-
-function changeMapA(){
-	if (!ready){
-		if (count != 0){
-			count -= 1;
-		}
-		backgroundImage = map[count];
-		initGame(backgroundImage, ready);
-	}
+function setStatus(message: string) {
+  if (disposed) return;
+  status.value = message;
 }
-
-function changeMapB(){
-	if (!ready){
-		if (count < 2){
-			count += 1;
-		}
-		backgroundImage = map[count];
-		initGame(backgroundImage, ready);
-	}
+function startGame(data: ReadyMessage) {
+  if (disposed) return;
+  if (!context) {
+    pendingReady = data;
+    return;
+  }
+  pendingReady = undefined;
+  GameplayService.start(context, map.value, data, setStatus);
+  GameplayService.useKeyLayout(layout.value);
 }
-
-function modeChange(){
-	if (!ready){
-		if (mode)
-			mode = false;
-		else
-			mode = true;
-		store.commit("setMode", mode);
-		initGame(backgroundImage, ready);
-	}
+function onReady(value: unknown) {
+  if (disposed) return;
+  if (!isReadyMessage(value)) {
+    status.value = "서버 경기 정보가 올바르지 않아 적용하지 않았습니다.";
+    return;
+  }
+  ownSide = value.side;
+  mode.value = value.roomMode;
+  persistence.reset(value.roomId);
+  store.commit("setRoom", value);
+  active.value = true;
+  waiting.value = false;
+  result.value = "";
+  startGame(value);
 }
-
-store.getters.gameSocket.on("ready", (data: any) => {
-	store.commit("setRoom", data);
-	console.log("set Gameroom: " + store.getters.room);
-	startGame();
-});
-
-store.getters.gameSocket.on("update", (data: GameState) => {
-	store.commit("setGameData", data);
-});
-
-store.getters.gameSocket.on("end", (data: string) => {
-	ready = false;
-	store.getters.gameSocket.emit("achievement");
-	GameplayService.stop(data);
-	if ((data == "left" && store.getters.room.leftName == store.getters.usernickname) ||
-			(data == "right" && store.getters.room.rightName == store.getters.usernickname)){
-		alert("게임에서 승리하였습니다")
-	}
-	else {
-		alert("게임에서 패배하였습니다")
-	}
-});
-
-function initGame(text: string, ready: boolean){
-	store.commit("setGameData",
-	{
-		ball: {x: 0, y: 0},
-		leftBar: {x: 0, y: 0, power: false},
-		rightBar: {x: 0, y: 0, power: false},
-		score: {left: 0, right: 0},
-	});
-	store.commit("setRoom",
-	{
-		id: "",
-		leftName: "",
-		rightName: "",
-	});
-	var canvas = document.getElementById('gameCanvas') as HTMLCanvasElement | null;
-	if (canvas?.getContext){
-		let context = canvas.getContext('2d')!;
-		canvas.width = canvas.offsetWidth;
-		canvas.height = canvas.offsetHeight;
-		StartText.draw(context, canvas.width/2, canvas.height/6, text, ready);
-	}
+function onEnd(value: unknown) {
+  if (disposed || persistence.status === "aborted") return;
+  if (value !== "left" && value !== "right") return;
+  active.value = false;
+  waiting.value = false;
+  result.value = ownSide === value ? "승리했습니다!" : "패배했습니다.";
+  status.value = persistence.message;
+  GameplayService.stop(value);
 }
-
-function startGame(){
-	var canvas = document.getElementById('gameCanvas') as HTMLCanvasElement | null;
-	if (canvas?.getContext){
-		let context = canvas.getContext('2d')!;
-		canvas.width = canvas.offsetWidth;
-		canvas.height = canvas.offsetHeight;
-		GameplayService.start(context, backgroundImage);
-	}
+function onError(value: unknown) {
+  if (disposed) return;
+  status.value =
+    value &&
+    typeof value === "object" &&
+    "message" in value &&
+    typeof value.message === "string"
+      ? value.message
+      : "게임 요청을 처리하지 못했습니다.";
+  waiting.value = false;
 }
-
-async function joinToGame() {
-	if (!ready){
-		ready = true;
-		initGame(backgroundImage, ready);
-		await store.getters.gameSocket.emit("matchmaking", {
-			userId: store.getters.userid, mode: mode
-		});
-	}
+function onConnect() {
+  if (disposed) return;
+  connected.value = true;
+  status.value = active.value
+    ? "다시 연결됐습니다. 경기 상태를 확인합니다."
+    : "연결됐습니다. 상대를 찾을 수 있습니다.";
 }
-
-function setStatus(status: string) {
-	axios.patch("/user/status", {
-			value: status
-	});
+function onDisconnect() {
+  if (disposed) return;
+  connected.value = false;
+  waiting.value = false;
+  status.value = "연결이 끊겼습니다. 재연결을 기다립니다.";
 }
-
-onMounted(() => {
-	// console.log("Game view mounted 되었습니다.");
-	// setStatus("ingame");
-	updateGameScale();
-	window.addEventListener('resize', updateGameScale);
-	setTimeout(async () => {
-		await GameImageService.loadImages();
-	}),
-	initGame("black", ready);
-});
-
+function joinToGame() {
+  if (!socket?.connected || active.value || waiting.value) return;
+  GameplayService.dispose();
+  store.commit("setOnlineState", null);
+  clearDisplay();
+  result.value = "";
+  waiting.value = true;
+  status.value =
+    "상대를 기다립니다. 두 플레이어가 Power를 선택하면 Power 규칙으로 진행합니다.";
+  socket.emit("matchmaking", {
+    userId: store.getters.userid,
+    mode: mode.value,
+  });
+}
+function cancelWaiting() {
+  socket?.emit("end");
+  waiting.value = false;
+  status.value = "매칭을 취소했습니다.";
+}
+function onSessionStatus(value: unknown) {
+  if (disposed || !active.value || !persistence.abort(value)) return;
+  pendingReady = undefined;
+  GameplayService.dispose();
+  active.value = false;
+  waiting.value = false;
+  result.value = "경기가 중단되었습니다.";
+  status.value = persistence.message;
+}
+function onResultStatus(value: unknown) {
+  if (disposed || !persistence.receive(value)) return;
+  status.value = persistence.message;
+}
+function clearDisplay() {
+  persistence.reset();
+  store.commit("setOnlineMetrics", {
+    ackRoundTripMs: null,
+    transportRoundTripMs: null,
+    snapshots: 0,
+    inputMessages: 0,
+    fps: 0,
+    bufferDepth: 0,
+    displayDelayMs: 0,
+    underflows: 0,
+  });
+  store.commit("setGameData", {
+    ball: { x: 0, y: 0 },
+    leftBar: { x: 0, y: 0, power: false },
+    rightBar: { x: 0, y: 0, power: false },
+    score: { left: 0, right: 0 },
+  });
+  store.commit("setRoom", {
+    roomId: "",
+    leftName: "",
+    rightName: "",
+    roomMode: mode.value,
+  });
+}
+watch(layout, (value) => GameplayService.useKeyLayout(value));
+socket?.on("ready", onReady);
+socket?.on("end", onEnd);
+socket?.on("resultStatus", onResultStatus);
+socket?.on("sessionStatus", onSessionStatus);
+socket?.on("error", onError);
+socket?.on("exception", onError);
+socket?.on("connect", onConnect);
+socket?.on("disconnect", onDisconnect);
+socket?.on("connect_error", onError);
+clearDisplay();
+store.commit("setOnlineState", null);
 onUnmounted(() => {
-	// console.log("Game view unmounted 되었습니다.");
-	window.removeEventListener('resize', updateGameScale);
-	if (store.getters.gameSocket != null)
-		store.getters.gameSocket.emit("end");
-	store.commit("setGameData",
-	{
-		ball: {x: 0, y: 0},
-		leftBar: {x: 0, y: 0, power: false},
-		rightBar: {x: 0, y: 0, power: false},
-		score: {left: 0, right: 0},
-	});
-	store.commit("setRoom",
-	{
-		id: "",
-		leftName: "",
-		rightName: "",
-	});
-	if (store.getters.gameSocket != null){
-		store.getters.gameSocket.close();
-		store.commit("setGameSocket", null);
-	}
+  disposed = true;
+  pendingReady = undefined;
+  GameplayService.dispose();
+  socket?.off("ready", onReady);
+  socket?.off("end", onEnd);
+  socket?.off("resultStatus", onResultStatus);
+  socket?.off("sessionStatus", onSessionStatus);
+  socket?.off("error", onError);
+  socket?.off("exception", onError);
+  socket?.off("connect", onConnect);
+  socket?.off("disconnect", onDisconnect);
+  socket?.off("connect_error", onError);
+  socket?.emit("end");
+  socket?.close();
+  if (store.getters.gameSocket === socket) store.commit("setGameSocket", null);
+  clearDisplay();
+  store.commit("setOnlineState", null);
 });
-
 </script>

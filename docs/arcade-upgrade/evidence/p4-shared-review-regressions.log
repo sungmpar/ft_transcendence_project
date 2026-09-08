@@ -1,0 +1,58 @@
+P4 independent shared/core/client review. These are controlled state/DOM/transport
+fixtures; they do not establish human gameplay, actual RTT or network recovery.
+All commands below ran from backend using Node 18.20.8.
+
+AI delayed Power latch:
+- Initial valid rally fixture: Power, Hard right AI, charge 5, paddle y=300,
+  ball x=1130,y=100,vx=600,vy=0. The real core scores by tick 6 before the delayed
+  AI action arrives. The stale action is rejected during point phase.
+- Before correction, 240 simulated ticks produced one action at tick 6/point,
+  no Power activations, and the AI remained at charge 5 with its request latched.
+- Regression added before production change. The existing 12 tests still passed;
+  new assertion expecting a later valid-rally activation failed.
+
+Command:
+/private/tmp/ft-transcendence-runtime/node_modules/.bin/node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/core-jest.json --runInBand --runTestsByPath src/game/ai.spec.ts
+Before fix: exit 1; 12 passed, 1 failed; 4.393 s.
+Failure: activations.some(tick > 6), expected true, received false.
+
+Accepted minimal fix: reset powerRequested when the DELAYED observed phase is
+not rally. The controller still reads no live phase for a new action decision.
+The regression also asserts repeated sampling of one tick cannot repeat an edge.
+
+Commands after the fix:
+/private/tmp/ft-transcendence-runtime/node_modules/.bin/node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/core-jest.json --runInBand
+Result: exit 0; 3 suites passed; 43 tests passed; 5.765 s.
+/private/tmp/ft-transcendence-runtime/node_modules/.bin/node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/local-jest.json --runInBand
+Result: exit 0; 1 suite passed; 16 tests passed; 4.264 s.
+
+Online latency-probe contracts:
+- Matching nonce computes an 80ms value on one fixture clock.
+- Null, unknown and wrong-type nonces leave the metric unchanged.
+- Superseded callbacks cannot replace the current probe measurement.
+- A disposed session cannot change metrics from a late probe callback.
+
+Command:
+/private/tmp/ft-transcendence-runtime/node_modules/.bin/node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-session-jest.json --runInBand
+With probe cases: exit 0; 16 tests passed; 1.703 s.
+
+Online status ownership:
+- Root identified missing room-ID validation for resultStatus/sessionStatus.
+- A failing regression sent missing and other-match IDs. Before the production
+  guard, these caused 4 onStatus calls; expected 0. Existing late-disposal tests
+  now use valid room IDs so they continue to exercise the disposal guard itself.
+- Root then implemented strict current-room guards and status messages.
+
+Same online-session command before guard:
+exit 1; 16 passed, 1 failed; 0.988 s.
+Same command after guard:
+PASS src/game/online-session.spec.ts
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        1.076 s
+Exit code: 0
+
+Read-only review also covered game-core.ts, fixed-clock.ts and protocol.ts.
+No further demonstrated defect was found in this pass. This is not a claim that
+all possible inputs or security properties have been exhaustively proven.

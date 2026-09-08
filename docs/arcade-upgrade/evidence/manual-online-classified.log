@@ -1,0 +1,2 @@
+Disposable online fixture initialization failed [connect/OtherError]; inspect the isolated test setup
+Disposable demo could not start; start the dedicated test PostgreSQL instance and build the frontend first.

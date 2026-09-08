@@ -32,22 +32,13 @@ export class Bar {
 		}
 		if (key == "down"){
 			this.y += this.playerMoveSpeed;
-			if(this.y + (this.playerHeight + this.playerMoveSpeed) > this.canvasHeight){
-				this.y = this.canvasHeight - this.playerHeight;
-			}
 		} else if (key == "up"){
 			this.y -= this.playerMoveSpeed;
-			if (this.y < 0) {
-				this.y = 0;
-			}
 		} else if (key == "space" && this.stack == 5 && mode == true){
 			this.status = true;
 			this.playerHeight = 400;
-			if (this.y > this.canvasHeight - this.playerHeight){
-				this.y = this.playerHeight;
-			}
 		}
+		this.y = Math.max(0, Math.min(this.y, this.canvasHeight - this.playerHeight));
 		return ({x: this.x, y: this.y, power: this.status});
 	}
 }
-

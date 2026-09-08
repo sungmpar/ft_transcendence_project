@@ -1,0 +1,58 @@
+P1 frontend lifecycle/mode/neutral-input regressions
+Command: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/frontend-contract-jest.json --runInBand
+Working directory: /Users/sm/dev_park/ft_transcendence_project/backend
+Exit code: 1
+8 PASS: C03 ready mode, C08 lifecycle/generation/dispose, C04 opposing movement.
+1 FAIL: C04 simultaneous movement + Power remains visible and intentionally pending P3 protocol integration.
+No tests skipped or weakened to obtain a green result.
+
+  console.log
+    up
+
+      at Bar.processKeyboardEvent (frontend/src/plugins/bar.ts:38:12)
+
+  console.log
+    up
+
+      at Bar.processKeyboardEvent (frontend/src/plugins/bar.ts:38:12)
+
+FAIL src/game/frontend-lifecycle.spec.ts
+  frontend game lifecycle and input contracts
+    ✓ C08: repeated start owns only one RAF loop and one listener per event (470 ms)
+    ✓ C08: stop removes the current loop and keyboard listeners (21 ms)
+    ✓ C08: a late callback from a stopped generation cannot restart rendering (18 ms)
+    ✓ C08: dispose is safe before start and when repeated (14 ms)
+    ✓ C08: callbacks from a replaced generation cannot affect the new game (18 ms)
+    ✓ C03: server ready roomMode=true is retained (18 ms)
+    ✓ C03: server ready roomMode=false is retained (32 ms)
+    ✓ C04: opposing held movement keys produce neutral input (25 ms)
+    ✕ C04: held movement and a Power press are both represented (79 ms)
+
+  ● frontend game lifecycle and input contracts › C04: held movement and a Power press are both represented
+
+    expect(received).not.toEqual(expected) // deep equality
+
+    Expected: not ["keyboardEvent", "up"]
+
+      148 |
+      149 |   test('C04: held movement and a Power press are both represented', () => {
+    > 150 |     const { Bar } = require('../../../frontend/src/plugins/bar');
+          |                                                                 ^
+      151 |     const { Keyboard } = require('../../../frontend/src/plugins/keyboard');
+      152 |     const keyboard = new Keyboard();
+      153 |     const bar = new Bar(0, 0);
+
+      at Object.<anonymous> (backend/src/game/frontend-lifecycle.spec.ts:150:65)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 8 passed, 9 total
+Snapshots:   0 total
+Time:        1.575 s
+Ran all test suites.
+
+
+Command: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit
+Working directory: /Users/sm/dev_park/ft_transcendence_project/frontend
+Exit code: 0
+Output: empty
+Scope: TypeScript only; Vue template compilation/browser route teardown not verified by this command.

@@ -1,0 +1,53 @@
+P2 local keyboard/runner verification
+Node runtime: /private/tmp/ft-transcendence-runtime/node_modules/.bin/node (v18.20.8)
+
+Working directory: backend
+Command: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/local-jest.json --runInBand
+Exit code: 0
+PASS src/game/local-runner.spec.ts (6.834 s)
+  local keyboard ownership and simultaneous input
+    ✓ both players hold movement while each action edge is consumed once (2 ms)
+    ✓ opposite held keys are neutral, preserving an independent action (1 ms)
+    ✓ only owned game keys prevent defaults; form/contenteditable input stays untouched (4 ms)
+    ✓ blur/hidden clear held state and request pause; visibility return never requests resume (2 ms)
+    ✓ surface blur, remapping, disable, and disposal release input (2 ms)
+    ✓ attach is idempotent, Escape is a command edge, key repeat does not retrigger pause (2 ms)
+    ✓ duplicate, reserved, and missing binding fields are rejected (1 ms)
+    ✓ malformed persisted key fields and unavailable storage fall back to usable defaults (1 ms)
+  local fixed-tick runner lifecycle
+    ✓ start/stop/dispose are idempotent and late generations cannot create another RAF (3 ms)
+    ✓ pause/resume drops hidden wall time and restarts with a neutral clock (2 ms)
+    ✓ a long frame advances at most eight ticks and reports dropped time (2 ms)
+    ✓ same seed/tick input yields identical states at 30, 60 and 120 RAF Hz (26 ms)
+    ✓ separate matches, returned snapshots and restart do not share mutable state (6 ms)
+    ✓ a full real-core match finishes once and restart creates another ready match (104 ms)
+    ✓ restarting in an event callback cannot spend the old frame backlog on the new match (2 ms)
+    ✓ a step failure stops the runner and reports the real error (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        6.976 s
+Ran all test suites.
+
+
+Working directory: frontend
+Command: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src/arcade src/views/PlayHubView.vue src/views/LocalPlayView.vue
+Exit code: 0
+Output: (empty)
+
+Command: PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit
+Exit code: 0
+Output: (empty)
+
+Earlier production build command (before formatting/const-capture warning cleanup):
+PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_ARCADE_DEBUG=true yarn build
+Working directory: frontend
+Exit code: 0
+Build at: 2026-09-07T05:24:54.803Z - Hash: ed84e54dacb1882e - Time: 15794ms
+Actual output summary: production build complete; 92 ESLint warnings (88 existing plus 4 new non-null warnings subsequently removed and checked with the exact lint command above), stale Browserslist data warnings, existing artwork/vendor/entry asset size warnings.
+Shared core and AI source imports compiled successfully with the existing Vue CLI build.
+
+Independent review corrections accepted: explicit binding field validation; restarting during an event cannot spend an old frame backlog on a new generation; rematch recreates AI with a fresh RNG matching the displayed seed.
+Not covered by these unit results: actual browser focus/layout/resize/pause route transitions, optical input latency, physical key rollover, human AI win rates, real online/DB behavior.
+Production preview diagnostics require VUE_APP_ARCADE_DEBUG=true at build and debug=1 in URL. __ARCADE_DEBUG__ snapshot()/metrics()/ai() return copies only; no state mutation API.

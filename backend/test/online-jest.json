@@ -1,0 +1,18 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "watchman": false,
+  "testMatch": ["<rootDir>/test/online-integration.e2e-spec.ts"],
+  "transform": {
+    "^.+\\.ts$": [
+      "ts-jest",
+      {
+        "tsconfig": { "target": "es2019", "esModuleInterop": true }
+      }
+    ]
+  },
+  "moduleNameMapper": { "^src/(.*)$": "<rootDir>/src/$1" },
+  "maxWorkers": 1,
+  "testTimeout": 10000
+}

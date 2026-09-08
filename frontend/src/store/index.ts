@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import User from '@/interfaces/User';
 import axios from 'axios';
+import type { GameState as CoreGameState } from '../../../shared/game-core';
 
 const store = createStore({
   state: {
@@ -73,6 +74,8 @@ const store = createStore({
 		inviteFriendName: "",
 
 		mode: true,
+		onlineState: null as CoreGameState | null,
+		onlineMetrics: { ackRoundTripMs: null as number | null, transportRoundTripMs: null as number | null, snapshots: 0, inputMessages: 0, fps: 0, bufferDepth: 0, displayDelayMs: 0, underflows: 0 },
 
 		userInviteList: [],
 	},
@@ -111,6 +114,8 @@ const store = createStore({
 		roomList: state => state.roomList,
 
 		mode: state => state.mode,
+		onlineState: state => state.onlineState,
+		onlineMetrics: state => state.onlineMetrics,
 
 		inviteFriendId: state => state.inviteFriendId,
 		inviteFriendName: state => state.inviteFriendName,
@@ -205,9 +210,11 @@ const store = createStore({
 		setProfileUser: (state, payload) => state.profileUser = payload,
 
 		setGameSocket: (state, payload) => state.gameSocket = payload,
+		setOnlineState: (state, payload: CoreGameState | null) => state.onlineState = payload,
+		setOnlineMetrics: (state, payload) => state.onlineMetrics = { ...state.onlineMetrics, ...payload },
 
 		setRoom: (state, payload) => {
-			state.room.mode = payload.gameMode
+			state.room.mode = payload.roomMode === true
       state.room.roomId = payload.roomId
 			state.room.leftName = payload.leftName
 			state.room.rightName = payload.rightName

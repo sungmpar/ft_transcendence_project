@@ -1,0 +1,24 @@
+2026-09-07T14:11:43,842: [cli] unable to talk to your watchman on /var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T//sm-state/sock! (Operation not permitted)
+
+Watchman:  watchman --no-pretty get-sockname returned with exit code=1, signal=null, stderr= 2026-09-07T14:11:43,842: [cli] unable to talk to your watchman on /var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T//sm-state/sock! (Operation not permitted)
+
+node:events:495
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: watchman --no-pretty get-sockname returned with exit code=1, signal=null, stderr= 2026-09-07T14:11:43,842: [cli] unable to talk to your watchman on /var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T//sm-state/sock! (Operation not permitted)
+
+    at ChildProcess.<anonymous> (/Users/sm/dev_park/ft_transcendence_project/backend/node_modules/fb-watchman/index.js:198:18)
+    at ChildProcess.emit (node:events:517:28)
+    at maybeClose (node:internal/child_process:1098:16)
+    at Socket.<anonymous> (node:internal/child_process:450:11)
+    at Socket.emit (node:events:517:28)
+    at Pipe.<anonymous> (node:net:350:12)
+Emitted 'error' event on Client instance at:
+    at spawnError (/Users/sm/dev_park/ft_transcendence_project/backend/node_modules/fb-watchman/index.js:170:10)
+    at ChildProcess.<anonymous> (/Users/sm/dev_park/ft_transcendence_project/backend/node_modules/fb-watchman/index.js:198:7)
+    at ChildProcess.emit (node:events:517:28)
+    [... lines matching original stack trace ...]
+    at Pipe.<anonymous> (node:net:350:12)
+
+Node.js v18.20.8

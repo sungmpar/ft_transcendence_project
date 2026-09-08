@@ -1,0 +1,72 @@
+FAIL test/service-preservation.e2e-spec.ts (7.4 s)
+  preserved services against disposable PostgreSQL and real HTTP/Socket.IO
+    ✕ keeps protected profile and friends endpoints unauthorized without JWT
+    ✕ preserves guest flag off/on, issued cookie, profile, profile image and friends
+    ✕ preserves profile edits, friend persistence and the unmet-2FA HTTP guard
+    ✕ authenticates two real chat clients and persists channel join, messages and leave
+
+  ● preserved services against disposable PostgreSQL and real HTTP/Socket.IO › keeps protected profile and friends endpoints unauthorized without JWT
+
+    Disposable online fixture initialization failed (EPERM); inspect the isolated test setup
+
+      170 |     const code = typeof error?.code === 'string' && /^[A-Z0-9_]{1,32}$/.test(error.code)
+      171 |       ? ` (${error.code})` : '';
+    > 172 |     throw new Error(`Disposable online fixture initialization failed${code}; inspect the isolated test setup`);
+          |           ^
+      173 |   }
+      174 | }
+      175 |
+
+      at startOnlineFixture (test/online-fixture.ts:172:11)
+      at Object.<anonymous> (test/service-preservation.e2e-spec.ts:22:15)
+
+  ● preserved services against disposable PostgreSQL and real HTTP/Socket.IO › preserves guest flag off/on, issued cookie, profile, profile image and friends
+
+    Disposable online fixture initialization failed (EPERM); inspect the isolated test setup
+
+      170 |     const code = typeof error?.code === 'string' && /^[A-Z0-9_]{1,32}$/.test(error.code)
+      171 |       ? ` (${error.code})` : '';
+    > 172 |     throw new Error(`Disposable online fixture initialization failed${code}; inspect the isolated test setup`);
+          |           ^
+      173 |   }
+      174 | }
+      175 |
+
+      at startOnlineFixture (test/online-fixture.ts:172:11)
+      at Object.<anonymous> (test/service-preservation.e2e-spec.ts:22:15)
+
+  ● preserved services against disposable PostgreSQL and real HTTP/Socket.IO › preserves profile edits, friend persistence and the unmet-2FA HTTP guard
+
+    Disposable online fixture initialization failed (EPERM); inspect the isolated test setup
+
+      170 |     const code = typeof error?.code === 'string' && /^[A-Z0-9_]{1,32}$/.test(error.code)
+      171 |       ? ` (${error.code})` : '';
+    > 172 |     throw new Error(`Disposable online fixture initialization failed${code}; inspect the isolated test setup`);
+          |           ^
+      173 |   }
+      174 | }
+      175 |
+
+      at startOnlineFixture (test/online-fixture.ts:172:11)
+      at Object.<anonymous> (test/service-preservation.e2e-spec.ts:22:15)
+
+  ● preserved services against disposable PostgreSQL and real HTTP/Socket.IO › authenticates two real chat clients and persists channel join, messages and leave
+
+    Disposable online fixture initialization failed (EPERM); inspect the isolated test setup
+
+      170 |     const code = typeof error?.code === 'string' && /^[A-Z0-9_]{1,32}$/.test(error.code)
+      171 |       ? ` (${error.code})` : '';
+    > 172 |     throw new Error(`Disposable online fixture initialization failed${code}; inspect the isolated test setup`);
+          |           ^
+      173 |   }
+      174 | }
+      175 |
+
+      at startOnlineFixture (test/online-fixture.ts:172:11)
+      at Object.<anonymous> (test/service-preservation.e2e-spec.ts:22:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+Snapshots:   0 total
+Time:        7.442 s
+Ran all test suites.

@@ -1,0 +1,12 @@
+PASS test/service-preservation.e2e-spec.ts (5.903 s)
+  preserved services against disposable PostgreSQL and real HTTP/Socket.IO
+    ✓ keeps protected profile and friends endpoints unauthorized without JWT (26 ms)
+    ✓ preserves guest flag off/on, issued cookie, profile, profile image and friends (47 ms)
+    ✓ preserves profile edits, friend persistence and the unmet-2FA HTTP guard (56 ms)
+    ✓ authenticates two real chat clients and persists channel join, messages and leave (145 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        5.958 s, estimated 6 s
+Ran all test suites.

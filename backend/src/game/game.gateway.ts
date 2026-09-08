@@ -8,6 +8,7 @@ import { SpecDto } from './dto/SpecDto';
 import { AuthSocket, WSAuthMiddleware } from './game.middleware';
 import { GameService } from './game.service';
 import { UserStatus } from 'src/user/interface/user.status';
+import { performance } from 'perf_hooks';
 
 @WebSocketGateway({
 	cors: {
@@ -17,6 +18,7 @@ import { UserStatus } from 'src/user/interface/user.status';
 	namespace: '/game',
 })
 export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
+	private readonly probeTimes = new WeakMap<AuthSocket, number>();
 	constructor(
 		private readonly userService: UserService,
 		@Inject(JwtService)
@@ -26,8 +28,22 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
 	@WebSocketServer() server: Server;
 
+	@SubscribeMessage('latencyProbe')
+	latencyProbe(@ConnectedSocket() socket: AuthSocket, @MessageBody() data: unknown) {
+		if (!data || typeof data !== 'object' || Array.isArray(data) || Object.keys(data).length !== 1)
+			return;
+		const nonce = (data as { nonce?: unknown }).nonce;
+		if (!Number.isSafeInteger(nonce) || (nonce as number) < 0)
+			return;
+		const now = performance.now();
+		if (now - (this.probeTimes.get(socket) ?? -Infinity) < 1000)
+			return;
+		this.probeTimes.set(socket, now);
+		return { nonce };
+	}
+
 	@SubscribeMessage('keyboardEvent')
-	keyboardEvent(@ConnectedSocket() socket: AuthSocket, @MessageBody() data: string) {
+	keyboardEvent(@ConnectedSocket() socket: AuthSocket, @MessageBody() data: unknown) {
 		this.gameService.listenKeyEvent(socket, data);
 	}
 
@@ -63,7 +79,7 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 	@SubscribeMessage('refuse')
 	async refuse(
 		@ConnectedSocket() socket: AuthSocket,
-		@MessageBody() data: JoinGameDto): Promise<void> {
+		@MessageBody() data: unknown): Promise<void> {
 			this.gameService.refuse(socket, data);
 	}
 
@@ -104,6 +120,6 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 	}
 
 	async handleDisconnect(@ConnectedSocket() socket: AuthSocket, ...args: any[]) {
-			this.gameService.dropUser(socket);
+			await this.gameService.dropUser(socket, true);
 	}
 }

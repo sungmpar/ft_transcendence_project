@@ -1,0 +1,6116 @@
+{
+  "metadata": {
+    "generatedAtUtc": "2026-09-07T05:57:08.066Z",
+    "node": "v18.20.8",
+    "os": "darwin",
+    "release": "23.6.0",
+    "architecture": "x64",
+    "cpuModel": "Apple M3 Max",
+    "cpuCount": 14,
+    "loadAverageAtEnd": [
+      5.52783203125,
+      3.8134765625,
+      4.552734375
+    ],
+    "gitHead": "f970554de528b2fceb46aa7aa3a10d43c192b65b",
+    "sourceHashes": {
+      "shared/game-core.ts": "bafd18217f19cc1a13b2490f88387ac11c599ef0d29229549807657db56fd37f",
+      "shared/fixed-clock.ts": "7905068e6fea0c4d92f1879cfe172a578d101d32142d78593fb5c29001aaecdf",
+      "shared/protocol.ts": "1394779df3879ae8e51bb15c72dd7009b1f43a4bbdfeb9eda694413f0a44d073",
+      "frontend/src/arcade/snapshot-buffer.ts": "68341003cff847c9e2582a570db3891341053504c6caa23fdc705a95107a8d5e",
+      "scripts/measure-arcade.ts": "cbbb49193feef3ce895c879eb334b7fed7d74788f42aeb7158bc632d8769497b"
+    },
+    "combinedSourceHash": "37fe020a89eb26a3ed2d3f913f83387e8f1b5965e762d72b138a7ebdc8a1a5c2",
+    "seed": 20260907,
+    "config": {
+      "width": 1200,
+      "height": 800,
+      "tickRate": 60,
+      "winningScore": 6,
+      "mode": "classic",
+      "paddleWidth": 30,
+      "paddleHeight": 200,
+      "poweredHeight": 400,
+      "paddleInset": 20,
+      "paddleSpeed": 900,
+      "ballRadius": 15,
+      "ballSpeed": 720,
+      "maxBallSpeed": 1500,
+      "hitAcceleration": 1.025,
+      "maxBounceAngle": 1.0471975511965976,
+      "readyTicks": 120,
+      "pointTicks": 60
+    },
+    "repeats": 5,
+    "warmupMsModel": 2000,
+    "measuredMsModel": 12000,
+    "renderHzModel": 60,
+    "inputTraceSha256": "b716c2b85762b30c2a1a3e1b2252e383282d3ad9cff73bf4081af643a34fc15a",
+    "replayStateHashes": [
+      "1bc8e21e5b8d07671b1beb4240ecb58cd51946c6bbfe53d4140b6e96aab36891",
+      "1bc8e21e5b8d07671b1beb4240ecb58cd51946c6bbfe53d4140b6e96aab36891",
+      "1bc8e21e5b8d07671b1beb4240ecb58cd51946c6bbfe53d4140b6e96aab36891",
+      "1bc8e21e5b8d07671b1beb4240ecb58cd51946c6bbfe53d4140b6e96aab36891",
+      "1bc8e21e5b8d07671b1beb4240ecb58cd51946c6bbfe53d4140b6e96aab36891"
+    ],
+    "finalReplay": {
+      "tick": 840,
+      "phase": "point",
+      "leftScore": 4,
+      "rightScore": 1
+    },
+    "scope": "Application snapshot-delivery model; nominal RTT is only a label whose half is applied to snapshot delivery. No uplink, real socket, TCP, Canvas, RAF or physical display timing is measured.",
+    "cpuScope": "Wall-clock performance.now around actual Node pure-core stepGame and buffer.display calls. Warmup is 120 virtual simulation ticks; other host processes are not controlled."
+  },
+  "simulationCpuMs": {
+    "n": 3600,
+    "mean": 0.0025380082262886896,
+    "p50": 0.0011668205261230469,
+    "p95": 0.0021250247955322266,
+    "max": 0.6867079734802246
+  },
+  "aggregates": [
+    {
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 36.90000000000002,
+      "motionMaxMean": 36.900000000000055,
+      "sourceAgeMeanMsModel": 16.666666666666863,
+      "sourceAgeP95MeanMsModel": 33.33333333333394,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.6739130434782609,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 217687,
+      "displayCpuP95MeanMs": 0.00097503662109375
+    },
+    {
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.30000000000002,
+      "motionMaxMean": 12.30000000000002,
+      "sourceAgeMeanMsModel": 100.69444444444444,
+      "sourceAgeP95MeanMsModel": 100,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 16.049453286275003,
+      "zeroMotionFractionMean": 0.021739130434782608,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 217687,
+      "displayCpuP95MeanMs": 0.001775074005126953
+    },
+    {
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 36.90000000000002,
+      "motionMaxMean": 36.900000000000055,
+      "sourceAgeMeanMsModel": 66.66666666666667,
+      "sourceAgeP95MeanMsModel": 83.33333333333394,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.6739130434782609,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216944,
+      "displayCpuP95MeanMs": 0.0009664058685302735
+    },
+    {
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.300000000001386,
+      "motionMaxMean": 12.300000000001473,
+      "sourceAgeMeanMsModel": 150.69444444444446,
+      "sourceAgeP95MeanMsModel": 150,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 16.049453286275003,
+      "zeroMotionFractionMean": 0.021739130434782608,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216944,
+      "displayCpuP95MeanMs": 0.0015667915344238282
+    },
+    {
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 36.90000000000002,
+      "motionMaxMean": 36.900000000000055,
+      "sourceAgeMeanMsModel": 116.66666666666667,
+      "sourceAgeP95MeanMsModel": 133.33333333333394,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.6739130434782609,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216202,
+      "displayCpuP95MeanMs": 0.0008580207824707032
+    },
+    {
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.300000000001386,
+      "motionMaxMean": 12.300000000001473,
+      "sourceAgeMeanMsModel": 200.69444444444446,
+      "sourceAgeP95MeanMsModel": 200,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 16.049453286275003,
+      "zeroMotionFractionMean": 0.021739130434782608,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216202,
+      "displayCpuP95MeanMs": 0.001341533660888672
+    },
+    {
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 24.60000000000004,
+      "motionMaxMean": 24.60000000000004,
+      "sourceAgeMeanMsModel": 58.333333333333336,
+      "sourceAgeP95MeanMsModel": 66.66666666666788,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.5054229934924078,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 324804,
+      "displayCpuP95MeanMs": 0.0008086204528808594
+    },
+    {
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.30000000000002,
+      "motionMaxMean": 12.30000000000002,
+      "sourceAgeMeanMsModel": 150.2314814814815,
+      "sourceAgeP95MeanMsModel": 150,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 5.152096183532729,
+      "zeroMotionFractionMean": 0.010845986984815618,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 324804,
+      "displayCpuP95MeanMs": 0.001291370391845703
+    },
+    {
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 12.30000000000002,
+      "motionMaxMean": 12.30000000000002,
+      "sourceAgeMeanMsModel": 50,
+      "sourceAgeP95MeanMsModel": 50,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 649630,
+      "displayCpuP95MeanMs": 0.0008250236511230469
+    },
+    {
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.30000000000002,
+      "motionMaxMean": 12.30000000000002,
+      "sourceAgeMeanMsModel": 150,
+      "sourceAgeP95MeanMsModel": 150,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 649630,
+      "displayCpuP95MeanMs": 0.0009500026702880859
+    },
+    {
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 36.900000000000055,
+      "motionMaxMean": 73.80000000000011,
+      "sourceAgeMeanMsModel": 76.33333333333333,
+      "sourceAgeP95MeanMsModel": 116.66666666666788,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.7122174671866723,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216350.4,
+      "displayCpuP95MeanMs": 0.0008084297180175782
+    },
+    {
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 17.018389519616612,
+      "motionMaxMean": 29.318389519617046,
+      "sourceAgeMeanMsModel": 112.82666114847261,
+      "sourceAgeP95MeanMsModel": 126.67607526977876,
+      "sameTickErrorP95Mean": 2.2737367544323207e-14,
+      "sameTickErrorMaxMean": 11.133878629448219,
+      "zeroMotionFractionMean": 0.048279814341195416,
+      "underflowEpisodesMean": 82.4,
+      "measuredUnderflowEpisodesMean": 73.2,
+      "deliveredJsonBytesMean": 216350.4,
+      "displayCpuP95MeanMs": 0.0016004562377929688
+    },
+    {
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 36.90000000000002,
+      "motionMaxMean": 36.900000000000055,
+      "sourceAgeMeanMsModel": 50.00000000000002,
+      "sourceAgeP95MeanMsModel": 66.66666666666788,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.6739130434782609,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216944,
+      "displayCpuP95MeanMs": 0.0008500099182128906
+    },
+    {
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.300000000001386,
+      "motionMaxMean": 12.30000000000151,
+      "sourceAgeMeanMsModel": 121.25,
+      "sourceAgeP95MeanMsModel": 120,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 14.464276745004764,
+      "zeroMotionFractionMean": 0.021739130434782608,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216944,
+      "displayCpuP95MeanMs": 0.0012830257415771484
+    },
+    {
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 36.90000000000002,
+      "motionMaxMean": 36.900000000000055,
+      "sourceAgeMeanMsModel": 100,
+      "sourceAgeP95MeanMsModel": 116.66666666666788,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.6739130434782609,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216202,
+      "displayCpuP95MeanMs": 0.0008168220520019531
+    },
+    {
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.300000000001406,
+      "motionMaxMean": 12.300000000001473,
+      "sourceAgeMeanMsModel": 180.83333333333331,
+      "sourceAgeP95MeanMsModel": 180.00000000000045,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 12.839562629019344,
+      "zeroMotionFractionMean": 0.021739130434782608,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216202,
+      "displayCpuP95MeanMs": 0.0013335704803466796
+    },
+    {
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 36.900000000000055,
+      "motionMaxMean": 73.80000000000011,
+      "sourceAgeMeanMsModel": 73.75,
+      "sourceAgeP95MeanMsModel": 116.66666666666788,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.7257019438444925,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 186632,
+      "displayCpuP95MeanMs": 0.0008332252502441407
+    },
+    {
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.300000000001386,
+      "motionMaxMean": 12.300000000001473,
+      "sourceAgeMeanMsModel": 151.80555555555554,
+      "sourceAgeP95MeanMsModel": 150.0000000000009,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 16.049453286275003,
+      "zeroMotionFractionMean": 0.04103671706263499,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 186632,
+      "displayCpuP95MeanMs": 0.0012418270111083985
+    },
+    {
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "latest",
+      "repeats": 5,
+      "motionP95Mean": 36.900000000000055,
+      "motionMaxMean": 73.80000000000011,
+      "sourceAgeMeanMsModel": 73.75,
+      "sourceAgeP95MeanMsModel": 116.66666666666788,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 0,
+      "zeroMotionFractionMean": 0.7257019438444925,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216944,
+      "displayCpuP95MeanMs": 0.0007916450500488281
+    },
+    {
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "repeats": 5,
+      "motionP95Mean": 12.300000000001386,
+      "motionMaxMean": 12.300000000001473,
+      "sourceAgeMeanMsModel": 151.80555555555554,
+      "sourceAgeP95MeanMsModel": 150.0000000000009,
+      "sameTickErrorP95Mean": 0,
+      "sameTickErrorMaxMean": 16.049453286275003,
+      "zeroMotionFractionMean": 0.04103671706263499,
+      "underflowEpisodesMean": 0,
+      "measuredUnderflowEpisodesMean": 0,
+      "deliveredJsonBytesMean": 216944,
+      "displayCpuP95MeanMs": 0.0013082504272460937
+    }
+  ],
+  "runs": [
+    {
+      "repeat": 1,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 16.666666666666863,
+        "p50": 16.66666666666697,
+        "p95": 33.33333333333394,
+        "max": 33.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666668,
+        "p50": 16.666666666666668,
+        "p95": 33.333333333333336,
+        "max": 33.33333333333381
+      },
+      "sameTickBallError": {
+        "n": 464,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.002120477623409695,
+        "p50": 0.0012090206146240234,
+        "p95": 0.0014581680297851562,
+        "max": 0.594749927520752
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.77687699297501,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333334
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070838,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0082480122645696,
+        "p50": 0.002624988555908203,
+        "p95": 0.003542184829711914,
+        "max": 1.768625020980835
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 66.66666666666667,
+        "p50": 66.66666666666697,
+        "p95": 83.33333333333394,
+        "max": 83.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666722,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0022382607062657674,
+        "p50": 0.0010840892791748047,
+        "p95": 0.001332998275756836,
+        "max": 0.5240421295166016
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.69444444444446,
+        "p50": 150,
+        "p95": 150,
+        "max": 183.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0022226548857159083,
+        "p50": 0.002457857131958008,
+        "p95": 0.002749919891357422,
+        "max": 0.020541906356811523
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 116.66666666666667,
+        "p50": 116.66666666666697,
+        "p95": 133.33333333333394,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.666666666667222,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.004835243688689338,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0008330345153808594,
+        "max": 1.6056671142578125
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 200.69444444444446,
+        "p50": 200,
+        "p95": 200,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.001117580466800266,
+        "p50": 0.0011661052703857422,
+        "p95": 0.0012907981872558594,
+        "max": 0.03562498092651367
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 1,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.979823990674209,
+        "p50": 0,
+        "p95": 24.60000000000004,
+        "max": 24.60000000000004
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 58.333333333333336,
+        "p50": 50.00000000000182,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 8.333333333333407,
+        "p50": 9.473903143468003e-13,
+        "p95": 16.666666666666668,
+        "max": 16.666666666667616
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007785237497753568,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0009169578552246094,
+        "max": 0.006707906723022461
+      },
+      "zeroMotionFraction": 0.5054229934924078
+    },
+    {
+      "repeat": 1,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.97982399067427,
+        "p50": 12.000000000000039,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.2314814814815,
+        "p50": 150,
+        "p95": 150,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.23148148148151,
+        "p50": 100,
+        "p95": 100.00000000000048,
+        "max": 116.66666666666715
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0.018517745469170982,
+        "p50": 0,
+        "p95": 0,
+        "max": 5.152096183532729
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010031859079996746,
+        "p50": 0.0009579658508300781,
+        "p95": 0.0012500286102294922,
+        "max": 0.001958131790161133
+      },
+      "zeroMotionFraction": 0.010845986984815618
+    },
+    {
+      "repeat": 1,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50,
+        "p50": 50,
+        "p95": 50,
+        "max": 50.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 5.750132880132643e-13,
+        "p50": 0,
+        "p95": 1.8947806286936006e-12,
+        "max": 1.8947806286936006e-12
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.00076764358414544,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0007920265197753906,
+        "max": 0.010334014892578125
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 1,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150,
+        "p50": 150,
+        "p95": 150,
+        "max": 150.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.00000000000006,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 100.0000000000019
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0008503437042236328,
+        "p50": 0.0007920265197753906,
+        "p95": 0.0009999275207519531,
+        "max": 0.015542030334472656
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 49.88737528379873,
+      "arrivalIntervalSdMs": 30.377964898864843,
+      "motion": {
+        "n": 463,
+        "mean": 11.622815155007492,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 78.26388888888889,
+        "p50": 83.33333333333303,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 67.59054172882395,
+        "p50": 73.09256675963525,
+        "p95": 106.42590009297048,
+        "max": 123.0925667596362
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007431815067927042,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0007500648498535156,
+        "max": 0.019583940505981445
+      },
+      "zeroMotionFraction": 0.7170626349892009
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 97,
+      "measuredUnderflowEpisodes": 85,
+      "arrivalIntervalMeanMs": 49.88737528379873,
+      "arrivalIntervalSdMs": 30.377964898864843,
+      "motion": {
+        "n": 460,
+        "mean": 11.753930027690945,
+        "p50": 12.000000000000675,
+        "p95": 17.042314268610816,
+        "max": 29.34231426861152
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 112.99367712133721,
+        "p50": 110.24076657369733,
+        "p95": 133.33333333333303,
+        "max": 150
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 102.32032996127204,
+        "p50": 100,
+        "p95": 120.3604788457355,
+        "max": 139.7592334263038
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.10201223275023896,
+        "p50": 0,
+        "p95": 0,
+        "max": 11.179426405099516
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.002465198768509759,
+        "p50": 0.0021250247955322266,
+        "p95": 0.0027501583099365234,
+        "max": 0.08654093742370605
+      },
+      "zeroMotionFraction": 0.05434782608695652
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50.00000000000002,
+        "p50": 50,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 30,
+        "p50": 29.999999999999243,
+        "p95": 46.66666666666781,
+        "max": 46.66666666666781
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0027812388208177355,
+        "p50": 0.0008749961853027344,
+        "p95": 0.0009579658508300781,
+        "max": 1.0552499294281006
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.657479348060633,
+        "p50": 12.000000000001345,
+        "p95": 12.300000000001386,
+        "max": 12.30000000000151
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 121.25,
+        "p50": 120,
+        "p95": 120,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.25,
+        "p50": 100,
+        "p95": 100,
+        "max": 146.66666666666782
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070547,
+        "p50": 0,
+        "p95": 0,
+        "max": 14.464276745004764
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012262725167804295,
+        "p50": 0.0011668205261230469,
+        "p95": 0.0012500286102294922,
+        "max": 0.030292034149169922
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100,
+        "p50": 100,
+        "p95": 116.66666666666788,
+        "max": 116.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 20.00000000000038,
+        "p50": 19.99999999999981,
+        "p95": 36.666666666667425,
+        "max": 36.66666666666838
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007548497782813178,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0008749961853027344,
+        "max": 0.001374959945678711
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.733033019045056,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001406,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 180.83333333333331,
+        "p50": 180,
+        "p95": 180.00000000000045,
+        "max": 216.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.83333333333333,
+        "p50": 100,
+        "p95": 100,
+        "max": 136.66666666666742
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823071213,
+        "p50": 0,
+        "p95": 0,
+        "max": 12.839562629019344
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012368818124135336,
+        "p50": 0.0012078285217285156,
+        "p95": 0.001374959945678711,
+        "max": 0.013540983200073242
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.000794382890065511,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0008749961853027344,
+        "max": 0.01629185676574707
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.001113410128487481,
+        "p50": 0.0012078285217285156,
+        "p95": 0.001332998275756836,
+        "max": 0.009541988372802734
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007717079586452908,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0009160041809082031,
+        "max": 0.009207963943481445
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 1,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.002607490950160556,
+        "p50": 0.0011661052703857422,
+        "p95": 0.001332998275756836,
+        "max": 1.0740001201629639
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 16.666666666666863,
+        "p50": 16.66666666666697,
+        "p95": 33.33333333333394,
+        "max": 33.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666668,
+        "p50": 16.666666666666668,
+        "p95": 33.333333333333336,
+        "max": 33.33333333333381
+      },
+      "sameTickBallError": {
+        "n": 464,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007666697104771932,
+        "p50": 0.0007498264312744141,
+        "p95": 0.0008749961853027344,
+        "max": 0.00762486457824707
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.77687699297501,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333334
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070838,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011742363373438518,
+        "p50": 0.0011250972747802734,
+        "p95": 0.001332998275756836,
+        "max": 0.033416032791137695
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 66.66666666666667,
+        "p50": 66.66666666666697,
+        "p95": 83.33333333333394,
+        "max": 83.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666722,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0021771411101023357,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0008330345153808594,
+        "max": 1.0016670227050781
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.69444444444446,
+        "p50": 150,
+        "p95": 150,
+        "max": 183.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012273785140779283,
+        "p50": 0.0012078285217285156,
+        "p95": 0.001332998275756836,
+        "max": 0.03125
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 116.66666666666667,
+        "p50": 116.66666666666697,
+        "p95": 133.33333333333394,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.666666666667222,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.00081938902537028,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0009160041809082031,
+        "max": 0.03920793533325195
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 200.69444444444446,
+        "p50": 200,
+        "p95": 200,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011390348275502522,
+        "p50": 0.0011661052703857422,
+        "p95": 0.0012919902801513672,
+        "max": 0.012875080108642578
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 2,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.979823990674209,
+        "p50": 0,
+        "p95": 24.60000000000004,
+        "max": 24.60000000000004
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 58.333333333333336,
+        "p50": 50.00000000000182,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 8.333333333333407,
+        "p50": 9.473903143468003e-13,
+        "p95": 16.666666666666668,
+        "max": 16.666666666667616
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007624420854780409,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0007920265197753906,
+        "max": 0.009124994277954102
+      },
+      "zeroMotionFraction": 0.5054229934924078
+    },
+    {
+      "repeat": 2,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.97982399067427,
+        "p50": 12.000000000000039,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.2314814814815,
+        "p50": 150,
+        "p95": 150,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.23148148148151,
+        "p50": 100,
+        "p95": 100.00000000000048,
+        "max": 116.66666666666715
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0.018517745469170982,
+        "p50": 0,
+        "p95": 0,
+        "max": 5.152096183532729
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012121644284990099,
+        "p50": 0.0012078285217285156,
+        "p95": 0.001332998275756836,
+        "max": 0.0327911376953125
+      },
+      "zeroMotionFraction": 0.010845986984815618
+    },
+    {
+      "repeat": 2,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50,
+        "p50": 50,
+        "p95": 50,
+        "max": 50.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 5.750132880132643e-13,
+        "p50": 0,
+        "p95": 1.8947806286936006e-12,
+        "max": 1.8947806286936006e-12
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007776618003845215,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0009160041809082031,
+        "max": 0.0013751983642578125
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 2,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150,
+        "p50": 150,
+        "p95": 150,
+        "max": 150.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.00000000000006,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 100.0000000000019
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0015312449799643622,
+        "p50": 0.0009579658508300781,
+        "p95": 0.0010421276092529297,
+        "max": 0.28054213523864746
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 49.84994961322687,
+      "arrivalIntervalSdMs": 31.549293300644337,
+      "motion": {
+        "n": 472,
+        "mean": 11.429629515055089,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 74.51388888888889,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 64.27523964237338,
+        "p50": 56.607508050899476,
+        "p95": 106.60750805089948,
+        "max": 123.27417471756614
+      },
+      "sameTickBallError": {
+        "n": 477,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007603545983632406,
+        "p50": 0.0007498264312744141,
+        "p95": 0.0008749961853027344,
+        "max": 0.006749868392944336
+      },
+      "zeroMotionFraction": 0.7161016949152542
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 78,
+      "measuredUnderflowEpisodes": 67,
+      "arrivalIntervalMeanMs": 49.84994961322687,
+      "arrivalIntervalSdMs": 31.549293300644337,
+      "motion": {
+        "n": 460,
+        "mean": 11.726226220139422,
+        "p50": 12.000000000000567,
+        "p95": 17.176340941562454,
+        "max": 29.476340941563816
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 112.27998827824698,
+        "p50": 110.05915861576796,
+        "p95": 116.66666666666788,
+        "max": 150
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 102.04133903173108,
+        "p50": 100,
+        "p95": 106.60750805089948,
+        "max": 139.9408413842328
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.10160782472549862,
+        "p50": 0,
+        "p95": 1.1368683772161603e-13,
+        "max": 11.26579060748472
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012137032217449612,
+        "p50": 0.0011670589447021484,
+        "p95": 0.0013339519500732422,
+        "max": 0.03779196739196777
+      },
+      "zeroMotionFraction": 0.041304347826086954
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50.00000000000002,
+        "p50": 50,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 30,
+        "p50": 29.999999999999243,
+        "p95": 46.66666666666781,
+        "max": 46.66666666666781
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007809655533896552,
+        "p50": 0.0007498264312744141,
+        "p95": 0.0008749961853027344,
+        "max": 0.015333890914916992
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.657479348060633,
+        "p50": 12.000000000001345,
+        "p95": 12.300000000001386,
+        "max": 12.30000000000151
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 121.25,
+        "p50": 120,
+        "p95": 120,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.25,
+        "p50": 100,
+        "p95": 100,
+        "max": 146.66666666666782
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070547,
+        "p50": 0,
+        "p95": 0,
+        "max": 14.464276745004764
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012020134263568455,
+        "p50": 0.0012080669403076172,
+        "p95": 0.001332998275756836,
+        "max": 0.0027909278869628906
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100,
+        "p50": 100,
+        "p95": 116.66666666666788,
+        "max": 116.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 20.00000000000038,
+        "p50": 19.99999999999981,
+        "p95": 36.666666666667425,
+        "max": 36.66666666666838
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007368687126371596,
+        "p50": 0.0007090568542480469,
+        "p95": 0.0008339881896972656,
+        "max": 0.001667022705078125
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.733033019045056,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001406,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 180.83333333333331,
+        "p50": 180,
+        "p95": 180.00000000000045,
+        "max": 216.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.83333333333333,
+        "p50": 100,
+        "p95": 100,
+        "max": 136.66666666666742
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823071213,
+        "p50": 0,
+        "p95": 0,
+        "max": 12.839562629019344
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.001241017050213284,
+        "p50": 0.0011670589447021484,
+        "p95": 0.001374959945678711,
+        "max": 0.021708965301513672
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007312420341703627,
+        "p50": 0.0007090568542480469,
+        "p95": 0.0007500648498535156,
+        "max": 0.001374959945678711
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011018918620215523,
+        "p50": 0.0011670589447021484,
+        "p95": 0.001291036605834961,
+        "max": 0.004542112350463867
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007408294412824842,
+        "p50": 0.0007090568542480469,
+        "p95": 0.0007920265197753906,
+        "max": 0.0034999847412109375
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 2,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011201507515377468,
+        "p50": 0.0012078285217285156,
+        "p95": 0.001291036605834961,
+        "max": 0.013832807540893555
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 16.666666666666863,
+        "p50": 16.66666666666697,
+        "p95": 33.33333333333394,
+        "max": 33.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666668,
+        "p50": 16.666666666666668,
+        "p95": 33.333333333333336,
+        "max": 33.33333333333381
+      },
+      "sameTickBallError": {
+        "n": 464,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0023776676919725205,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0007920265197753906,
+        "max": 1.1564161777496338
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.77687699297501,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333334
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070838,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012273285124037002,
+        "p50": 0.0011670589447021484,
+        "p95": 0.0013339519500732422,
+        "max": 0.10437512397766113
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 66.66666666666667,
+        "p50": 66.66666666666697,
+        "p95": 83.33333333333394,
+        "max": 83.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666722,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.002193031046125624,
+        "p50": 0.0007498264312744141,
+        "p95": 0.0009169578552246094,
+        "max": 0.4284169673919678
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.69444444444446,
+        "p50": 150,
+        "p95": 150,
+        "max": 183.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011353300677405464,
+        "p50": 0.0011668205261230469,
+        "p95": 0.0012919902801513672,
+        "max": 0.0340421199798584
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 116.66666666666667,
+        "p50": 116.66666666666697,
+        "p95": 133.33333333333394,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.666666666667222,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007775015301174587,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0008330345153808594,
+        "max": 0.021958112716674805
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 200.69444444444446,
+        "p50": 200,
+        "p95": 200,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.001117304629749722,
+        "p50": 0.0011670589447021484,
+        "p95": 0.001332998275756836,
+        "max": 0.022750139236450195
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 3,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.979823990674209,
+        "p50": 0,
+        "p95": 24.60000000000004,
+        "max": 24.60000000000004
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 58.333333333333336,
+        "p50": 50.00000000000182,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 8.333333333333407,
+        "p50": 9.473903143468003e-13,
+        "p95": 16.666666666666668,
+        "max": 16.666666666667616
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007682922813627454,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0007920265197753906,
+        "max": 0.012708902359008789
+      },
+      "zeroMotionFraction": 0.5054229934924078
+    },
+    {
+      "repeat": 3,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.97982399067427,
+        "p50": 12.000000000000039,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.2314814814815,
+        "p50": 150,
+        "p95": 150,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.23148148148151,
+        "p50": 100,
+        "p95": 100.00000000000048,
+        "max": 116.66666666666715
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0.018517745469170982,
+        "p50": 0,
+        "p95": 0,
+        "max": 5.152096183532729
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010683569643232557,
+        "p50": 0.0011250972747802734,
+        "p95": 0.001332998275756836,
+        "max": 0.017292022705078125
+      },
+      "zeroMotionFraction": 0.010845986984815618
+    },
+    {
+      "repeat": 3,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50,
+        "p50": 50,
+        "p95": 50,
+        "max": 50.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 5.750132880132643e-13,
+        "p50": 0,
+        "p95": 1.8947806286936006e-12,
+        "max": 1.8947806286936006e-12
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0008241679933336046,
+        "p50": 0.0007920265197753906,
+        "p95": 0.0008749961853027344,
+        "max": 0.0016248226165771484
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 3,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150,
+        "p50": 150,
+        "p95": 150,
+        "max": 150.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.00000000000006,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 100.0000000000019
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012733903196122912,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0009589195251464844,
+        "max": 0.3395421504974365
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 49.96370754124292,
+      "arrivalIntervalSdMs": 31.914460517803352,
+      "motion": {
+        "n": 455,
+        "mean": 11.74805146542521,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 75.90277777777777,
+        "p50": 83.33333333333212,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 65.7929603020764,
+        "p50": 72.98009368901432,
+        "p95": 106.62921794379751,
+        "max": 123.29588461046419
+      },
+      "sameTickBallError": {
+        "n": 460,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007117907206217448,
+        "p50": 0.0007078647613525391,
+        "p95": 0.0007920265197753906,
+        "max": 0.0067501068115234375
+      },
+      "zeroMotionFraction": 0.7120879120879121
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 79,
+      "measuredUnderflowEpisodes": 70,
+      "arrivalIntervalMeanMs": 49.96370754124292,
+      "arrivalIntervalSdMs": 31.914460517803352,
+      "motion": {
+        "n": 460,
+        "mean": 11.720340244681173,
+        "p50": 12.000000000000039,
+        "p95": 17.192362842522478,
+        "max": 29.492362842522606
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 112.29019079998112,
+        "p50": 110.03744872286916,
+        "p95": 133.33333333333303,
+        "max": 150
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 102.18037332427961,
+        "p50": 100,
+        "p95": 122.98009368901434,
+        "max": 139.96255127713084
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823071002,
+        "p50": 0,
+        "p95": 0,
+        "max": 11.276114811365577
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011734137932459512,
+        "p50": 0.0011668205261230469,
+        "p95": 0.0012919902801513672,
+        "max": 0.03245902061462402
+      },
+      "zeroMotionFraction": 0.041304347826086954
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50.00000000000002,
+        "p50": 50,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 30,
+        "p50": 29.999999999999243,
+        "p95": 46.66666666666781,
+        "max": 46.66666666666781
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007221450408299764,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0007910728454589844,
+        "max": 0.004333972930908203
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.657479348060633,
+        "p50": 12.000000000001345,
+        "p95": 12.300000000001386,
+        "max": 12.30000000000151
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 121.25,
+        "p50": 120,
+        "p95": 120,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.25,
+        "p50": 100,
+        "p95": 100,
+        "max": 146.66666666666782
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070547,
+        "p50": 0,
+        "p95": 0,
+        "max": 14.464276745004764
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0012347734636730617,
+        "p50": 0.0011661052703857422,
+        "p95": 0.001332998275756836,
+        "max": 0.027791976928710938
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100,
+        "p50": 100,
+        "p95": 116.66666666666788,
+        "max": 116.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 20.00000000000038,
+        "p50": 19.99999999999981,
+        "p95": 36.666666666667425,
+        "max": 36.66666666666838
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007387631469302707,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0008330345153808594,
+        "max": 0.005457878112792969
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.733033019045056,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001406,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 180.83333333333331,
+        "p50": 180,
+        "p95": 180.00000000000045,
+        "max": 216.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.83333333333333,
+        "p50": 100,
+        "p95": 100,
+        "max": 136.66666666666742
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823071213,
+        "p50": 0,
+        "p95": 0,
+        "max": 12.839562629019344
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011607150236765543,
+        "p50": 0.0011250972747802734,
+        "p95": 0.001416921615600586,
+        "max": 0.0031659603118896484
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007559617360432942,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0008749961853027344,
+        "max": 0.014583110809326172
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010864920086330837,
+        "p50": 0.0011661052703857422,
+        "p95": 0.0012919902801513672,
+        "max": 0.009124994277954102
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007338560289806789,
+        "p50": 0.0007088184356689453,
+        "p95": 0.0007500648498535156,
+        "max": 0.008832931518554688
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 3,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010604580243428548,
+        "p50": 0.0011668205261230469,
+        "p95": 0.0012090206146240234,
+        "max": 0.001583099365234375
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 16.666666666666863,
+        "p50": 16.66666666666697,
+        "p95": 33.33333333333394,
+        "max": 33.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666668,
+        "p50": 16.666666666666668,
+        "p95": 33.333333333333336,
+        "max": 33.33333333333381
+      },
+      "sameTickBallError": {
+        "n": 464,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007303277651468913,
+        "p50": 0.0007088184356689453,
+        "p95": 0.0008330345153808594,
+        "max": 0.0012919902801513672
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.77687699297501,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333334
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070838,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0009610464175542195,
+        "p50": 0.0010409355163574219,
+        "p95": 0.0012080669403076172,
+        "max": 0.0034160614013671875
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 66.66666666666667,
+        "p50": 66.66666666666697,
+        "p95": 83.33333333333394,
+        "max": 83.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666722,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0006958524386088054,
+        "p50": 0.0006670951843261719,
+        "p95": 0.0008330345153808594,
+        "max": 0.0011658668518066406
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.69444444444446,
+        "p50": 150,
+        "p95": 150,
+        "max": 183.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010342425770229764,
+        "p50": 0.0011250972747802734,
+        "p95": 0.0012500286102294922,
+        "max": 0.0017499923706054688
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 116.66666666666667,
+        "p50": 116.66666666666697,
+        "p95": 133.33333333333394,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.666666666667222,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007072329521179199,
+        "p50": 0.0007078647613525391,
+        "p95": 0.0007910728454589844,
+        "max": 0.0050411224365234375
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 200.69444444444446,
+        "p50": 200,
+        "p95": 200,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010507649845547147,
+        "p50": 0.0011248588562011719,
+        "p95": 0.0012090206146240234,
+        "max": 0.012166976928710938
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 4,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.979823990674209,
+        "p50": 0,
+        "p95": 24.60000000000004,
+        "max": 24.60000000000004
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 58.333333333333336,
+        "p50": 50.00000000000182,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 8.333333333333407,
+        "p50": 9.473903143468003e-13,
+        "p95": 16.666666666666668,
+        "max": 16.666666666667616
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007362892230351766,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0007920265197753906,
+        "max": 0.0048329830169677734
+      },
+      "zeroMotionFraction": 0.5054229934924078
+    },
+    {
+      "repeat": 4,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.97982399067427,
+        "p50": 12.000000000000039,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.2314814814815,
+        "p50": 150,
+        "p95": 150,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.23148148148151,
+        "p50": 100,
+        "p95": 100.00000000000048,
+        "max": 116.66666666666715
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0.018517745469170982,
+        "p50": 0,
+        "p95": 0,
+        "max": 5.152096183532729
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010377907090716892,
+        "p50": 0.0008749961853027344,
+        "p95": 0.0012907981872558594,
+        "max": 0.013458013534545898
+      },
+      "zeroMotionFraction": 0.010845986984815618
+    },
+    {
+      "repeat": 4,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50,
+        "p50": 50,
+        "p95": 50,
+        "max": 50.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 5.750132880132643e-13,
+        "p50": 0,
+        "p95": 1.8947806286936006e-12,
+        "max": 1.8947806286936006e-12
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.000718709495332506,
+        "p50": 0.0006670951843261719,
+        "p95": 0.0007920265197753906,
+        "max": 0.020457983016967773
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 4,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150,
+        "p50": 150,
+        "p95": 150,
+        "max": 150.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.00000000000006,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 100.0000000000019
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007867289914025201,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0009160041809082031,
+        "max": 0.004584074020385742
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 49.85152590008146,
+      "arrivalIntervalSdMs": 31.62185953562285,
+      "motion": {
+        "n": 457,
+        "mean": 11.775412290521816,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 77.43055555555556,
+        "p50": 83.33333333333303,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 66.4680211679596,
+        "p50": 71.87834478293857,
+        "p95": 106.43012140567218,
+        "max": 123.09678807233696
+      },
+      "sameTickBallError": {
+        "n": 462,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007325622770521376,
+        "p50": 0.0007078647613525391,
+        "p95": 0.0007500648498535156,
+        "max": 0.004000186920166016
+      },
+      "zeroMotionFraction": 0.7067833698030634
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 85,
+      "measuredUnderflowEpisodes": 74,
+      "arrivalIntervalMeanMs": 49.85152590008146,
+      "arrivalIntervalSdMs": 31.62185953562285,
+      "motion": {
+        "n": 460,
+        "mean": 11.729843669641234,
+        "p50": 12.000000000000087,
+        "p95": 17.04542959738464,
+        "max": 29.345429597384747
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 113.42866743448273,
+        "p50": 111.45498855039477,
+        "p95": 133.33333333333348,
+        "max": 150
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 102.46613304688661,
+        "p50": 100,
+        "p95": 121.87834478293857,
+        "max": 139.7634547390055
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.06385815233707107,
+        "p50": 0,
+        "p95": 0,
+        "max": 11.030778218062569
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0018761144744025337,
+        "p50": 0.0011250972747802734,
+        "p95": 0.0014591217041015625,
+        "max": 0.5402910709381104
+      },
+      "zeroMotionFraction": 0.06086956521739131
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50.00000000000002,
+        "p50": 50,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 30,
+        "p50": 29.999999999999243,
+        "p95": 46.66666666666781,
+        "max": 46.66666666666781
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007188128100501166,
+        "p50": 0.0007078647613525391,
+        "p95": 0.0008339881896972656,
+        "max": 0.0038340091705322266
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.657479348060633,
+        "p50": 12.000000000001345,
+        "p95": 12.300000000001386,
+        "max": 12.30000000000151
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 121.25,
+        "p50": 120,
+        "p95": 120,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.25,
+        "p50": 100,
+        "p95": 100,
+        "max": 146.66666666666782
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070547,
+        "p50": 0,
+        "p95": 0,
+        "max": 14.464276745004764
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011327448818418714,
+        "p50": 0.0011250972747802734,
+        "p95": 0.001291036605834961,
+        "max": 0.0016658306121826172
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100,
+        "p50": 100,
+        "p95": 116.66666666666788,
+        "max": 116.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 20.00000000000038,
+        "p50": 19.99999999999981,
+        "p95": 36.666666666667425,
+        "max": 36.66666666666838
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007126165760887994,
+        "p50": 0.0006670951843261719,
+        "p95": 0.0007920265197753906,
+        "max": 0.004084110260009766
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.733033019045056,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001406,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 180.83333333333331,
+        "p50": 180,
+        "p95": 180.00000000000045,
+        "max": 216.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.83333333333333,
+        "p50": 100,
+        "p95": 100,
+        "max": 136.66666666666742
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823071213,
+        "p50": 0,
+        "p95": 0,
+        "max": 12.839562629019344
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.001161795523431566,
+        "p50": 0.0011250972747802734,
+        "p95": 0.0012919902801513672,
+        "max": 0.005374908447265625
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0006449557012981838,
+        "p50": 0.0006251335144042969,
+        "p95": 0.0007081031799316406,
+        "max": 0.0011248588562011719
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0009745518366495768,
+        "p50": 0.0010418891906738281,
+        "p95": 0.0010840892791748047,
+        "max": 0.021125078201293945
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007064342498779297,
+        "p50": 0.0007078647613525391,
+        "p95": 0.0007500648498535156,
+        "max": 0.002624988555908203
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 4,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011427250173356798,
+        "p50": 0.0011661052703857422,
+        "p95": 0.0014581680297851562,
+        "max": 0.016499996185302734
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 16.666666666666863,
+        "p50": 16.66666666666697,
+        "p95": 33.33333333333394,
+        "max": 33.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666668,
+        "p50": 16.666666666666668,
+        "p95": 33.333333333333336,
+        "max": 33.33333333333381
+      },
+      "sameTickBallError": {
+        "n": 464,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007475270165337456,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0009169578552246094,
+        "max": 0.0032501220703125
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_nominal_rtt_0",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 0,
+      "downlinkBaseMs": 0,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 281,
+      "deliveredJsonBytes": 217687,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 281,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4022068202774e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.77687699297501,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100,
+        "max": 133.33333333333334
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070838,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010991748836305406,
+        "p50": 0.0011248588562011719,
+        "p95": 0.0014581680297851562,
+        "max": 0.017750024795532227
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 66.66666666666667,
+        "p50": 66.66666666666697,
+        "p95": 83.33333333333394,
+        "max": 83.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.66666666666722,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007352583938174778,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0009160041809082031,
+        "max": 0.001374959945678711
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4044727064990811e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.69444444444446,
+        "p50": 150,
+        "p95": 150,
+        "max": 183.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.002049023575252957,
+        "p50": 0.0011248588562011719,
+        "p95": 0.0012090206146240234,
+        "max": 0.7260830402374268
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 116.66666666666667,
+        "p50": 116.66666666666697,
+        "p95": 133.33333333333394,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 16.666666666667222,
+        "p50": 16.666666666666668,
+        "p95": 33.33333333333523,
+        "max": 33.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007456938425699869,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0009169578552246094,
+        "max": 0.005000114440917969
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_nominal_rtt_200",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": 200,
+      "downlinkBaseMs": 100,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.406137857352254e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974941,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 200.69444444444446,
+        "p50": 200,
+        "p95": 200,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.69444444444444,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 133.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070899,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011467499865425957,
+        "p50": 0.0011250972747802734,
+        "p95": 0.0015828609466552734,
+        "max": 0.006249904632568359
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 5,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.979823990674209,
+        "p50": 0,
+        "p95": 24.60000000000004,
+        "max": 24.60000000000004
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 58.333333333333336,
+        "p50": 50.00000000000182,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 8.333333333333407,
+        "p50": 9.473903143468003e-13,
+        "p95": 16.666666666666668,
+        "max": 16.666666666667616
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007287078433566624,
+        "p50": 0.0007078647613525391,
+        "p95": 0.0007500648498535156,
+        "max": 0.0047910213470458984
+      },
+      "zeroMotionFraction": 0.5054229934924078
+    },
+    {
+      "repeat": 5,
+      "scenario": "30hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 30,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 421,
+      "emittedJsonBytes": 326289,
+      "deliveredSnapshots": 419,
+      "deliveredJsonBytes": 324804,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 419,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 33.33333333333323,
+      "arrivalIntervalSdMs": 6.095128614209366e-13,
+      "motion": {
+        "n": 461,
+        "mean": 11.97982399067427,
+        "p50": 12.000000000000039,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150.2314814814815,
+        "p50": 150,
+        "p95": 150,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.23148148148151,
+        "p50": 100,
+        "p95": 100.00000000000048,
+        "max": 116.66666666666715
+      },
+      "sameTickBallError": {
+        "n": 466,
+        "mean": 0.018517745469170982,
+        "p50": 0,
+        "p95": 0,
+        "max": 5.152096183532729
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010030610693825615,
+        "p50": 0.0009579658508300781,
+        "p95": 0.0012500286102294922,
+        "max": 0.005374908447265625
+      },
+      "zeroMotionFraction": 0.010845986984815618
+    },
+    {
+      "repeat": 5,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50,
+        "p50": 50,
+        "p95": 50,
+        "max": 50.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 5.750132880132643e-13,
+        "p50": 0,
+        "p95": 1.8947806286936006e-12,
+        "max": 1.8947806286936006e-12
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007103585534625584,
+        "p50": 0.0007078647613525391,
+        "p95": 0.0007500648498535156,
+        "max": 0.0028328895568847656
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 5,
+      "scenario": "60hz_nominal_rtt_100",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 60,
+      "nominalRttLabelMs": 100,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 841,
+      "emittedJsonBytes": 651857,
+      "deliveredSnapshots": 838,
+      "deliveredJsonBytes": 649630,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 838,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 16.666666666666774,
+      "arrivalIntervalSdMs": 6.104576109915743e-13,
+      "motion": {
+        "n": 460,
+        "mean": 12.113238998326244,
+        "p50": 12.00000000000003,
+        "p95": 12.30000000000002,
+        "max": 12.30000000000002
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 150,
+        "p50": 150,
+        "p95": 150,
+        "max": 150.00000000000182
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.00000000000006,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 100.0000000000019
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007939159870147706,
+        "p50": 0.0007500648498535156,
+        "p95": 0.0008330345153808594,
+        "max": 0.023458003997802734
+      },
+      "zeroMotionFraction": 0
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.007353394808206,
+      "arrivalIntervalSdMs": 30.463274008447513,
+      "motion": {
+        "n": 464,
+        "mean": 11.434979291510135,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 75.55555555555556,
+        "p50": 83.33333333333212,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 64.38990148969204,
+        "p50": 66.61962365110696,
+        "p95": 105.8746611761554,
+        "max": 122.54132784282207
+      },
+      "sameTickBallError": {
+        "n": 469,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007262763049867418,
+        "p50": 0.0007078647613525391,
+        "p95": 0.0008749961853027344,
+        "max": 0.005583047866821289
+      },
+      "zeroMotionFraction": 0.709051724137931
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_ordered_jitter",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 73,
+      "measuredUnderflowEpisodes": 70,
+      "arrivalIntervalMeanMs": 50.007353394808206,
+      "arrivalIntervalSdMs": 30.463274008447513,
+      "motion": {
+        "n": 459,
+        "mean": 11.734760134229102,
+        "p50": 12.000000000000377,
+        "p95": 16.63549994800267,
+        "max": 28.93549994800253
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 113.14078210831501,
+        "p50": 110.79200549051166,
+        "p95": 116.71370968222641,
+        "max": 166.66666666666674
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.97512804245127,
+        "p50": 100,
+        "p95": 105.8746611761554,
+        "max": 149.95295698444053
+      },
+      "sameTickBallError": {
+        "n": 464,
+        "mean": 0.11657224122258791,
+        "p50": 0,
+        "p95": 0,
+        "max": 10.917283105228723
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.001067558593220181,
+        "p50": 0.0011248588562011719,
+        "p95": 0.0011670589447021484,
+        "max": 0.0018749237060546875
+      },
+      "zeroMotionFraction": 0.04357298474945534
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 50.00000000000002,
+        "p50": 50,
+        "p95": 66.66666666666788,
+        "max": 66.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 30,
+        "p50": 29.999999999999243,
+        "p95": 46.66666666666781,
+        "max": 46.66666666666781
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007200304004881117,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0007920265197753906,
+        "max": 0.003457784652709961
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_20ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 20,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 280,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.40449847498563e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.657479348060633,
+        "p50": 12.000000000001345,
+        "p95": 12.300000000001386,
+        "max": 12.30000000000151
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 121.25,
+        "p50": 120,
+        "p95": 120,
+        "max": 166.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.25,
+        "p50": 100,
+        "p95": 100,
+        "max": 146.66666666666782
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823070547,
+        "p50": 0,
+        "p95": 0,
+        "max": 14.464276745004764
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0011295570267571343,
+        "p50": 0.0011250972747802734,
+        "p95": 0.0012080669403076172,
+        "max": 0.0016248226165771484
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.776876992974932,
+        "p50": 0,
+        "p95": 36.90000000000002,
+        "max": 36.900000000000055
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 100,
+        "p50": 100,
+        "p95": 116.66666666666788,
+        "max": 116.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 20.00000000000038,
+        "p50": 19.99999999999981,
+        "p95": 36.666666666667425,
+        "max": 36.66666666666838
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.000717302163441976,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0007500648498535156,
+        "max": 0.001332998275756836
+      },
+      "zeroMotionFraction": 0.6739130434782609
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_asymmetric_observers",
+      "viewer": "observer_80ms",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 80,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 279,
+      "deliveredJsonBytes": 216202,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 279,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 0,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 50.00000000000001,
+      "arrivalIntervalSdMs": 1.4061572303120916e-13,
+      "motion": {
+        "n": 460,
+        "mean": 11.733033019045056,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001406,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 180.83333333333331,
+        "p50": 180,
+        "p95": 180.00000000000045,
+        "max": 216.66666666666788
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 100.83333333333333,
+        "p50": 100,
+        "p95": 100,
+        "max": 136.66666666666742
+      },
+      "sameTickBallError": {
+        "n": 465,
+        "mean": 0.11632154823071213,
+        "p50": 0,
+        "p95": 0,
+        "max": 12.839562629019344
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.001139360335138109,
+        "p50": 0.0011250972747802734,
+        "p95": 0.0012090206146240234,
+        "max": 0.0022079944610595703
+      },
+      "zeroMotionFraction": 0.021739130434782608
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007562494940227932,
+        "p50": 0.0007088184356689453,
+        "p95": 0.0009579658508300781,
+        "max": 0.008249998092651367
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_application_omission",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 241,
+      "deliveredJsonBytes": 186632,
+      "omittedSnapshots": 40,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 0,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010572185118993124,
+        "p50": 0.0011661052703857422,
+        "p95": 0.0012090206146240234,
+        "max": 0.0038340091705322266
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "latest",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530987,
+        "p50": 0,
+        "p95": 36.900000000000055,
+        "max": 73.80000000000011
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 73.75,
+        "p50": 66.66666666666788,
+        "p95": 116.66666666666788,
+        "max": 133.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 23.750000000000636,
+        "p50": 16.666666666667616,
+        "p95": 66.66666666666762,
+        "max": 83.33333333333523
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0007148017485936483,
+        "p50": 0.0007081031799316406,
+        "p95": 0.0007500648498535156,
+        "max": 0.0012500286102294922
+      },
+      "zeroMotionFraction": 0.7257019438444925
+    },
+    {
+      "repeat": 5,
+      "scenario": "20hz_application_reorder",
+      "viewer": "viewer",
+      "mode": "interpolate",
+      "snapshotHz": 20,
+      "nominalRttLabelMs": null,
+      "downlinkBaseMs": 50,
+      "emittedSnapshots": 281,
+      "emittedJsonBytes": 217687,
+      "deliveredSnapshots": 280,
+      "deliveredJsonBytes": 216944,
+      "omittedSnapshots": 0,
+      "acceptedSnapshots": 241,
+      "rejectedSnapshots": 39,
+      "sequenceGaps": 39,
+      "underflowEpisodes": 0,
+      "measuredUnderflowEpisodes": 0,
+      "arrivalIntervalMeanMs": 58.12500000000003,
+      "arrivalIntervalSdMs": 18.44544320421713,
+      "motion": {
+        "n": 463,
+        "mean": 11.54506137530988,
+        "p50": 12.000000000001357,
+        "p95": 12.300000000001386,
+        "max": 12.300000000001473
+      },
+      "sourceAgeMsModel": {
+        "n": 720,
+        "mean": 151.80555555555554,
+        "p50": 150,
+        "p95": 150.0000000000009,
+        "max": 233.33333333333394
+      },
+      "estimatedDisplayAgeMs": {
+        "n": 720,
+        "mean": 101.80555555555556,
+        "p50": 100,
+        "p95": 100.0000000000019,
+        "max": 183.33333333333525
+      },
+      "sameTickBallError": {
+        "n": 468,
+        "mean": 0.11557589728051208,
+        "p50": 0,
+        "p95": 0,
+        "max": 16.049453286275003
+      },
+      "displayCpuMs": {
+        "n": 720,
+        "mean": 0.0010567949877844916,
+        "p50": 0.0011658668518066406,
+        "p95": 0.0012500286102294922,
+        "max": 0.001917123794555664
+      },
+      "zeroMotionFraction": 0.04103671706263499
+    }
+  ]
+}

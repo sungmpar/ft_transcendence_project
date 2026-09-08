@@ -1,0 +1,182 @@
+FAIL src/game/game-session.spec.ts (6.529 s)
+  ● authenticated server ownership and match publication › retains failed persistence visibly without claiming an end or advancing the room
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "resultStatus", {"roomId": "41", "status": "failed"}
+    Received
+           1
+              "ready",
+              Object {
+            +   "generation": 2,
+            +   "leftName": "fixture-1",
+            +   "rightName": "fixture-2",
+                "roomId": "41",
+            -   "status": "failed",
+            +   "roomMode": false,
+            +   "side": "right",
+            +   "snapshot": Object {
+            +     "ack": Object {
+            +       "left": 0,
+            +       "right": 0,
+            +     },
+            +     "matchId": "41",
+            +     "seq": 1,
+            +     "state": Object {
+            +       "ball": Object {
+            +         "radius": 15,
+            +         "vx": 0,
+            +         "vy": 0,
+            +         "x": 600,
+            +         "y": 400,
+            +       },
+            +       "config": Object {
+            +         "ballRadius": 15,
+            +         "ballSpeed": 720,
+            +         "height": 800,
+            +         "hitAcceleration": 1.025,
+            +         "maxBallSpeed": 1500,
+            +         "maxBounceAngle": 1.0471975511965976,
+            +         "mode": "classic",
+            +         "paddleHeight": 200,
+            +         "paddleInset": 20,
+            +         "paddleSpeed": 900,
+            +         "paddleWidth": 30,
+            +         "pointTicks": 60,
+            +         "poweredHeight": 400,
+            +         "readyTicks": 120,
+            +         "tickRate": 60,
+            +         "width": 1200,
+            +         "winningScore": 6,
+            +       },
+            +       "phase": "ready",
+            +       "phaseTicks": 120,
+            +       "players": Object {
+            +         "left": Object {
+            +           "charge": 0,
+            +           "height": 200,
+            +           "powered": false,
+            +           "score": 0,
+            +           "width": 30,
+            +           "x": 20,
+            +           "y": 300,
+            +         },
+            +         "right": Object {
+            +           "charge": 0,
+            +           "height": 200,
+            +           "powered": false,
+            +           "score": 0,
+            +           "width": 30,
+            +           "x": 1150,
+            +           "y": 300,
+            +         },
+            +       },
+            +       "rallyId": 0,
+            +       "serveToward": "right",
+            +       "tick": 0,
+            +       "winner": null,
+            +     },
+            +     "tick": 0,
+            +     "v": 1,
+            +   },
+            +   "v": 1,
+              },
+           2
+              "snapshot",
+              Object {
+            -   "roomId": "41",
+            -   "status": "failed",
+            +   "ack": Object {
+            +     "left": 0,
+            +     "right": 0,
+            +   },
+            +   "matchId": "41",
+            +   "seq": 2,
+            +   "state": Object {
+            +     "ball": Object {
+            +       "radius": 15,
+            +       "vx": 0,
+            +       "vy": 0,
+            +       "x": 600,
+            +       "y": 400,
+            +     },
+            +     "config": Object {
+            +       "ballRadius": 15,
+            +       "ballSpeed": 720,
+            +       "height": 800,
+            +       "hitAcceleration": 1.025,
+            +       "maxBallSpeed": 1500,
+            +       "maxBounceAngle": 1.0471975511965976,
+            +       "mode": "classic",
+            +       "paddleHeight": 200,
+            +       "paddleInset": 20,
+            +       "paddleSpeed": 900,
+            +       "paddleWidth": 30,
+            +       "pointTicks": 60,
+            +       "poweredHeight": 400,
+            +       "readyTicks": 120,
+            +       "tickRate": 60,
+            +       "width": 1200,
+            +       "winningScore": 6,
+            +     },
+            +     "phase": "ready",
+            +     "phaseTicks": 120,
+            +     "players": Object {
+            +       "left": Object {
+            +         "charge": 0,
+            +         "height": 200,
+            +         "powered": false,
+            +         "score": 0,
+            +         "width": 30,
+            +         "x": 20,
+            +         "y": 300,
+            +       },
+            +       "right": Object {
+            +         "charge": 0,
+            +         "height": 200,
+            +         "powered": false,
+            +         "score": 0,
+            +         "width": 30,
+            +         "x": 1150,
+            +         "y": 300,
+            +       },
+            +     },
+            +     "rallyId": 0,
+            +     "serveToward": "right",
+            +     "tick": 0,
+            +     "winner": null,
+            +   },
+            +   "tick": 0,
+            +   "v": 1,
+              },
+           3
+              "resultStatus",
+              Object {
+            +   "attempt": 1,
+            +   "reason": "forfeit",
+            +   "retryInMs": 250,
+                "roomId": "41",
+            -   "status": "failed",
+            +   "status": "retrying",
+            +   "winner": "right",
+              },
+
+    Number of calls: 3
+
+      102 |     const room = internals.rooms.get('41');
+      103 |     expect(room.persistence).toBe('failed');
+    > 104 |     expect(players[1].emit).toHaveBeenCalledWith('resultStatus', { roomId: '41', status: 'failed' });
+          |                             ^
+      105 |     expect(players[1].emit.mock.calls.some(([event]) => event === 'end')).toBe(false);
+      106 |     const tick = room.runner.state.tick;
+      107 |     advance(1000);
+
+      at Object.<anonymous> (src/game/game-session.spec.ts:104:29)
+
+PASS src/game/server-match-runner.spec.ts
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 10 passed, 11 total
+Snapshots:   0 total
+Time:        6.869 s, estimated 7 s
+Ran all test suites.

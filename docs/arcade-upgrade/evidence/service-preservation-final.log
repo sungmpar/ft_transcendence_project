@@ -1,0 +1,29 @@
+FAIL test/service-preservation.e2e-spec.ts (5.472 s)
+  preserved services against disposable PostgreSQL and real HTTP/Socket.IO
+    ✓ keeps protected profile and friends endpoints unauthorized without JWT (25 ms)
+    ✕ preserves guest flag off/on, issued cookie, profile, profile image and friends (36 ms)
+    ✓ preserves profile edits, friend persistence and the unmet-2FA HTTP guard (62 ms)
+    ✓ authenticates two real chat clients and persists channel join, messages and leave (164 ms)
+
+  ● preserved services against disposable PostgreSQL and real HTTP/Socket.IO › preserves guest flag off/on, issued cookie, profile, profile image and friends
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      58 |     expect(profile.status).toBe(200);
+      59 |     expect(Number.isSafeInteger(profile.body.id)).toBe(true);
+    > 60 |     expect(profile.body.name?.startsWith('guest')).toBe(true);
+         |                                                    ^
+      61 |     expect(await users.count()).toBe(before + 1);
+      62 |     const image = await request(fixture.httpUrl).get('/user/image/me').set(authorized());
+      63 |     expect(image.status).toBe(200);
+
+      at Object.<anonymous> (test/service-preservation.e2e-spec.ts:60:52)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 3 passed, 4 total
+Snapshots:   0 total
+Time:        5.512 s
+Ran all test suites.

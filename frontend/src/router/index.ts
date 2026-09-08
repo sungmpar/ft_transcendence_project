@@ -191,6 +191,24 @@ async function updateRouteStatus(toName: any) {
 }
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/play',
+    name: 'play-hub',
+    component: () => import('@/views/PlayHubView.vue'),
+    meta: { publicArcade: true },
+  },
+  {
+    path: '/play/local',
+    name: 'play-local',
+    component: () => import('@/views/LocalPlayView.vue'),
+    meta: { publicArcade: true },
+  },
+  {
+    path: '/play/ai',
+    name: 'play-ai',
+    component: () => import('@/views/LocalPlayView.vue'),
+    meta: { publicArcade: true },
+  },
 	{
     path: '/',
     name: 'home',
@@ -284,6 +302,8 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  if (to.meta.publicArcade === true)
+    return next();
   if (to.name === 'login')
   {
     if(to.query.token)

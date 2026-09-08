@@ -1,0 +1,20 @@
+PASS backend/src/game/protocol.spec.ts
+  untrusted game input and held/action contract
+    ✓ accepts only the complete finite bounded input DTO (3 ms)
+    ✓ keeps held movement independently of a one-shot action (2 ms)
+    ✓ rejects duplicates, stale sessions, other rooms and excessive jumps (1 ms)
+    ✓ expires missing releases but continuous refresh keeps a held key working (7 ms)
+    ✓ bounds bursts without advancing a simulation or consuming unaccepted sequence (2 ms)
+    ✓ clears movement and pending action on disconnect/focus loss (1 ms)
+  snapshot capture and validation
+    ✓ captures independent serializable data for delayed sends (1 ms)
+    ✓ rejects invalid geometry, non-finite values and inconsistent phases (2 ms)
+  independent-review contracts
+    ✓ does not acknowledge received input until a simulation step applies it (2 ms)
+    ✓ rejects a scored winner before the winning score is reached (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        4.234 s, estimated 5 s
+Ran all test suites within paths "backend/src/game/protocol.spec.ts".
