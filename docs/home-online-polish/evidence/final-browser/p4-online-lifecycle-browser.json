@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "browser": "152.0.7977.77",
+  "impairment": "Playwright browser context offline/online, actual Socket.IO reconnect; no state injection",
+  "pausedTick": 339,
+  "stillPausedTick": 339,
+  "newGeneration": true,
+  "sameMatch": true,
+  "activeTabRetained": true,
+  "explicitForfeitEndedPeer": true,
+  "pageErrors": []
+}

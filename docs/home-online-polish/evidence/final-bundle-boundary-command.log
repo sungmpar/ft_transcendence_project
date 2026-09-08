@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "source": "Vue CLI 5 build --report-json actual webpack module graph",
+  "reportSha256": "bcc0ea1d250ea860601083ee3816f31819b7b36d8c8160c788e12548cf536f28",
+  "build": "4de1388331743be3",
+  "modulesExamined": 453,
+  "sharedPureModules": [
+    "../shared/ai.ts",
+    "../shared/fixed-clock.ts",
+    "../shared/game-core.ts",
+    "../shared/protocol.ts"
+  ],
+  "backendNestTypeormPgModules": []
+}

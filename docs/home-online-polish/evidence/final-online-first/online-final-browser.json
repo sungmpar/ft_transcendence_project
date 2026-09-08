@@ -1,0 +1,31 @@
+{
+  "status": "FAIL",
+  "at": "2026-09-08T03:06:34.187478+00:00",
+  "viewport": [
+    1440,
+    900
+  ],
+  "authentication": "actual guest HTTP redirects",
+  "environment": "Owned loopback fixture; real headless Chrome, keyboard, Socket.IO and native Canvas/AudioContext",
+  "limits": "Automated keyboard, not physical play; native audio method observations, not human hearing; controlled observer WebSocket closure, not WAN",
+  "browser": "152.0.7977.77",
+  "failure": "TimeoutError: Locator.wait_for: Timeout 20000ms exceeded.",
+  "cases": [
+    {
+      "case": "real-six-point-match-and-mouse-rematch",
+      "status": "PASS",
+      "confirmedVisibleScores": [
+        6,
+        1
+      ],
+      "mouseRematchSameNewMatch": true,
+      "menuDisposed": true
+    },
+    {
+      "case": "observer-alone-reconnect-with-players-live",
+      "status": "FAIL"
+    }
+  ],
+  "pageErrors": [],
+  "elapsedSeconds": 129.731
+}

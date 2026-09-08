@@ -1,5 +1,5 @@
 import { cloneGameState, DEFAULT_CONFIG, GameState, PlayerState } from '../../../shared/game-core';
-import { isSnapshot, Snapshot } from '../../../shared/protocol';
+import { copyServerEvents, isSnapshot, Snapshot } from '../../../shared/protocol';
 
 export type SnapshotDisplayMode = 'interpolate' | 'latest';
 export interface SnapshotMetrics {
@@ -16,6 +16,9 @@ export interface SnapshotMetrics {
   /** Population standard deviation of accepted local arrival intervals. */
   arrivalJitterMs: number;
   presentationTick: number | null;
+  /** Explicit clock changes; retained alongside cumulative arrival diagnostics. */
+  resyncCount: number;
+  clockEpoch: number | null;
 }
 const TICK_MS = 1000 / 60;
 const CAPACITY = 32;
@@ -52,17 +55,22 @@ function continuous(a: GameState, b: GameState): boolean {
 const blankMetrics = (): Omit<SnapshotMetrics, 'depth'> => ({
   received: 0, rejected: 0, lastSeq: null, gaps: 0, trimmed: 0, underflowCount: 0,
   displayDelayMs: 0, arrivalIntervalMeanMs: 0, arrivalJitterMs: 0, presentationTick: null,
+  resyncCount: 0, clockEpoch: null,
 });
 
 /**
  * Owns no socket, RAF, or wall clock. The session filters the expected match ID;
- * call reset() before a same-match full resync. A new match ID resets this buffer.
+ * call reset() before adopting a different server instance in a full ready.
+ * A new match ID resets this buffer; an unsolicited same-match instance is rejected.
  *
  * Clock offset is the minimum observed (arrivalMs - serverTickMs). This lower
  * envelope can advance the estimate but cannot rewind it on a delayed packet.
  * It is an arrival-based estimate, not synchronized clocks or one-way latency.
  * Presentation trails that estimate by 100ms by default. Missing future data
  * freezes the latest snapshot; discontinuities hold the older sample then snap.
+ * Only a higher server clock epoch discards interpolation history and re-anchors
+ * the offset, snapping to its first state. Counts are retained, not reset to hide
+ * time loss. Sequence/tick/arrival order still must advance across that boundary.
  */
 export class SnapshotBuffer {
   private snapshots: Snapshot[] = [];
@@ -102,12 +110,21 @@ export class SnapshotBuffer {
     }
     if (this.matchId !== null && this.matchId !== value.matchId) this.reset();
     const previous = this.snapshots[this.snapshots.length - 1];
-    if (previous && (value.seq <= previous.seq || value.tick < previous.tick
+    if (previous && (value.instanceId !== previous.instanceId || value.clockEpoch < previous.clockEpoch
+      || value.eventCursor < previous.eventCursor
+      || value.seq <= previous.seq || value.tick < previous.tick
       || localArrivalMs < (this.lastArrivalMs as number))) {
       this.values.rejected++;
       return false;
     }
     if (previous) this.values.gaps += Math.max(0, value.seq - previous.seq - 1);
+    if (previous && value.clockEpoch > previous.clockEpoch) {
+      this.snapshots = [];
+      this.offsetMs = null;
+      this.values.presentationTick = null;
+      this.underflowing = false;
+      this.values.resyncCount++;
+    }
     if (this.lastArrivalMs !== null) {
       const interval = localArrivalMs - this.lastArrivalMs;
       this.intervalCount++;
@@ -122,13 +139,16 @@ export class SnapshotBuffer {
     this.offsetMs = this.offsetMs === null ? observedOffset : Math.min(this.offsetMs, observedOffset);
     const captured: Snapshot = {
       v: 1, matchId: value.matchId, seq: value.seq, tick: value.tick,
+      instanceId: value.instanceId, clockEpoch: value.clockEpoch,
+      eventCursor: value.eventCursor, events: copyServerEvents(value.events),
       state: ownState(value.state), ack: { left: value.ack.left, right: value.ack.right },
     };
-    if (previous && previous.tick === captured.tick) this.snapshots[this.snapshots.length - 1] = captured;
+    if (this.snapshots.length && previous && previous.tick === captured.tick) this.snapshots[this.snapshots.length - 1] = captured;
     else this.snapshots.push(captured);
     if (this.snapshots.length > CAPACITY) { this.snapshots.shift(); this.values.trimmed++; }
     this.values.received++;
     this.values.lastSeq = value.seq;
+    this.values.clockEpoch = value.clockEpoch;
     return true;
   }
 

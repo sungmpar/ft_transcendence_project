@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "base": "http://127.0.0.1:59707",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "authentication": "No authentication attempted in the selected guest-disabled check",
+  "selection": "Guest-disabled",
+  "checks": [
+    {
+      "name": "Guest-disabled build retains public AI navigation",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:61643"
+    }
+  ],
+  "limitations": [
+    "No real 42 OAuth or external 2FA email/code executed",
+    "Nickname-missing callback and truly expired signed JWT are not exercised by this browser fixture"
+  ],
+  "browser": "152.0.7977.77",
+  "elapsedSeconds": 11.489,
+  "executedAt": "2026-09-08T01:18:44.044131+00:00",
+  "disabledBase": "http://127.0.0.1:61643",
+  "metadataNote": "Clarified provenance after the run; pass/fail and observed timing are unchanged"
+}

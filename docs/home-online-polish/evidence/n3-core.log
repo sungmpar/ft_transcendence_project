@@ -1,0 +1,9 @@
+PASS src/game/ai.spec.ts (15.072 s)
+PASS src/game/protocol.spec.ts
+PASS src/game/core.spec.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       46 passed, 46 total
+Snapshots:   0 total
+Time:        17.178 s
+Ran all test suites.

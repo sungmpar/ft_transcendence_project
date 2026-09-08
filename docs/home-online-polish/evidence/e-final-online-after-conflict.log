@@ -1,0 +1,99 @@
+  console.log
+    WS ChatGateway init
+
+      at ChatGateway.afterInit (src/chat/chat.gateway.ts:369:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+PASS test/online-final-browser.e2e-spec.ts (170.44 s)
+  independent final online browser scenarios
+    ✓ executes the real browser match, observer and effects scenarios (164207 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        170.514 s, estimated 175 s
+Ran all test suites.

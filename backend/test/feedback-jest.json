@@ -1,0 +1,13 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "../..",
+  "testEnvironment": "node",
+  "watchman": false,
+  "testMatch": [
+    "<rootDir>/backend/src/game/online-feedback.spec.ts",
+    "<rootDir>/backend/src/game/event-presentation.spec.ts",
+    "<rootDir>/backend/src/game/audio-feedback.spec.ts",
+    "<rootDir>/backend/src/game/online-preferences.spec.ts"
+  ],
+  "transform": {"^.+\\.ts$": ["<rootDir>/backend/node_modules/ts-jest", {"tsconfig": {"target": "es2021", "module": "commonjs", "strict": true, "esModuleInterop": true, "lib": ["es2021", "dom"]}}]}
+}

@@ -1,0 +1,42 @@
+FAIL test/home-auth-prerequisites.e2e-spec.ts (69.243 s)
+  Home online intent respects actual authentication prerequisites
+    ✓ rejects an actually expired signed JWT before any online socket is created (10399 ms)
+    ✕ retains the intended game behind missing-nickname setup and resumes after the actual profile form (38716 ms)
+    ✓ keeps 2FA required until the original verification form succeeds, without sending external mail (9729 ms)
+
+  ● Home online intent respects actual authentication prerequisites › retains the intended game behind missing-nickname setup and resumes after the actual profile form
+
+    page.waitForResponse: Timeout 30000ms exceeded while waiting for event "response"
+
+      114 |       stage = 'real-nickname-form';
+      115 |       await page.getByPlaceholder('Choose a unique name').fill('AuthReady');
+    > 116 |       const patched = page.waitForResponse((response: any) => new URL(response.url()).pathname === '/user/nickname' && response.request().method() === 'PATCH');
+          |                            ^
+      117 |       await page.getByRole('button', { name: 'Choose', exact: true }).click();
+      118 |       expect((await patched).status()).toBe(200);
+      119 |       await page.waitForURL((url: URL) => url.pathname === '/game');
+
+      at test/home-auth-prerequisites.e2e-spec.ts:116:28
+      at scenario (test/home-auth-prerequisites.e2e-spec.ts:70:47)
+      at Object.<anonymous> (test/home-auth-prerequisites.e2e-spec.ts:101:5)
+
+  ● Home online intent respects actual authentication prerequisites › retains the intended game behind missing-nickname setup and resumes after the actual profile form
+
+    missing-nickname-before-game failed at real-nickname-form; inspect the sanitized fixture report
+
+      73 |       // code through a third-party browser error's call log.
+      74 |       results.push({ name, status: 'FAIL', stage });
+    > 75 |       throw new Error(`${name} failed at ${stage}; inspect the sanitized fixture report`);
+         |             ^
+      76 |     }
+      77 |   }
+      78 |
+
+      at scenario (test/home-auth-prerequisites.e2e-spec.ts:75:13)
+      at Object.<anonymous> (test/home-auth-prerequisites.e2e-spec.ts:101:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        69.325 s
+Ran all test suites.

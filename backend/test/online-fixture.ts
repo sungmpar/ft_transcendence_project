@@ -47,7 +47,7 @@ export interface OnlineFixture {
   close(): Promise<void>;
 }
 
-export async function startOnlineFixture(options: { serveFrontend?: boolean; includeServices?: boolean } = {}): Promise<OnlineFixture> {
+export async function startOnlineFixture(options: { serveFrontend?: boolean; includeServices?: boolean; frontendDist?: string; cors?: boolean } = {}): Promise<OnlineFixture> {
   const schema = `arcade_${randomBytes(8).toString('hex')}`;
   const previousSecret = process.env.SECRET;
   const secret = randomBytes(32).toString('hex');
@@ -104,13 +104,13 @@ export async function startOnlineFixture(options: { serveFrontend?: boolean; inc
       ],
     }).compile();
     stage = 'create-application';
-    app = module.createNestApplication({ logger: false });
+    app = module.createNestApplication({ logger: false, ...(options.cors ? { cors: true } : {}) });
     // Match main.ts's request validation while keeping its production DB/OAuth
     // bootstrap out of this disposable fixture.
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
     if (options.serveFrontend) {
       stage = 'mount-frontend';
-      const frontend = resolve(__dirname, '../../frontend/dist');
+      const frontend = options.frontendDist ? resolve(options.frontendDist) : resolve(__dirname, '../../frontend/dist');
       app.use(express.static(frontend));
       app.use((request: express.Request, response: express.Response, next: express.NextFunction) => {
         if (request.method === 'GET' && !/^\/(user|auth|socket\.io)(\/|$)/.test(request.path)) {

@@ -19,12 +19,13 @@ export function canonicalReady(roomMode = false, side: ReadyMessage['side'] = 'l
   return {
     v: 1, roomId: 'fixture-match', leftName: 'left fixture', rightName: 'right fixture',
     roomMode, side, generation,
-    snapshot: captureSnapshot(createGame({ mode: roomMode ? 'power' : 'classic' }), 'fixture-match', 0, { left: 0, right: 0 }),
+    snapshot: captureSnapshot(createGame({ mode: roomMode ? 'power' : 'classic' }), 'fixture-match', 0, { left: 0, right: 0 },
+      { instanceId: 'browser-fixture', clockEpoch: 0 }),
   };
 }
 
 export function nextSnapshot(tick: number, seq: number, initial = canonicalReady()): Snapshot {
-  const snapshot = captureSnapshot(initial.snapshot.state, initial.roomId, seq, { left: 0, right: 0 });
+  const snapshot = captureSnapshot(initial.snapshot.state, initial.roomId, seq, { left: 0, right: 0 }, initial.snapshot, initial.snapshot);
   snapshot.tick = tick; snapshot.state.tick = tick;
   return snapshot;
 }
@@ -47,6 +48,10 @@ export class OnlineBrowserFixture {
     on: (type: string, listener: (event: any) => void) => this.socketEvents.addEventListener(type, listener),
     off: (type: string, listener: (event: any) => void) => this.socketEvents.removeEventListener(type, listener),
     emit: jest.fn(),
+    timeout: (_milliseconds: number) => ({
+      emit: (type: string, value: unknown, ack: (error: Error | null, value?: unknown) => void) =>
+        this.socket.emit(type, value, (response: unknown) => ack(null, response)),
+    }),
   };
   readonly context = {
     canvas: null as unknown, setTransform: jest.fn(), fillRect: jest.fn(), strokeRect: jest.fn(),

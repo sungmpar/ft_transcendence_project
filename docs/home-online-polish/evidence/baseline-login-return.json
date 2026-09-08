@@ -1,0 +1,7 @@
+{
+  "case": "baseline H06 public online choice + actual guest full redirect",
+  "expected": "/game lobby",
+  "actualPath": "/",
+  "regression": "FAIL_EXPECTED",
+  "sourceSha": "2f11bee69c2d55ed938b53f9750119a890396fb7"
+}

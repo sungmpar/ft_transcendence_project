@@ -1,0 +1,137 @@
+FAIL src/game/connection-retry.spec.ts (5.204 s)
+  ● explicit retry after a server-confirmed active-owner conflict › leaves initial connection and ordinary transport or game errors to Socket.IO
+
+    TypeError: Cannot assign to read only property 'performance' of object '[object global]'
+
+      2 |
+      3 | describe('explicit retry after a server-confirmed active-owner conflict', () => {
+    > 4 |   beforeEach(() => jest.useFakeTimers());
+        |                         ^
+      5 |   afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
+      6 |
+      7 |   function setup(connected = false) {
+
+      at hijackMethod (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:946:32)
+      at Object.install (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1733:17)
+      at FakeTimers.useFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (src/game/connection-retry.spec.ts:4:25)
+
+  ● explicit retry after a server-confirmed active-owner conflict › publishes the exact refusal before closing only the rejected socket and never auto-retries it
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      2 |
+      3 | describe('explicit retry after a server-confirmed active-owner conflict', () => {
+    > 4 |   beforeEach(() => jest.useFakeTimers());
+        |                         ^
+      5 |   afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
+      6 |
+      7 |   function setup(connected = false) {
+
+      at Object.install (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (src/game/connection-retry.spec.ts:4:25)
+
+  ● explicit retry after a server-confirmed active-owner conflict › starts one explicit attempt on the same socket and suppresses repeated clicks
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      2 |
+      3 | describe('explicit retry after a server-confirmed active-owner conflict', () => {
+    > 4 |   beforeEach(() => jest.useFakeTimers());
+        |                         ^
+      5 |   afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
+      6 |
+      7 |   function setup(connected = false) {
+
+      at Object.install (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (src/game/connection-retry.spec.ts:4:25)
+
+  ● explicit retry after a server-confirmed active-owner conflict › stops an unconfirmed explicit attempt at five seconds and allows a new user attempt
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      2 |
+      3 | describe('explicit retry after a server-confirmed active-owner conflict', () => {
+    > 4 |   beforeEach(() => jest.useFakeTimers());
+        |                         ^
+      5 |   afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
+      6 |
+      7 |   function setup(connected = false) {
+
+      at Object.install (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (src/game/connection-retry.spec.ts:4:25)
+
+  ● explicit retry after a server-confirmed active-owner conflict › invalidates a captured deadline after connection succeeds without changing the match protocol
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      2 |
+      3 | describe('explicit retry after a server-confirmed active-owner conflict', () => {
+    > 4 |   beforeEach(() => jest.useFakeTimers());
+        |                         ^
+      5 |   afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
+      6 |
+      7 |   function setup(connected = false) {
+
+      at Object.install (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (src/game/connection-retry.spec.ts:4:25)
+
+  ● explicit retry after a server-confirmed active-owner conflict › retains a new active-owner refusal during an explicit retry and blocks a late automatic connection
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      2 |
+      3 | describe('explicit retry after a server-confirmed active-owner conflict', () => {
+    > 4 |   beforeEach(() => jest.useFakeTimers());
+        |                         ^
+      5 |   afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
+      6 |
+      7 |   function setup(connected = false) {
+
+      at Object.install (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (src/game/connection-retry.spec.ts:4:25)
+
+  ● explicit retry after a server-confirmed active-owner conflict › cleans its timer and ignores every late callback after route disposal
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      2 |
+      3 | describe('explicit retry after a server-confirmed active-owner conflict', () => {
+    > 4 |   beforeEach(() => jest.useFakeTimers());
+        |                         ^
+      5 |   afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
+      6 |
+      7 |   function setup(connected = false) {
+
+      at Object.install (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (src/game/connection-retry.spec.ts:4:25)
+
+  ● explicit retry after a server-confirmed active-owner conflict › returns owned notice data so a view cannot mutate the retry guard
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      2 |
+      3 | describe('explicit retry after a server-confirmed active-owner conflict', () => {
+    > 4 |   beforeEach(() => jest.useFakeTimers());
+        |                         ^
+      5 |   afterEach(() => { jest.useRealTimers(); jest.restoreAllMocks(); });
+      6 |
+      7 |   function setup(connected = false) {
+
+      at Object.install (node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (src/game/connection-retry.spec.ts:4:25)
+
+PASS src/game/login-intent.spec.ts
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       8 failed, 21 passed, 29 total
+Snapshots:   0 total
+Time:        5.679 s
+Ran all test suites.

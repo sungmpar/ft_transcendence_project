@@ -1,0 +1,39 @@
+PASS src/game/online-session.spec.ts
+  actual online session class with owned fake DOM and transport
+    ✓ receives 20Hz snapshots without adding RAF loops or advancing simulation (14 ms)
+    ✓ restores every owned listener and cancels late callbacks when disposed repeatedly (3 ms)
+    ✓ ignores late transport status callbacks after the session owner is disposed (4 ms)
+    ✓ ignores missing or wrong match IDs in result and connection status events (3 ms)
+    ✓ sends held movement plus one ability edge using valid increasing DTOs (6 ms)
+    ✓ refreshes a held movement at 100ms without manufacturing action presses (7 ms)
+    ✓ ignores form typing and returns neutral input on focus loss (8 ms)
+    ✓ clears held movement on window blur and hidden without stopping server rendering (6 ms)
+    ✓ never emits spectator input, including blur, layout changes and disposal (1 ms)
+    ✓ rejects invalid, wrong-match, duplicate and old snapshots (3 ms)
+    ✓ clears an actual presented hit flash at disconnect without inventing another event (2 ms)
+    ✓ clears an actual presented hit flash at waiting without inventing another event (1 ms)
+    ✓ adopts higher clock epochs without recreating input/RAF ownership and rejects past epochs or another instance (3 ms)
+    ✓ uses a new full-ready session as the explicit boundary for a different server instance (1 ms)
+    ✓ owns ready and received snapshot data used for latest state and completion (1 ms)
+    ✓ flushes the authoritative winning score on completion ahead of interpolation delay (2 ms)
+    ✓ blocks old-generation input after reconnect until a new session supplies full ready (3 ms)
+    ✓ measures input-to-ack round trip using the same injected local clock (2 ms)
+    ✓ measures a matching latency probe with one local clock and rejects unknown nonce values (1 ms)
+    ✓ does not accept a superseded probe callback as the current round trip
+    ✓ does not change metrics from a latency probe callback after disposal (1 ms)
+  identified recovery request lifecycle
+    ✓ requests last match identity and times out once without declaring an outcome (2 ms)
+    ✓ rejects malformed, old-request and wrong-match replies and consumes the current reply once (2 ms)
+    ✓ handles automatic ready before recovery acknowledgement without duplicate session construction (1 ms)
+    ✓ does not reinterpret a higher input generation as permission to replace an active server instance (1 ms)
+    ✓ keeps the owner timeout when a matching recovery ACK contains an inadmissible server instance (2 ms)
+    ✓ ignores an old ready or end after a different match and blocks duplicate ends (3 ms)
+    ✓ clears pending work and rejects callbacks after disposal (1 ms)
+    ✓ resubscribes an observer without accepting player control or an old target response (1 ms)
+    ✓ expires the installed Socket.IO ACK registry and send buffer after unacknowledged recovery (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       30 passed, 30 total
+Snapshots:   0 total
+Time:        1.236 s, estimated 2 s
+Ran all test suites.

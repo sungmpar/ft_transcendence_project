@@ -118,6 +118,8 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
     left.emit('matchmaking', { mode: false });
     right.emit('matchmaking', { mode: false });
     const [originalLeft, originalRight] = await Promise.all(readies);
+    expect(originalRight.snapshot.instanceId).toBe(originalLeft.snapshot.instanceId);
+    expect(originalRight.snapshot.clockEpoch).toBe(originalLeft.snapshot.clockEpoch);
     const spectatorInitial = nextEvent<ReadyMessage>(spectator, 'setData');
     spectator.emit('spectate', { id: originalLeft.roomId });
     const originalSpectator = await spectatorInitial;
@@ -158,11 +160,16 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
     expect(newLeft.generation).toBeGreaterThan(originalLeft.generation);
     expect(newRight.generation).toBeGreaterThan(originalRight.generation);
     expect(newLeft.snapshot.tick).toBe(pausedTick);
+    expect(newLeft.snapshot.instanceId).toBe(originalLeft.snapshot.instanceId);
+    expect(newLeft.snapshot.clockEpoch).toBeGreaterThan(originalLeft.snapshot.clockEpoch);
+    expect(newRight.snapshot.clockEpoch).toBe(newLeft.snapshot.clockEpoch);
     const resyncedSpectator = await spectatorRestored;
     expect(resyncedSpectator.generation).toBeGreaterThan(
       originalSpectator.generation,
     );
     expect(resyncedSpectator.snapshot.tick).toBe(pausedTick);
+    expect(resyncedSpectator.snapshot.instanceId).toBe(newLeft.snapshot.instanceId);
+    expect(resyncedSpectator.snapshot.clockEpoch).toBe(newLeft.snapshot.clockEpoch);
     const oldRejected = snapshotWhere(
       right,
       (snapshot) => snapshot.tick > pausedTick,
@@ -203,9 +210,9 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
       seq: 2,
     });
     expect((await next).ack.left).toBe(1);
-    const ended = [nextEvent(right, 'end'), nextEvent(spectator, 'end')];
+    const ended = [nextEvent(right, 'matchEnded'), nextEvent(spectator, 'matchEnded')];
     resumedLeft.emit('end');
-    expect(await Promise.all(ended)).toEqual(['right', 'right']);
+    expect(await Promise.all(ended)).toEqual([1, 2].map(() => ({ v: 1, roomId: newLeft.roomId, winner: 'right' })));
     [resumedLeft, right, spectator].forEach((client) => client.disconnect());
   }, 15000);
 
@@ -223,10 +230,10 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
     left.emit('matchmaking', { mode: false });
     right.emit('matchmaking', { mode: false });
     const [ready] = await Promise.all(readies);
-    const ended = nextEvent(right, 'end', 8000);
+    const ended = nextEvent(right, 'matchEnded', 8000);
     const before = Date.now();
     left.disconnect();
-    expect(await ended).toBe('right');
+    expect(await ended).toMatchObject({ v: 1, roomId: ready.roomId, winner: 'right' });
     expect(Date.now() - before).toBeGreaterThanOrEqual(4900);
     const stored = await fixture.dataSource
       .getRepository(Match)
@@ -261,7 +268,7 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
         right,
         'resultStatus',
       );
-      const ended = nextEvent(right, 'end', 6000);
+      const ended = nextEvent(right, 'matchEnded', 6000);
       left.emit('end');
       expect(await retrying).toMatchObject({ status: 'retrying', attempt: 1 });
       const beforeRetry = await fixture.dataSource
@@ -275,7 +282,7 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
       await fixture.dataSource.query(
         `ALTER TABLE "${schema}"."Match" DROP CONSTRAINT fixture_reject_result`,
       );
-      expect(await ended).toBe('right');
+      expect(await ended).toMatchObject({ v: 1, roomId: ready.roomId, winner: 'right' });
       const after = await fixture.dataSource
         .getRepository(User)
         .findOne({ where: { id: users[1].id }, relations: ['won'] });
@@ -338,14 +345,14 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
       }) as any);
     try {
       const retrying = nextEvent<{ status: string }>(right, 'resultStatus');
-      const ended = nextEvent(right, 'end', 6000);
+      const ended = nextEvent(right, 'matchEnded', 6000);
       left.emit('end');
       expect((await retrying).status).toBe('retrying');
       const committed = await fixture.dataSource
         .getRepository(Match)
         .findOne({ where: { id: Number(ready.roomId) } });
       expect(committed.winner.id).toBe(users[1].id);
-      expect(await ended).toBe('right');
+      expect(await ended).toMatchObject({ v: 1, roomId: ready.roomId, winner: 'right' });
       const winner = await fixture.dataSource
         .getRepository(User)
         .findOne({ where: { id: users[1].id }, relations: ['won'] });
@@ -383,9 +390,9 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
     try {
       const statuses: Array<{ status: string; attempt: number }> = [];
       right.on('resultStatus', (status) => statuses.push(status));
-      const ended = nextEvent(right, 'end', 6000);
+      const ended = nextEvent(right, 'matchEnded', 6000);
       left.emit('end');
-      expect(await ended).toBe('right');
+      expect(await ended).toMatchObject({ v: 1, roomId: ready.roomId, winner: 'right' });
       expect(statuses.map((status) => [status.status, status.attempt])).toEqual(
         [
           ['retrying', 1],
@@ -419,9 +426,9 @@ describe('real PostgreSQL result transactions and Socket.IO lifecycle', () => {
       right.emit('matchmaking', { mode: false });
       const [next] = await Promise.all(rematch);
       expect(next.roomId).not.toBe(ready.roomId);
-      const rematchEnd = nextEvent(left, 'end');
+      const rematchEnd = nextEvent(left, 'matchEnded');
       right.emit('end');
-      expect(await rematchEnd).toBe('left');
+      expect(await rematchEnd).toMatchObject({ v: 1, roomId: next.roomId, winner: 'left' });
       const history = await fixture.app.get(UserService).fetchMatch(users[0]);
       expect(history.match).toHaveLength(1);
       expect(history.won).toBe(1);

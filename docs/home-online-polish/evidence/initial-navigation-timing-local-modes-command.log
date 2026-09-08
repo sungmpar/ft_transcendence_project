@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-local-modes.py", line 108, in <module>
+    check('AI ' + rule + '/' + difficulty + ' route releases its session', page.evaluate('typeof window.__ARCADE_DEBUG__') == 'undefined')
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-local-modes.py", line 19, in check
+    if not valid: raise AssertionError(name + ': ' + str(detail))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: AI classic/normal route releases its session: None

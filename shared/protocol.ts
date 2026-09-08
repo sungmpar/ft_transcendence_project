@@ -1,6 +1,9 @@
-import { createGame, GameState, PlayerInput } from './game-core';
+import { createGame, GameEvent, GameState, PlayerInput } from './game-core';
 
 export const PROTOCOL_VERSION = 1;
+export const EVENT_HISTORY_TICKS = 120;
+export const MAX_SNAPSHOT_EVENTS = 64;
+export interface ServerEvent { id: number; event: GameEvent }
 export interface MatchInput {
   v: 1;
   matchId: string;
@@ -13,6 +16,14 @@ export interface MatchInput {
 export interface Snapshot {
   v: 1;
   matchId: string;
+  /** One server runner incarnation, independent of either player's input owner. */
+  instanceId: string;
+  /** Advances only when simulation time is discarded or the runner resumes. */
+  clockEpoch: number;
+  /** Highest event ID at capture; a full ready uses this as its no-replay baseline. */
+  eventCursor: number;
+  /** Bounded, non-destructive history owned by this match/instance/clock epoch. */
+  events: ServerEvent[];
   seq: number;
   tick: number;
   state: GameState;
@@ -86,14 +97,52 @@ export class InputInbox {
 
 /** Capture data now; delayed transport must never retain mutable simulation state. */
 export function captureSnapshot(state: GameState, id: string, seq: number,
-  ack: Snapshot['ack']): Snapshot {
-  return { v: PROTOCOL_VERSION, matchId: id, seq, tick: state.tick,
+  ack: Snapshot['ack'], clock: Pick<Snapshot, 'instanceId' | 'clockEpoch'>,
+  feedback: Pick<Snapshot, 'events' | 'eventCursor'> = { events: [], eventCursor: 0 }): Snapshot {
+  return { v: PROTOCOL_VERSION, matchId: id, instanceId: clock.instanceId,
+    clockEpoch: clock.clockEpoch, seq, tick: state.tick,
+    eventCursor: feedback.eventCursor, events: copyServerEvents(feedback.events),
     state: JSON.parse(JSON.stringify(state)) as GameState, ack: { ...ack } };
+}
+
+export function copyServerEvents(events: ServerEvent[]): ServerEvent[] {
+  return events.map(({ id, event }) => ({ id, event: event.type === 'point'
+    ? { ...event, score: { ...event.score } } : { ...event } }));
+}
+
+export function isGameEvent(value: unknown): value is GameEvent {
+  if (!record(value) || !integer(value.tick)) return false;
+  const side = (name: string) => ['left', 'right'].includes(value[name] as string);
+  const fields = Object.keys(value).length;
+  switch (value.type) {
+    case 'wall': return fields === 2;
+    case 'serve': return fields === 3 && integer(value.rallyId);
+    case 'paddle': return fields === 3 && side('side');
+    case 'finished': return fields === 3 && side('winner');
+    case 'power': return fields === 5 && side('side') && typeof value.active === 'boolean' && integer(value.charge) && value.charge <= 5;
+    case 'point': return fields === 4 && side('side') && record(value.score) && Object.keys(value.score).length === 2 &&
+      integer(value.score.left) && integer(value.score.right) && value.score.left <= 99 && value.score.right <= 99;
+    default: return false;
+  }
+}
+
+function validEventHistory(value: Record<string, unknown>): boolean {
+  if (!integer(value.eventCursor) || !Array.isArray(value.events) || value.events.length > MAX_SNAPSHOT_EVENTS) return false;
+  let lastId = 0, lastTick = -1;
+  for (const entry of value.events) {
+    if (!record(entry) || Object.keys(entry).length !== 2 || !integer(entry.id) || entry.id <= lastId ||
+      entry.id > value.eventCursor || !isGameEvent(entry.event) || entry.event.tick < lastTick ||
+      entry.event.tick > (value.tick as number) || entry.event.tick < (value.tick as number) - EVENT_HISTORY_TICKS) return false;
+    lastId = entry.id; lastTick = entry.event.tick;
+  }
+  return true;
 }
 
 /** Runtime validation is separate from static DTO typing. */
 export function isSnapshot(value: unknown): value is Snapshot {
   if (!record(value) || value.v !== 1 || !matchId(value.matchId) ||
+    !matchId(value.instanceId) || !integer(value.clockEpoch) ||
+    !validEventHistory(value) ||
     !integer(value.seq) || !integer(value.tick) || !record(value.ack) ||
     !integer(value.ack.left) || !integer(value.ack.right) || !record(value.state)) return false;
   const state = value.state;
@@ -150,4 +199,48 @@ export function isReadyMessage(value: unknown): value is ReadyMessage {
     !['left', 'right', 'spectator'].includes(value.side as string) || !isSnapshot(value.snapshot)) return false;
   return value.roomId === value.snapshot.matchId &&
     value.roomMode === (value.snapshot.state.config.mode === 'power');
+}
+
+/** Versioned session recovery is separate from simulation/input protocol v1. */
+export interface SessionSyncRequest {
+  v: 1;
+  requestId: string;
+  matchId: string;
+  role: 'player' | 'spectator';
+}
+export interface RecoveredResult {
+  winnerName: string;
+  loserName: string;
+  winnerScore: number;
+  loserScore: number;
+  outcome: 'won' | 'lost' | 'spectator';
+}
+type SyncIdentity = Pick<SessionSyncRequest, 'v' | 'requestId' | 'matchId'>;
+export type SessionSyncResponse = SyncIdentity & (
+  { status: 'active' | 'waiting'; ready: ReadyMessage } |
+  { status: 'saving' | 'retrying' | 'saved' | 'failed'; result: RecoveredResult } |
+  { status: 'unavailable' | 'error' }
+);
+export interface MatchEnded { v: 1; roomId: string; winner: 'left' | 'right' }
+export function isSessionSyncRequest(value: unknown): value is SessionSyncRequest {
+  return record(value) && Object.keys(value).length === 4 && value.v === 1 &&
+    matchId(value.requestId) && typeof value.matchId === 'string' && /^[1-9][0-9]{0,15}$/.test(value.matchId) &&
+    ['player', 'spectator'].includes(value.role as string);
+}
+export function isRecoveredResult(value: unknown): value is RecoveredResult {
+  return record(value) && Object.keys(value).length === 5 &&
+    ['winnerName', 'loserName'].every(key => typeof value[key] === 'string' && (value[key] as string).length <= 100) &&
+    ['winnerScore', 'loserScore'].every(key => integer(value[key]) && (value[key] as number) <= 6) &&
+    ['won', 'lost', 'spectator'].includes(value.outcome as string);
+}
+export function isSessionSyncResponse(value: unknown): value is SessionSyncResponse {
+  if (!record(value) || value.v !== 1 || !matchId(value.requestId) || !matchId(value.matchId)) return false;
+  if (['active', 'waiting'].includes(value.status as string)) return Object.keys(value).length === 5 &&
+    isReadyMessage(value.ready) && value.ready.roomId === value.matchId;
+  if (['saving', 'retrying', 'saved', 'failed'].includes(value.status as string)) return Object.keys(value).length === 5 && isRecoveredResult(value.result);
+  return Object.keys(value).length === 4 && ['unavailable', 'error'].includes(value.status as string);
+}
+export function isMatchEnded(value: unknown): value is MatchEnded {
+  return record(value) && Object.keys(value).length === 3 && value.v === 1 && matchId(value.roomId) &&
+    ['left', 'right'].includes(value.winner as string);
 }

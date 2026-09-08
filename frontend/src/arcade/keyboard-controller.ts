@@ -44,6 +44,7 @@ export class KeyboardController {
   private actions = new Set<Side>();
   private attached = false;
   private enabled = false;
+  private activeSide: Side | null = null;
 
   constructor(private environment: KeyboardEnvironment, bindings = DEFAULT_BINDINGS) {
     const error = bindingError(bindings);
@@ -73,6 +74,8 @@ export class KeyboardController {
   }
 
   setEnabled(enabled: boolean): void { this.enabled = enabled; this.clear(); }
+  /** Online owns one player's three keys; local defaults to both players. */
+  setActiveSide(side: Side | null): void { this.activeSide = side; this.clear(); }
   clear(): void { this.held.clear(); this.actions.clear(); }
   configure(bindings: KeyBindings): void {
     const error = bindingError(bindings);
@@ -82,7 +85,7 @@ export class KeyboardController {
   }
 
   read(side: Side): PlayerInput {
-    if (!this.enabled || !this.environment.isFocused() || this.environment.isHidden()) {
+    if (!this.enabled || (this.activeSide !== null && side !== this.activeSide) || !this.environment.isFocused() || this.environment.isHidden()) {
       this.clear();
       return { up: false, down: false, action: false };
     }
@@ -106,7 +109,7 @@ export class KeyboardController {
       if (!event.repeat) { this.clear(); this.environment.onPause('keyboard'); }
       return;
     }
-    const sides: Side[] = ['left', 'right'];
+    const sides: Side[] = this.activeSide ? [this.activeSide] : ['left', 'right'];
     if (!sides.some((side) => Object.values(this.bindings[side]).includes(event.code))) return;
     event.preventDefault();
     const wasHeld = this.held.has(event.code);
@@ -120,7 +123,8 @@ export class KeyboardController {
 
   private keyup = ((event: KeyboardEvent) => {
     this.held.delete(event.code);
-    if (this.accepts(event) && Object.values(this.bindings).some((keys) => Object.values(keys).includes(event.code))) {
+    const sides: Side[] = this.activeSide ? [this.activeSide] : ['left', 'right'];
+    if (this.accepts(event) && sides.some(side => Object.values(this.bindings[side]).includes(event.code))) {
       event.preventDefault();
     }
   }) as EventListener;

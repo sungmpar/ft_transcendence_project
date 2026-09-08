@@ -1,0 +1,26 @@
+FAIL src/game/session-recovery.spec.ts (5.843 s)
+  ● releases every old socket binding after repeated reconnects during a pending save
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 2
+
+       95 |   const third = socket(1); await game.addUser(third); await sync(game, third, request('return-2'));
+       96 |   resolve({ id: 41 }); await Promise.all([finishing, firstDrop, secondDrop]);
+    >  97 |   expect(internals.bindings.size).toBe(0);
+          |                                   ^
+       98 |   expect(internals.matchByUser.size).toBe(0);
+       99 | });
+      100 | const sync = (game: GameService, client: any, data = request()): Promise<any> =>
+
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:97:35)
+
+PASS src/game/game-session.spec.ts
+PASS src/game/server-match-runner.spec.ts
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       1 failed, 25 passed, 26 total
+Snapshots:   0 total
+Time:        6.501 s, estimated 9 s
+Ran all test suites.

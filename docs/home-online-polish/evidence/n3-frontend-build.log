@@ -1,0 +1,190 @@
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+All browser targets in the browserslist configuration have supported ES module.
+Therefore we don't build two separate bundles for differential loading.
+
+
+-  Building for production...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ WARNING  Compiled with 3 warnings11:24:12 AM
+
+[eslint] 
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/components/ProfileSlider.vue
+  89:11  warning  'response' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/components/chat/AdminSlider.vue
+   70:15  warning  'onUnmounted' is defined but never used   @typescript-eslint/no-unused-vars
+   78:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  149:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/components/chat/ChannelDropdown.vue
+  34:10  warning  'onUnmounted' is defined but never used   @typescript-eslint/no-unused-vars
+  38:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  43:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  53:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  81:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/components/chat/SearchChannelSlider.vue
+  53:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  61:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/components/chat/UserDropdown.vue
+  27:15  warning  'onUnmounted' is defined but never used   @typescript-eslint/no-unused-vars
+  31:54  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  39:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/router/index.ts
+    2:8   warning  'HomeView' is defined but never used      @typescript-eslint/no-unused-vars
+    4:8   warning  'TfaView' is defined but never used       @typescript-eslint/no-unused-vars
+    5:8   warning  'ChatView' is defined but never used      @typescript-eslint/no-unused-vars
+    6:8   warning  'GameView' is defined but never used      @typescript-eslint/no-unused-vars
+    7:8   warning  'InfoView' is defined but never used      @typescript-eslint/no-unused-vars
+    8:8   warning  'BoardView' is defined but never used     @typescript-eslint/no-unused-vars
+   27:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   48:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   52:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   56:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  108:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  160:32  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  173:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/store/index.ts
+   31:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   52:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  162:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  165:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  172:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  175:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  182:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  196:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  256:25  warning  'payload' is defined but never used       @typescript-eslint/no-unused-vars
+  262:23  warning  'payload' is defined but never used       @typescript-eslint/no-unused-vars
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/views/BoardView.vue
+  65:10  warning  'defineComponent' is defined but never used      @typescript-eslint/no-unused-vars
+  67:10  warning  'onMounted' is defined but never used            @typescript-eslint/no-unused-vars
+  67:21  warning  'onUnmounted' is defined but never used          @typescript-eslint/no-unused-vars
+  70:5   warning  'input_text' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  72:5   warning  'file' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  73:5   warning  'users' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  80:16  warning  'goTomain' is defined but never used             @typescript-eslint/no-unused-vars
+  89:10  warning  'my_name' is defined but never used              @typescript-eslint/no-unused-vars
+  93:10  warning  'get_upload_img_url' is defined but never used   @typescript-eslint/no-unused-vars
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/views/ChatView.vue
+   29:8   warning  'axios' is defined but never used         @typescript-eslint/no-unused-vars
+   40:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   67:45  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   73:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   78:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   88:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   98:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  103:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 54 problems (0 errors, 54 warnings)
+
+
+You may use special comments to disable some warnings.
+Use // eslint-disable-next-line to ignore the next line.
+Use /* eslint-disable */ to ignore all warnings in a file.
+ warning  
+
+asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  js/chunk-vendors.7d3a6c92.js (296 KiB)
+
+ warning  
+
+entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  app (449 KiB)
+      js/chunk-vendors.7d3a6c92.js
+      css/app.9205ceca.css
+      js/app.2185a00c.js
+
+
+  File                                      Size             Gzipped
+
+  ../../../../../private/tmp/ft-transcen    296.19 KiB       97.54 KiB
+  dence-n3-dist/js/chunk-vendors.7d3a6c9
+  2.js
+  ../../../../../private/tmp/ft-transcen    91.93 KiB        28.03 KiB
+  dence-n3-dist/js/app.2185a00c.js
+  ../../../../../private/tmp/ft-transcen    29.14 KiB        6.99 KiB
+  dence-n3-dist/js/80.fbc06142.js
+  ../../../../../private/tmp/ft-transcen    23.09 KiB        8.22 KiB
+  dence-n3-dist/js/236.4037b431.js
+  ../../../../../private/tmp/ft-transcen    22.48 KiB        10.92 KiB
+  dence-n3-dist/js/457.40a50526.js
+  ../../../../../private/tmp/ft-transcen    11.76 KiB        5.61 KiB
+  dence-n3-dist/js/590.df4bdd09.js
+  ../../../../../private/tmp/ft-transcen    11.08 KiB        4.54 KiB
+  dence-n3-dist/js/633.eaffdfba.js
+  ../../../../../private/tmp/ft-transcen    9.02 KiB         3.71 KiB
+  dence-n3-dist/js/378.db78dfe1.js
+  ../../../../../private/tmp/ft-transcen    6.97 KiB         1.92 KiB
+  dence-n3-dist/js/487.c5289a92.js
+  ../../../../../private/tmp/ft-transcen    5.82 KiB         2.38 KiB
+  dence-n3-dist/js/77.c12f95ed.js
+  ../../../../../private/tmp/ft-transcen    61.23 KiB        11.11 KiB
+  dence-n3-dist/css/app.9205ceca.css
+  ../../../../../private/tmp/ft-transcen    6.51 KiB         1.80 KiB
+  dence-n3-dist/css/378.9ec6bcc7.css
+  ../../../../../private/tmp/ft-transcen    6.51 KiB         1.80 KiB
+  dence-n3-dist/css/633.9ec6bcc7.css
+
+  Images and other types of assets omitted.
+  Build at: 2026-09-08T02:24:12.751Z - Hash: 21b898c02412d3eb - Time: 18396ms
+
+ DONE  Build complete. The ../../../../../private/tmp/ft-transcendence-n3-dist directory is ready to be deployed.
+ INFO  Check out deployment instructions at https://cli.vuejs.org/guide/deployment.html
+       

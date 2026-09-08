@@ -1,0 +1,11 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+PASS src/game/online-feedback.spec.ts (5.056 s)
+  authoritative online event capture
+    ✓ does not postpone the next 20Hz broadcast when an individual full state is captured (3 ms)
+    ✓ retains an actual between-broadcast collision for the next snapshot and independent full-state readers (10 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        5.145 s, estimated 6 s
+Ran all test suites.

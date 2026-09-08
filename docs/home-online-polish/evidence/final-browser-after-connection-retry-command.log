@@ -1,0 +1,288 @@
+
+[online-rejected-session-browser] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-rejected-session-browser-jest.json --runInBand --watchman=false (backend cwd)
+  console.log
+    WS ChatGateway init
+
+      at ChatGateway.afterInit (src/chat/chat.gateway.ts:369:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+PASS test/online-rejected-session-browser.e2e-spec.ts (82.675 s)
+  actual server-rejected tab conflict policy and recovery
+    ✓ preserves the active owner without retry churn and explicitly reconnects the rejected tab on all three online routes (76114 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        82.756 s
+Ran all test suites.
+
+[home-guest-entry] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/home-guest-entry-jest.json --runInBand --watchman=false (backend cwd)
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+-  Building for production...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+-  Building for production...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+PASS test/home-guest-entry.e2e-spec.ts (112.334 s)
+  Guest entry preserves one request, public fallback and login intent
+    ✓ same-origin: real guest login creates one account and uses one full callback (8976 ms)
+    ✓ same-origin: HTTP 503 stays on Login and the real public AI link works (6919 ms)
+    ✓ split-origin: real guest login creates one account and uses one full callback (7952 ms)
+    ✓ split-origin: HTTP 503 stays on Login and the real public AI link works (6848 ms)
+    ✓ a fast double click issues one real guest request and one account (8460 ms)
+    ✓ choosing public AI during a pending request prevents a late callback (7910 ms)
+    ✓ the visible new-tab fallback preserves an allowlisted direct-entry intent (14172 ms)
+    ✓ credential CORS is endpoint-scoped, exact-origin, and retained on disabled errors (67 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        112.415 s, estimated 125 s
+Ran all test suites.
+
+[home-auth-prerequisites] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/home-auth-prerequisites-jest.json --runInBand --watchman=false (backend cwd)
+PASS test/home-auth-prerequisites.e2e-spec.ts (41.725 s)
+  Home online intent respects actual authentication prerequisites
+    ✓ rejects an actually expired signed JWT before any online socket is created (6569 ms)
+    ✓ retains the intended game behind missing-nickname setup and resumes after the actual profile form (9572 ms)
+    ✓ keeps 2FA required until the original verification form succeeds, without sending external mail (8986 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        41.803 s, estimated 44 s
+Ran all test suites.
+
+[online-browser] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-browser-jest.json --runInBand --watchman=false (backend cwd)
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+PASS test/online-browser.e2e-spec.ts (51.871 s)
+  two real browser clients with actual HTTP and Socket.IO authentication
+    ✓ runs a real-time authenticated match from the existing /game route and persists its result (41557 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        51.944 s, estimated 56 s
+Ran all test suites.
+
+[online-lifecycle-browser] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-lifecycle-browser-jest.json --runInBand --watchman=false (backend cwd)
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+FAIL test/online-lifecycle-browser.e2e-spec.ts (59.87 s)
+  real browser reconnect and ownership lifecycle
+    ✕ pauses a disconnected match, resumes full state with a new generation, and rejects another active tab (49445 ms)
+
+  ● real browser reconnect and ownership lifecycle › pauses a disconnected match, resumes full state with a new generation, and rejects another active tab
+
+    locator.waitFor: Timeout 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByTestId('online-status').filter({ hasText: '일시정지' }) to be visible[22m
+
+      43 |     const before = await pages[0].evaluate(() => (window as any).__ONLINE_DEBUG__.identity());
+      44 |     await contexts[0].setOffline(true);
+    > 45 |     await pages[1].getByTestId('online-status').filter({ hasText: '일시정지' }).waitFor();
+         |                                                                             ^
+      46 |     const pausedTick = await pages[1].evaluate(() => (window as any).__ONLINE_DEBUG__.latest().tick);
+      47 |     await new Promise((done) => setTimeout(done, 200));
+      48 |     const stillPausedTick = await pages[1].evaluate(() => (window as any).__ONLINE_DEBUG__.latest().tick);
+
+      at Object.<anonymous> (test/online-lifecycle-browser.e2e-spec.ts:45:77)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        59.945 s
+Ran all test suites.

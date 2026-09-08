@@ -1,0 +1,36 @@
+{
+  "sha": "2f11bee69c2d55ed938b53f9750119a890396fb7",
+  "at": "2026-09-08T00:53:35.282155+00:00",
+  "browser": "152.0.7977.77",
+  "fixture": "isolated actual guest full redirect, same context saved outside repository",
+  "homeBodyLocalCta": 0,
+  "homeBodyAiCta": 0,
+  "screens": [
+    {
+      "path": "before-home-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440
+    },
+    {
+      "path": "before-home-1366x768.png",
+      "width": 1366,
+      "height": 768,
+      "documentWidth": 1366
+    },
+    {
+      "path": "before-home-1024x768.png",
+      "width": 1024,
+      "height": 768,
+      "documentWidth": 1024
+    },
+    {
+      "path": "before-home-390x844.png",
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390
+    }
+  ],
+  "pageErrors": [],
+  "status": "PASS"
+}

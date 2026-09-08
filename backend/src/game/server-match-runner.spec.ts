@@ -135,4 +135,25 @@ describe('server clock/input/snapshot adapter', () => {
     game.advance(2017);
     expect(game.state.tick).toBe(2);
   });
+
+  it('changes presentation epoch only on dropped time or a real pause/resume, independently of input ownership', () => {
+    const game = runner();
+    const first = game.snapshot();
+    for (let now = 10; now <= 1000; now += 10) game.advance(now);
+    expect(game.snapshot().clockEpoch).toBe(0);
+    const stalled = game.advance(1500).snapshot!;
+    expect(stalled.instanceId).toBe(first.instanceId);
+    expect(stalled.clockEpoch).toBe(1);
+    expect(game.generations).toEqual({ left: 1, right: 2 });
+    game.replaceInput('left', 9);
+    expect(game.snapshot().clockEpoch).toBe(1);
+    game.stop(); game.stop();
+    game.start(2000); game.start(2000);
+    const resumed = game.snapshot();
+    expect(resumed.clockEpoch).toBe(2);
+    expect(resumed.tick).toBe(stalled.tick);
+    expect(resumed.seq).toBeGreaterThan(stalled.seq);
+    expect(game.generations).toEqual({ left: 9, right: 2 });
+    expect(runner().snapshot().instanceId).not.toBe(first.instanceId);
+  });
 });

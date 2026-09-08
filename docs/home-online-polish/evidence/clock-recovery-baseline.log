@@ -1,0 +1,84 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+FAIL src/game/clock-recovery.spec.ts (10.666 s)
+  real runner and buffer recover interpolation after scheduler time loss
+    ✓ establishes real 60Hz simulation/20Hz delivery and strict interpolation before impairment (46 ms)
+    ✓ recovers strict interpolation within 300ms after a 200ms server stall (51 ms)
+    ✕ recovers strict interpolation within 300ms after a 500ms server stall (48 ms)
+    ✕ recovers strict interpolation within 300ms after a 1000ms server stall (17 ms)
+    ✕ recovers within the same bound after each of three separate 500ms stalls (40 ms)
+    ✓ keeps real interpolation and monotone presentation under bounded ±40ms arrival jitter (34 ms)
+    ✕ recovers after a deliberate 500ms server pause/resume without inventing simulation ticks (21 ms)
+
+  ● real runner and buffer recover interpolation after scheduler time loss › recovers strict interpolation within 300ms after a 500ms server stall
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      125 |     proof: proof || null, finalPresentationTick: fixture.buffer.metrics.presentationTick,
+      126 |     finalServerTick: fixture.runner.state.tick, underflowEpisodes: fixture.buffer.metrics.underflowCount });
+    > 127 |   expect(proof).toBeDefined();
+          |                 ^
+      128 | }
+      129 |
+      130 | describe('real runner and buffer recover interpolation after scheduler time loss', () => {
+
+      at assertRecovery (backend/src/game/clock-recovery.spec.ts:127:17)
+      at backend/src/game/clock-recovery.spec.ts:158:5
+
+  ● real runner and buffer recover interpolation after scheduler time loss › recovers strict interpolation within 300ms after a 1000ms server stall
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      125 |     proof: proof || null, finalPresentationTick: fixture.buffer.metrics.presentationTick,
+      126 |     finalServerTick: fixture.runner.state.tick, underflowEpisodes: fixture.buffer.metrics.underflowCount });
+    > 127 |   expect(proof).toBeDefined();
+          |                 ^
+      128 | }
+      129 |
+      130 | describe('real runner and buffer recover interpolation after scheduler time loss', () => {
+
+      at assertRecovery (backend/src/game/clock-recovery.spec.ts:127:17)
+      at backend/src/game/clock-recovery.spec.ts:158:5
+
+  ● real runner and buffer recover interpolation after scheduler time loss › recovers within the same bound after each of three separate 500ms stalls
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      172 |         droppedMs: fixture.runner.metrics.droppedMs - before, proof: proof || null });
+      173 |     }
+    > 174 |     expect(proofs.every(Boolean)).toBe(true);
+          |                                   ^
+      175 |   });
+      176 |
+      177 |   it('keeps real interpolation and monotone presentation under bounded ±40ms arrival jitter', () => {
+
+      at Object.<anonymous> (backend/src/game/clock-recovery.spec.ts:174:35)
+
+  ● real runner and buffer recover interpolation after scheduler time loss › recovers after a deliberate 500ms server pause/resume without inventing simulation ticks
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+      125 |     proof: proof || null, finalPresentationTick: fixture.buffer.metrics.presentationTick,
+      126 |     finalServerTick: fixture.runner.state.tick, underflowEpisodes: fixture.buffer.metrics.underflowCount });
+    > 127 |   expect(proof).toBeDefined();
+          |                 ^
+      128 | }
+      129 |
+      130 | describe('real runner and buffer recover interpolation after scheduler time loss', () => {
+
+      at assertRecovery (backend/src/game/clock-recovery.spec.ts:127:17)
+      at Object.<anonymous> (backend/src/game/clock-recovery.spec.ts:201:5)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 3 passed, 7 total
+Snapshots:   0 total
+Time:        10.813 s
+Ran all test suites.

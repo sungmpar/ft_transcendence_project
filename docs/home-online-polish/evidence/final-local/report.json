@@ -1,0 +1,326 @@
+{
+  "checks": [
+    {
+      "name": "Corrupted preferences fall back to Classic/Normal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Entering a mode does not start its simulation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Local Power activates from five real returns via its actual key",
+      "pass": true,
+      "detail": {
+        "side": "right",
+        "tick": 886,
+        "charge": 5,
+        "height": 400
+      }
+    },
+    {
+      "name": "Local Power completes a full match at six",
+      "pass": true,
+      "detail": {
+        "seconds": 15,
+        "score": [
+          0,
+          6
+        ],
+        "tick": 1746
+      }
+    },
+    {
+      "name": "Local Power rematch clears charge and score",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/easy uses its selected rules and delayed observation",
+      "pass": true,
+      "detail": {
+        "tick": 178,
+        "ai": {
+          "difficulty": "easy",
+          "side": "right",
+          "observationTick": 150,
+          "decisionTick": 168,
+          "predictedY": 339.34730156041064,
+          "targetY": 352.1908286325199,
+          "input": {
+            "up": false,
+            "down": true,
+            "action": false
+          },
+          "reactionTicks": 18,
+          "observationEveryTicks": 10,
+          "decisionEveryTicks": 10
+        }
+      }
+    },
+    {
+      "name": "AI classic/easy completes at six",
+      "pass": true,
+      "detail": {
+        "seconds": 18,
+        "score": [
+          1,
+          6
+        ],
+        "tick": 1237
+      }
+    },
+    {
+      "name": "AI classic/easy restarts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/easy route releases its session",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/normal uses its selected rules and delayed observation",
+      "pass": true,
+      "detail": {
+        "tick": 179,
+        "ai": {
+          "difficulty": "normal",
+          "side": "right",
+          "observationTick": 162,
+          "decisionTick": 174,
+          "predictedY": 339.3473015604102,
+          "targetY": 341.5663641825811,
+          "input": {
+            "up": true,
+            "down": false,
+            "action": false
+          },
+          "reactionTicks": 12,
+          "observationEveryTicks": 6,
+          "decisionEveryTicks": 6
+        }
+      }
+    },
+    {
+      "name": "AI classic/normal completes at six",
+      "pass": true,
+      "detail": {
+        "seconds": 27,
+        "score": [
+          2,
+          6
+        ],
+        "tick": 1753
+      }
+    },
+    {
+      "name": "AI classic/normal restarts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/normal route releases its session",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/hard uses its selected rules and delayed observation",
+      "pass": true,
+      "detail": {
+        "tick": 178,
+        "ai": {
+          "difficulty": "hard",
+          "side": "right",
+          "observationTick": 171,
+          "decisionTick": 177,
+          "predictedY": null,
+          "targetY": 400,
+          "input": {
+            "up": false,
+            "down": true,
+            "action": false
+          },
+          "reactionTicks": 6,
+          "observationEveryTicks": 3,
+          "decisionEveryTicks": 3
+        }
+      }
+    },
+    {
+      "name": "AI classic/hard completes at six",
+      "pass": true,
+      "detail": {
+        "seconds": 14,
+        "score": [
+          0,
+          6
+        ],
+        "tick": 1017
+      }
+    },
+    {
+      "name": "AI classic/hard restarts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/hard route releases its session",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI power/easy uses its selected rules and delayed observation",
+      "pass": true,
+      "detail": {
+        "tick": 179,
+        "ai": {
+          "difficulty": "easy",
+          "side": "right",
+          "observationTick": 160,
+          "decisionTick": 178,
+          "predictedY": 339.3473015604104,
+          "targetY": 354.7437748377706,
+          "input": {
+            "up": true,
+            "down": false,
+            "action": false
+          },
+          "reactionTicks": 18,
+          "observationEveryTicks": 10,
+          "decisionEveryTicks": 10
+        }
+      }
+    },
+    {
+      "name": "AI power/easy completes at six",
+      "pass": true,
+      "detail": {
+        "seconds": 18,
+        "score": [
+          1,
+          6
+        ],
+        "tick": 1237
+      }
+    },
+    {
+      "name": "AI power/easy restarts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI power/easy route releases its session",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI power/normal uses its selected rules and delayed observation",
+      "pass": true,
+      "detail": {
+        "tick": 179,
+        "ai": {
+          "difficulty": "normal",
+          "side": "right",
+          "observationTick": 162,
+          "decisionTick": 174,
+          "predictedY": 339.3473015604102,
+          "targetY": 341.5663641825811,
+          "input": {
+            "up": true,
+            "down": false,
+            "action": false
+          },
+          "reactionTicks": 12,
+          "observationEveryTicks": 6,
+          "decisionEveryTicks": 6
+        }
+      }
+    },
+    {
+      "name": "AI power/normal completes at six",
+      "pass": true,
+      "detail": {
+        "seconds": 27,
+        "score": [
+          2,
+          6
+        ],
+        "tick": 1753
+      }
+    },
+    {
+      "name": "AI power/normal restarts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI power/normal route releases its session",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI power/hard uses its selected rules and delayed observation",
+      "pass": true,
+      "detail": {
+        "tick": 179,
+        "ai": {
+          "difficulty": "hard",
+          "side": "right",
+          "observationTick": 171,
+          "decisionTick": 177,
+          "predictedY": null,
+          "targetY": 400,
+          "input": {
+            "up": false,
+            "down": true,
+            "action": false
+          },
+          "reactionTicks": 6,
+          "observationEveryTicks": 3,
+          "decisionEveryTicks": 3
+        }
+      }
+    },
+    {
+      "name": "AI power/hard completes at six",
+      "pass": true,
+      "detail": {
+        "seconds": 14,
+        "score": [
+          0,
+          6
+        ],
+        "tick": 1017
+      }
+    },
+    {
+      "name": "AI power/hard restarts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI power/hard route releases its session",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "No service or external requests",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No runtime errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "method": "Actual Chrome; synthetic keyboard, accelerated Clock, read-only game diagnostics",
+  "requests": [],
+  "errors": [],
+  "browser": "152.0.7977.77",
+  "status": "PASS"
+}

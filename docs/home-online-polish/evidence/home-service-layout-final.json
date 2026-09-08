@@ -1,0 +1,880 @@
+{
+  "status": "PASS",
+  "base": "http://127.0.0.1:52262",
+  "startedAt": "2026-09-08T03:14:15.117616+00:00",
+  "authentication": "Actual guest UI, HTTP cookie/JWT and full document callback; no credential injection",
+  "checks": [
+    {
+      "name": "1440 chat fits horizontal viewport and 80px rail",
+      "status": "PASS",
+      "detail": {
+        "path": "/chat",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "document": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "rail": 80,
+        "contentX": 80
+      }
+    },
+    {
+      "name": "1440 chat input has usable width at least150px",
+      "status": "PASS",
+      "detail": {
+        "x": 424,
+        "y": 836,
+        "width": 912.359375,
+        "height": 48,
+        "right": 1336.359375,
+        "bottom": 884,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "1440 chat real input focus and editable draft",
+      "status": "PASS",
+      "detail": {
+        "x": 424,
+        "y": 836,
+        "width": 912.359375,
+        "height": 48,
+        "right": 1336.359375,
+        "bottom": 884,
+        "centerReceivesPointer": true,
+        "focused": true
+      }
+    },
+    {
+      "name": "1440 chat compact native Send actionability without sending",
+      "status": "PASS",
+      "detail": {
+        "x": 1352.359375,
+        "y": 836,
+        "width": 71.640625,
+        "height": 48,
+        "right": 1424,
+        "bottom": 884,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "1440 info fits horizontal viewport and 80px rail",
+      "status": "PASS",
+      "detail": {
+        "path": "/info",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "document": {
+          "width": 1440,
+          "height": 979
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "rail": 80,
+        "contentX": 80
+      }
+    },
+    {
+      "name": "1440 info real nickname input focus",
+      "status": "PASS",
+      "detail": {
+        "x": 112,
+        "y": 267,
+        "width": 201,
+        "height": 38,
+        "right": 313,
+        "bottom": 305,
+        "centerReceivesPointer": true,
+        "focused": true
+      }
+    },
+    {
+      "name": "1440 info Choose native actionability without submit",
+      "status": "PASS",
+      "detail": {
+        "x": 112,
+        "y": 321,
+        "width": 90.609375,
+        "height": 40,
+        "right": 202.609375,
+        "bottom": 361,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "1440 info file input stays inside content width",
+      "status": "PASS",
+      "detail": {
+        "x": 112,
+        "y": 581,
+        "width": 333,
+        "height": 30,
+        "right": 445,
+        "bottom": 611,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "1440 info Main center is not intercepted",
+      "status": "PASS",
+      "detail": {
+        "x": 682.875,
+        "y": 844,
+        "width": 146.25,
+        "height": 56,
+        "right": 829.125,
+        "bottom": 900,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "1440 info actual Main click returns Home",
+      "status": "PASS"
+    },
+    {
+      "name": "1440 tfa fits horizontal viewport and 80px rail",
+      "status": "PASS",
+      "detail": {
+        "path": "/tfa",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "document": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "rail": 80,
+        "contentX": 80
+      }
+    },
+    {
+      "name": "1440 tfa native setting button focus/actionability without toggle",
+      "status": "PASS",
+      "detail": {
+        "x": 677.703125,
+        "y": 84,
+        "width": 156.578125,
+        "height": 56,
+        "right": 834.28125,
+        "bottom": 140,
+        "centerReceivesPointer": true,
+        "focused": true
+      }
+    },
+    {
+      "name": "1440 tfa actual Main click returns Home",
+      "status": "PASS"
+    },
+    {
+      "name": "1440 board fits horizontal viewport and 80px rail",
+      "status": "PASS",
+      "detail": {
+        "path": "/board",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "document": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "rail": 80,
+        "contentX": 80
+      }
+    },
+    {
+      "name": "1440 board header title and account do not overlap",
+      "status": "PASS",
+      "detail": {
+        "overlapArea": 0
+      }
+    },
+    {
+      "name": "1440 board labeled scroll region accepts keyboard focus",
+      "status": "PASS"
+    },
+    {
+      "name": "1440 board rightmost column visible without scroll",
+      "status": "PASS",
+      "detail": {
+        "x": 1172.3125,
+        "y": 120,
+        "width": 235.6875,
+        "height": 41.5,
+        "right": 1408,
+        "bottom": 161.5,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "1440 no runtime errors or mail requests",
+      "status": "PASS"
+    },
+    {
+      "name": "390 chat fits horizontal viewport and 80px rail",
+      "status": "PASS",
+      "detail": {
+        "path": "/chat",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "rail": 80,
+        "contentX": 80
+      }
+    },
+    {
+      "name": "390 chat input has usable width at least150px",
+      "status": "PASS",
+      "detail": {
+        "x": 104,
+        "y": 714.796875,
+        "width": 182.359375,
+        "height": 48,
+        "right": 286.359375,
+        "bottom": 762.796875,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "390 chat real input focus and editable draft",
+      "status": "PASS",
+      "detail": {
+        "x": 104,
+        "y": 714.796875,
+        "width": 182.359375,
+        "height": 48,
+        "right": 286.359375,
+        "bottom": 762.796875,
+        "centerReceivesPointer": true,
+        "focused": true
+      }
+    },
+    {
+      "name": "390 chat compact native Send actionability without sending",
+      "status": "PASS",
+      "detail": {
+        "x": 302.359375,
+        "y": 714.796875,
+        "width": 71.640625,
+        "height": 48,
+        "right": 374,
+        "bottom": 762.796875,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "390 info fits horizontal viewport and 80px rail",
+      "status": "PASS",
+      "detail": {
+        "path": "/info",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 1019
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "rail": 80,
+        "contentX": 80
+      }
+    },
+    {
+      "name": "390 info real nickname input focus",
+      "status": "PASS",
+      "detail": {
+        "x": 112,
+        "y": 287,
+        "width": 201,
+        "height": 38,
+        "right": 313,
+        "bottom": 325,
+        "centerReceivesPointer": true,
+        "focused": true
+      }
+    },
+    {
+      "name": "390 info Choose native actionability without submit",
+      "status": "PASS",
+      "detail": {
+        "x": 112,
+        "y": 341,
+        "width": 90.609375,
+        "height": 40,
+        "right": 202.609375,
+        "bottom": 381,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "390 info file input stays inside content width",
+      "status": "PASS",
+      "detail": {
+        "x": 112,
+        "y": 621,
+        "width": 246,
+        "height": 30,
+        "right": 358,
+        "bottom": 651,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "390 info Main center is not intercepted",
+      "status": "PASS",
+      "detail": {
+        "x": 157.875,
+        "y": 740,
+        "width": 146.25,
+        "height": 56,
+        "right": 304.125,
+        "bottom": 796,
+        "centerReceivesPointer": true,
+        "focused": false
+      }
+    },
+    {
+      "name": "390 info actual Main click returns Home",
+      "status": "PASS"
+    },
+    {
+      "name": "390 tfa fits horizontal viewport and 80px rail",
+      "status": "PASS",
+      "detail": {
+        "path": "/tfa",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "rail": 80,
+        "contentX": 80
+      }
+    },
+    {
+      "name": "390 tfa native setting button focus/actionability without toggle",
+      "status": "PASS",
+      "detail": {
+        "x": 152.703125,
+        "y": 84,
+        "width": 156.578125,
+        "height": 56,
+        "right": 309.28125,
+        "bottom": 140,
+        "centerReceivesPointer": true,
+        "focused": true
+      }
+    },
+    {
+      "name": "390 tfa actual Main click returns Home",
+      "status": "PASS"
+    },
+    {
+      "name": "390 board fits horizontal viewport and 80px rail",
+      "status": "PASS",
+      "detail": {
+        "path": "/board",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "document": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "rail": 80,
+        "contentX": 80
+      }
+    },
+    {
+      "name": "390 board header title and account do not overlap",
+      "status": "PASS",
+      "detail": {
+        "overlapArea": 0.0
+      }
+    },
+    {
+      "name": "390 board labeled scroll region accepts keyboard focus",
+      "status": "PASS"
+    },
+    {
+      "name": "390 board native ArrowRight reaches rightmost column",
+      "status": "PASS",
+      "detail": {
+        "before": {
+          "left": 0,
+          "client": 310,
+          "scroll": 752
+        },
+        "after": {
+          "left": 442,
+          "client": 310,
+          "scroll": 752
+        },
+        "achievements": {
+          "x": 243.078125,
+          "y": 140,
+          "width": 130.921875,
+          "height": 41.5,
+          "right": 374,
+          "bottom": 181.5,
+          "centerReceivesPointer": true,
+          "focused": false
+        }
+      }
+    },
+    {
+      "name": "390 board horizontal table scroll does not move document",
+      "status": "PASS"
+    },
+    {
+      "name": "390 no runtime errors or mail requests",
+      "status": "PASS"
+    }
+  ],
+  "runs": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pages": [
+        {
+          "name": "chat",
+          "initial": {
+            "path": "/chat",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "document": {
+              "width": 1440,
+              "height": 900
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "rail": 80,
+            "contentX": 80
+          },
+          "elements": {
+            "messageInput": {
+              "x": 424,
+              "y": 836,
+              "width": 912.359375,
+              "height": 48,
+              "right": 1336.359375,
+              "bottom": 884,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "send": {
+              "x": 1352.359375,
+              "y": 836,
+              "width": 71.640625,
+              "height": 48,
+              "right": 1424,
+              "bottom": 884,
+              "centerReceivesPointer": true,
+              "focused": false
+            }
+          },
+          "screenshot": "home-service-layout-final-chat-1440x900.png",
+          "messageBubbleCount": 0
+        },
+        {
+          "name": "info",
+          "initial": {
+            "path": "/info",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "document": {
+              "width": 1440,
+              "height": 979
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "rail": 80,
+            "contentX": 80
+          },
+          "elements": {
+            "fileInput": {
+              "x": 112,
+              "y": 581,
+              "width": 333,
+              "height": 30,
+              "right": 445,
+              "bottom": 611,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "main": {
+              "x": 682.875,
+              "y": 844,
+              "width": 146.25,
+              "height": 56,
+              "right": 829.125,
+              "bottom": 900,
+              "centerReceivesPointer": true,
+              "focused": false
+            }
+          },
+          "screenshot": "home-service-layout-final-info-1440x900.png",
+          "mainScreenshot": "home-service-layout-final-info-main-1440x900.png"
+        },
+        {
+          "name": "tfa",
+          "initial": {
+            "path": "/tfa",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "document": {
+              "width": 1440,
+              "height": 900
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "rail": 80,
+            "contentX": 80
+          },
+          "elements": {
+            "turnOn": {
+              "x": 677.703125,
+              "y": 84,
+              "width": 156.578125,
+              "height": 56,
+              "right": 834.28125,
+              "bottom": 140,
+              "centerReceivesPointer": true,
+              "focused": true
+            }
+          },
+          "screenshot": "home-service-layout-final-tfa-1440x900.png"
+        },
+        {
+          "name": "board",
+          "initial": {
+            "path": "/board",
+            "viewport": {
+              "width": 1440,
+              "height": 900
+            },
+            "document": {
+              "width": 1440,
+              "height": 900
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "rail": 80,
+            "contentX": 80
+          },
+          "elements": {
+            "table": {
+              "x": 112,
+              "y": 120,
+              "width": 1296,
+              "height": 162,
+              "right": 1408,
+              "bottom": 282,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "achievements": {
+              "x": 1172.3125,
+              "y": 120,
+              "width": 235.6875,
+              "height": 41.5,
+              "right": 1408,
+              "bottom": 161.5,
+              "centerReceivesPointer": true,
+              "focused": false
+            }
+          },
+          "screenshot": "home-service-layout-final-board-1440x900.png",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "mailRequestCount": 0,
+      "frontendScripts": [
+        "/js/chunk-vendors.7d3a6c92.js",
+        "/js/app.89b642c7.js"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pages": [
+        {
+          "name": "chat",
+          "initial": {
+            "path": "/chat",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "document": {
+              "width": 390,
+              "height": 844
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "rail": 80,
+            "contentX": 80
+          },
+          "elements": {
+            "messageInput": {
+              "x": 104,
+              "y": 714.796875,
+              "width": 182.359375,
+              "height": 48,
+              "right": 286.359375,
+              "bottom": 762.796875,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "send": {
+              "x": 302.359375,
+              "y": 714.796875,
+              "width": 71.640625,
+              "height": 48,
+              "right": 374,
+              "bottom": 762.796875,
+              "centerReceivesPointer": true,
+              "focused": false
+            }
+          },
+          "screenshot": "home-service-layout-final-chat-390x844.png",
+          "messageBubbleCount": 0
+        },
+        {
+          "name": "info",
+          "initial": {
+            "path": "/info",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "document": {
+              "width": 390,
+              "height": 1019
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "rail": 80,
+            "contentX": 80
+          },
+          "elements": {
+            "fileInput": {
+              "x": 112,
+              "y": 621,
+              "width": 246,
+              "height": 30,
+              "right": 358,
+              "bottom": 651,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "main": {
+              "x": 157.875,
+              "y": 740,
+              "width": 146.25,
+              "height": 56,
+              "right": 304.125,
+              "bottom": 796,
+              "centerReceivesPointer": true,
+              "focused": false
+            }
+          },
+          "screenshot": "home-service-layout-final-info-390x844.png",
+          "mainScreenshot": "home-service-layout-final-info-main-390x844.png"
+        },
+        {
+          "name": "tfa",
+          "initial": {
+            "path": "/tfa",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "document": {
+              "width": 390,
+              "height": 844
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "rail": 80,
+            "contentX": 80
+          },
+          "elements": {
+            "turnOn": {
+              "x": 152.703125,
+              "y": 84,
+              "width": 156.578125,
+              "height": 56,
+              "right": 309.28125,
+              "bottom": 140,
+              "centerReceivesPointer": true,
+              "focused": true
+            }
+          },
+          "screenshot": "home-service-layout-final-tfa-390x844.png"
+        },
+        {
+          "name": "board",
+          "initial": {
+            "path": "/board",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "document": {
+              "width": 390,
+              "height": 844
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "rail": 80,
+            "contentX": 80
+          },
+          "elements": {
+            "table": {
+              "x": 96,
+              "y": 140,
+              "width": 720,
+              "height": 249.90625,
+              "right": 816,
+              "bottom": 389.90625,
+              "centerReceivesPointer": false,
+              "focused": false
+            },
+            "achievements": {
+              "x": 685.078125,
+              "y": 140,
+              "width": 130.921875,
+              "height": 41.5,
+              "right": 816,
+              "bottom": 181.5,
+              "centerReceivesPointer": false,
+              "focused": false
+            }
+          },
+          "screenshot": "home-service-layout-final-board-390x844.png",
+          "keyboardScroll": {
+            "before": {
+              "left": 0,
+              "client": 310,
+              "scroll": 752
+            },
+            "after": {
+              "left": 442,
+              "client": 310,
+              "scroll": 752
+            },
+            "achievements": {
+              "x": 243.078125,
+              "y": 140,
+              "width": 130.921875,
+              "height": 41.5,
+              "right": 374,
+              "bottom": 181.5,
+              "centerReceivesPointer": true,
+              "focused": false
+            }
+          },
+          "scrollScreenshot": "home-service-layout-final-board-scrolled-390x844.png",
+          "status": "PASS"
+        }
+      ],
+      "pageErrorCount": 0,
+      "mailRequestCount": 0,
+      "frontendScripts": [
+        "/js/chunk-vendors.7d3a6c92.js",
+        "/js/app.89b642c7.js"
+      ]
+    }
+  ],
+  "limitations": [
+    "Chrome synthetic input; no physical keyboard/touch or production service claim",
+    "No send-message, nickname submit, file upload, 2FA toggle or mail",
+    "No baseline runtime comparison; Board native keyboard horizontal scrolling is checked"
+  ],
+  "browser": "152.0.7977.77",
+  "finishedAt": "2026-09-08T03:14:55.869672+00:00"
+}

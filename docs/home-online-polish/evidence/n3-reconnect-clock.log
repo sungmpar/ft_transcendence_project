@@ -1,0 +1,15 @@
+PASS test/online-lifecycle.e2e-spec.ts (7.851 s)
+  real PostgreSQL result transactions and Socket.IO lifecycle
+    ✓ pauses short disconnects, resynchronizes new generations, rejects another active tab, and preserves spectators (550 ms)
+    ○ skipped uses unique real IDs for concurrent creation and after deletion
+    ○ skipped commits concurrent wins and duplicate requests once with atomic nonduplicate achievements
+    ○ skipped expires the real five-second grace and stores one disconnect result
+    ○ skipped rolls back a real database failure then retries the same result without duplicate achievements
+    ○ skipped resolves an injected lost post-commit response by reading the real committed result on retry
+    ○ skipped reports terminal storage failure after three real rollbacks and permits a fresh match
+
+Test Suites: 1 passed, 1 total
+Tests:       6 skipped, 1 passed, 7 total
+Snapshots:   0 total
+Time:        7.904 s, estimated 17 s
+Ran all test suites with tests matching "pauses short disconnects".

@@ -1,0 +1,43 @@
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+FAIL test/online-lifecycle-browser.e2e-spec.ts (74.28 s)
+  real browser reconnect and ownership lifecycle
+    ✕ pauses a disconnected match, resumes full state with a new generation, and rejects another active tab (62640 ms)
+
+  ● real browser reconnect and ownership lifecycle › pauses a disconnected match, resumes full state with a new generation, and rejects another active tab
+
+    page.waitForFunction: Timeout 30000ms exceeded.
+
+      211 |         .filter({ hasText: /이미|기존|연결이 끊/ })
+      212 |         .waitFor();
+    > 213 |       await duplicate.waitForFunction(() =>
+          |                       ^
+      214 |         (window as any).__LIFECYCLE_TRANSPORT__
+      215 |           .read()
+      216 |           .history.some(
+
+      at Object.<anonymous> (test/online-lifecycle-browser.e2e-spec.ts:213:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        74.353 s
+Ran all test suites.

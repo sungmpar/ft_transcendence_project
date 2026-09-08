@@ -1,0 +1,127 @@
+{
+  "status": "FAIL",
+  "browser": "152.0.7977.77",
+  "impairment": "Explicit existing browser WebSocket.close plus Playwright routing that temporarily closes only new connection attempts; other routed traffic connects to the actual server and is forwarded without packet changes",
+  "faultHistory": [
+    {
+      "type": "actual-server-forwarding",
+      "atMs": 1788841511805
+    },
+    {
+      "type": "blocking-started",
+      "atMs": 1788841524518
+    },
+    {
+      "type": "blocking-released",
+      "atMs": 1788841525614
+    },
+    {
+      "type": "actual-server-forwarding",
+      "atMs": 1788841526047
+    },
+    {
+      "type": "actual-server-forwarding",
+      "atMs": 1788841535126
+    }
+  ],
+  "failure": "TimeoutError",
+  "diagnostics": [
+    {
+      "path": "/game",
+      "phase": null,
+      "tick": null,
+      "generation": null,
+      "side": null,
+      "paused": false,
+      "conflict": false,
+      "disconnected": false,
+      "resultVisible": true,
+      "transport": {
+        "openSockets": 1,
+        "history": [
+          {
+            "type": "created",
+            "atMs": 6245
+          },
+          {
+            "type": "open",
+            "atMs": 6276
+          },
+          {
+            "type": "explicit-close-requested",
+            "atMs": 18826
+          },
+          {
+            "type": "close",
+            "atMs": 18888,
+            "code": 1000,
+            "wasClean": true
+          },
+          {
+            "type": "created",
+            "atMs": 20167
+          },
+          {
+            "type": "open",
+            "atMs": 20193
+          }
+        ]
+      }
+    },
+    {
+      "path": "/game",
+      "phase": null,
+      "tick": null,
+      "generation": null,
+      "side": null,
+      "paused": false,
+      "conflict": false,
+      "disconnected": false,
+      "resultVisible": true,
+      "transport": {
+        "openSockets": 1,
+        "history": [
+          {
+            "type": "created",
+            "atMs": 5435
+          },
+          {
+            "type": "open",
+            "atMs": 5899
+          }
+        ]
+      }
+    },
+    {
+      "path": "/game",
+      "phase": null,
+      "tick": null,
+      "generation": null,
+      "side": null,
+      "paused": false,
+      "conflict": true,
+      "disconnected": false,
+      "resultVisible": false,
+      "transport": {
+        "openSockets": 0,
+        "history": [
+          {
+            "type": "created",
+            "atMs": 7352
+          },
+          {
+            "type": "open",
+            "atMs": 7389
+          },
+          {
+            "type": "close",
+            "atMs": 7832,
+            "code": 1005,
+            "wasClean": true
+          }
+        ]
+      }
+    }
+  ],
+  "pageErrors": []
+}

@@ -1,0 +1,20 @@
+{"status": "FAIL", "at": "2026-09-08T03:20:42.402077+00:00", "viewport": [1440, 900], "authentication": "actual guest HTTP redirects", "environment": "Owned loopback fixture; real headless Chrome, keyboard, Socket.IO and native Canvas/AudioContext", "limits": "Automated keyboard, not physical play; native audio method observations, not human hearing; controlled observer WebSocket closure, not WAN", "browser": "152.0.7977.77", "failure": "AssertionError: The observation hit crossed a skip/resync boundary; it cannot prove mute or motion behavior", "cases": [{"case": "authoritative-feedback-audio-motion-and-online-keys", "status": "FAIL", "wasdPresetMatchesHudAndOutgoingDirection": true, "arrowsDoNotMoveTheWasdPlayer": true, "defaultMutedWithRealServerHitAndCanvasFlash": true, "gestureUnlockedNativeAudioAndRealOscillator": true, "audioStatusWhenEnabled": "소리 켜짐 · 서버의 실제 타격·득점에 맞춰 재생합니다."}], "pageErrors": [], "elapsedSeconds": 30.959}
+Traceback (most recent call last):
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 484, in <module>
+    asyncio.run(main())
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/base_events.py", line 685, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 465, in main
+    await getattr(checks, case)()
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 317, in effects
+    await self.wait_presented_hit(page, muted)
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 144, in wait_presented_hit
+    assert after['effectsSkipped'] == metrics['effectsSkipped'], 'The observation hit crossed a skip/resync boundary; it cannot prove mute or motion behavior'
+AssertionError: The observation hit crossed a skip/resync boundary; it cannot prove mute or motion behavior

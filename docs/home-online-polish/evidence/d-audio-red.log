@@ -1,0 +1,45 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+FAIL src/game/audio-feedback.spec.ts
+  owned synthesized audio nodes (adapter, not human listening)
+    ✕ immediately stops and disconnects an already playing tone when muted (4 ms)
+    ✕ cleans nodes as well as closing the context on route disposal (2 ms)
+
+  ● owned synthesized audio nodes (adapter, not human listening) › immediately stops and disconnects an already playing tone when muted
+
+    expect(jest.fn()).toHaveBeenCalled()
+
+    Expected number of calls: >= 1
+    Received number of calls:    0
+
+      40 |     expect(context.oscillators).toHaveLength(1);
+      41 |     audio.setMuted(true);
+    > 42 |     expect(context.oscillators[0].disconnect).toHaveBeenCalled();
+         |                                               ^
+      43 |     expect(context.gains[0].disconnect).toHaveBeenCalled();
+      44 |     expect(context.oscillators[0].stop).toHaveBeenCalledTimes(2);
+      45 |   });
+
+      at Object.<anonymous> (backend/src/game/audio-feedback.spec.ts:42:47)
+
+  ● owned synthesized audio nodes (adapter, not human listening) › cleans nodes as well as closing the context on route disposal
+
+    expect(jest.fn()).toHaveBeenCalled()
+
+    Expected number of calls: >= 1
+    Received number of calls:    0
+
+      50 |     const context = FakeAudioContext.instances[0];
+      51 |     audio.dispose(); audio.dispose();
+    > 52 |     expect(context.oscillators[0].disconnect).toHaveBeenCalled();
+         |                                               ^
+      53 |     expect(context.gains[0].disconnect).toHaveBeenCalled();
+      54 |     expect(context.close).toHaveBeenCalledTimes(1);
+      55 |   });
+
+      at Object.<anonymous> (backend/src/game/audio-feedback.spec.ts:52:47)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        4.885 s
+Ran all test suites matching /audio-feedback.spec/i.

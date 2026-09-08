@@ -1,0 +1,44 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+FAIL src/game/online-feedback.spec.ts (5.309 s)
+  authoritative online event capture
+    ✕ does not postpone the next 20Hz broadcast when an individual full state is captured (5 ms)
+    ✕ retains an actual between-broadcast collision for the next snapshot and independent full-state readers (10 ms)
+
+  ● authoritative online event capture › does not postpone the next 20Hz broadcast when an individual full state is captured
+
+    expect(received).toBeDefined()
+
+    Received: undefined
+
+       7 |     runner.advance(17);
+       8 |     runner.snapshot(); // A new spectator or sessionSync full state.
+    >  9 |     expect(runner.advance(50).snapshot).toBeDefined();
+         |                                         ^
+      10 |   });
+      11 |
+      12 |   it('retains an actual between-broadcast collision for the next snapshot and independent full-state readers', () => {
+
+      at Object.<anonymous> (backend/src/game/online-feedback.spec.ts:9:41)
+
+  ● authoritative online event capture › retains an actual between-broadcast collision for the next snapshot and independent full-state readers
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      25 |       if (!pending || !result.snapshot) continue;
+      26 |       const first = (result.snapshot as any).events;
+    > 27 |       expect(Array.isArray(first)).toBe(true);
+         |                                    ^
+      28 |       const captured = first.find((entry: any) => JSON.stringify(entry.event) === JSON.stringify(pending));
+      29 |       expect(captured).toBeDefined();
+      30 |       const individual = runner.snapshot() as any;
+
+      at Object.<anonymous> (backend/src/game/online-feedback.spec.ts:27:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        5.393 s
+Ran all test suites.

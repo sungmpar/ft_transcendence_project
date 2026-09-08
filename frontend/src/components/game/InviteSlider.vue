@@ -11,7 +11,7 @@
               <DialogPanel class="pointer-events-auto relative w-screen max-w-md">
                 <TransitionChild as="template" enter="ease-in-out duration-500" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in-out duration-500" leave-from="opacity-100" leave-to="opacity-0">
                   <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4">
-										<button type="button" class="rounded-md text-gray-300 hover:text-white focus:outline-none" @click="closeSlider">
+										<button type="button" aria-label="받은 초대 닫기" class="rounded-md text-gray-300 hover:text-white" @click="closeSlider">
                       <font-awesome-icon icon="fa-solid fa-x" />
                     </button>
 									</div>
@@ -26,8 +26,8 @@
 												<p>{{ list.inviteName }} </p>
 											</div>
 											<div class = "invite-inner">
-												<div class="user-button" @click="insertRoomData(list.inviteId)">Join</div>
-												<div class="user-button" @click="refuse(list.inviteId)">Refuse</div>
+												<button type="button" class="user-button" aria-label="초대 수락" @click="insertRoomData(list.inviteId)">Join</button>
+												<button type="button" class="user-button" aria-label="초대 거절" @click="refuse(list.inviteId)">Refuse</button>
 											</div>
 										</div>
 									</div>
@@ -60,3 +60,7 @@ function refuse(friendId: number){
 }
 
 </script>
+
+<style scoped>
+button:focus-visible { outline: 3px solid #92f0d1; outline-offset: 3px; }
+</style>

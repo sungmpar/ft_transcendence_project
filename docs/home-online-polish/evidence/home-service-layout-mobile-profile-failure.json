@@ -1,0 +1,269 @@
+{
+  "scope": "Existing service UI on fixed N1/N2 build 7ec1f0d3183ec242; actual guest full callback, no credentials injected",
+  "base": "http://127.0.0.1:65199",
+  "status": "INCOMPLETE",
+  "at": "2026-09-08T02:23:25.707302+00:00",
+  "selection": "mobile follow-up; desktop preserved in mobile-chat-failure JSON",
+  "runs": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pages": [
+        {
+          "name": "chat",
+          "initial": {
+            "path": "/chat",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "document": {
+              "width": 600,
+              "height": 844
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "content": {
+              "x": 80,
+              "width": 310
+            },
+            "rail": {
+              "x": 0,
+              "width": 80
+            }
+          },
+          "elements": {
+            "channelBar": {
+              "x": 80,
+              "y": 0,
+              "width": 320,
+              "height": 844,
+              "right": 400,
+              "bottom": 844,
+              "display": "flex",
+              "position": "static",
+              "left": "0px",
+              "insideViewport": false,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "messageInput": {
+              "x": 432,
+              "y": 768,
+              "width": 0,
+              "height": 48,
+              "right": 432,
+              "bottom": 816,
+              "display": "block",
+              "position": "static",
+              "left": "auto",
+              "insideViewport": false,
+              "centerReceivesPointer": false,
+              "focused": false
+            },
+            "send": {
+              "x": 472,
+              "y": 764,
+              "width": 103.640625,
+              "height": 56,
+              "right": 575.640625,
+              "bottom": 820,
+              "display": "block",
+              "position": "static",
+              "left": "auto",
+              "insideViewport": false,
+              "centerReceivesPointer": false,
+              "focused": false
+            }
+          },
+          "screenshot": "home-service-layout-chat-390x844.png",
+          "channelSelectionCount": 11,
+          "messageBubbleCount": 0,
+          "realInputFocus": "FAILED",
+          "inputFailureType": "TimeoutError",
+          "inputAfterRealFocus": {
+            "x": 432,
+            "y": 768,
+            "width": 0,
+            "height": 48,
+            "right": 432,
+            "bottom": 816,
+            "display": "block",
+            "position": "static",
+            "left": "auto",
+            "insideViewport": false,
+            "centerReceivesPointer": false,
+            "focused": false
+          },
+          "afterFocus": {
+            "path": "/chat",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "document": {
+              "width": 600,
+              "height": 844
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "content": {
+              "x": 80,
+              "width": 310
+            },
+            "rail": {
+              "x": 0,
+              "width": 80
+            }
+          }
+        },
+        {
+          "name": "info",
+          "initial": {
+            "path": "/info",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "document": {
+              "width": 445,
+              "height": 875
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "content": {
+              "x": 80,
+              "width": 310
+            },
+            "rail": {
+              "x": 0,
+              "width": 80
+            }
+          },
+          "elements": {
+            "nicknameInput": {
+              "x": 112,
+              "y": 287,
+              "width": 201,
+              "height": 38,
+              "right": 313,
+              "bottom": 325,
+              "display": "inline-block",
+              "position": "static",
+              "left": "auto",
+              "insideViewport": true,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "choose": {
+              "x": 112,
+              "y": 341,
+              "width": 90.609375,
+              "height": 40,
+              "right": 202.609375,
+              "bottom": 381,
+              "display": "block",
+              "position": "static",
+              "left": "auto",
+              "insideViewport": true,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "upload": {
+              "x": 112,
+              "y": 501,
+              "width": 333,
+              "height": 30,
+              "right": 445,
+              "bottom": 531,
+              "display": "inline-block",
+              "position": "static",
+              "left": "auto",
+              "insideViewport": false,
+              "centerReceivesPointer": true,
+              "focused": false
+            },
+            "main": {
+              "x": 157.875,
+              "y": 795,
+              "width": 146.25,
+              "height": 56,
+              "right": 304.125,
+              "bottom": 851,
+              "display": "block",
+              "position": "static",
+              "left": "auto",
+              "insideViewport": false,
+              "centerReceivesPointer": false,
+              "focused": false
+            }
+          },
+          "screenshot": "home-service-layout-info-390x844.png",
+          "inputAfterRealFocus": {
+            "x": 112,
+            "y": 287,
+            "width": 201,
+            "height": 38,
+            "right": 313,
+            "bottom": 325,
+            "display": "inline-block",
+            "position": "static",
+            "left": "auto",
+            "insideViewport": true,
+            "centerReceivesPointer": true,
+            "focused": true
+          },
+          "chooseActionableTrial": true,
+          "afterFocus": {
+            "path": "/info",
+            "viewport": {
+              "width": 390,
+              "height": 844
+            },
+            "document": {
+              "width": 445,
+              "height": 875
+            },
+            "scroll": {
+              "x": 0,
+              "y": 0
+            },
+            "content": {
+              "x": 80,
+              "width": 310
+            },
+            "rail": {
+              "x": 0,
+              "width": 80
+            }
+          },
+          "focusScreenshot": "home-service-layout-info-focused-390x844.png"
+        }
+      ],
+      "pageErrorCount": 0,
+      "mailRequestCount": 0,
+      "frontendScripts": [
+        "/js/chunk-vendors.7d3a6c92.js",
+        "/js/app.62d305d4.js"
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic mouse/keyboard in Chrome, no touch gameplay",
+    "No send/message/upload/2FA setting or mail action",
+    "Observed current fixed build; no baseline browser rebuild",
+    "No console bodies, credentials, or account identifiers recorded"
+  ],
+  "browser": "152.0.7977.77",
+  "failureType": "TimeoutError",
+  "failure": "Locator.click: Timeout 15000ms exceeded.\n",
+  "finishedAt": "2026-09-08T02:24:04.603655+00:00"
+}

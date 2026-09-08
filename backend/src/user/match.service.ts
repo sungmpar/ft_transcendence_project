@@ -27,6 +27,14 @@ export class MatchService {
 		return match;
 	}
 
+  async getOneForParticipant(id: string, userId: number) {
+    const match = await this.matchRepository.findOne({
+      where: { id: Number(id) },
+      relations: ['players'],
+    });
+    return match?.players.some((player) => player.id === userId) ? match : null;
+  }
+
 	async getAll(user: User) {
 		const matchs = await this.matchRepository.find({
 			where: { players: In([ user ]) },

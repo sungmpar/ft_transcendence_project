@@ -2,6 +2,8 @@
   <main
     class="arcade-page match-page online-game"
     :data-phase="match?.phase || 'lobby'"
+    @pointerdown.capture="activateSound"
+    @keydown.capture="activateSoundFromKey"
   >
     <nav class="arcade-nav" aria-label="Online match navigation">
       <span class="arcade-brand"
@@ -9,12 +11,17 @@
         <span class="brand-sub">/ {{ title }}</span></span
       >
       <div class="match-tools">
+        <button class="quiet-button" type="button" data-testid="online-sound"
+          :aria-pressed="audioStatus === 'ready' && !soundMuted" @click="toggleSound">
+          {{ audioStatus === 'ready' && !soundMuted ? '소리 켬' : soundMuted ? '소리 끔' : '소리 활성화' }}
+        </button>
         <router-link to="/" class="quiet-link" data-testid="online-menu"
           >서비스 메뉴</router-link
         ><router-link to="/play" class="quiet-link">로컬 · AI</router-link>
       </div>
     </nav>
-    <section class="scoreboard" aria-label="경기 점수">
+    <p class="power-note" role="status" data-testid="online-audio-status" :data-audio-status="audioStatus">{{ audioNotice }}</p>
+    <section v-if="!recoveredResult" class="scoreboard" aria-label="경기 점수">
       <div class="player-label player-left">
         <span class="player-avatar">P1</span>
         <div>
@@ -62,10 +69,11 @@
         <div class="overlay-panel">
           <p class="eyebrow">MATCH COMPLETE</p>
           <h1>{{ result }}</h1>
-          <p>
+          <p v-if="!recoveredResult">
             {{ store.getters.gameData.score.left }} :
             {{ store.getters.gameData.score.right }}
           </p>
+          <p v-else data-testid="recovered-score">승자 {{ recoveredResult.winnerName }} {{ recoveredResult.winnerScore }}점 · 패자 {{ recoveredResult.loserName }} {{ recoveredResult.loserScore }}점</p>
           <p>{{ status }}</p>
           <slot name="result-actions" /><router-link to="/" class="quiet-link"
             >메뉴로 돌아가기</router-link
@@ -155,8 +163,14 @@
           <option value="wasd">W / S · D</option>
         </select></label
       >
+      <label>모션<select :value="settings.motion" @change="changeMotion" data-testid="online-motion">
+        <option value="system">시스템 설정</option><option value="reduce">줄이기</option>
+      </select></label>
       <slot name="actions" />
     </section>
+    <p v-if="!spectator" class="power-note" data-testid="online-key-hint">
+      이동 {{ keyLabel(keys.up) }} / {{ keyLabel(keys.down) }} · Power 모드 {{ keyLabel(keys.action) }}
+    </p>
     <p class="power-note">
       {{
         spectator
@@ -198,6 +212,9 @@
           <b>{{ onlineMetrics.displayDelayMs.toFixed(1) }} ms</b></span
         ><span
           >buffer 고갈 <b>{{ onlineMetrics.underflows }}</b></span
+        ><span>서버 이벤트 <b>{{ onlineMetrics.serverEventsReceived || 0 }}</b></span
+        ><span>표시 시점 이벤트 <b>{{ onlineMetrics.effectsPresented || 0 }}</b></span
+        ><span>건너뛴 효과 <b>{{ onlineMetrics.effectsSkipped || 0 }}</b></span
         ><small
           >전송 RTT는 별도 응답의 왕복 시간이며 서버 처리·브라우저 대기를
           포함합니다. ACK 관측값에는 서버 입력 적용 및 snapshot 수신까지가
@@ -210,9 +227,15 @@
 
 <script setup lang="ts">
 /* global defineProps, defineEmits */
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, onMounted, onUnmounted, reactive, ref, watch } from "vue";
 import { createGame, GameState, Side } from "../../../../shared/game-core";
+import type { RecoveredResult } from "../../../../shared/protocol";
 import { CourtRenderer } from "@/arcade/court-renderer";
+import { AudioFeedback, AudioStatus } from "@/arcade/audio-feedback";
+import { readPreferences, savePreferences } from "@/arcade/preferences";
+import { onlineBindings, readOnlinePreferences, saveOnlinePreferences } from "@/arcade/online-preferences";
+import { keyLabel } from "@/arcade/keyboard-controller";
+import { GameplayService } from "@/plugins/gamePlayService";
 import store from "@/store";
 import "@/arcade/arcade.css";
 
@@ -222,6 +245,7 @@ const props = defineProps<{
   active: boolean;
   waiting: boolean;
   result: string;
+  recoveredResult?: RecoveredResult | null;
   mode: boolean;
   map: string;
   layout: "arrows" | "wasd";
@@ -237,7 +261,46 @@ const canvas = ref<HTMLCanvasElement | null>(null);
 const match = computed<GameState | null>(() => store.getters.onlineState);
 const onlineMetrics = computed(() => store.getters.onlineMetrics);
 const sides: Side[] = ["left", "right"];
+const settings = reactive(readOnlinePreferences());
+const keys = computed(() => onlineBindings(props.layout));
+const soundMuted = ref(readPreferences().muted);
+const audioStatus = ref<AudioStatus>('muted');
+const audio = new AudioFeedback(status => { audioStatus.value = status; });
+audio.restoreMuted(soundMuted.value);
+const audioNotice = computed(() => ({
+  muted: '소리가 꺼져 있습니다.', ready: '소리 켜짐 · 서버의 실제 타격·득점에 맞춰 재생합니다.',
+  'gesture-required': '저장된 소리 설정을 켜려면 소리 버튼이나 경기 시작을 눌러 주세요.',
+  starting: '브라우저에서 소리를 준비하고 있습니다.',
+  blocked: '브라우저가 소리 재생을 허용하지 않았습니다. 소리 활성화를 다시 눌러 주세요.',
+  unavailable: '이 브라우저에서 소리를 시작하지 못했습니다. 경기 화면은 계속 사용할 수 있습니다.',
+}[audioStatus.value]));
 let preview: CourtRenderer | undefined;
+let motion: MediaQueryList | undefined;
+let detachFeedback: (() => void) | undefined;
+function activateSound(event: Event) {
+  // The explicit sound button owns its toggle; activation before click would
+  // turn a restored "activate" action straight back into mute.
+  if ((event.target as Element | null)?.closest?.('[data-testid="online-sound"], input, select, textarea, a')) return;
+  if (event.isTrusted && !soundMuted.value && audio.status !== 'ready') audio.setMuted(false);
+}
+function activateSoundFromKey(event: KeyboardEvent) {
+  if (event.code === 'Enter' || event.code === 'Space') activateSound(event);
+}
+function toggleSound() {
+  soundMuted.value = !soundMuted.value && ['ready', 'starting'].includes(audio.status);
+  audio.setMuted(soundMuted.value);
+  savePreferences({ ...readPreferences(), muted: soundMuted.value });
+}
+function applyMotion() {
+  const reduced = settings.motion === 'reduce';
+  preview?.setReducedMotion(reduced || Boolean(motion?.matches));
+  if (canvas.value) GameplayService.useReducedMotion(canvas.value, reduced);
+  drawPreview();
+}
+function changeMotion(event: Event) {
+  settings.motion = (event.target as HTMLSelectElement).value === 'reduce' ? 'reduce' : 'system';
+  saveOnlinePreferences(settings); applyMotion();
+}
 function focusCourt() {
   if (!props.spectator) canvas.value?.focus({ preventScroll: true });
 }
@@ -252,9 +315,11 @@ function changeMap(event: Event) {
   emit("update:map", (event.target as HTMLSelectElement).value);
 }
 function changeLayout(event: Event) {
+  settings.layout = (event.target as HTMLSelectElement).value === 'wasd' ? 'wasd' : 'arrows';
+  saveOnlinePreferences(settings);
   emit(
     "update:layout",
-    (event.target as HTMLSelectElement).value === "wasd" ? "wasd" : "arrows"
+    settings.layout
   );
 }
 watch(() => [props.mode, props.map, props.active, props.result], drawPreview);
@@ -264,7 +329,7 @@ watch(
     if (!canvas.value) return;
     preview = new CourtRenderer(
       canvas.value,
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+      Boolean(motion?.matches) || settings.motion === 'reduce',
       props.map
     );
     drawPreview();
@@ -273,16 +338,25 @@ watch(
 onMounted(() => {
   const context = canvas.value?.getContext("2d");
   if (!context || !canvas.value) return;
+  motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  detachFeedback = GameplayService.bindFeedback(canvas.value, { audio, reducedMotion: settings.motion === 'reduce' });
+  GameplayService.useKeyLayout(settings.layout);
+  emit('update:layout', settings.layout);
   preview = new CourtRenderer(
     canvas.value,
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    motion.matches || settings.motion === 'reduce',
     props.map
   );
   drawPreview();
   emit("context-ready", context);
   window.addEventListener("resize", drawPreview);
+  motion.addEventListener('change', applyMotion);
 });
-onUnmounted(() => window.removeEventListener("resize", drawPreview));
+onUnmounted(() => {
+  window.removeEventListener('resize', drawPreview);
+  motion?.removeEventListener('change', applyMotion);
+  detachFeedback?.(); audio.dispose();
+});
 </script>
 
 <style scoped>

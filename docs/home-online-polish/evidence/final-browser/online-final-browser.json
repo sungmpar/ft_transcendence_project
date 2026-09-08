@@ -1,0 +1,87 @@
+{
+  "status": "FAIL",
+  "at": "2026-09-08T03:31:59.075675+00:00",
+  "viewport": [
+    1440,
+    900
+  ],
+  "authentication": "actual guest HTTP redirects",
+  "environment": "Owned loopback fixture; real headless Chrome, keyboard, Socket.IO and native Canvas/AudioContext",
+  "limits": "Automated keyboard, not physical play; native audio method observations, not human hearing; controlled observer WebSocket closure, not WAN",
+  "browser": "152.0.7977.77",
+  "failure": "TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.",
+  "cases": [
+    {
+      "case": "real-six-point-match-and-mouse-rematch",
+      "status": "PASS",
+      "confirmedVisibleScores": [
+        0,
+        6
+      ],
+      "mouseRematchSameNewMatch": true,
+      "menuDisposed": true
+    },
+    {
+      "case": "observer-alone-reconnect-with-players-live",
+      "status": "FAIL",
+      "failureState": [
+        {
+          "sameOwnedMatch": true,
+          "side": "right",
+          "generation": 3,
+          "tick": 3629,
+          "phase": "rally",
+          "inputMessages": 416,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 416,
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "resultVisible": false
+        },
+        {
+          "sameOwnedMatch": true,
+          "side": "left",
+          "generation": 4,
+          "tick": 3632,
+          "phase": "rally",
+          "inputMessages": 464,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 464,
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "resultVisible": false
+        },
+        {
+          "sameOwnedMatch": true,
+          "side": "spectator",
+          "generation": 5,
+          "tick": 1618,
+          "phase": "rally",
+          "inputMessages": 0,
+          "socketsOpened": 2,
+          "openSockets": 0,
+          "inputPackets": 0,
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "resultVisible": false
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "elapsedSeconds": 144.351
+}

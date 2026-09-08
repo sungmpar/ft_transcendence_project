@@ -1,0 +1,11 @@
+{
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "watchman": false,
+  "fakeTimers": { "doNotFake": ["performance"] },
+  "moduleFileExtensions": ["ts", "js", "json"],
+  "testMatch": ["<rootDir>/src/game/login-intent.spec.ts", "<rootDir>/src/game/connection-retry.spec.ts"],
+  "transform": {
+    "^.+\\.ts$": ["ts-jest", { "tsconfig": { "target": "es2019", "module": "commonjs", "strict": true, "lib": ["es2020", "dom"] } }]
+  }
+}

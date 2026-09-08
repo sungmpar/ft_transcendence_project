@@ -1,0 +1,26 @@
+FAIL src/game/session-recovery.spec.ts (6.068 s)
+  ● bounds concurrent recovery DB work to one lookup per authenticated account
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 1
+    Received number of calls: 8
+
+      107 |     void sync(game, players[0], request(`request-${index}`, String(40 + index)));
+      108 |   }
+    > 109 |   expect(getOneForParticipant).toHaveBeenCalledTimes(1);
+          |                                ^
+      110 |   resolve(null); await pending;
+      111 | });
+      112 | const sync = (game: GameService, client: any, data = request()): Promise<any> =>
+
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:109:32)
+
+PASS src/game/game-session.spec.ts
+PASS src/game/server-match-runner.spec.ts
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       1 failed, 26 passed, 27 total
+Snapshots:   0 total
+Time:        7.129 s
+Ran all test suites.

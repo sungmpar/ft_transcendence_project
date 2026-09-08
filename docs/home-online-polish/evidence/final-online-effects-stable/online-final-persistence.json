@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "source": "Read actual Match rows from this disposable fixture after browser completion",
+  "requestedCase": "effects",
+  "completedRows": 1,
+  "sixPointRows": 1,
+  "scores": [
+    [
+      6,
+      1
+    ]
+  ],
+  "note": "No production DB, fabricated score, token or account identifier is included."
+}

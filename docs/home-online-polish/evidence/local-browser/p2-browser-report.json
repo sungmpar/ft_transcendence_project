@@ -1,0 +1,170 @@
+{
+  "clock": "Playwright accelerated browser clock; synthetic keyboard; no state writes",
+  "checks": [
+    {
+      "name": "Public hub without auth",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Two keyboard sets move simultaneously",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Opposed movement is neutral",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Pause freezes time",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Explicit resume has bounded catch-up",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Conflicting key map rejected",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Form input does not advance paused game",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Remapped movement applies",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Window blur pauses and requires resume",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Resize preserves game state",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "DPR backing store tracks CSS size",
+      "pass": true,
+      "detail": {
+        "width": 1811,
+        "css": 905.5,
+        "dpr": 2
+      }
+    },
+    {
+      "name": "Local full match ends at six",
+      "pass": true,
+      "detail": {
+        "accelerated_seconds": 12,
+        "tick": 726,
+        "score": [
+          6,
+          0
+        ],
+        "winner": "left"
+      }
+    },
+    {
+      "name": "Local restart resets scores",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Route exit removes diagnostic session",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Reentry owns a fresh match",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Reentry owns a fresh match",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Reentry owns a fresh match",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Existing online route still requires auth",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI human arrow layout controls left paddle",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI uses delayed observation",
+      "pass": true,
+      "detail": {
+        "difficulty": "normal",
+        "side": "right",
+        "observationTick": 174,
+        "decisionTick": 186,
+        "predictedY": null,
+        "targetY": 400,
+        "input": {
+          "up": false,
+          "down": false,
+          "action": false
+        },
+        "reactionTicks": 12,
+        "observationEveryTicks": 6,
+        "decisionEveryTicks": 6
+      }
+    },
+    {
+      "name": "AI full match ends at six",
+      "pass": true,
+      "detail": {
+        "accelerated_seconds": 27,
+        "tick": 1753,
+        "score": [
+          2,
+          6
+        ],
+        "winner": "right"
+      }
+    },
+    {
+      "name": "AI restart resets match and observation state",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "No page runtime errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No backend/auth/Socket calls in local and AI flows",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No external asset dependency",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "browser": "152.0.7977.77",
+  "status": "PASS",
+  "service_requests": [],
+  "external_requests_blocked": [],
+  "page_errors": []
+}

@@ -1,0 +1,47 @@
+{
+  "scope": "Initial browser navigation harness attempts, preserved separately from the final reruns",
+  "commandBase": "/opt/miniconda3/bin/python scripts/browser-home-navigation.py http://127.0.0.1:59707",
+  "attempts": [
+    {
+      "arguments": "--phase baseline",
+      "environment": "workspace sandbox",
+      "exitCode": 1,
+      "result": "Chrome process exited SIGABRT; cleanup reported kill EPERM before any browser check",
+      "classification": "environment failure"
+    },
+    {
+      "arguments": "--phase baseline",
+      "environment": "approved Chrome execution outside sandbox",
+      "exitCode": 1,
+      "elapsedSeconds": 35.542,
+      "result": "Harness initially recorded only generic Error; no behavioral check completed",
+      "classification": "insufficient failure diagnostics; not a product conclusion"
+    },
+    {
+      "arguments": "--phase baseline",
+      "environment": "approved Chrome execution outside sandbox",
+      "exitCode": 1,
+      "elapsedSeconds": 31.776,
+      "stage": "guest callback",
+      "result": "Page.wait_for_function timed out after 12000ms",
+      "classification": "baseline run overlapped the root-owned frontend rebuild; H08 baseline UI remains unverified"
+    },
+    {
+      "arguments": "--phase after",
+      "environment": "approved Chrome execution outside sandbox",
+      "exitCode": 1,
+      "elapsedSeconds": 37.86,
+      "stage": "invitation receiver refusal",
+      "result": "The expected actual refusal message existed in two UI locations, causing the harness exact-text strict locator to fail",
+      "classification": "test locator defect; corrected to assert the first visible expected message without weakening behavior"
+    },
+    {
+      "arguments": "--phase after",
+      "environment": "approved Chrome execution outside sandbox",
+      "exitCode": 0,
+      "elapsedSeconds": 38.665,
+      "result": "Friend selection/target/refusal/re-invitation/acceptance both courts passed; spectator SPA entry observed one socket and zero pending RAF",
+      "classification": "successful initial after build subset; later suite adds spectator list and back/forward assertions"
+    }
+  ]
+}

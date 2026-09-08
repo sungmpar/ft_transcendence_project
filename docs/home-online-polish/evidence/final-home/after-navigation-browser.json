@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "phase": "after",
+  "base": "http://127.0.0.1:52262",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "authentication": "Actual guest HTTP full redirect and existing cookie/router flow",
+  "fixtureSetup": "Authenticated friendship HTTP only; no credentials or identities recorded",
+  "checks": [
+    {
+      "name": "H08 actual drawer friend selection → invite target → receiver refusal",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual receiver acceptance starts both invitation courts",
+      "status": "PASS"
+    },
+    {
+      "name": "Invite → spectator via existing service navigation",
+      "status": "OBSERVED",
+      "resources": {
+        "raf": 0,
+        "sockets": 1,
+        "sent": {
+          "end": 2,
+          "invite": 2,
+          "keyboardEvent": 24
+        },
+        "onlineDebug": false,
+        "localDebug": false
+      },
+      "startEnabled": true
+    },
+    {
+      "name": "Spectator real empty response differs from withheld-request timeout; retry recovers",
+      "status": "PASS"
+    },
+    {
+      "name": "Home ↔ online via links, back/forward twice; one socket, idle RAF zero, one leave event",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Synthetic browser input; loopback fixture, not deployed service"
+  ],
+  "browser": "152.0.7977.77",
+  "stage": "online Home back forward lifetime",
+  "pageErrors": [],
+  "elapsedSeconds": 55.711
+}

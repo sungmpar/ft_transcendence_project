@@ -1,0 +1,6 @@
+
+/Users/sm/dev_park/ft_transcendence_project/backend/test/online-lifecycle-browser.e2e-spec.ts
+  4:22  error  Require statement not part of import statement  @typescript-eslint/no-var-requires
+
+✖ 1 problem (1 error, 0 warnings)
+

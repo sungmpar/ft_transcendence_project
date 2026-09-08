@@ -7,9 +7,14 @@ import {
   stepGame,
 } from '../../../shared/game-core';
 import { advanceClock, createClock } from '../../../shared/fixed-clock';
+import { randomUUID } from 'crypto';
 import {
   captureSnapshot,
+  copyServerEvents,
+  EVENT_HISTORY_TICKS,
   InputInbox,
+  MAX_SNAPSHOT_EVENTS,
+  ServerEvent,
   Snapshot,
 } from '../../../shared/protocol';
 
@@ -21,6 +26,9 @@ export class ServerMatchRunner {
   private lastNowMs: number;
   private lastSnapshotTick = 0;
   private snapshotSeq = 0;
+  private clockEpoch = 0;
+  private eventCursor = 0;
+  private events: ServerEvent[] = [];
   private active = true;
   private disposed = false;
   readonly metrics = { ticks: 0, droppedMs: 0 };
@@ -31,6 +39,7 @@ export class ServerMatchRunner {
     readonly generations: Record<Side, number>,
     nowMs: number,
     private readonly rng: RandomSource,
+    readonly instanceId = randomUUID(),
   ) {
     this.state = createGame({ mode: power ? 'power' : 'classic' });
     this.lastNowMs = nowMs;
@@ -43,6 +52,8 @@ export class ServerMatchRunner {
   start(nowMs = this.lastNowMs): void {
     if (this.disposed || this.active) return;
     this.active = true;
+    this.clockEpoch++;
+    this.events = [];
     this.lastNowMs = nowMs;
     this.clock = createClock();
   }
@@ -83,11 +94,17 @@ export class ServerMatchRunner {
   }
 
   snapshot(): Snapshot {
-    this.lastSnapshotTick = this.state.tick;
-    return captureSnapshot(this.state, this.matchId, ++this.snapshotSeq, {
-      left: this.inputs.left.ack,
-      right: this.inputs.right.ack,
-    });
+    return captureSnapshot(
+      this.state,
+      this.matchId,
+      ++this.snapshotSeq,
+      {
+        left: this.inputs.left.ack,
+        right: this.inputs.right.ack,
+      },
+      { instanceId: this.instanceId, clockEpoch: this.clockEpoch },
+      { eventCursor: this.eventCursor, events: this.events },
+    );
   }
 
   advance(nowMs: number): { events: GameEvent[]; snapshot?: Snapshot } {
@@ -110,19 +127,32 @@ export class ServerMatchRunner {
       this.inputs.right.markApplied();
       this.metrics.ticks++;
       events.push(...next.events);
+      for (const event of next.events)
+        this.events.push(
+          ...copyServerEvents([{ id: ++this.eventCursor, event }]),
+        );
     });
     this.clock = result.clock;
     this.metrics.droppedMs += result.droppedMs;
+    // A capped catch-up permanently changes wall-time minus simulation-time.
+    // Re-anchor presentation explicitly; packet jitter never changes this epoch.
+    if (result.droppedMs > 0) {
+      this.clockEpoch++;
+      this.events = [];
+    }
+    this.events = this.events
+      .filter(
+        (entry) => entry.event.tick >= this.state.tick - EVENT_HISTORY_TICKS,
+      )
+      .slice(-MAX_SNAPSHOT_EVENTS);
     // Nominal 20Hz snapshots; phase discontinuities are sent immediately.
     const boundary = events.some((event) =>
       ['serve', 'point', 'finished'].includes(event.type),
     );
-    return {
-      events,
-      snapshot:
-        boundary || this.state.tick - this.lastSnapshotTick >= 3
-          ? this.snapshot()
-          : undefined,
-    };
+    if (boundary || this.state.tick - this.lastSnapshotTick >= 3) {
+      this.lastSnapshotTick = this.state.tick;
+      return { events, snapshot: this.snapshot() };
+    }
+    return { events };
   }
 }

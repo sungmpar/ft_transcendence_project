@@ -5,7 +5,8 @@
   "watchman": false,
   "testMatch": [
     "<rootDir>/src/game/server-match-runner.spec.ts",
-    "<rootDir>/src/game/game-session.spec.ts"
+    "<rootDir>/src/game/game-session.spec.ts",
+    "<rootDir>/src/game/session-recovery.spec.ts"
   ],
   "transform": {
     "^.+\\.ts$": [

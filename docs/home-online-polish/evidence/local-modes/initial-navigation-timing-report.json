@@ -1,0 +1,137 @@
+{
+  "checks": [
+    {
+      "name": "Corrupted preferences fall back to Classic/Normal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Entering a mode does not start its simulation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Local Power activates from five real returns via its actual key",
+      "pass": true,
+      "detail": {
+        "side": "right",
+        "tick": 870,
+        "charge": 5,
+        "height": 400
+      }
+    },
+    {
+      "name": "Local Power completes a full match at six",
+      "pass": true,
+      "detail": {
+        "seconds": 15,
+        "score": [
+          0,
+          6
+        ],
+        "tick": 1728
+      }
+    },
+    {
+      "name": "Local Power rematch clears charge and score",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/easy uses its selected rules and delayed observation",
+      "pass": true,
+      "detail": {
+        "tick": 178,
+        "ai": {
+          "difficulty": "easy",
+          "side": "right",
+          "observationTick": 150,
+          "decisionTick": 168,
+          "predictedY": 339.34730156041064,
+          "targetY": 352.1908286325199,
+          "input": {
+            "up": false,
+            "down": true,
+            "action": false
+          },
+          "reactionTicks": 18,
+          "observationEveryTicks": 10,
+          "decisionEveryTicks": 10
+        }
+      }
+    },
+    {
+      "name": "AI classic/easy completes at six",
+      "pass": true,
+      "detail": {
+        "seconds": 18,
+        "score": [
+          1,
+          6
+        ],
+        "tick": 1237
+      }
+    },
+    {
+      "name": "AI classic/easy restarts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/easy route releases its session",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/normal uses its selected rules and delayed observation",
+      "pass": true,
+      "detail": {
+        "tick": 178,
+        "ai": {
+          "difficulty": "normal",
+          "side": "right",
+          "observationTick": 162,
+          "decisionTick": 174,
+          "predictedY": 339.3473015604102,
+          "targetY": 341.5663641825811,
+          "input": {
+            "up": true,
+            "down": false,
+            "action": false
+          },
+          "reactionTicks": 12,
+          "observationEveryTicks": 6,
+          "decisionEveryTicks": 6
+        }
+      }
+    },
+    {
+      "name": "AI classic/normal completes at six",
+      "pass": true,
+      "detail": {
+        "seconds": 27,
+        "score": [
+          2,
+          6
+        ],
+        "tick": 1753
+      }
+    },
+    {
+      "name": "AI classic/normal restarts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI classic/normal route releases its session",
+      "pass": false,
+      "detail": null
+    }
+  ],
+  "method": "Actual Chrome; synthetic keyboard, accelerated Clock, read-only game diagnostics",
+  "requests": [],
+  "errors": [],
+  "browser": "152.0.7977.77",
+  "status": "FAIL",
+  "error": "AI classic/normal route releases its session: None"
+}

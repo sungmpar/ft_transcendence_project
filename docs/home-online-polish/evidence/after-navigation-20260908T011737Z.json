@@ -1,0 +1,95 @@
+{
+  "status": "FAIL",
+  "phase": "after",
+  "base": "http://127.0.0.1:59707",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "authentication": "Actual guest HTTP full redirect and existing cookie/router flow",
+  "fixtureSetup": "Authenticated friendship HTTP only; no credentials or identities recorded",
+  "checks": [
+    {
+      "name": "H08 actual drawer friend selection → invite target → receiver refusal",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual receiver acceptance starts both invitation courts",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Synthetic browser input; loopback fixture, not deployed service"
+  ],
+  "browser": "152.0.7977.77",
+  "stage": "invitation receiver acceptance",
+  "failure": "Locator.click: Timeout 12000ms exceeded.",
+  "httpChecks": [
+    {
+      "path": "/user/me",
+      "status": 200
+    },
+    {
+      "path": "/user/me",
+      "status": 200
+    },
+    {
+      "path": "/user/image/:fixture",
+      "status": 200
+    },
+    {
+      "path": "/user/me",
+      "status": 200
+    },
+    {
+      "path": "/user/friends",
+      "status": 200
+    },
+    {
+      "path": "/user/nickname",
+      "status": 200
+    },
+    {
+      "path": "/user/me",
+      "status": 200
+    },
+    {
+      "path": "/user/status",
+      "status": 200
+    },
+    {
+      "path": "/user/me",
+      "status": 200
+    },
+    {
+      "path": "/user/status",
+      "status": 200
+    },
+    {
+      "path": "/user/friends",
+      "status": 200
+    },
+    {
+      "path": "/user/image/:fixture",
+      "status": 200
+    },
+    {
+      "path": "/user/me",
+      "status": 200
+    },
+    {
+      "path": "/user/me",
+      "status": 200
+    },
+    {
+      "path": "/user/me",
+      "status": 200
+    }
+  ],
+  "finalPaths": [
+    "/tempwatchpage",
+    "/invite"
+  ],
+  "pageErrors": [],
+  "elapsedSeconds": 82.873
+}

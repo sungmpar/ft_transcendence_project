@@ -1,0 +1,27 @@
+{
+  "status": "FAIL",
+  "at": "2026-09-08T03:16:28.368186+00:00",
+  "viewport": [
+    1440,
+    900
+  ],
+  "authentication": "actual guest HTTP redirects",
+  "environment": "Owned loopback fixture; real headless Chrome, keyboard, Socket.IO and native Canvas/AudioContext",
+  "limits": "Automated keyboard, not physical play; native audio method observations, not human hearing; controlled observer WebSocket closure, not WAN",
+  "browser": "152.0.7977.77",
+  "failure": "TimeoutError: Locator.click: Timeout 20000ms exceeded.",
+  "cases": [
+    {
+      "case": "authoritative-feedback-audio-motion-and-online-keys",
+      "status": "FAIL",
+      "defaultMutedWithRealServerHitAndCanvasFlash": true,
+      "gestureUnlockedNativeAudioAndRealOscillator": true,
+      "audioStatusWhenEnabled": "소리 켜짐 · 서버의 실제 타격·득점에 맞춰 재생합니다.",
+      "muteStopsNewNativeTonesWhileServerHitsContinue": true,
+      "systemReducedMotionSuppressesRealFlashAndTrail": true,
+      "motionSelectorSuppressesRealFlashAndTrail": true
+    }
+  ],
+  "pageErrors": [],
+  "elapsedSeconds": 63.063
+}

@@ -144,7 +144,7 @@ describe('authenticated server ownership and match publication', () => {
       'resultStatus',
       expect.objectContaining({ roomId: '41', status: 'retrying', attempt: 1 }),
     );
-    expect(players[1].emit.mock.calls.some(([event]) => event === 'end')).toBe(
+    expect(players[1].emit.mock.calls.some(([event]) => event === 'matchEnded')).toBe(
       false,
     );
     const tick = room.runner.state.tick;
@@ -165,7 +165,7 @@ describe('authenticated server ownership and match publication', () => {
         winner: 'right',
       }),
     );
-    expect(players[1].emit).toHaveBeenCalledWith('end', 'right');
+    expect(players[1].emit).toHaveBeenCalledWith('matchEnded', { v: 1, roomId: '41', winner: 'right' });
   });
 
   it('pauses disconnect grace and resumes with new input epochs without catch-up or old-socket control', async () => {
@@ -228,7 +228,7 @@ describe('authenticated server ownership and match publication', () => {
     advance(5001);
     await room.completion;
     expect(matches.update).toHaveBeenCalledTimes(1);
-    expect(players[1].emit).toHaveBeenCalledWith('end', 'right');
+    expect(players[1].emit).toHaveBeenCalledWith('matchEnded', { v: 1, roomId: '41', winner: 'right' });
     advance(10001);
     expect(matches.update).toHaveBeenCalledTimes(1);
   });
@@ -254,7 +254,7 @@ describe('authenticated server ownership and match publication', () => {
       roomId: '1',
       status: 'aborted',
     });
-    expect(players[0].emit.mock.calls.some(([event]) => event === 'end')).toBe(
+    expect(players[0].emit.mock.calls.some(([event]) => event === 'matchEnded')).toBe(
       false,
     );
     await Promise.resolve();

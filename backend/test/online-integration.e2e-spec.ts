@@ -81,12 +81,13 @@ describe('real isolated online game service', () => {
       });
     });
     const ended = clients.map((client) =>
-      nextEvent<'left' | 'right'>(client, 'end', 90000),
+      nextEvent<{ v: 1; roomId: string; winner: 'left' | 'right' }>(client, 'matchEnded', 90000),
     );
     const winners = await Promise.all(ended);
     clients.forEach((client) => client.removeAllListeners('snapshot'));
     expect(invalidSnapshots).toBe(0);
-    expect(winners[0]).toBe(winners[1]);
+    expect(winners[0]).toEqual(winners[1]);
+    expect(winners[0].roomId).toBe(rooms[0].roomId);
     for (let index = 0; index < 2; index++) {
       expect(received[index]).toBeGreaterThan(6);
       expect(positions[index].size).toBeGreaterThan(6);
@@ -98,7 +99,7 @@ describe('real isolated online game service', () => {
           .findOne({ where: { id: Number(rooms[0].roomId) } }),
       (value) => value?.winnerScore === 6 && value.winner !== null,
     );
-    expect(match.winner.id).toBe(users[winners[0] === 'left' ? 0 : 1].id);
+    expect(match.winner.id).toBe(users[winners[0].winner === 'left' ? 0 : 1].id);
     expect(match.loserScore).toBeLessThan(6);
     clients.forEach((client) => client.disconnect());
   }, 100000);
@@ -144,7 +145,7 @@ describe('real isolated online game service', () => {
       side: 'spectator',
     });
     expect(Number.isFinite((await update).state.ball.x)).toBe(true);
-    const ended = [nextEvent(right, 'end'), nextEvent(spectator, 'end')];
+    const ended = [nextEvent(right, 'matchEnded'), nextEvent(spectator, 'matchEnded')];
     left.emit('end');
     await Promise.all(ended);
     const match = await waitForFixture(

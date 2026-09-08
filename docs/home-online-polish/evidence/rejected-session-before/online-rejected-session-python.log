@@ -1,0 +1,28 @@
+{"status": "FAIL", "at": "2026-09-08T03:53:48.827146+00:00", "viewport": [1440, 900], "authentication": "Actual guest HTTP redirect; duplicate tab shares its native browser context", "limits": "Owned loopback fixture, automated browser input; aggregate read-only server session observation, no account or socket-state injection", "browser": "152.0.7977.77", "failure": "TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.", "pageErrors": [], "elapsedSeconds": 33.725}
+Traceback (most recent call last):
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-rejected-session.py", line 113, in <module>
+    asyncio.run(main())
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/base_events.py", line 685, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-rejected-session.py", line 64, in main
+    await rejected.wait_for_function('''() => {
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 11479, in wait_for_function
+    await self._impl_obj.wait_for_function(
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_page.py", line 1113, in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 860, in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.

@@ -1,0 +1,242 @@
+{
+  "source": "Executor tool results, not reconstructed from test summaries",
+  "baseCommit": "2f11bee69c2d55ed938b53f9750119a890396fb7",
+  "commands": [
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n1-server-before.log 2>&1",
+      "exitCode": 1,
+      "result": "New recovery contract: 7 FAIL; existing14 PASS. Browser defect independently reproduced first."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n1-server-after.log 2>&1",
+      "exitCode": 0,
+      "result": "21 PASS"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs unit > docs/home-online-polish/evidence/n1-unit-after.log 2>&1",
+      "exitCode": 1,
+      "result": "Stopped at client config:17 PASS/5 FAIL. New test harness attempted to replace readonly global performance in Jest fake timers; environment/harness failure."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs unit > docs/home-online-polish/evidence/n1-unit-timer-fix.log 2>&1",
+      "exitCode": 0,
+      "result": "9 configs170 PASS=21+43+16+16+10+22+8+13+21. doNotFake performance fixed the harness; timers remain controlled."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs online > docs/home-online-polish/evidence/n1-online-after.log 2>&1",
+      "exitCode": 0,
+      "result": "3 configs15 PASS=3+7+5; actual isolated PostgreSQL/HTTP/Socket.IO."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n2-server-before.log 2>&1",
+      "exitCode": 1,
+      "result": "New observer recovery contract:3 FAIL;22 PASS."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n2-server-after.log 2>&1",
+      "exitCode": 0,
+      "result": "25 PASS"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/review-bindings-before.log 2>&1",
+      "exitCode": 1,
+      "result": "1 FAIL/25 PASS; repeated reconnect during pending save leaves strong binding references."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/review-db-bound-before.log 2>&1",
+      "exitCode": 1,
+      "result": "1 FAIL/26 PASS; unbounded concurrent lookup calls reproduced."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n2-server-final.log 2>&1",
+      "exitCode": 0,
+      "result": "27 PASS, including binding cleanup, authorized results and one pending lookup per account."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-session-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n2-client-final.log 2>&1",
+      "exitCode": 0,
+      "result": "24 PASS, including installed Socket.IO ACK registry/send buffer expiry."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/core-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n2-protocol-core-final.log 2>&1",
+      "exitCode": 0,
+      "result": "45 PASS"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:59707 --case player --phase before > docs/home-online-polish/evidence/n1-browser-before.log 2>&1",
+      "exitCode": 0,
+      "result": "REPRODUCED; original same-page remains waiting after disconnect expiry. Exit0 means expected defect observation, not product PASS.",
+      "permission": "Explicitly permitted loopback fixture and Chromium execution"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:63106 --case player --phase after > docs/home-online-polish/evidence/n1-browser-after.log 2>&1",
+      "exitCode": 1,
+      "result": "Scenario did not reach peer disconnect waiting before timeout; the unattended game can end before ping timeout. No recovery verdict.",
+      "permission": "Explicitly permitted loopback fixture and Chromium execution"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:63106 --case player --phase after --transport-close > docs/home-online-polish/evidence/n1-browser-after-controlled.log 2>&1",
+      "exitCode": 0,
+      "result": "PASS; same-page saved result and rematch. Explicit transport close was requested while offline in this earlier script revision; raw command log preserves exact report.",
+      "permission": "Explicitly permitted loopback fixture and Chromium execution"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:63106 --case spectator --phase before --transport-close > docs/home-online-polish/evidence/n2-browser-before.log 2>&1",
+      "exitCode": 0,
+      "result": "REPRODUCED; observer-only transport reconnect remains frozen. No game/UI state injection.",
+      "permission": "Explicitly permitted loopback fixture and Chromium execution"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit > ../docs/home-online-polish/evidence/n1-frontend-noemit.log 2>&1",
+      "exitCode": 0
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit > ../docs/home-online-polish/evidence/n2-frontend-noemit.log 2>&1",
+      "exitCode": 0
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_ENABLE_GUEST_LOGIN=true VUE_APP_ARCADE_DEBUG=true yarn build > ../docs/home-online-polish/evidence/n1-frontend-build.log 2>&1",
+      "exitCode": 0,
+      "buildHash": "3b682e74d148bd63"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_ENABLE_GUEST_LOGIN=true VUE_APP_ARCADE_DEBUG=true yarn build > ../docs/home-online-polish/evidence/n2-frontend-build.log 2>&1",
+      "exitCode": 0,
+      "buildHash": "968743285e3c018c"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH npm run build > ../docs/home-online-polish/evidence/n2-backend-build.log 2>&1",
+      "exitCode": 0
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/review-spectator-grant-before.log 2>&1",
+      "exitCode": 1,
+      "result": "2 FAIL / 27 PASS: unregistered spectator got saved result; expired grant still queried DB"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/review-spectator-grant-after.log 2>&1",
+      "exitCode": 0,
+      "result": "29 PASS: role spoof and expiry/restart fixed"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/server-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n2-server-grant-final.log 2>&1",
+      "exitCode": 0,
+      "result": "30 PASS including 1000-grant bound and eviction"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-session-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/n2-client-grant-final.log 2>&1",
+      "exitCode": 0,
+      "result": "24 PASS including installed Socket.IO ACK registry and sendBuffer cleanup"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs online > docs/home-online-polish/evidence/n2-online-final.log 2>&1",
+      "exitCode": 0,
+      "result": "3 configs / 15 PASS (3+7+5); isolated PostgreSQL/HTTP/Socket.IO"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs online > docs/home-online-polish/evidence/n2-online-grant-final.log 2>&1",
+      "exitCode": 0,
+      "result": "3 configs / 15 PASS (3+7+5); isolated PostgreSQL/HTTP/Socket.IO"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH npm run build > ../docs/home-online-polish/evidence/n2-backend-grant-final-build.log 2>&1",
+      "exitCode": 0,
+      "result": "TypeScript backend build"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_GAME_DEBUG=true /usr/local/bin/yarn build > ../docs/home-online-polish/evidence/n2-frontend-grant-final-build.log 2>&1",
+      "exitCode": 0,
+      "result": "Build hash6e72dd88f6b178bb. GAME_DEBUG is not the fixture flag; this build was not used for browser verification."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_ENABLE_GUEST_LOGIN=true VUE_APP_ARCADE_DEBUG=true /usr/local/bin/yarn build > ../docs/home-online-polish/evidence/n2-frontend-grant-fixture-build.log 2>&1",
+      "exitCode": 0,
+      "result": "Actual guest/debug fixture build hash7ec1f0d3183ec242, completed 2026-09-08T02:13:46.081Z"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:64424 --case spectator --phase after --transport-close > docs/home-online-polish/evidence/n2-browser-after.log 2>&1",
+      "exitCode": 0,
+      "result": "PASS: observer-only resubscription, advancing ticks, inputMessages0, pageErrors0, three actual guest contexts"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:64424 --case player --phase after --transport-close > docs/home-online-polish/evidence/n1-browser-recovered-score-after.log 2>&1",
+      "exitCode": 1,
+      "result": "PARTIAL/FAIL: same-page result and confirmed score visible, stale left/right score hidden; later mouse rematch click timed out. PNG captured before failure. Earlier N1 controlled rematch passed independently."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src/arcade/session-recovery.ts src/views/GameView.vue src/views/InviteGameView.vue src/views/SpectateView.vue src/components/game/OnlineGameShell.vue --no-fix > ../docs/home-online-polish/evidence/n2-frontend-scoped-lint.log 2>&1",
+      "exitCode": 0,
+      "result": "Scoped non-fixing lint PASS; not full-repo lint"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src/game/game.service.ts --no-fix > ../docs/home-online-polish/evidence/n2-backend-scoped-lint.log 2>&1",
+      "exitCode": 0,
+      "result": "Scoped non-fixing lint PASS; not full-repo lint"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src/arcade/session-recovery.ts src/views/GameView.vue src/views/InviteGameView.vue src/views/SpectateView.vue src/components/game/OnlineGameShell.vue --no-fix > ../docs/home-online-polish/evidence/n2-frontend-final-scoped-lint.log 2>&1",
+      "exitCode": 0,
+      "result": "Scoped non-fixing lint PASS; not full-repo lint"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src/game/game.service.ts --no-fix > ../docs/home-online-polish/evidence/n2-backend-final-scoped-lint.log 2>&1",
+      "exitCode": 0,
+      "result": "Scoped non-fixing lint PASS; not full-repo lint"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:65199 --case player --phase after --transport-close --evidence-tag grant-final > docs/home-online-polish/evidence/n1-browser-grant-final.log 2>&1",
+      "exitCode": 0,
+      "result": "PASS: expired result same-page recovery, confirmed result score only, actual mouse click(no_wait_after=True) rematch; both clients entered same new match with new ticks; pageErrors0"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:65199 --case spectator --phase after --transport-close --evidence-tag grant-final > docs/home-online-polish/evidence/n2-browser-grant-final.log 2>&1",
+      "exitCode": 1,
+      "result": "PARTIAL/FAIL: observer-only recovery advancing ticks and inputMessages0 passed; observer PNG captured. Second player screenshot timed out at15s. Functional assertions preserved for separate45s screenshot retry."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-online-recovery.py http://127.0.0.1:65199 --case spectator --phase after --transport-close --evidence-tag grant-final-retry > docs/home-online-polish/evidence/n2-browser-grant-final-retry.log 2>&1",
+      "exitCode": 1,
+      "result": "FAIL: observerTickAdvanced false at the live-resubscription assertion; observerStatus was confirmed saved result because the unattended match ended during the scenario. Not relabeled as a live-resubscription PASS. Functional final-grant recovery was independently observed in the preceding run before its screenshot failure."
+    }
+  ],
+  "scope": "All N1/N2 executor-owned test commands through handoff are recorded. N3/D and root integration runs are separate. Fixture65199 stopped normally (owned process29512 Ctrl+C, exit0) after live_gate service UI review completed; it is no longer available."
+}

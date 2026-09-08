@@ -1,0 +1,50 @@
+FAIL src/game/session-recovery.spec.ts (6.088 s)
+  ● N2 observer-owned resubscription › rejects a spectator role spoof for a completed match the account never watched
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "status": "unavailable",
+    +   "status": "saved",
+      }
+
+      110 |     await game.dropUser(players[0]);
+      111 |     expect(await sync(game, players[2])).toMatchObject({ status: 'unavailable' });
+    > 112 |     expect(await sync(game, players[2], watchRequest())).toMatchObject({
+          |                                                          ^
+      113 |       status: 'unavailable',
+      114 |     });
+      115 |     await game.spectate(players[2], { id: '41' });
+
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:112:58)
+
+  ● N2 observer-owned resubscription › expires prior observer grants and does not reconstruct them after a restart
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 1
+
+    1: "41"
+
+      127 |       status: 'unavailable',
+      128 |     });
+    > 129 |     expect(matches.getOne).not.toHaveBeenCalled();
+          |                                ^
+      130 |     const restarted = setup();
+      131 |     expect(await sync(restarted.game, restarted.players[2], watchRequest())).toMatchObject({
+      132 |       status: 'unavailable',
+
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:129:32)
+
+PASS src/game/game-session.spec.ts
+PASS src/game/server-match-runner.spec.ts
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       2 failed, 27 passed, 29 total
+Snapshots:   0 total
+Time:        6.771 s, estimated 8 s
+Ran all test suites.

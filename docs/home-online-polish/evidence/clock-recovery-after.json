@@ -1,0 +1,178 @@
+{
+  "environment": "Synthetic 10ms scheduler/50ms transit/10ms client sampling; real ServerMatchRunner and SnapshotBuffer; no WAN or browser claims",
+  "criterion": "Within 300ms after resumption, presentation tick and moving coordinates strictly between two actual post-resume snapshots, with exact lerp coordinates",
+  "reports": [
+    {
+      "name": "normal",
+      "status": "PASS",
+      "firstSecond": {
+        "ticks": 60,
+        "snapshots": 20
+      },
+      "strictInterpolationSamples": 226,
+      "sample": {
+        "localTime": 205,
+        "beforeTick": 3,
+        "afterTick": 6,
+        "presentationTick": 3.299999999999999,
+        "alpha": 0.09999999999999964,
+        "movingAxes": [
+          "leftY",
+          "rightY"
+        ]
+      }
+    },
+    {
+      "name": "stall-200",
+      "status": "PASS",
+      "resumedAt": 2700,
+      "recoveryBoundMs": 300,
+      "droppedMs": 66.66666666666667,
+      "proof": {
+        "localTime": 2855,
+        "beforeTick": 158,
+        "afterTick": 161,
+        "presentationTick": 158.3,
+        "alpha": 0.1000000000000038,
+        "movingAxes": [
+          "ballX",
+          "ballY",
+          "leftY",
+          "rightY"
+        ]
+      },
+      "finalPresentationTick": 167.29999999999998,
+      "finalServerTick": 176,
+      "underflowEpisodes": 1
+    },
+    {
+      "name": "stall-500",
+      "status": "PASS",
+      "resumedAt": 3000,
+      "recoveryBoundMs": 300,
+      "droppedMs": 366.6666666666667,
+      "proof": {
+        "localTime": 3155,
+        "beforeTick": 158,
+        "afterTick": 161,
+        "presentationTick": 158.3,
+        "alpha": 0.1000000000000038,
+        "movingAxes": [
+          "ballX",
+          "ballY",
+          "leftY",
+          "rightY"
+        ]
+      },
+      "finalPresentationTick": 167.29999999999998,
+      "finalServerTick": 176,
+      "underflowEpisodes": 1
+    },
+    {
+      "name": "stall-1000",
+      "status": "PASS",
+      "resumedAt": 3500,
+      "recoveryBoundMs": 300,
+      "droppedMs": 866.6666666666666,
+      "proof": {
+        "localTime": 3655,
+        "beforeTick": 158,
+        "afterTick": 161,
+        "presentationTick": 158.3,
+        "alpha": 0.1000000000000038,
+        "movingAxes": [
+          "ballX",
+          "ballY",
+          "leftY",
+          "rightY"
+        ]
+      },
+      "finalPresentationTick": 167.29999999999998,
+      "finalServerTick": 176,
+      "underflowEpisodes": 1
+    },
+    {
+      "name": "repeated-stall-1",
+      "status": "PASS",
+      "resumedAt": 3000,
+      "droppedMs": 366.6666666666667,
+      "proof": {
+        "localTime": 3155,
+        "beforeTick": 158,
+        "afterTick": 161,
+        "presentationTick": 158.3,
+        "alpha": 0.1000000000000038,
+        "movingAxes": [
+          "ballX",
+          "ballY",
+          "leftY",
+          "rightY"
+        ]
+      }
+    },
+    {
+      "name": "repeated-stall-2",
+      "status": "PASS",
+      "resumedAt": 3800,
+      "droppedMs": 366.6666666666667,
+      "proof": {
+        "localTime": 3955,
+        "beforeTick": 184,
+        "afterTick": 187,
+        "presentationTick": 184.3,
+        "alpha": 0.1000000000000038,
+        "movingAxes": [
+          "leftY",
+          "rightY"
+        ]
+      }
+    },
+    {
+      "name": "repeated-stall-3",
+      "status": "PASS",
+      "resumedAt": 4600,
+      "droppedMs": 366.66666666666663,
+      "proof": {
+        "localTime": 4755,
+        "beforeTick": 210,
+        "afterTick": 213,
+        "presentationTick": 210.3,
+        "alpha": 0.1000000000000038,
+        "movingAxes": [
+          "leftY",
+          "rightY"
+        ]
+      }
+    },
+    {
+      "name": "arrival-jitter-40ms",
+      "status": "PASS",
+      "strictInterpolationSamples": 200,
+      "presentationNeverReversed": true,
+      "droppedMs": 0
+    },
+    {
+      "name": "pause-resume-500ms",
+      "status": "PASS",
+      "resumedAt": 3000,
+      "recoveryBoundMs": 300,
+      "droppedMs": 0,
+      "proof": {
+        "localTime": 3205,
+        "beforeTick": 153,
+        "afterTick": 156,
+        "presentationTick": 153.29999999999998,
+        "alpha": 0.09999999999999432,
+        "movingAxes": [
+          "ballX",
+          "ballY",
+          "leftY",
+          "rightY"
+        ]
+      },
+      "finalPresentationTick": 159.29999999999998,
+      "finalServerTick": 168,
+      "underflowEpisodes": 1
+    }
+  ]
+}

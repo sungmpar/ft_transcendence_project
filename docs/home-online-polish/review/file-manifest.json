@@ -1,0 +1,2689 @@
+{
+  "generatedAt": "2026-09-08T04:44:29.618490+00:00",
+  "repository": "sungmpar/ft_transcendence_project",
+  "branch": "main",
+  "head": "2f11bee69c2d55ed938b53f9750119a890396fb7",
+  "originMain": "2f11bee69c2d55ed938b53f9750119a890396fb7",
+  "stagedFiles": [],
+  "modifiedTrackedFiles": [
+    "README.md",
+    "backend/src/auth/auth.controller.ts",
+    "backend/src/game/frontend-lifecycle.spec.ts",
+    "backend/src/game/game-session.spec.ts",
+    "backend/src/game/game.gateway.ts",
+    "backend/src/game/game.service.ts",
+    "backend/src/game/online-session.spec.ts",
+    "backend/src/game/protocol.spec.ts",
+    "backend/src/game/server-match-runner.spec.ts",
+    "backend/src/game/server-match-runner.ts",
+    "backend/src/game/snapshot-buffer.spec.ts",
+    "backend/src/user/match.service.ts",
+    "backend/test/online-browser-unit-fixture.ts",
+    "backend/test/online-browser.e2e-spec.ts",
+    "backend/test/online-fixture.ts",
+    "backend/test/online-integration.e2e-spec.ts",
+    "backend/test/online-lifecycle-browser.e2e-spec.ts",
+    "backend/test/online-lifecycle.e2e-spec.ts",
+    "backend/test/server-jest.json",
+    "frontend/src/App.vue",
+    "frontend/src/arcade/audio-feedback.ts",
+    "frontend/src/arcade/keyboard-controller.ts",
+    "frontend/src/arcade/online-session.ts",
+    "frontend/src/arcade/snapshot-buffer.ts",
+    "frontend/src/components/SideBar.vue",
+    "frontend/src/components/chat/ChatContainer.vue",
+    "frontend/src/components/friends/FriendsSlider.vue",
+    "frontend/src/components/game/InviteSlider.vue",
+    "frontend/src/components/game/OnlineGameShell.vue",
+    "frontend/src/components/game/SpectateSlider.vue",
+    "frontend/src/plugins/gamePlayService.ts",
+    "frontend/src/router/index.ts",
+    "frontend/src/views/BoardView.vue",
+    "frontend/src/views/ChatView.vue",
+    "frontend/src/views/GameView.vue",
+    "frontend/src/views/HomeView.vue",
+    "frontend/src/views/InfoView.vue",
+    "frontend/src/views/InviteGameView.vue",
+    "frontend/src/views/LoginView.vue",
+    "frontend/src/views/PlayHubView.vue",
+    "frontend/src/views/SpectateView.vue",
+    "frontend/src/views/TfaView.vue",
+    "scripts/check-arcade.cjs",
+    "shared/protocol.ts"
+  ],
+  "omittedRuntimeOrSecretPaths": [],
+  "sourcePatchSha256": "6bf6cc0defd00fc33c4302985c514eb98306f70f4c34f9708e465b277c11a7d6",
+  "sourcePatchReverseCheck": "PASS",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 12749,
+      "sha256": "5b5340449e17cdc5d779911f0af5aef0ed699e8013c831e5671df52c640583f1"
+    },
+    {
+      "path": "backend/src/auth/auth.controller.ts",
+      "bytes": 3596,
+      "sha256": "5168ff43276ec593fc6d05db1b706a6e59e7af6d8884822ae65fe9eaa193c828"
+    },
+    {
+      "path": "backend/src/game/audio-feedback.spec.ts",
+      "bytes": 5382,
+      "sha256": "517466fd4755e919260a9c737f89bbde5021ec12166a6cc55c9190fd895c8e8a"
+    },
+    {
+      "path": "backend/src/game/clock-recovery.spec.ts",
+      "bytes": 11938,
+      "sha256": "4f64cdd69c6adba3c0d89ab48894608b6a83dc0f7395ca525c1e95f8a2e8e27a"
+    },
+    {
+      "path": "backend/src/game/connection-retry.spec.ts",
+      "bytes": 5511,
+      "sha256": "55632f556f9a95108ddda397913135f6e73d3bb79e8e03105493c1717bddc478"
+    },
+    {
+      "path": "backend/src/game/event-presentation.spec.ts",
+      "bytes": 5352,
+      "sha256": "791c7c465e163d8b79cdfff0c074d674095f72b31ffb572aea43755b0ae6b040"
+    },
+    {
+      "path": "backend/src/game/frontend-lifecycle.spec.ts",
+      "bytes": 6259,
+      "sha256": "1515e9708efb91224574131350a22609cb7c008d1ee6b9cc9618c939928910fe"
+    },
+    {
+      "path": "backend/src/game/game-session.spec.ts",
+      "bytes": 10144,
+      "sha256": "9f024fa79b88022ba5915bca30eec6855ab0a0eb61e100547757fb685b29b055"
+    },
+    {
+      "path": "backend/src/game/game.gateway.ts",
+      "bytes": 4049,
+      "sha256": "d990c767c05eb657adbb11d485525373f81ff56ac8577fe519de475478ff5f64"
+    },
+    {
+      "path": "backend/src/game/game.service.ts",
+      "bytes": 32597,
+      "sha256": "c08b22793d9f44f5b5b82e9281ced73b62bace7e9d5265b75fa98307a7082bf2"
+    },
+    {
+      "path": "backend/src/game/login-intent.spec.ts",
+      "bytes": 3208,
+      "sha256": "033e252916eaa568bc495b017c6cd0a0b313802ea3d2e1c3cc89df34a8211285"
+    },
+    {
+      "path": "backend/src/game/online-feedback.spec.ts",
+      "bytes": 3774,
+      "sha256": "e91fc25f30cbf691f6e4bd3f61b5e3f249287aed0f98e9e191031e836fcacec9"
+    },
+    {
+      "path": "backend/src/game/online-preferences.spec.ts",
+      "bytes": 2233,
+      "sha256": "c77be76177fb6820d0f247b20e40a9f5912354c4376479fd19351399bc36ba03"
+    },
+    {
+      "path": "backend/src/game/online-session.spec.ts",
+      "bytes": 24183,
+      "sha256": "35912346be66821e890f6cc6aad780097ae11fcf29dbe34337ff8dc0e87f2110"
+    },
+    {
+      "path": "backend/src/game/protocol.spec.ts",
+      "bytes": 8805,
+      "sha256": "299c58afb9a293f4f1ccc65d615831de47d2ebc336a65d0f5c15de44f31403c0"
+    },
+    {
+      "path": "backend/src/game/server-match-runner.spec.ts",
+      "bytes": 4360,
+      "sha256": "79e6406eac5fab10121a151ac38ed74497fd7d8c32f2dc987b375cc830cacb81"
+    },
+    {
+      "path": "backend/src/game/server-match-runner.ts",
+      "bytes": 4687,
+      "sha256": "90c0bab311a2b38a8908f7927c0f83c763f3214e7ef7e59413fbc3a32a390226"
+    },
+    {
+      "path": "backend/src/game/session-recovery.spec.ts",
+      "bytes": 13615,
+      "sha256": "2078c8b3fd7f382f4415f996ef66cd161dd86946851dfe36a96bc48e6ea26ceb"
+    },
+    {
+      "path": "backend/src/game/snapshot-buffer.spec.ts",
+      "bytes": 11300,
+      "sha256": "580f99aa5fcc1452e330ae598a64c156eec9c5a0c9c346fbc586caf3a7bf8b09"
+    },
+    {
+      "path": "backend/src/user/match.service.ts",
+      "bytes": 4161,
+      "sha256": "c9dfd94b3eb9403bbc761ff46d2eb7a86e150269259cb79062030ba3a5f6736a"
+    },
+    {
+      "path": "backend/test/clock-recovery-jest.json",
+      "bytes": 344,
+      "sha256": "36a0e0e8df6839b719b4a7983ceaa1e01f8eed72ba4c5b57feda00e1fb6a9460"
+    },
+    {
+      "path": "backend/test/feedback-jest.json",
+      "bytes": 580,
+      "sha256": "bc3438b6653f0cbd170172113c24ef0c39dc7afe8a288851744f7b6321c36b9a"
+    },
+    {
+      "path": "backend/test/home-auth-prerequisites-jest.json",
+      "bytes": 398,
+      "sha256": "469920465d47dc65eee5656b70f4d35ee57cbfd82c56d8eb970568adbf5045d6"
+    },
+    {
+      "path": "backend/test/home-auth-prerequisites.e2e-spec.ts",
+      "bytes": 10577,
+      "sha256": "561fe96e0e412adac1da0f85ed7deced4ce939a2c0eb15b7aad03ef639ea107a"
+    },
+    {
+      "path": "backend/test/home-guest-entry-jest.json",
+      "bytes": 391,
+      "sha256": "2f2b10e4714c355bf85df19dbab884f1a547b0ef42503d8d48c9b5074b56329c"
+    },
+    {
+      "path": "backend/test/home-guest-entry.e2e-spec.ts",
+      "bytes": 15572,
+      "sha256": "c9ad39c69d37d6954ee0b0ea27d6e39ff3df9271c03d6b9019a05e39895b35ca"
+    },
+    {
+      "path": "backend/test/navigation-jest.json",
+      "bytes": 432,
+      "sha256": "1d05a8266d8c9f4e855e8baa5edf156854a62a423be1f326f46645c43e086be0"
+    },
+    {
+      "path": "backend/test/online-browser-unit-fixture.ts",
+      "bytes": 6043,
+      "sha256": "f15a8be0270db850a5d4ff85d1b7c9d353d8925ffd97227f562a01ce5f554afd"
+    },
+    {
+      "path": "backend/test/online-browser.e2e-spec.ts",
+      "bytes": 5972,
+      "sha256": "8af94eaa962cb3576289bea57b0bccf15067eb577c93e9738a5ef8e3a38adc92"
+    },
+    {
+      "path": "backend/test/online-final-browser-jest.json",
+      "bytes": 402,
+      "sha256": "99ccc4e78134df4c4610686b5d8b06c8d1ebc93cc52dd34f3b834d5a35b83b60"
+    },
+    {
+      "path": "backend/test/online-final-browser.e2e-spec.ts",
+      "bytes": 3711,
+      "sha256": "6e34626baa2ba9e30dbf2733a86ead51376b89a36ec1dd01dbc6c4bd7a6f4322"
+    },
+    {
+      "path": "backend/test/online-fixture.ts",
+      "bytes": 11248,
+      "sha256": "7e77b38d3d1a61b33a565a0ddfc015e14450af17fc7d6c0d7aaec489dee4d6ee"
+    },
+    {
+      "path": "backend/test/online-integration.e2e-spec.ts",
+      "bytes": 6227,
+      "sha256": "eab984c549506436bcb8de4a473a222e9944e19acbfdfcf0facb05006c43222e"
+    },
+    {
+      "path": "backend/test/online-lifecycle-browser.e2e-spec.ts",
+      "bytes": 11679,
+      "sha256": "6673516dfb970c4e2a4d9bed40b4e9eb9e1d40a96fb4d8fe12f6f547dee0d44e"
+    },
+    {
+      "path": "backend/test/online-lifecycle.e2e-spec.ts",
+      "bytes": 17812,
+      "sha256": "aa3345a9b56dcdd19a21672ed7daeb9edf931fd82ef0abb9ed64c196b88504b1"
+    },
+    {
+      "path": "backend/test/online-rejected-session-browser-jest.json",
+      "bytes": 509,
+      "sha256": "56489c8232bb802e34fabedcca58df0607ea3fecf46a321b9fe2ef42278b06c1"
+    },
+    {
+      "path": "backend/test/online-rejected-session-browser.e2e-spec.ts",
+      "bytes": 3538,
+      "sha256": "c80abd7086b4e7a5d6b968d1d9033333ebf59d3f0649165df5cae1792a3e7480"
+    },
+    {
+      "path": "backend/test/server-jest.json",
+      "bytes": 487,
+      "sha256": "cc6a1bd9439ad3f1518cd78839e76c2f9dca35fa18dc591df38cec64464391c5"
+    },
+    {
+      "path": "docs/home-online-polish/BROWSER_NAVIGATION_REVIEW.md",
+      "bytes": 5573,
+      "sha256": "95aa8bc71fe77fd47131236cac37fc4ffa8796c2f34bacb99d20e256d625b69c"
+    },
+    {
+      "path": "docs/home-online-polish/D_FEEDBACK_REPORT.md",
+      "bytes": 18188,
+      "sha256": "0bf847ce75c6c4ba9736835db923f2bb99d99082af13fa0f6eab6a830ebce833"
+    },
+    {
+      "path": "docs/home-online-polish/EVIDENCE_INDEX.md",
+      "bytes": 70996,
+      "sha256": "3d258f90947f06b4eb2c9ab7e192ae04e68ca3447dd4cdd9beba5d48970a2c4d"
+    },
+    {
+      "path": "docs/home-online-polish/E_CONNECTION_RETRY_REPORT.md",
+      "bytes": 12458,
+      "sha256": "38fc1facc17e6aa4394dce2ceab50a243ed2a1d9872d24a384d6503521f2e68a"
+    },
+    {
+      "path": "docs/home-online-polish/IMPLEMENTATION_REPORT.md",
+      "bytes": 19771,
+      "sha256": "20c413e4d307c73f9671dd59a406d1becd261813b3946e18c1ce02a943350f90"
+    },
+    {
+      "path": "docs/home-online-polish/INDEPENDENT_HOME_REVIEW.md",
+      "bytes": 12422,
+      "sha256": "817fd84139292c4cb282828823530ed2ff40e6b253930ef6ecad840c373ff93c"
+    },
+    {
+      "path": "docs/home-online-polish/INDEPENDENT_ONLINE_REVIEW.md",
+      "bytes": 47637,
+      "sha256": "dd2b329f19b7d8648b3f3eac73ee6e0640e257504044caa79fa920e8b6a890c9"
+    },
+    {
+      "path": "docs/home-online-polish/N1_N2_REPORT.md",
+      "bytes": 11487,
+      "sha256": "7ee02c42272bc5bcff6bb86bf514e00f7479daaf36b2363f15996b94c77e6920"
+    },
+    {
+      "path": "docs/home-online-polish/N3_CLOCK_REPORT.md",
+      "bytes": 14284,
+      "sha256": "43b5e249a4e2ecd1ceb27f7b774056d36cd3a9a95b8c293f41f6ab91bfa0b8c8"
+    },
+    {
+      "path": "docs/home-online-polish/NAVIGATION_NOTES.md",
+      "bytes": 9856,
+      "sha256": "8c26dcfd53eedad4d18b29b6b81860ce1cdbd2ab3dd38e86fe87f3eb5dbfd54c"
+    },
+    {
+      "path": "docs/home-online-polish/PACKET_REVIEW.md",
+      "bytes": 4285,
+      "sha256": "173cb81406bacf467b75e4a4e187f0fbb0820c6d81bd4a322b462184ae14417a"
+    },
+    {
+      "path": "docs/home-online-polish/PORTFOLIO_CASE_STUDY.md",
+      "bytes": 6125,
+      "sha256": "009d5bd1abb3468f570c477ed196353e9275a0d0f31728ba8377c008387b6f41"
+    },
+    {
+      "path": "docs/home-online-polish/REVIEW_PACKET.md",
+      "bytes": 12861,
+      "sha256": "3ece9f6371b9c9624b3ebc34231f69587d9b39411426fee2ce85dde37d966033"
+    },
+    {
+      "path": "docs/home-online-polish/SERVICE_LAYOUT_REVIEW.md",
+      "bytes": 18707,
+      "sha256": "6ab96df1c8a95f3c6a46ec70e1b8255264bf62700632fbef6d36339e10290e53"
+    },
+    {
+      "path": "docs/home-online-polish/TEST_REPORT.md",
+      "bytes": 20393,
+      "sha256": "e629d619c2da4c74682f611eddea20dc3cef2b7e70f2cd9c82d24430ae4c32b4"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-auth-navigation-browser.json",
+      "bytes": 2751,
+      "sha256": "270103d522ab3b06d3c23bdafbb23ccc803c5bd72d96528ad0f1e9d6c32f088b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-auth-navigation-filtered.json",
+      "bytes": 842,
+      "sha256": "aa8b03dbf02053a7e477c77311d7650952ed288fff639fcce42a7f67a6d87f4c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-friend-invite.png",
+      "bytes": 69986,
+      "sha256": "ecaf10692197eb57ca7e645634f3ace5df8f29a502bf661e6cbd8a18aa033bca"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-home-1024x768.png",
+      "bytes": 98809,
+      "sha256": "2b15c6b88afe0c8c4fc88273267499777e849f7cb804a0e90c9325ef45310d32"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-home-1366x768.png",
+      "bytes": 103676,
+      "sha256": "70f8244c3d9334e961524a170bb60457e840e1f1d178f28234feb685302f30bd"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-home-1440x900.png",
+      "bytes": 105160,
+      "sha256": "e3c239d082d83aad3e99d467985dc649b803da85994ca93971c18a5756e4e970"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-home-200percent.png",
+      "bytes": 212147,
+      "sha256": "629b5cf47d67fcbdd2ae5a09d2dffc56f91e733aca8194187196026fba290efc"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-home-390x844.png",
+      "bytes": 97308,
+      "sha256": "4812436aff42ed2d86169531e85b8a9fc8a828377d2be1ce8311455f8002ac47"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-home-long-nickname-390x844.png",
+      "bytes": 97963,
+      "sha256": "da39a57250b4c055426d8aa7f3f46db859f4a38363c28bb17aa167c5cf75c3c0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-login-1440x900.png",
+      "bytes": 65523,
+      "sha256": "bc96027155add1cebe47a2ab8b7cddf8972748f65574abe336464ae9de86599d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-navigation-20260908T011737Z.json",
+      "bytes": 1861,
+      "sha256": "ee12aeb6b0d047d4d1c54124515fdd2ed1b7d8c85b258ae8ec78c891282fbaaa"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-navigation-20260908T012107Z.json",
+      "bytes": 1441,
+      "sha256": "07cdfed33612920dd9860da73c628835bce034eeef287cb1eb59ac5c29009d9a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-navigation-browser.json",
+      "bytes": 1441,
+      "sha256": "07cdfed33612920dd9860da73c628835bce034eeef287cb1eb59ac5c29009d9a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-online-lobby-1440x900.png",
+      "bytes": 69805,
+      "sha256": "c1640cc05333a7cbadd6d8c5c9b7d090054d680272cb537561e603841bf9221b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/after-play-hub-1440x900.png",
+      "bytes": 93084,
+      "sha256": "3f9b53fe5cfdfe9fd9b0ee9493f51e5b7c8b009cc23116b78de9798b8e8aa328"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/auth-expired-token-login.png",
+      "bytes": 69340,
+      "sha256": "6b686b3fcadc8b854eab5b34fc18a31bbb10f5814e6fcff0fb80f66032548cad"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/auth-navigation-20260908T011312Z.json",
+      "bytes": 2751,
+      "sha256": "270103d522ab3b06d3c23bdafbb23ccc803c5bd72d96528ad0f1e9d6c32f088b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/auth-navigation-20260908T011844Z.json",
+      "bytes": 842,
+      "sha256": "aa8b03dbf02053a7e477c77311d7650952ed288fff639fcce42a7f67a6d87f4c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/auth-nickname-before-layout-fix.png",
+      "bytes": 32633,
+      "sha256": "c43118cdd8f6493e13cc5838fd76197bfb076dab83418adfd05cfa5a1787fa7b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/auth-nickname-prerequisite.png",
+      "bytes": 35983,
+      "sha256": "3bcf44d90dfab89be99a99e2523781bda99cb071e4ba6862272a17cc078e5168"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/auth-nickname-resumed-game.png",
+      "bytes": 75819,
+      "sha256": "85263169f30b12faf9e835dd33aaf55a03ce959350e3cd3c5f9bf59417727e70"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-backend-build.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-backend-lint.log",
+      "bytes": 567222,
+      "sha256": "a1bfb75abcd756f3e1021f3a660e2323dacc71ee47fa3569e551c39567463f6e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-commands.json",
+      "bytes": 4206,
+      "sha256": "5f4dfb53111552ec0c92e471997afc8fa641bb20487425c43e0f6df53fee28cd"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-frontend-build.log",
+      "bytes": 11376,
+      "sha256": "3a26e9f889fdfa3174812b7d559084a0b3abf1727d755c4ec66ddfb699d8932b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-frontend-lint.log",
+      "bytes": 7504,
+      "sha256": "85e024b3de6200a853f002398cedce0306a837380f42cccca8cbcfe3cff32c71"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-frontend-noemit.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-login-return.json",
+      "bytes": 220,
+      "sha256": "491789141022e168ade8db7e01385aca2f34953d60cf759de251c07ed26b099f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-navigation-browser.json",
+      "bytes": 604,
+      "sha256": "66f57d57ec738cda885d0be112c31d220b6460cdb3cafccd75706571b66ada1a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-online-loopback.log",
+      "bytes": 2657,
+      "sha256": "17e79f6877c4022798e5d0b08c0947e9d8308434e86be24433a148cb79c31b9f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-online.log",
+      "bytes": 3139,
+      "sha256": "a91f3c74df3a8369d945fac4724228ab04c07bbedbac78fb49e623cef0eeab1b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/baseline-unit.log",
+      "bytes": 10118,
+      "sha256": "415f579f0a57723d68a257df298d3103f9e39c609c9b22259774683e62097696"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/before-home-1024x768.png",
+      "bytes": 187568,
+      "sha256": "f430d410ca3c24c2292af59470e9b8211551a55b3959275887a3980c4005bff5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/before-home-1366x768.png",
+      "bytes": 199195,
+      "sha256": "166a943e19d1ab0313c16a53ef05120c24dd5f7f514d165327ab35be2b865c1b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/before-home-1440x900.png",
+      "bytes": 202895,
+      "sha256": "6d59d0f42402ee7a059c7b1f3fddf56fa86d6dceeac6159d31d59f1b38979892"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/before-home-390x844.png",
+      "bytes": 174600,
+      "sha256": "3bc83e8b7f13f2fff40922f15d6d874204a73d41466ba5d35d462605cd02c47a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/before-login-1440x900.png",
+      "bytes": 84113,
+      "sha256": "bc32945e91692dfe063d514043a2c84a0b2e13bfd2276deca107bcacfab316c0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/before-online-lobby-1440x900.png",
+      "bytes": 76853,
+      "sha256": "dfc385df7f3959497bd87d4b5d94c0ab2bec9695afd204e1ba6e6c3531a6bf62"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/before-play-hub-1440x900.png",
+      "bytes": 258659,
+      "sha256": "bbfdbc00ee6bb314e3988c8c27aed2ef93dd8898a036959660c7f7cc00f76058"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/before-screen-report.json",
+      "bytes": 823,
+      "sha256": "0389169dd443d8ab34c1583f82e421ddf772aaa62b94f81600373e70418f0376"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/check-bundle-boundary.py",
+      "bytes": 1382,
+      "sha256": "aff2ea3722088584dde57387b8ed8426d4d4dbf574982657ed19e6f7fb16a9d5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/clock-recovery-after.json",
+      "bytes": 4368,
+      "sha256": "9986b0b05f27bef484f5981a04f2e3924f9f2d0b9f0bc2d9d7ee3b5754e2349f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/clock-recovery-after.log",
+      "bytes": 1279,
+      "sha256": "fa4fc4dce04d795314317461bcc6e9ba64fd21a15ecf3d0a7691e9f275d0cc0c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/clock-recovery-baseline.json",
+      "bytes": 2797,
+      "sha256": "399b637a2dd360369bc6827fedec74d6e14aff5912f4ae9638241985c5f2bf8a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/clock-recovery-baseline.log",
+      "bytes": 4335,
+      "sha256": "cada332d1c311a2768d24b30b92ea8e94d1963319605ca01df10fb8ebbe2265a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/clock-recovery.json",
+      "bytes": 5067,
+      "sha256": "2d1fed1c4b569050d6e462e79fc1a72972f3f780cd2b5c6d9919607dfd16d7c9"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-audio-red.log",
+      "bytes": 2241,
+      "sha256": "054532ac1b70ca04415a70ce57d74a5e948264c8ffaef1e16a2337fd1147d925"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-client-after-review.log",
+      "bytes": 3110,
+      "sha256": "72dabd6b11c4b07d345b93d6be9901a94e25198d60a6e31b35d4fa1aa582e90d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-client-expanded.log",
+      "bytes": 3546,
+      "sha256": "8c08a6974be018163ef51a79b09d6211280069a415d5bf3040b589255c263e6e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-feedback-after-review.log",
+      "bytes": 669,
+      "sha256": "89b31399a8c43f626e815b00708d67912efd3014482f3fc89395f2497415b1c1"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-feedback-expanded.log",
+      "bytes": 653,
+      "sha256": "55bd7e20939dc69eca828aa430a9b08a03e202e365ee89ec09a612813a4b5e8d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-feedback-first.log",
+      "bytes": 586,
+      "sha256": "2f533f154cee515ddf321e4ba5076f133482bac91bac2307cb71235735ddd510"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-frontend-build.log",
+      "bytes": 12666,
+      "sha256": "8eb68416143809776aa083f4eca9b517f14acc7e89b1ca296c1dfeade1f3e895"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-online-services.log",
+      "bytes": 2688,
+      "sha256": "76921a5e1f70b6f900193eb533544e2f889ee92d4e81491e8cd09faf0dc84422"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-review-flash-red.log",
+      "bytes": 4620,
+      "sha256": "e2c003f5d5332813cd76b42d2fbe56559ab5ea279ac156614d8687afc0a8b73c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-review-gesture-red.log",
+      "bytes": 1643,
+      "sha256": "ec04ee3a6248e0fdf1000076d8e669d8bb8985448b99c4feb2bcc02de8a53531"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-runner-format.log",
+      "bytes": 38,
+      "sha256": "3b9df88a89eec5d578b0cee6b2b15fbe8ac7cdea9b974a64683a2b4fa1fa66c5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-runner-lint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-scoped-lint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-scoped-lint.log",
+      "bytes": 214,
+      "sha256": "b89a7dce41b5ebfd3f2fbea8b3abe5b8a5d9bfeb9cc5e9fc903eaa568391f13d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-server-events-after.log",
+      "bytes": 813,
+      "sha256": "54cfb44865f8cd744b0d3715271acf560bce4323fcc9250ce8827b02ad56d4fa"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-server-events-red.log",
+      "bytes": 2247,
+      "sha256": "77d60035f8b4b7e7dcc93de748bc74e5ca24d726e992ca099059c68e72e0b091"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-typecheck-expanded.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/d-typecheck-first.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-connection-retry-lifecycle.log",
+      "bytes": 978,
+      "sha256": "f59d3933a481c388e2266b7e94ae4190afc874c3d0e20028b7eaa0ec27c4cc1d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-connection-retry-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-connection-retry-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-connection-retry-unit-final.log",
+      "bytes": 649,
+      "sha256": "d1219ee70e0132622724f41a51abbcd124583ba6d9cf03ae678b65087234d4a8"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-connection-retry-unit-first.log",
+      "bytes": 6905,
+      "sha256": "efe8d32576c8add38c933a9fcfc5dabe4943369eabb7aca80f046523d512de51"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-connection-retry-unit-verified.log",
+      "bytes": 202,
+      "sha256": "cef2471346c8ff787e2e15696cc3082a226a4fd87db4196aaefa88a2262edd53"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-harness-lint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-harness-lint-test-override.log",
+      "bytes": 6296,
+      "sha256": "7653a014843219151367659eb6024c8e5c114566f3e20d4e3ac6c65278a43446"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-harness-lint.log",
+      "bytes": 377,
+      "sha256": "da455cb7dc8de2136cb5590f969bec26db106f0a0c0804844f469531235fb4ab"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-lifecycle-controlled-parser-fixed.log",
+      "bytes": 901,
+      "sha256": "154c05aa7ab6cf5b71cebc7f030cb555f4e8c9ad318fdc4d806493d3d4b6b0b8"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-lifecycle-controlled.log",
+      "bytes": 1395,
+      "sha256": "4bf12f22ddb925371679d387b1794ac950f97c61da0149beb5828e28342f442f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-online-after-conflict.log",
+      "bytes": 2235,
+      "sha256": "ec4e1bb17294cf6abe625a36349f747e36ba62ed07e5a170f9032f1789e0da92"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-online-diagnostic-all.log",
+      "bytes": 2219,
+      "sha256": "0641bcbcd3add11590f9369701a0ece2bc36b7362d2eadd3a8be6fbf80cbd5d3"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-online-effects-retry.log",
+      "bytes": 1524,
+      "sha256": "4cf308aec7ee234c1781e91eccb047c004293b8377852dbd71999de6a79c8ac7"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-online-effects-stable.log",
+      "bytes": 1030,
+      "sha256": "d3a66df5f71d51d232f784ec6ca91258d2fae55b8540cdb318b4fb0777f8d38d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-online-effects.log",
+      "bytes": 1524,
+      "sha256": "4a9b53f950a757c0b625b625b68b869bfe642a9c0d030e09fbc87701357763d2"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-online-first.log",
+      "bytes": 2293,
+      "sha256": "286b09682a12089addcefa36e1219e95d6b56e9f864bbdf99be5b76718c8b2fa"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-final-online-observer.log",
+      "bytes": 1048,
+      "sha256": "1e31984a10a829e61289c80877d85c593fa0d392d5726323bfcf46d6b6b54646"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-lifecycle-harness-lint.log",
+      "bytes": 231,
+      "sha256": "867f3d075459e1ec60b36507e56b334c82e8cccfbd0f0de12ade352a031e0263"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-rejected-harness-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-rejected-session-before-diagnostic.log",
+      "bytes": 1165,
+      "sha256": "8e883193839cbbbe58e1dc6396fc4471d16c9f88da456d757f4fee6c8233a6e1"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-rejected-session-before.log",
+      "bytes": 1149,
+      "sha256": "2f59a100cf5751a54c9d59352c6025fe62631ddc2a555a988410b0bf922a780f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/e-rejected-session-churn-before.log",
+      "bytes": 1172,
+      "sha256": "8e8fd6ad835eb82b129afb676f08d7dd165c161a2cf6b61fa37e3ffbd2aac8c4"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-backend-build-formatted.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-backend-build.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-backend-lint-corrected.log",
+      "bytes": 567532,
+      "sha256": "c52421afc4385f1297eb986700756246c09dd9d89dbe2554b9abc588c29f87d2"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-backend-lint-verified.log",
+      "bytes": 567153,
+      "sha256": "7ae1b838926fc0888f7ae2020ab85e7129d942f90fe117a8845c9370ab2c5dac"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-backend-lint.log",
+      "bytes": 583354,
+      "sha256": "2a20eead62a237425bdbbcbc3fd514922c36d6a10f3bc1505a8b0602b013749e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry-command.log",
+      "bytes": 13569,
+      "sha256": "95041fece69f9c6b7201ab718b6964fbfa1eea0189cc1f715fed2df7f3eea814"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/game-rejected-session-reconnected.png",
+      "bytes": 75819,
+      "sha256": "85263169f30b12faf9e835dd33aaf55a03ce959350e3cd3c5f9bf59417727e70"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/game-rejected-session-while-owner-active.png",
+      "bytes": 87049,
+      "sha256": "991b85800d63cd004fcd2973d06fb4c24f60d22400b609031c90b63f221fa69c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/invite-rejected-session-reconnected.png",
+      "bytes": 76330,
+      "sha256": "5c302502634a40adc2a5d263761f98ae65262c91528b1b9622a927792a3bc94b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/invite-rejected-session-while-owner-active.png",
+      "bytes": 87000,
+      "sha256": "84a2a7029d9f1e93904250083e28a7e2b951613281fa141f80ba095229d192c6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/online-browser-1-finished.png",
+      "bytes": 79619,
+      "sha256": "14168f5fe247e1e9127bcb99fc6e79989e87909c7b83c343f11f9aa701efea90"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/online-browser-2-finished.png",
+      "bytes": 80091,
+      "sha256": "2ad2b6e1fd146de539ea06fe8cb56d8ef91b641e3f49050ca7cf1aa10ec31f3c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/online-rejected-session-python.log",
+      "bytes": 5132,
+      "sha256": "dd438ea73179972dd5f45e55f888e0b15f725e3c36016804bba7645edc01976a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/online-rejected-session.json",
+      "bytes": 7304,
+      "sha256": "4da4234450702bae7716f9d7d7bbe5f702c5b23519e42c59893e64dbf3fa2c63"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/p3-online-browser.json",
+      "bytes": 1745,
+      "sha256": "4fe95e14de1f68bbc12a2bf85fdeb2599308fa0f79a5d6d35550398f9d129e4b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/server-session-observation.json",
+      "bytes": 51,
+      "sha256": "b0eb80c0b19f8a8c8f3926b18d549b63fb765a5881045ea3adc29180a0b7e5e9"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/spectate-rejected-session-reconnected.png",
+      "bytes": 67422,
+      "sha256": "676f281fa32d9880beb8fb4c877a6ffd9c38cf8e726243eaf90f1b40837c8d48"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-after-connection-retry/spectate-rejected-session-while-owner-active.png",
+      "bytes": 77953,
+      "sha256": "c191091666dbf71a03fe4c6937f7576ee7512da86a4fed8cff933f71d6947207"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser-command.log",
+      "bytes": 13733,
+      "sha256": "909a5e33b4e00a8842313c84efcca3a617eaa997df62a2987d249d6cefa8736c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser/final-online-six-point-result.png",
+      "bytes": 78319,
+      "sha256": "43b0c7ce718a081d04ee290e92fe4c34d899a80a586d2d95207040b394c88101"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser/online-browser-1-finished.png",
+      "bytes": 79493,
+      "sha256": "c52fb16c5427ead1a5fdbc51388ec913871ce9110204be1183710b01e770ea20"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser/online-browser-2-finished.png",
+      "bytes": 79964,
+      "sha256": "01bed14eec6a62e82093d7bbab683b23e8791d150fffd02d5420dd17ac36ed22"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser/online-final-browser.json",
+      "bytes": 2560,
+      "sha256": "d66fae7c20047b82e3f297403688a7efd790c93ac5add0fb5c4a3566dc16adea"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser/online-final-python.log",
+      "bytes": 3911,
+      "sha256": "ba5195ae0a8afa5ff4e7fb22567a53ee77e82bf15505ddd935e8c2fceada4881"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser/online-reconnected.png",
+      "bytes": 67441,
+      "sha256": "728cc1e09fc8e946ec56b275e92614d41c932545c2a41e592171c11aa4f61f49"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser/p3-online-browser.json",
+      "bytes": 1736,
+      "sha256": "60c2624e9550faf8d4dd8b504f2e237641b7d59c027180528d56e727e081e593"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-browser/p4-online-lifecycle-browser.json",
+      "bytes": 339,
+      "sha256": "d40841b11abd3bd527848f5136ddaee5d77085309a89acc3437e6c05131ef35e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-bundle-boundary-after-connection-retry.log",
+      "bytes": 419,
+      "sha256": "19b65bd9963bd582fa3fa6317586b712ab768b14f81ef67c0071ae8f0ffe017f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-bundle-boundary-before-connection-retry.json",
+      "bytes": 419,
+      "sha256": "b53ea45680c4148fc0099513e05e5d26f7d30d7ffec5c19d826c85818f67a87a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-bundle-boundary-command.log",
+      "bytes": 419,
+      "sha256": "b53ea45680c4148fc0099513e05e5d26f7d30d7ffec5c19d826c85818f67a87a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-bundle-boundary.json",
+      "bytes": 419,
+      "sha256": "19b65bd9963bd582fa3fa6317586b712ab768b14f81ef67c0071ae8f0ffe017f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-delivery-live-gate.json",
+      "bytes": 1035,
+      "sha256": "6e576d85e1f9523e7a5388eb5dfd74af1e28579807b81cd4e38e0cad68bc353d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-delivery-runtime-state.json",
+      "bytes": 2633,
+      "sha256": "491fc852a3e483ff4bf18bd2154e6c32e1e43c4248833d9f2c0fcfbbcb9f4d3f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-frontend-build-after-connection-retry.log",
+      "bytes": 12359,
+      "sha256": "f5d36b376384f6b74a1310c0fc2157917f23f91d7bad7f3cd6ab498fd3246526"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-frontend-build.log",
+      "bytes": 12360,
+      "sha256": "40d0554b22c34377a4c1ac45e61731458e563e5fbfa9d076cfa21b3799737dec"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-frontend-lint-after-connection-retry.log",
+      "bytes": 7045,
+      "sha256": "61edec13e3c1f5af15e15fb9cf41b1fa1b9f18fee066193cd5b2b817ea4cf7f6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-frontend-lint.log",
+      "bytes": 7045,
+      "sha256": "61edec13e3c1f5af15e15fb9cf41b1fa1b9f18fee066193cd5b2b817ea4cf7f6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-frontend-noemit.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry-navigation-command.log",
+      "bytes": 1182,
+      "sha256": "ea4aa15a9db0ae6837abf530fbf7dad2021255a99bfc637597d8ad96b3482b8a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry-visual-command.log",
+      "bytes": 5069,
+      "sha256": "bb2b54ba31015eed6058b7b24ae5144d00c3a1ad7d24aeb9bbd155af1e4eb4ca"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-friend-invite.png",
+      "bytes": 76071,
+      "sha256": "1801d07968720577dbf16d56b3a1d89ff8ef9a728c3c0c5e0b77e634b736c1c6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-home-1024x768.png",
+      "bytes": 99005,
+      "sha256": "bcff34db33183fab3929e25f9a9295bd2bc3db8497c285bd84c911aa0ab19aaf"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-home-1366x768.png",
+      "bytes": 103891,
+      "sha256": "49dead60e62dffba15e05dae82cac3b7714649cbc860aa8a2e93f11407e678d1"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-home-1440x900.png",
+      "bytes": 105358,
+      "sha256": "eda4ae8970d84e4b8960378a10d74adf788b5767dfb0c881fc9e29785e7384ce"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-home-200percent.png",
+      "bytes": 212667,
+      "sha256": "5133fcedd3a43f7cdc9b697d87d3983ce2d0e08375c15c804757aee0a2521c9e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-home-390x844.png",
+      "bytes": 97440,
+      "sha256": "a6dea5a726a67c381ca9b12578eb0875af562bea32622e4a4f2067fdb393bdb6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-home-long-nickname-390x844.png",
+      "bytes": 97927,
+      "sha256": "52da4cf1ec052dd36d5755949d418b49a07775f4f46cb2c3bedc19090cfde288"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-login-1440x900.png",
+      "bytes": 65523,
+      "sha256": "bc96027155add1cebe47a2ab8b7cddf8972748f65574abe336464ae9de86599d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-navigation-20260908T042325Z.json",
+      "bytes": 1441,
+      "sha256": "3b95f0ac079aef319c7737111aba5cb95971d834645b5f400e86628494e7ae17"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-navigation-browser.json",
+      "bytes": 1441,
+      "sha256": "3b95f0ac079aef319c7737111aba5cb95971d834645b5f400e86628494e7ae17"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-online-lobby-1440x900.png",
+      "bytes": 75819,
+      "sha256": "85263169f30b12faf9e835dd33aaf55a03ce959350e3cd3c5f9bf59417727e70"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/after-play-hub-1440x900.png",
+      "bytes": 93084,
+      "sha256": "3f9b53fe5cfdfe9fd9b0ee9493f51e5b7c8b009cc23116b78de9798b8e8aa328"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-after-connection-retry/home-visual-browser.json",
+      "bytes": 6830,
+      "sha256": "3d88a0f5619a19dc4b4f730b3aba40981e6feaf8448a1cb7b62b67826e0ebdfa"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-command.log",
+      "bytes": 8139,
+      "sha256": "bd12cfb998141ef668a2a68c99bd5486990d1753c31f8d9ae1787e93266a7b25"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-execution-record.json",
+      "bytes": 5436,
+      "sha256": "e7a254fd43cb8158194fda1dcac7f07a97f2c1ea2297f83c66738d2720e7948f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home-output-path-compile.log",
+      "bytes": 84,
+      "sha256": "aac1a33ab793ce13c09eb70ceafcef9158ddb202327434ec466c551117099f8d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-auth-navigation-browser.json",
+      "bytes": 3553,
+      "sha256": "b50a9975077bf7d835ff9589b56487e3588d29ef70336b679bd8c5cdc2e770e7"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-friend-invite.png",
+      "bytes": 75731,
+      "sha256": "8503c64a5b8367801541234b9317ed96c1dbc23d18a9170e7f8a8b3226a2928a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-home-1024x768.png",
+      "bytes": 98933,
+      "sha256": "9fec62dfb639596e285f056657f72f2691d2c5b0b1a3c6190df5318e72283ad8"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-home-1366x768.png",
+      "bytes": 103813,
+      "sha256": "90c6f13bd244ce05fc50e715ff381bb95ee82bc615c7ff42cc31d34db75df4cf"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-home-1440x900.png",
+      "bytes": 105278,
+      "sha256": "9815c4524d5a2403e02e04eeebd51e52678ddb15d3770160300d02e890603da5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-home-200percent.png",
+      "bytes": 212764,
+      "sha256": "e922be574a25d51f404d20ae6c0e16dc3873600b12f18995c95e974b36c6b54f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-home-390x844.png",
+      "bytes": 97518,
+      "sha256": "be6da42ce2f75ca6b3c780dc23c09340e717ba3d8cb3c921706878a972b7cc8a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-home-long-nickname-390x844.png",
+      "bytes": 97880,
+      "sha256": "8188e7b36fbcc181a3e4c78c77fadf87a1fccd80980c7a405f74860014a3a5ce"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-login-1440x900.png",
+      "bytes": 65523,
+      "sha256": "bc96027155add1cebe47a2ab8b7cddf8972748f65574abe336464ae9de86599d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-navigation-20260908T034003Z.json",
+      "bytes": 1441,
+      "sha256": "06b69f276539f58f7c712986d401072d36348d84d36991aeca8d03b978dc0018"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-navigation-browser.json",
+      "bytes": 1441,
+      "sha256": "06b69f276539f58f7c712986d401072d36348d84d36991aeca8d03b978dc0018"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-online-lobby-1440x900.png",
+      "bytes": 75819,
+      "sha256": "85263169f30b12faf9e835dd33aaf55a03ce959350e3cd3c5f9bf59417727e70"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/after-play-hub-1440x900.png",
+      "bytes": 93084,
+      "sha256": "3f9b53fe5cfdfe9fd9b0ee9493f51e5b7c8b009cc23116b78de9798b8e8aa328"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/auth-navigation-20260908T033906Z.json",
+      "bytes": 3553,
+      "sha256": "b50a9975077bf7d835ff9589b56487e3588d29ef70336b679bd8c5cdc2e770e7"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-home/home-visual-browser.json",
+      "bytes": 6830,
+      "sha256": "f65dc6fe9516a67c0524ba81057939d34e495159607be7916a6cd69e998a9d47"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lifecycle-controlled-parser-fixed/online-reconnected.png",
+      "bytes": 68444,
+      "sha256": "3fef11b77223f848811a287e21e84f8d6ea812c1d8ff3fd7287a6141b36b7c5d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lifecycle-controlled-parser-fixed/p4-online-lifecycle-browser.json",
+      "bytes": 2890,
+      "sha256": "960938f84b5d9dbc9d5b768945d319ba1cd155b00ba4dfbdd595fb108fa4694d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lifecycle-controlled/online-reconnected.png",
+      "bytes": 66188,
+      "sha256": "336b2fa1f3d4ddb97d6ce08635d3ecac314b3d4853609f59da46dde2710fd954"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lifecycle-controlled/p4-online-lifecycle-browser.json",
+      "bytes": 2728,
+      "sha256": "bffc95270f4610c2a1cc7b66be357db254fc3bf12a85d5d5aeafc5f79d761906"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lint-analysis-after-connection-retry.log",
+      "bytes": 1564,
+      "sha256": "fcea42c656081240246d4f7e434c59b7b5a2ebb9de3f80e93e9b9ca9b5c2aeb0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lint-analysis.log",
+      "bytes": 1426,
+      "sha256": "f4ff48574472a3abf682829647854ab3608735167dcd97921a83ac6345c70ad0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lint-analysis.py",
+      "bytes": 2705,
+      "sha256": "fb44ea58429f1b49cb7379f97d44abeadc7f2ba01e04b86d36f42ebc6458a9b2"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lint-comparison-before-connection-retry.json",
+      "bytes": 1426,
+      "sha256": "f4ff48574472a3abf682829647854ab3608735167dcd97921a83ac6345c70ad0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-lint-comparison.json",
+      "bytes": 1564,
+      "sha256": "fcea42c656081240246d4f7e434c59b7b5a2ebb9de3f80e93e9b9ca9b5c2aeb0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-live-gate-before-packet.json",
+      "bytes": 730,
+      "sha256": "7009db8df000ee72a6620c1bd82864e2931f0c0eb3bcf9fba5897e18201e69c2"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-live-gate.json",
+      "bytes": 1011,
+      "sha256": "a2fc5f7012d7ea8acbb4a603b452996433c6ad0482701062a8793fde5336b873"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local-command.log",
+      "bytes": 331,
+      "sha256": "d119c217feedb9e9aefdf088b83ab421284ffadf9ea315ec60914330737b3f36"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/ai-classic-easy-finished.png",
+      "bytes": 70842,
+      "sha256": "c382e8e358473b2afc2126fe8d5349427896e17cc86e0030a8f2e430c7ace95e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/ai-classic-hard-finished.png",
+      "bytes": 71147,
+      "sha256": "ca10ce9e0c182251d139fd7858f4460f75d2c51838bd30cf8c08716a92751e31"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/ai-classic-normal-finished.png",
+      "bytes": 71514,
+      "sha256": "1b144e3e8c2a211cdb142fd082271b0f9523859c11fbb8ae7a2f119cdfe84766"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/ai-finished.png",
+      "bytes": 184523,
+      "sha256": "9c09a0634750d69967f2deda19d4f36b95c3f37497d4f709e6eee02eed0f962d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/ai-playing.png",
+      "bytes": 148153,
+      "sha256": "1495c17ca4c01490abc404df5f235acfd009894f1fdc09852dd74bbf771cea6b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/ai-power-easy-finished.png",
+      "bytes": 78504,
+      "sha256": "e3ade9ed99d0e88e5fc57d7a993baa7c2b08ad9a8c250a92813e03bf39222195"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/ai-power-hard-finished.png",
+      "bytes": 78900,
+      "sha256": "45482ba56b54211e9da4a7a978fe5229a1776b392a4653f7102fd9157184f25b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/ai-power-normal-finished.png",
+      "bytes": 79485,
+      "sha256": "9cdefec1d0e74fa593325a950e5df60728e863798e7baf195fef722d2b049b5e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/hub-small-screen.png",
+      "bytes": 185869,
+      "sha256": "40a54d372603ae1c8f71f1f8dbb3231591def6919cc712d1c7e5a53e3548e486"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/local-finished.png",
+      "bytes": 146577,
+      "sha256": "ee58b509da6c9a7eade1fc521796e7091c2d8eaa4b5a421488ae1024dad28997"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/local-hub.png",
+      "bytes": 200030,
+      "sha256": "1b80211ab1e8eb15c0f620b8f10aeadd26df5f4cd2a539bd1224d63cca8df44b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/local-power-active.png",
+      "bytes": 58091,
+      "sha256": "2f29eb034aabf5947e16c9af2093a6ca6e62c5c776897c2a911d5d0550821152"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/local-power-finished.png",
+      "bytes": 71565,
+      "sha256": "74b9c465cde596b915daf484f098f240ddfba6807417d575c8a7afde78704065"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/p2-browser-report.json",
+      "bytes": 3542,
+      "sha256": "7ebb142b7e4f8293b10163186d8f3f8c2f4c05bf027696e05dc261af363213ec"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-local/report.json",
+      "bytes": 7300,
+      "sha256": "30a0d6ca76063998564b02c5a4800e9fefbd07b39370bf62cabcede0a951b738"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-after-conflict/final-observer-peer-still-playing.png",
+      "bytes": 68590,
+      "sha256": "12737fa479d415e9807765fd2a02401b74ad800f170fb800a75d703b88e5a348"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-after-conflict/final-observer-reconnected.png",
+      "bytes": 57426,
+      "sha256": "fa0e1e86432dd650b2387e98ee14958ebce3a96c1dd2ce7c3964ba8c71d49816"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-after-conflict/final-online-effects-and-key-hint.png",
+      "bytes": 70331,
+      "sha256": "5c87f949448fd2db7adec5b2b7271281f2d631d984042ae6d854b456a54a9d38"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-after-conflict/final-online-reduced-motion.png",
+      "bytes": 67143,
+      "sha256": "e1570cb722c58ea64ac3593642eb2b713791bad055f699c14338e20cd02998ce"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-after-conflict/final-online-six-point-result.png",
+      "bytes": 79105,
+      "sha256": "de82d8d4fc2403123f8cf5f321886f0b84180e1de2e60172e7a8fab83ae4440d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-after-conflict/online-final-browser.json",
+      "bytes": 4723,
+      "sha256": "afe8997354805adf379dbdecd9bdd4e181c2c0687cc59c59508d5ce846dff999"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-after-conflict/online-final-persistence.json",
+      "bytes": 321,
+      "sha256": "d5e9902e2212a4d2a73da40d34d5cead600cd0d269763127a67878ed8449fcf0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-after-conflict/online-final-python.log",
+      "bytes": 3511,
+      "sha256": "e6b6b1870204fb062be504cd6f92ca732adc2398f0922aad5405a83e2e7359ad"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-diagnostic-all/final-observer-peer-still-playing.png",
+      "bytes": 69208,
+      "sha256": "8feae3f07e53ac8ac3958e4451b7f0ee53173a23c74e47c74a09549267d6a843"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-diagnostic-all/final-observer-reconnected.png",
+      "bytes": 58163,
+      "sha256": "a255440d9b2dd40631acabce3aea1dd0d1406394d03cce7ca3011ade98465027"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-diagnostic-all/final-online-effects-and-key-hint.png",
+      "bytes": 69818,
+      "sha256": "7d2e6bb0491d06269e6b780f3efd3e9326fbb92ad5e724f8e05483bd9fe1c2e5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-diagnostic-all/final-online-reduced-motion.png",
+      "bytes": 66464,
+      "sha256": "88aab0e3de03a42f97cb2afdfd8f02232fe1fa0702cd49f3880d99d24670596d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-diagnostic-all/final-online-six-point-result.png",
+      "bytes": 78262,
+      "sha256": "dcd617faf1adc9db5118a3011f40dc80e35f468adf03c9e2ad1bb3b5b150dbd6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-diagnostic-all/online-final-browser.json",
+      "bytes": 4511,
+      "sha256": "6269a487fd228d015393f06275003aada303534372bb30d233b3d2c2e0488509"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-diagnostic-all/online-final-persistence.json",
+      "bytes": 321,
+      "sha256": "d5e9902e2212a4d2a73da40d34d5cead600cd0d269763127a67878ed8449fcf0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-diagnostic-all/online-final-python.log",
+      "bytes": 3401,
+      "sha256": "ea62d5ff79742d9fe23e6a9ff1bbc59419e07f80ef575a309cbea6636806116d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects-retry/online-final-browser.json",
+      "bytes": 1081,
+      "sha256": "6b074b1a2b32b958da07fc6a74a7c72452a3d5a7f3e46fd2bf65aa98eef39ed6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects-retry/online-final-python.log",
+      "bytes": 2287,
+      "sha256": "bb9f093350c31f47ee222bef4a26e28a920194f8d3eb120609b2f00e285c1a1e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects-stable/final-online-effects-and-key-hint.png",
+      "bytes": 82263,
+      "sha256": "b07007b467546f02fec9b3b7850e91f1e96e9206354cac23c6f955f67275ee79"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects-stable/final-online-reduced-motion.png",
+      "bytes": 67523,
+      "sha256": "cce432050c8df537917a062baf805a73a1a49a0606bb4770be728a868d29c025"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects-stable/online-final-browser.json",
+      "bytes": 2522,
+      "sha256": "c278d39b8c2f1eba9ca589d8b5435a89395c9f8dcf1e0dfb1ef0a12065190c85"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects-stable/online-final-persistence.json",
+      "bytes": 325,
+      "sha256": "0bff8b163baebb8d1b3aa0fa1e6b19196ea212d4122ade8959c5e1f9ac6dda7c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects-stable/online-final-python.log",
+      "bytes": 2038,
+      "sha256": "0c1d9e85e5499bf02adab20209769a2c92d7c0d840c36ded7afc6a49c7784f24"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects/final-online-reduced-motion.png",
+      "bytes": 67886,
+      "sha256": "f0aba701561148f7d8b3afd40bdc8d622c3f565aab31843b8de5a1f3b9a8affe"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects/online-final-browser.json",
+      "bytes": 1109,
+      "sha256": "349232dfcbb2b48594467640db987bd5515319c128349186bfcd6edf7b4aeee6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-effects/online-final-python.log",
+      "bytes": 4551,
+      "sha256": "431c70ea1cf16d866a9a30afe0f958faeeace9050b306604270cf529d52fbdb9"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-execution-record.json",
+      "bytes": 17432,
+      "sha256": "5ff349f77fb06c1cc1112cc557fa14297b1045598838880fbe8aac27f9aba144"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-first/final-online-six-point-result.png",
+      "bytes": 78764,
+      "sha256": "590a2637210add7dacb77148a6b46d03816aff67dc51444e305b16eee686a384"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-first/online-final-browser.json",
+      "bytes": 918,
+      "sha256": "7f66080093d16af8fc6ef822192a0610b7c37671bdd47b1ddaf31a847ec9d12b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-first/online-final-python.log",
+      "bytes": 2802,
+      "sha256": "37adf4b50b15636fdab747b6e54b61cdac6abcdc1f5b9a2b53500d59a8119e10"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-observer/final-observer-peer-still-playing.png",
+      "bytes": 68796,
+      "sha256": "b66243c987f287be70885de6b23fbe3de2f025aad58fe345f319db5a56af644e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-observer/final-observer-reconnected.png",
+      "bytes": 57611,
+      "sha256": "f61fa6d80a0f66b96074f2fbdaddc6a545d18661fdc6dfc73a42e61375b4244a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-observer/online-final-browser.json",
+      "bytes": 810,
+      "sha256": "632d2672c10d56dc1244d405cda5c00797ff87da121a84c009ffc44d3f907ba9"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-observer/online-final-persistence.json",
+      "bytes": 294,
+      "sha256": "9d7d75f92f5048fcb0304de41d92d0c97972a8cb40ea8bb1df48e01a047bcda8"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-online-observer/online-final-python.log",
+      "bytes": 720,
+      "sha256": "817c1cfdc3b58eea64e40e5e5b8bf4d2b76767c8533986d9f4de633ba10acecc"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-repository-runtime-state.json",
+      "bytes": 643,
+      "sha256": "4bc04636b4dfa2e91870626a0b6bbffc0443d6c057e7adc9a35a8b358796fe94"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-root-commands.json",
+      "bytes": 11188,
+      "sha256": "44fd73ed40ac133dcfdecb45d0cafbed89af63dabbf5c55578e8b8f3bb591d74"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-unit-after-connection-retry.log",
+      "bytes": 15099,
+      "sha256": "fa2fe1f9c8ffe775098f7fa1acd81e4b72c71748b416cecd40b45b0de799960d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/final-unit.log",
+      "bytes": 16469,
+      "sha256": "d2584aa3b3370549ddddb06c0c181c063089567493f6f24bae08c1e4fbf92c3e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/guest-cors-platform-probe.json",
+      "bytes": 1490,
+      "sha256": "2eeb692d108aefb913e086acb0c40b2fa8cca06c150fab878d4ec2ac6568fba8"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/guest-disabled-build.log",
+      "bytes": 11651,
+      "sha256": "7b6accb02f0559bce8cfdf5fbb4429eed372ded9f1090503ab5e351847a4b4b3"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/guest-disabled-commands.json",
+      "bytes": 1458,
+      "sha256": "b222bfaced4a0f6c64bb069bd730143cfa5ba1ce15445feeb0b7c5edff2cc35d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/guest-entry-same-origin-build.log",
+      "bytes": 9344,
+      "sha256": "42c1c25c7ab57b74502a1a89a4322b31b13b79a78835d9fcf735f3c44903d592"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/guest-entry-split-origin-build.log",
+      "bytes": 9362,
+      "sha256": "b7ae72f42230faf96625f579802c689fac1931a192f9a8e65fc1af4f98040d91"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-auth-prerequisites-before-layout-fix.json",
+      "bytes": 1271,
+      "sha256": "14460787e1d3f7f222bffce9730cb98716c1c690f715faced8f65965051af719"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-auth-prerequisites-escalated.log",
+      "bytes": 2360,
+      "sha256": "f84461fed03c7b3592dbc4c0813872d04e6c3b7c344b28d3026bc89631f23341"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-auth-prerequisites-final.log",
+      "bytes": 591,
+      "sha256": "9b01b11134b6efe31b60aa1a39e4ddcd310172d4674f63454f4c1289186e4204"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-auth-prerequisites.json",
+      "bytes": 1699,
+      "sha256": "72f7c15e3fada149416b29c5d0a74b2bc22515b4166e4d55bab8f7e29504fc77"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-auth-prerequisites.log",
+      "bytes": 3171,
+      "sha256": "dc47d583a3017aa805e1723ce0f79b5b7d070b7104270143765b9d0501489bd1"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-guest-entry-command.log",
+      "bytes": 6863,
+      "sha256": "cbadb7c60af41696725bc2a095bb3da8840fd58d456e2e42a46cf28308515bb0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-guest-entry.json",
+      "bytes": 2528,
+      "sha256": "498a9c6172b5add174436f54a41b9a1e2d69f8c09a98319c22e97742f236871e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-owned-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-board-1440x900.png",
+      "bytes": 179974,
+      "sha256": "32191bd8035fbe8cdb43291ffbfb33bf6aeb74cd1117c1a2567d57f5120fc60a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-board-390x844.png",
+      "bytes": 63619,
+      "sha256": "87cfbfa6b268954f9514181191b3a6ea1b354b6212b017e41ccdc92294a61338"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-chat-1440x900.png",
+      "bytes": 26307,
+      "sha256": "7ebd77cd7a7c7ec9d508119e8d4743d168681f1efd28dc53937d11504741e038"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-chat-390x844.png",
+      "bytes": 20154,
+      "sha256": "d3b1d8f1a73899a6fcc38ed496600bedc03f48848f80bf32d7cc0459b0f2efeb"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-command.log",
+      "bytes": 69,
+      "sha256": "f6ab1dff9ecfaddaef70b22f8c453a59cc5411ed75217c3c0b0ff0b3332cf960"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-board-1440x900.png",
+      "bytes": 179974,
+      "sha256": "32191bd8035fbe8cdb43291ffbfb33bf6aeb74cd1117c1a2567d57f5120fc60a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-board-390x844.png",
+      "bytes": 63619,
+      "sha256": "87cfbfa6b268954f9514181191b3a6ea1b354b6212b017e41ccdc92294a61338"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-chat-1440x900.png",
+      "bytes": 26307,
+      "sha256": "7ebd77cd7a7c7ec9d508119e8d4743d168681f1efd28dc53937d11504741e038"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-chat-390x844.png",
+      "bytes": 20154,
+      "sha256": "d3b1d8f1a73899a6fcc38ed496600bedc03f48848f80bf32d7cc0459b0f2efeb"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-command.log",
+      "bytes": 69,
+      "sha256": "f6ab1dff9ecfaddaef70b22f8c453a59cc5411ed75217c3c0b0ff0b3332cf960"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-info-1440x900.png",
+      "bytes": 125310,
+      "sha256": "f12fb131f931e7589d3624a7a6400bb4edd3ea2b4b375244f48477bee956ca2c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-info-390x844.png",
+      "bytes": 52554,
+      "sha256": "c979a5f69fa440095412134224ad4cb4b5491624dcb2237f85d2e18768157fd5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-info-main-1440x900.png",
+      "bytes": 115180,
+      "sha256": "584d872216912971fc46e6990ce7eb7702e57d4e4f202bc0174755ae9ab251a6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-info-main-390x844.png",
+      "bytes": 35475,
+      "sha256": "1bc204dbb0e9de95a733a67702ee1dd7e1ca7a402f224bc557a23bc0461ffcbf"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-tfa-1440x900.png",
+      "bytes": 49589,
+      "sha256": "3c161146a318c3359beabcaefa493f9bb3fdf5fe5d3a1d219e8382b3d7f2f415"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first-tfa-390x844.png",
+      "bytes": 26902,
+      "sha256": "efe021deb4a582eb6c85810ff84f25eeaf521a13ea5d4d48c6299c9bd871afbb"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-first.json",
+      "bytes": 18301,
+      "sha256": "1904dea6bf82a928337a65b7c63b6e4eb37f9ddc5d550ceaf73c0860814ce447"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-info-1440x900.png",
+      "bytes": 125310,
+      "sha256": "f12fb131f931e7589d3624a7a6400bb4edd3ea2b4b375244f48477bee956ca2c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-info-390x844.png",
+      "bytes": 52554,
+      "sha256": "c979a5f69fa440095412134224ad4cb4b5491624dcb2237f85d2e18768157fd5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-info-main-1440x900.png",
+      "bytes": 115180,
+      "sha256": "584d872216912971fc46e6990ce7eb7702e57d4e4f202bc0174755ae9ab251a6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-info-main-390x844.png",
+      "bytes": 35475,
+      "sha256": "1bc204dbb0e9de95a733a67702ee1dd7e1ca7a402f224bc557a23bc0461ffcbf"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-probe.py",
+      "bytes": 7086,
+      "sha256": "eb5f46358d195fac73f346423817bc5fc44a85ce060ff20b963027e896567544"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-tfa-1440x900.png",
+      "bytes": 49589,
+      "sha256": "3c161146a318c3359beabcaefa493f9bb3fdf5fe5d3a1d219e8382b3d7f2f415"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after-tfa-390x844.png",
+      "bytes": 26902,
+      "sha256": "efe021deb4a582eb6c85810ff84f25eeaf521a13ea5d4d48c6299c9bd871afbb"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-after.json",
+      "bytes": 18301,
+      "sha256": "1904dea6bf82a928337a65b7c63b6e4eb37f9ddc5d550ceaf73c0860814ce447"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-board-1440x900.png",
+      "bytes": 506616,
+      "sha256": "72b6260d88d5fad5dd223558d72a815a8fc51e10ea718241fb0fad1cf256e733"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-board-390x844.png",
+      "bytes": 100067,
+      "sha256": "2950fa612e2812d0ce005c9cffb741e18dde61a49c3ef35324b1da417591e67a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-chat-1440x900.png",
+      "bytes": 26321,
+      "sha256": "b6c590514671459fb40007b6bdcba38c4ef131c77071578af52adc6b7d89f720"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-chat-390x844.png",
+      "bytes": 17052,
+      "sha256": "211a729104ecd1faa0a50e2529c086c95b4037671a0fff625f1ee8b593375cf4"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-command.log",
+      "bytes": 51,
+      "sha256": "93e841968d12c75841e54c1dd457717f77d3b6197c8caef6ae119c784eb7a051"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-board-1440x900.png",
+      "bytes": 178555,
+      "sha256": "58e1b1c8d45b69c5438648e28333da8f6e7004588934766f6861cedbb099a456"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-board-390x844.png",
+      "bytes": 56425,
+      "sha256": "8b3e65b67875c4ed31ee07a569a7ce4bca34bb34dc354a1d7a9117238bfa2c15"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-board-scrolled-390x844.png",
+      "bytes": 62589,
+      "sha256": "f93ccbf9dc69a438237ee96cc4181d3cc3d77a452dab79f25b353555ff4decb3"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-chat-1440x900.png",
+      "bytes": 26284,
+      "sha256": "4ad316a119e09c1745b005206d2cf7a5c628347d03f73810196dde263f24da7f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-chat-390x844.png",
+      "bytes": 21306,
+      "sha256": "82017c032af3c26d3c595bd99b0b64aab80a3f2429a582bb28384293739c5f03"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-command.log",
+      "bytes": 47,
+      "sha256": "ff1b35fa3ae4d2e1dab2d50183c3a8242af0fa02ea9fe1ab114a489ac4ee0c1d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-info-1440x900.png",
+      "bytes": 125372,
+      "sha256": "ee580b036833a1e45cc3317af1b43a14c2c566cdaa00ac87f8b7716401ab157b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-info-390x844.png",
+      "bytes": 51769,
+      "sha256": "940cf53c472e24e5ca6190bea7e3671ad5b88e23889ddce9db3980d205205413"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-info-main-1440x900.png",
+      "bytes": 114779,
+      "sha256": "f0c4c79f16b22d01e0de741004fd0dcb04117746551c892bf495d18ce4e6bc54"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-info-main-390x844.png",
+      "bytes": 35500,
+      "sha256": "93c11826381a942fa39b61812237050f6f1d78cc96415cce0f01a53646a02fb6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-probe.py",
+      "bytes": 8831,
+      "sha256": "697d8f342db0fcc4dc915e6382b8485a4fe05750a421d0c59137036ee8b67886"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-tfa-1440x900.png",
+      "bytes": 48009,
+      "sha256": "4c8a096b12a25fcf4bf00f8f70e130082894d1a09ae6c13e1a4ee6d6b57f1d5f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final-tfa-390x844.png",
+      "bytes": 27176,
+      "sha256": "601f6b575a0b8cb5a7a50640abbb4d49b835b7853a01e081dc4c517470de4697"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-final.json",
+      "bytes": 21386,
+      "sha256": "3f3df9d57da44823cfd03ae9956e021005889811de384872e4655ae5b88b4252"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-info-1440x900.png",
+      "bytes": 121328,
+      "sha256": "c2af0ecb335b3f43e9c4dfab4b0f3c6734b9f1f8b74d3b162e96ea7450676f0b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-info-390x844.png",
+      "bytes": 54254,
+      "sha256": "65ae69e466b29b82d500409f52f68773144103f5e36872aa388f55be69f798b9"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-info-focused-1440x900.png",
+      "bytes": 126828,
+      "sha256": "c01a96a5e7b8d9a4a837e8dc42915b20122f1dc8b266ef9c6d4f2d97ee868a1b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-info-focused-390x844.png",
+      "bytes": 55344,
+      "sha256": "9ee5c5f3848ffe27337cb06235ed9d2ceae7e3abcc215db7c25ae583ecfacb79"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-initial-locator-command.log",
+      "bytes": 1940,
+      "sha256": "b0c3198203be3adac6e2076a4d906261fa6929b2044728a21c0c700f5a6a2b11"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-initial-locator.json",
+      "bytes": 10354,
+      "sha256": "39699a5abc41394f3c8af66fa916c4cf992cbd30258ec9fe640b3cd4e1fccb1e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-mobile-chat-failure-command.log",
+      "bytes": 2167,
+      "sha256": "05a9e51a211f82e224d6ef6296277aea071ba2ff28bfcc99e1a0facabdeef58f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-mobile-chat-failure.json",
+      "bytes": 13199,
+      "sha256": "19510c39dcbd4d6aa1a415abb47df1ee18ad4976d42a2469bc05e8924a454d01"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-mobile-profile-failure-command.log",
+      "bytes": 2732,
+      "sha256": "6b2eb8edd2b68719477ec2b9dfcd40db799d1f20faf194f8af2ded9519d4d494"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-mobile-profile-failure.json",
+      "bytes": 7459,
+      "sha256": "c4ef91535fa583e7b92fbc2aeedb86586265df8963118d571d710bebe968cbb8"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-probe.py",
+      "bytes": 7106,
+      "sha256": "e3cd0da9193240b687771ad7a9c785593bd49caab5012e15611efd744008f3eb"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-tfa-1440x900.png",
+      "bytes": 44562,
+      "sha256": "1935b30062e07cd74321d509e4e2f80d318982e091f4278c909150871be06710"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout-tfa-390x844.png",
+      "bytes": 26768,
+      "sha256": "dbf5fdd3741bfdcf56816305e4d4494ec58ac84e4731202f7a581f2d9f2f3a8d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-service-layout.json",
+      "bytes": 4592,
+      "sha256": "b66f8ea6b17c414cc31c25acef8c9b059fdc0d35cf0d6935248580c1ac3ccc89"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-visual-browser.json",
+      "bytes": 6811,
+      "sha256": "fb81cf4f7dd0496c15259e077c9738f945b460d15118a24b9a4e56c952a20ea3"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-visual-n3-service-build-command.log",
+      "bytes": 5050,
+      "sha256": "fc8b2cc5c0a7d701d0c578f96143b39d12ea0367fd429965f5d7b04357894773"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/home-visual-stress-command.log",
+      "bytes": 5209,
+      "sha256": "527613fa72af0316377043fd95ba8b3720c106647da3e1884ded0282331d39ed"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/initial-navigation-timing-local-modes-command.log",
+      "bytes": 583,
+      "sha256": "475debcd136475e0619e3c8152e386d5ce115b4edf0ba2650dfe56238e71297d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-browser-command.log",
+      "bytes": 61,
+      "sha256": "dca0ee3d06c1094ed9babf730328762e89d17c7afb4ae829c508c0a89364d58c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-browser/ai-finished.png",
+      "bytes": 184523,
+      "sha256": "9c09a0634750d69967f2deda19d4f36b95c3f37497d4f709e6eee02eed0f962d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-browser/ai-playing.png",
+      "bytes": 148151,
+      "sha256": "1fc14f0aca822d34ad936328224cc71f18baf4590dc5f46b28e4fbc5552f023f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-browser/hub-small-screen.png",
+      "bytes": 185869,
+      "sha256": "40a54d372603ae1c8f71f1f8dbb3231591def6919cc712d1c7e5a53e3548e486"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-browser/local-finished.png",
+      "bytes": 146577,
+      "sha256": "ee58b509da6c9a7eade1fc521796e7091c2d8eaa4b5a421488ae1024dad28997"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-browser/local-hub.png",
+      "bytes": 200030,
+      "sha256": "1b80211ab1e8eb15c0f620b8f10aeadd26df5f4cd2a539bd1224d63cca8df44b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-browser/p2-browser-report.json",
+      "bytes": 3542,
+      "sha256": "7ebb142b7e4f8293b10163186d8f3f8c2f4c05bf027696e05dc261af363213ec"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes-command.log",
+      "bytes": 33,
+      "sha256": "fa9b0c7c770dad4565831617206d1035851e66d27918bf5689323031fd596700"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes-environment-failure.log",
+      "bytes": 4903,
+      "sha256": "f9c46375b6db46334fc1f24c1594fc053e639dcbca550ab94053d67f9a98fd01"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/ai-classic-easy-finished.png",
+      "bytes": 70842,
+      "sha256": "c382e8e358473b2afc2126fe8d5349427896e17cc86e0030a8f2e430c7ace95e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/ai-classic-hard-finished.png",
+      "bytes": 71147,
+      "sha256": "ca10ce9e0c182251d139fd7858f4460f75d2c51838bd30cf8c08716a92751e31"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/ai-classic-normal-finished.png",
+      "bytes": 71514,
+      "sha256": "1b144e3e8c2a211cdb142fd082271b0f9523859c11fbb8ae7a2f119cdfe84766"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/ai-power-easy-finished.png",
+      "bytes": 78504,
+      "sha256": "e3ade9ed99d0e88e5fc57d7a993baa7c2b08ad9a8c250a92813e03bf39222195"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/ai-power-hard-finished.png",
+      "bytes": 78900,
+      "sha256": "45482ba56b54211e9da4a7a978fe5229a1776b392a4653f7102fd9157184f25b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/ai-power-normal-finished.png",
+      "bytes": 79485,
+      "sha256": "9cdefec1d0e74fa593325a950e5df60728e863798e7baf195fef722d2b049b5e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/initial-navigation-timing-failure.png",
+      "bytes": 93084,
+      "sha256": "3f9b53fe5cfdfe9fd9b0ee9493f51e5b7c8b009cc23116b78de9798b8e8aa328"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/initial-navigation-timing-report.json",
+      "bytes": 3134,
+      "sha256": "0ce0361e1731f2a2bd96c876b39bf8146bd3e511615069fa6136475db83934dc"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/local-power-active.png",
+      "bytes": 58247,
+      "sha256": "8f0791623da8ae4423f3237fb32167fb7a9cd03e19a79b3ba8060302246e369d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/local-power-finished.png",
+      "bytes": 71593,
+      "sha256": "3b0332031e3864e862c106522dabbcc04b685570e38904f9fa58e26aeb9301cf"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/local-modes/report.json",
+      "bytes": 7300,
+      "sha256": "235fe63a2f0a495840719990a2f456ce6a5c497db7961f8ff70deba77e13f00b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/login-review-fix-backend-build.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/login-review-fix-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/login-review-fix-tsc.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n-player-recovery-after-closed-transport-grant-final.json",
+      "bytes": 943,
+      "sha256": "981314c8bd941dab195181a356f48cddfa64c2d786d6f124899301074c9fb3b2"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n-player-recovery-after-closed-transport.json",
+      "bytes": 857,
+      "sha256": "c79e240271bf601bd499a329f294dfeff9faa265bf049e055c8ac969053e1533"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n-player-recovery-after.json",
+      "bytes": 537,
+      "sha256": "9d08468e93c8447564038703e78672669de78fbf305f3f0edc788857e24a5916"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n-player-recovery-before.json",
+      "bytes": 691,
+      "sha256": "75d70126579287dd51990909e1e70b71c21f8fc23f493df4969fd41b7a99483f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n-spectator-recovery-after-closed-transport-grant-final-retry.json",
+      "bytes": 630,
+      "sha256": "8854ebdfe26f877928b811b22536688886eb500660d6e5237a7869b64b15e91a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n-spectator-recovery-after-closed-transport-grant-final.json",
+      "bytes": 673,
+      "sha256": "71088e72588c238fa9c442c3e8e2a56cfd51bbbcb23fdb039b134d5817001084"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n-spectator-recovery-after-closed-transport.json",
+      "bytes": 620,
+      "sha256": "348222e1e8168b2cf5b0ede7dd8b7a76cc15dc4f86d9b1210e483269c450c6ec"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n-spectator-recovery-before-closed-transport.json",
+      "bytes": 621,
+      "sha256": "dcc540c2a5d7bc2b403d99d37baff429ae0de2e7ddb8c9091a0b91d4ae3c94e0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-browser-after-controlled.log",
+      "bytes": 727,
+      "sha256": "c43fac7347ad534c5d9cc34454cbef960a373e663c077277adbf4c29aed4dfe5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-browser-after.log",
+      "bytes": 1455,
+      "sha256": "e4a8ce9fa0b5b780b5a5eda93d32c5f7ae4eff50b5e990bf2539c09a26bef8cb"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-browser-before.log",
+      "bytes": 658,
+      "sha256": "4959d808f096748f123314d6cd25de3377ec8e171c092e65c44dbf7e0ed60144"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-browser-grant-final.log",
+      "bytes": 902,
+      "sha256": "83e307b9dbd9b59c53e82f5511df7a2c6fa5a143ff5666c7e44b648c4fa39900"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-browser-recovered-score-after.log",
+      "bytes": 1913,
+      "sha256": "c2d80a803c7c5c0f9270705bc4f925c0bc7489c7c782382068cb0d727d2c1bff"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-frontend-build.log",
+      "bytes": 11394,
+      "sha256": "d4b6031b16de78ad0b8c4f69293161fd594cd1dbad4f8a203aa03f7879b54b75"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-frontend-noemit.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-online-after.log",
+      "bytes": 2675,
+      "sha256": "efad52b7573ad3197fd8c5ddca52676b304c56c63518d1f6b2692b779caa6472"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-recovered-result-after-grant-final.png",
+      "bytes": 66136,
+      "sha256": "1f5fb86a86c32b8f16497240b94a23272ff0831609c6e61dd1c95cfd3f5784f1"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-recovered-result-after.png",
+      "bytes": 70341,
+      "sha256": "766ed0937af2cbf60d4a2acac222e733cf9914b976c8b2ee0f8722058b832a31"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-server-after.log",
+      "bytes": 254,
+      "sha256": "389f90cc261fb8a563b483fa969037a88f8cf0ee09cc56ba512c159fa82ef002"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-server-before.log",
+      "bytes": 6448,
+      "sha256": "12de0bacb5cc0b2f5bef4013d3d86e138582b8406e4e24acd80a1dcafe97806b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-unit-after.log",
+      "bytes": 16834,
+      "sha256": "a03f90949956405c8e422773b32b1be87737713a2baad789f408fda7b7e293e6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n1-unit-timer-fix.log",
+      "bytes": 12455,
+      "sha256": "10791308a5ef166bd5289a0617ca5e85bddc60cc2584d43bd5e3e880de0b7973"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-backend-build.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-backend-final-scoped-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-backend-grant-final-build.log",
+      "bytes": 96,
+      "sha256": "7e4eb66c6403a16e1b5799feafe57a7df08aaa580176e73fa81ee03a67042514"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-backend-scoped-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-browser-after.log",
+      "bytes": 591,
+      "sha256": "dda601a4f196d5fc520f8e64f8dfb11a55b0400a8f865b1d56660a8b008d84fc"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-browser-before.log",
+      "bytes": 594,
+      "sha256": "a22c8b9f89df8363ccccaaa7b3ecbf62e9da94db5a3320b9a736d7fdf7b6bc16"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-browser-grant-final-retry.log",
+      "bytes": 263,
+      "sha256": "eadd85c01821fa95b57277814c98d2f9c53331b1a72f7a583d39bb2bc4901a81"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-browser-grant-final.log",
+      "bytes": 1292,
+      "sha256": "85cf2672539d9e4195e1408aae37f4f1b2d1ddd6ac4c0e87818cb51c1f878be4"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-client-final.log",
+      "bytes": 2468,
+      "sha256": "46fdd2229144c61faddfb9b22f13c4857f9cea09f2d000364a6ed7751627f34b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-client-grant-final.log",
+      "bytes": 2468,
+      "sha256": "280db86b7ecd858aed511b8c31dc83bb2703eec66e495baa5e4995d02ab9aac6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-fixture-server.log",
+      "bytes": 471,
+      "sha256": "5b9fa946fe51b84b5cdbeca4dd8f27248c95af1477379c9d82c410ed44de67f7"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-frontend-build.log",
+      "bytes": 11394,
+      "sha256": "a1ef49f7d9ae1a3f7070a4d6b2a1941ece9cfa27709a8c8d1594a04832371cc5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-frontend-final-scoped-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-frontend-grant-final-build.log",
+      "bytes": 11394,
+      "sha256": "90d27ee40177030f9cd35428dcaacf754ffd4343515eabe2169c9664155102a5"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-frontend-grant-fixture-build.log",
+      "bytes": 11394,
+      "sha256": "5a5915ed047d67a312f57e60877e6aca71e9ad707933db58abbf2f494f014651"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-frontend-noemit.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-frontend-scoped-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-grant-fixture-server.log",
+      "bytes": 5078,
+      "sha256": "7cbe191b2817fd2bc99873735c5bf1bdb543d4281375b03172e31db9b31461df"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-observer-reconnected-after-grant-final.png",
+      "bytes": 52688,
+      "sha256": "dfb03f157ad6fe4e788a0ca4cedfd8391edcaed9d00ca89019723ad129fca459"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-observer-reconnected-after.png",
+      "bytes": 53686,
+      "sha256": "f8768ccd486cb78496cb387b85739b191d4e463a30fe4170eb8167af0536995a"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-online-final.log",
+      "bytes": 2663,
+      "sha256": "e140f97da8fb80ba67e112b3d8138617d88e3ff55a1f3c48c08c2f55f6063584"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-online-grant-final.log",
+      "bytes": 2707,
+      "sha256": "04e89e827cb968c71b31b680793adfd238890a8c86e76f41cdd0ced441a3fe0b"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-player-still-playing-after.png",
+      "bytes": 72353,
+      "sha256": "78b00c06fa72404d3f473af3c5b5ac500b60afdb421781c3865043d6fc5d76fa"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-protocol-core-final.log",
+      "bytes": 226,
+      "sha256": "eb5702fff2b1506673ac61a4ae3baf282f9cdd4015d4ece93a256e3a64aa91a6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-server-after.log",
+      "bytes": 253,
+      "sha256": "d0115b4269272dcc14bab3f236b05d8cf05d92133496f50b11890accacbdff3d"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-server-before.log",
+      "bytes": 2940,
+      "sha256": "b9faa9cf0329d6f397bd080bff639791219b25147bccf2f3cc390af3e8356bd7"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-server-final.log",
+      "bytes": 253,
+      "sha256": "4532ef1914a4168f241bf4498d65ad993849fc6665a0cc5fe289dbca5513e9e6"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n2-server-grant-final.log",
+      "bytes": 255,
+      "sha256": "cbd758c8e18cc02f9850270b65222c18e53c58f739f686dd2aa7d164e121ff10"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-backend-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-client-final.log",
+      "bytes": 2910,
+      "sha256": "e749152e75ad59cbe7b93e7fa69be9e26f89b7bd24d4a2a85e568c24657887ba"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-client.log",
+      "bytes": 2827,
+      "sha256": "c1c6e910c1c9a06f9e37968d414bc2c06c5feecf8d975cd451bb93f93c6151e8"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-clock-final.json",
+      "bytes": 5067,
+      "sha256": "2d1fed1c4b569050d6e462e79fc1a72972f3f780cd2b5c6d9919607dfd16d7c9"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-clock-final.log",
+      "bytes": 1424,
+      "sha256": "3e9c8290f0b28d6b4ebf078a26f15b2369812b173737e0af1dc0d55bf404ecb1"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-core.log",
+      "bytes": 223,
+      "sha256": "b58d4d4936c290b190048b4bd12e2858285e7e209093c4d5e07551f211f113cd"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-frontend-build-final.log",
+      "bytes": 12404,
+      "sha256": "e2f9aa7262607c61afad0eb16a8a152d0f8888c00fc811a5d17f4eeaad12b356"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-frontend-build.log",
+      "bytes": 11571,
+      "sha256": "4952a342a6b4506378ba50c963b439845eab0af2ed62c83c3561d4993a8e0493"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-frontend-contract.log",
+      "bytes": 964,
+      "sha256": "1990cdec259c100db1d2b66f24fb1ba2f056f76685ffd89a38fdce39e40aba01"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-frontend-lint-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-frontend-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-frontend-typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-frontend-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-online-integration.log",
+      "bytes": 507,
+      "sha256": "9d38cf96353b908fbee8ba4f38598f5c31e96a183c50d3acc3db6ef99a646120"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-online-lifecycle.log",
+      "bytes": 966,
+      "sha256": "cb5145ecee78090a8120dce4a3c9059b077802d61267114cd0dfd233b085dbfa"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-reconnect-clock.log",
+      "bytes": 1031,
+      "sha256": "585681553acbdf6a9a9cae717947692b401d9c4f98a1e05f0444e128dcc52131"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-review-ack-red.log",
+      "bytes": 4554,
+      "sha256": "b39ff4ed59b1f9919aa654069f9b3a11a31541afdb2ec3d4ca17ae16a3ae3eea"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-server.log",
+      "bytes": 256,
+      "sha256": "9a0ad8bece66f6cc9c6f21f5e956fd0fd0ba27926b88ab3117c2362364f10a67"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-service-preservation.log",
+      "bytes": 707,
+      "sha256": "a479dc183737db20bc686c728bf80f0e5ec5e97f89e7b583d19a4ce5f7b47df7"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/n3-snapshot.log",
+      "bytes": 2235,
+      "sha256": "88c3e01590bcfbbfdeba8f8485f8983c712cae52193b14185a3f8db34eaf5505"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/navigation-initial-attempts.json",
+      "bytes": 2164,
+      "sha256": "45b169cf93662d473ec5cdfb9eddee30b8c3d7a9033f205ecd432da5c1df07cb"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/navigation-lifecycle-unit.log",
+      "bytes": 979,
+      "sha256": "779f77f8d12a4fb0b171480dcdb4ea510e0f128d694d633ca5b6d020b9f6c464"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/navigation-unit.log",
+      "bytes": 1550,
+      "sha256": "746582b36cf2168149e1ff7d1e00131cd2a3371cc16b1d4abd9f918476cd89f2"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-final-build.log",
+      "bytes": 11394,
+      "sha256": "6014a9e44f4cc7e3cd93ce67fe3758c001040b40da8912f8979f3c61f4bf6561"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-final-visual-command.log",
+      "bytes": 2983,
+      "sha256": "a03fdc21ffaa43ff725a2c5447766b1873561315641dee404ad6549b92cf5ee7"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-frontend-build.log",
+      "bytes": 11582,
+      "sha256": "53e2ba19a0ad13e595a642c35cd1c5fe9bb99efee09ac689fc69ebc53754abb0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-keyboard-visual-command.log",
+      "bytes": 3240,
+      "sha256": "1c5d0be2218c49dda1c2635fabff3d12956bc7760291ef54ccafa305c26f0ace"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-prerequisite-layout-build.log",
+      "bytes": 11394,
+      "sha256": "bb95333ca6a5f6fe5c317de7fe5c1b32ddadaf330e4feec83ad0f0f7998a0e70"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-tsc.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-unit.log",
+      "bytes": 11894,
+      "sha256": "982c1ce37c9594f165f332c09e934d98641c9fddd8b27234ea6900a621d40e54"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-visual-attempt1.json",
+      "bytes": 3216,
+      "sha256": "3afef437ce285c90b0501d07804a2b35994bae109a0165ab86521ad1be5f4e5f"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-visual-attempt1.log",
+      "bytes": 4353,
+      "sha256": "06235a29b7112cd6da79a81189fbbfc7b7c17e4ff180c42b5fe89a33f53dffaa"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-visual-before-zoom.json",
+      "bytes": 3903,
+      "sha256": "3aa7e5f05e4cde3176639eab370fcd5b46cc348b468fcd2caecb14400acb6f23"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-visual-command.log",
+      "bytes": 2912,
+      "sha256": "54c3f20d264622c705b661104408dea5ce18030d8fee9834f10f0167f15d2a20"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/phase-b-zoom-before-fix.png",
+      "bytes": 207547,
+      "sha256": "bc9e342d4860a09464cf3d97b4e1c9bdbf9bf6ca145bffd91ea824e401d7e6bb"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/recovery-execution-record.json",
+      "bytes": 17851,
+      "sha256": "20d6583cdab125fe745e76e81febe92304e38fe3a564a35206d17757cc491190"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-before-diagnostic/online-rejected-session-python.log",
+      "bytes": 8522,
+      "sha256": "a9d9e4a31a39de57f15d9a79508922a2f59f8b351d0ed5b961bc5a5979559367"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-before-diagnostic/online-rejected-session.json",
+      "bytes": 10646,
+      "sha256": "3811d88b91c1b4177db95523b0601df2426e2e383f62a7214b80f7378933ff13"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-before-diagnostic/rejected-session-failure-diagnostic.png",
+      "bytes": 75656,
+      "sha256": "a0dcd4affef1ee345de79a368b3fc15e58324b33bcee72d12bd54081f6eb8e98"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-before-diagnostic/server-session-observation.json",
+      "bytes": 33,
+      "sha256": "228c579fdecfa57e1b33bb00f056e67f80ad53a4013c8ca6a7c9e010bf1d4bab"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-before/online-rejected-session-python.log",
+      "bytes": 2384,
+      "sha256": "abc2b3018ac11bb3e692182ee64fcfd0854e7a3cb30c76030dce23f8a7fce8c2"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-before/online-rejected-session.json",
+      "bytes": 512,
+      "sha256": "273bd19d3783dc7461b9b23ade39c2b6a0c511433c03d7ee06168c02db6d1092"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-before/server-session-observation.json",
+      "bytes": 33,
+      "sha256": "cf559c4e1388bf6639f4a009c1c61dfff84829e9042ebbd7d367f3d5e6e80b6c"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-churn-before/online-rejected-session-python.log",
+      "bytes": 9542,
+      "sha256": "ff4c076c4d08d55371873cf7a390f74e73e647f0edb16bab964b0f8a6895733e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-churn-before/online-rejected-session.json",
+      "bytes": 12219,
+      "sha256": "9f894e1aa51df9745e590454076fbcb708520ca8a249e8eade9a7de7fa61cdb0"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-churn-before/rejected-session-failure-diagnostic.png",
+      "bytes": 75819,
+      "sha256": "85263169f30b12faf9e835dd33aaf55a03ce959350e3cd3c5f9bf59417727e70"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-churn-before/rejected-session-reconnected.png",
+      "bytes": 75819,
+      "sha256": "85263169f30b12faf9e835dd33aaf55a03ce959350e3cd3c5f9bf59417727e70"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-churn-before/rejected-session-while-owner-active.png",
+      "bytes": 75656,
+      "sha256": "a0dcd4affef1ee345de79a368b3fc15e58324b33bcee72d12bd54081f6eb8e98"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/rejected-session-churn-before/server-session-observation.json",
+      "bytes": 50,
+      "sha256": "c3687410a96c87ea034d8244850f4dbe6ebee9bfa20ef6327c999ef6820222d9"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/review-bindings-before.log",
+      "bytes": 1014,
+      "sha256": "c5cc77653d46f1307632c4e3ed87bcd899ef7ddec77546acb4940287e1f523a1"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/review-db-bound-before.log",
+      "bytes": 926,
+      "sha256": "40061dd12a4f989dc7e9a45535916ce30b6d2bc2da297c037fd6443dcb5b6bfa"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/review-raw-ack-reproduction.log",
+      "bytes": 155,
+      "sha256": "7fe0efe5f5df196df47543ec3397518f72f9543d4c7282f7f9a0a724e65e7652"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/review-spectator-grant-after.log",
+      "bytes": 254,
+      "sha256": "59d64c9b211f9446cadf7da739e0122346b20e0c6ae7af1a9ea11dc2381f3bd8"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/review-spectator-grant-before.log",
+      "bytes": 1755,
+      "sha256": "7559f8bd39f05aa49d42dd2cc972e759ce0948cb4334a1b11ec20661762ce75e"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/service-layout-fix-build.log",
+      "bytes": 12108,
+      "sha256": "87f55c537cd126be25935e4f08a8f3ca151eae7a9b9a7ab69834b5ad00ec53ef"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/service-layout-fix-flagged-build.log",
+      "bytes": 12108,
+      "sha256": "88d5e8903fcf9ed6f6cdd41c523b9ad2922df27dbe6636c82b6278be84b02773"
+    },
+    {
+      "path": "docs/home-online-polish/evidence/service-layout-fix-noemit.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/home-online-polish/review/source-changes.patch",
+      "bytes": 487214,
+      "sha256": "6bf6cc0defd00fc33c4302985c514eb98306f70f4c34f9708e465b277c11a7d6"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "bytes": 721,
+      "sha256": "9b126c52d5de284d5228471ff0e42fd0526a04fe2c702905ddd0943f2a575cc9"
+    },
+    {
+      "path": "frontend/src/arcade/audio-feedback.ts",
+      "bytes": 4665,
+      "sha256": "2019719da98cda407abf6c017d608ba5775799e263c4f6fcf469cb72e19a065f"
+    },
+    {
+      "path": "frontend/src/arcade/auth-session.ts",
+      "bytes": 2457,
+      "sha256": "0efcdf3ef809d037ca0b59d708701ca7280bb1c6dfebb520440f7580f8aa2f41"
+    },
+    {
+      "path": "frontend/src/arcade/connection-retry.ts",
+      "bytes": 2677,
+      "sha256": "919f41b61125490b8a092b6dd756d14e9d76f199ed5f1e437d9f9f2fcd408cf6"
+    },
+    {
+      "path": "frontend/src/arcade/event-presentation.ts",
+      "bytes": 3813,
+      "sha256": "f5759872e4397b9a95e7e60ba8f7816dd56cde534b09d7404f71099b04543db0"
+    },
+    {
+      "path": "frontend/src/arcade/keyboard-controller.ts",
+      "bytes": 5982,
+      "sha256": "909af546efc76c7d3aa945c475aece930cc7c9c67233e202d41e9724c19497ee"
+    },
+    {
+      "path": "frontend/src/arcade/launch.css",
+      "bytes": 7602,
+      "sha256": "c57a683b49f5bd20e8370bc0de2a4825a1f564a0c6008f1572407e74ce945456"
+    },
+    {
+      "path": "frontend/src/arcade/login-intent.ts",
+      "bytes": 1625,
+      "sha256": "4d9bbb9d19a4262abb394b84b33012f5e3c1d6e1a33f7c38c97bf9e25202f498"
+    },
+    {
+      "path": "frontend/src/arcade/online-preferences.ts",
+      "bytes": 1230,
+      "sha256": "a0ea55fe8ef55d6719d64a15d1bb2d512ae36da210d2fcf47691c62945d95ef7"
+    },
+    {
+      "path": "frontend/src/arcade/online-session.ts",
+      "bytes": 14276,
+      "sha256": "c8dc803adca36837322403e7ec5f4b6abc9301eb68e346b0587e6f43cfa7482a"
+    },
+    {
+      "path": "frontend/src/arcade/route-game-socket.ts",
+      "bytes": 499,
+      "sha256": "ae70edb4feffb4fe82da035fb5d87fb065c96f8db46c0dd21a7cfb978b05f145"
+    },
+    {
+      "path": "frontend/src/arcade/session-recovery.ts",
+      "bytes": 4790,
+      "sha256": "0e66336fd77ad9ab0777b8c0086f50b453b59fa56c7c5c25d8ee80195768d2fc"
+    },
+    {
+      "path": "frontend/src/arcade/snapshot-buffer.ts",
+      "bytes": 9578,
+      "sha256": "50beef8995f00b65c3cb66d75b3a2ce850def6c46d82766fbd5f2770c912e17f"
+    },
+    {
+      "path": "frontend/src/components/SideBar.vue",
+      "bytes": 4211,
+      "sha256": "4649b856b1a24bc91015cf14af9d03c8ffb8b069f77c694e713fba08154b7ee2"
+    },
+    {
+      "path": "frontend/src/components/arcade/LaunchPanel.vue",
+      "bytes": 6802,
+      "sha256": "7c37ef0d5d2ba8cceb4c1cb8e4eabd95da8614894b89e2748c3c9e5513afc7ef"
+    },
+    {
+      "path": "frontend/src/components/chat/ChatContainer.vue",
+      "bytes": 1247,
+      "sha256": "3e8eefe798e5ad9f688a640869248ab3d0d8ceff623fc8381164f0b491e11b74"
+    },
+    {
+      "path": "frontend/src/components/friends/FriendsSlider.vue",
+      "bytes": 5805,
+      "sha256": "7254bfe90f78df268a021b9e80c912773f7b237657d15afd0f9f786b5c291fe7"
+    },
+    {
+      "path": "frontend/src/components/game/InviteSlider.vue",
+      "bytes": 3223,
+      "sha256": "dd2627c632ff146760f588ee9ffee4b0b9d89920c6c3f34613ba0a9b0d958766"
+    },
+    {
+      "path": "frontend/src/components/game/OnlineGameShell.vue",
+      "bytes": 15761,
+      "sha256": "b72a5d50ebcd3fab877841efff878c43aa089b7cb0125494202b172d5d88cde3"
+    },
+    {
+      "path": "frontend/src/components/game/SpectateSlider.vue",
+      "bytes": 3688,
+      "sha256": "8950e210eaa6a54bc38aa8e74aaab2edaa646b03f7422550bbbc8a5805247e44"
+    },
+    {
+      "path": "frontend/src/plugins/gamePlayService.ts",
+      "bytes": 4173,
+      "sha256": "1bd96d5c48e59c5469e871294579927dfd8651421642bbbbf8cb2b29cde318f4"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "bytes": 9585,
+      "sha256": "c03cbc22378e5412e08697350163fe91ae644bbbfcf3193c8dd94a8ab0643a58"
+    },
+    {
+      "path": "frontend/src/views/BoardView.vue",
+      "bytes": 4859,
+      "sha256": "aa1ac07cd5b08c00deb269dc289943169fc5b9040ddf4d5d3dc4fd730ac9917d"
+    },
+    {
+      "path": "frontend/src/views/ChatView.vue",
+      "bytes": 4009,
+      "sha256": "ed1fc6b7ac4200ae4f29db4912f435ac716464ca286847c70e814d5fc6faf25f"
+    },
+    {
+      "path": "frontend/src/views/GameView.vue",
+      "bytes": 10621,
+      "sha256": "788476a0f2a79bd85a111fe572940ba454f1603c3c63b9db7aa807dce762f94a"
+    },
+    {
+      "path": "frontend/src/views/HomeView.vue",
+      "bytes": 3334,
+      "sha256": "4c15e60a323500b4c0c5f844dbf59762b30376a2b9a3142a520984ceebf06f1f"
+    },
+    {
+      "path": "frontend/src/views/InfoView.vue",
+      "bytes": 6614,
+      "sha256": "0d2daa96bd0c271ce8be1ec2dbd49f314955f0c22fe502206ab12a65f3638f28"
+    },
+    {
+      "path": "frontend/src/views/InviteGameView.vue",
+      "bytes": 12764,
+      "sha256": "37d182c063fc97f63f07f983cc9ec8e178158a724de8a331197d6722ed60d4b0"
+    },
+    {
+      "path": "frontend/src/views/LoginView.vue",
+      "bytes": 7994,
+      "sha256": "27acf4be7a6223b78533cbb34aca50dc85ae20246c28360a581f9eebf98caed4"
+    },
+    {
+      "path": "frontend/src/views/PlayHubView.vue",
+      "bytes": 1255,
+      "sha256": "6036a299494d9ea282369801034be4a04f6004f4f0737f48874e27a7c0cf8a02"
+    },
+    {
+      "path": "frontend/src/views/SpectateView.vue",
+      "bytes": 11360,
+      "sha256": "4064c740d1532533973d6dd68c61281f44906c5dbcebb843204a02d6de936357"
+    },
+    {
+      "path": "frontend/src/views/TfaView.vue",
+      "bytes": 8127,
+      "sha256": "f935730e4db8d4743ef174bcbe3549bed9e279affd13c2cbf56c778f19e96cc8"
+    },
+    {
+      "path": "scripts/browser-home-auth.py",
+      "bytes": 13007,
+      "sha256": "61b7aae6d848ca3bc527937dd0905996e5708f8c1cbf95b35cfb1c80c0725840"
+    },
+    {
+      "path": "scripts/browser-home-navigation.py",
+      "bytes": 13956,
+      "sha256": "b9423fe9be4bf7bd918f56d519ec873ec84c7797f0ad4d6c088019297b5e02b0"
+    },
+    {
+      "path": "scripts/browser-home-visual.py",
+      "bytes": 11438,
+      "sha256": "fe490290e347be35285ce9baae34e3ff9315cbca7f715012a9f2f06df439658a"
+    },
+    {
+      "path": "scripts/browser-local-modes.py",
+      "bytes": 7753,
+      "sha256": "f04a7cab48e739bd0b9ce651b7284a46164a39f5e5d3716c20d89ac871959199"
+    },
+    {
+      "path": "scripts/browser-online-final.py",
+      "bytes": 33457,
+      "sha256": "ad5f65698771b64ef426c3d8434f4c9601d0d1de3d58a38cd5e7834cdf6e379d"
+    },
+    {
+      "path": "scripts/browser-online-recovery.py",
+      "bytes": 9072,
+      "sha256": "89203a8904812ab31d858a905a39b44ac604394d3ec8bd6c4cfce31f7acc8736"
+    },
+    {
+      "path": "scripts/browser-online-rejected-session.py",
+      "bytes": 12913,
+      "sha256": "a4af04c1c7c8c4a6d6a5a1f37d1905a3340bcddf8db8d173bda4846695bf486a"
+    },
+    {
+      "path": "scripts/check-arcade.cjs",
+      "bytes": 2714,
+      "sha256": "36aa88c528bb16aa18c6916986c2015979c3436624e237cd91541ae899e5bd5f"
+    },
+    {
+      "path": "scripts/package-home-review.py",
+      "bytes": 6371,
+      "sha256": "9407e3ef13a981fe8a3c81b990b0cc66336b2ea6bafb5e0038d23bf9ee99ae1f"
+    },
+    {
+      "path": "scripts/probe-guest-cors.cjs",
+      "bytes": 5261,
+      "sha256": "88f90fff44d9d5b6954feb4d11527ae100d59e1b0e15ba31191b45d96b8a3808"
+    },
+    {
+      "path": "shared/protocol.ts",
+      "bytes": 12198,
+      "sha256": "765df8990d7c5828c1c6d8d3541998a40746bd769e3d2e1c3309b92c9cb3fb92"
+    }
+  ]
+}

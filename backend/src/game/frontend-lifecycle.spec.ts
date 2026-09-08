@@ -76,6 +76,22 @@ describe('frontend game lifecycle and input contracts', () => {
     expect(fixture.packets()[0]).toMatchObject({ generation: 2, up: false, down: false });
   });
 
+  test('an old route unmount cannot dispose the new route canvas session', () => {
+    service.start(fixture.context, 'black', canonicalReady());
+    const nextRoute = new OnlineBrowserFixture();
+    Object.defineProperty(nextRoute.context, 'canvas', { value: nextRoute.canvas });
+    service.start(nextRoute.context, 'black', canonicalReady(false, 'left', 2));
+    service.disposeFor(fixture.canvas);
+    service.disposeFor(undefined);
+    expect(fixture.callbacks.size).toBe(1);
+    expect(fixture.socketEvents.count('snapshot')).toBe(1);
+    fixture.frame(100);
+    expect(fixture.packets()[fixture.packets().length - 1]).toMatchObject({ generation: 2 });
+    service.disposeFor(nextRoute.canvas);
+    expect(fixture.callbacks.size).toBe(0);
+    expect(fixture.socketEvents.count('snapshot')).toBe(0);
+  });
+
   test.each([true, false])('C03: server ready roomMode=%s is retained', (roomMode) => {
     const ready = canonicalReady(roomMode); store.commit('setRoom', ready);
     expect(store.getters.room.mode).toBe(roomMode);

@@ -1,0 +1,33 @@
+PASS src/game/online-session.spec.ts
+  actual online session class with owned fake DOM and transport
+    ✓ receives 20Hz snapshots without adding RAF loops or advancing simulation (10 ms)
+    ✓ restores every owned listener and cancels late callbacks when disposed repeatedly (3 ms)
+    ✓ ignores late transport status callbacks after the session owner is disposed (1 ms)
+    ✓ ignores missing or wrong match IDs in result and connection status events (6 ms)
+    ✓ sends held movement plus one ability edge using valid increasing DTOs (5 ms)
+    ✓ refreshes a held movement at 100ms without manufacturing action presses (5 ms)
+    ✓ ignores form typing and returns neutral input on focus loss (5 ms)
+    ✓ clears held movement on window blur and hidden without stopping server rendering (3 ms)
+    ✓ never emits spectator input, including blur, layout changes and disposal (5 ms)
+    ✓ rejects invalid, wrong-match, duplicate and old snapshots (5 ms)
+    ✓ owns ready and received snapshot data used for latest state and completion (4 ms)
+    ✓ flushes the authoritative winning score on completion ahead of interpolation delay (3 ms)
+    ✓ blocks old-generation input after reconnect until a new session supplies full ready (5 ms)
+    ✓ measures input-to-ack round trip using the same injected local clock (5 ms)
+    ✓ measures a matching latency probe with one local clock and rejects unknown nonce values (2 ms)
+    ✓ does not accept a superseded probe callback as the current round trip (2 ms)
+    ✓ does not change metrics from a latency probe callback after disposal (6 ms)
+  identified recovery request lifecycle
+    ✓ requests last match identity and times out once without declaring an outcome (2 ms)
+    ✓ rejects malformed, old-request and wrong-match replies and consumes the current reply once
+    ✓ handles automatic ready before recovery acknowledgement without duplicate session construction (1 ms)
+    ✓ ignores an old ready or end after a different match and blocks duplicate ends (1 ms)
+    ✓ clears pending work and rejects callbacks after disposal (3 ms)
+    ✓ resubscribes an observer without accepting player control or an old target response (3 ms)
+    ✓ expires the installed Socket.IO ACK registry and send buffer after unacknowledged recovery (6 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       24 passed, 24 total
+Snapshots:   0 total
+Time:        1.511 s, estimated 2 s
+Ran all test suites.

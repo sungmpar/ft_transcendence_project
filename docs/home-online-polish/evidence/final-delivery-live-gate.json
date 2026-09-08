@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-08 04:37:25 UTC",
+  "results": [
+    {
+      "url": "https://api.github.com/repos/sungmpar/ft_transcendence_project/branches/main",
+      "data": {
+        "name": "main",
+        "sha": "2f11bee69c2d55ed938b53f9750119a890396fb7"
+      }
+    },
+    {
+      "url": "https://api.github.com/repos/sungmpar/ft_transcendence_project/issues?state=open&per_page=100&page=1",
+      "data": {
+        "count": 0,
+        "items": []
+      }
+    },
+    {
+      "url": "https://api.github.com/repos/sungmpar/ft_transcendence_project/pulls?state=open&per_page=100&page=1",
+      "data": {
+        "count": 0,
+        "items": []
+      }
+    }
+  ],
+  "gitFetch": {
+    "command": "git fetch origin",
+    "initialSandboxExit": 255,
+    "initialSandboxReason": "Cannot open .git/FETCH_HEAD: Operation not permitted",
+    "authorizedEscalatedExit": 0
+  },
+  "note": "No merge, reset, branch, commit, push, PR, issue or comment mutation. Empty first pages exhaust current open lists; related issue/PR detail and diffs remain N/A."
+}

@@ -1,0 +1,61 @@
+{
+  "scope": "Two real same-host/different-port browser origins; platform probe, not application login",
+  "frontendOrigin": "http://127.0.0.1:63520",
+  "backendOrigin": "http://127.0.0.1:63521",
+  "cases": [
+    {
+      "scenario": "wildcard-follow",
+      "outcome": "rejected",
+      "errorType": "TypeError",
+      "cookieInstalled": true,
+      "guestRequests": 1
+    },
+    {
+      "scenario": "wildcard-manual",
+      "outcome": "rejected",
+      "errorType": "TypeError",
+      "cookieInstalled": true,
+      "guestRequests": 1
+    },
+    {
+      "scenario": "exact-follow",
+      "outcome": "rejected",
+      "errorType": "TypeError",
+      "cookieInstalled": true,
+      "guestRequests": 1
+    },
+    {
+      "scenario": "exact-manual",
+      "outcome": "resolved",
+      "status": 0,
+      "type": "opaqueredirect",
+      "callbackURLReadable": false,
+      "cookieInstalled": true,
+      "nativeCallbackDocumentLoaded": true,
+      "guestRequests": 1
+    },
+    {
+      "scenario": "exact-manual-503",
+      "outcome": "resolved",
+      "status": 503,
+      "type": "cors",
+      "callbackURLReadable": false,
+      "cookieInstalled": false,
+      "guestRequests": 1
+    }
+  ],
+  "browser": "152.0.7977.77",
+  "finishedAt": "2026-09-08T01:43:15.076Z",
+  "callbackRequests": [
+    {
+      "scenario": "exact-follow",
+      "originHeader": "null",
+      "mode": "cors"
+    },
+    {
+      "scenario": "exact-manual",
+      "originHeader": null,
+      "mode": "navigate"
+    }
+  ]
+}

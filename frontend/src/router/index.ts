@@ -16,6 +16,7 @@ import TempChat from '@/views/tempPage/TempChat.vue'
 import store from "@/store/index"
 import axios from 'axios'
 import io from 'socket.io-client'
+import { clearLoginIntent, consumeLoginIntent, parseLoginDestination, rememberLoginIntent } from '@/arcade/login-intent'
 
 // import { nextTick } from 'vue';
 
@@ -35,6 +36,8 @@ function setAuthorizationHeader() {
   const token = getAuthToken();
   if (token)
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+  else
+    delete axios.defaults.headers.common['Authorization'];
 }
 
 function clearAuthToken() {
@@ -53,8 +56,10 @@ function needsNickname(user: any) {
 function getLoginDestination(user: any) {
   if (needsNickname(user))
     return { name: 'info' };
-  if (user.id != 0 && user.nickname != null)
-    return { name: 'home' };
+  if (user.id > 0 && user.nickname != null) {
+    const destination = consumeLoginIntent();
+    return { name: destination ? destination.slice(1) : 'home' };
+  }
   return null;
 }
 
@@ -79,8 +84,7 @@ async function updateUserStatus(value: string) {
     }
     else if(status == 403)
       return { name: 'tfa' };
-    console.log(error);
-    return null;
+    return { name: 'login', query: { reason: 'unavailable' } };
   }
 }
 
@@ -98,7 +102,6 @@ async function login_check()
     }
     else if(status == 403)
       return { name: 'tfa' };
-    console.log(error);
     return null;
   }
 }
@@ -131,8 +134,7 @@ async function error_check(toName: any)
         return { name: 'tfa' };
       return null;
     }
-    console.log(error);
-    return null;
+    return { name: 'login', query: { reason: 'unavailable' } };
   }
 }
 async function match_check()
@@ -151,8 +153,7 @@ async function match_check()
     }
     else if(status == 403)
       return { name: 'tfa' };
-    console.log(error);
-    return null;
+    return { name: 'login', query: { reason: 'unavailable' } };
   }
 }
 
@@ -166,20 +167,7 @@ function connectSocket(toName: any) {
     }
     }))
   }
-  else if (store.getters.gameSocket == null &&
-      (toName == 'game' || toName == 'tempgamepage'
-      || toName == 'invite' ||toName == 'tempinvitepage'
-      || toName == 'spectate' || toName == 'tempwatchpage'))
-  {
-    const gameSocket = io(`${socketBaseUrl}/game`, {
-      transports: ['websocket'],
-      auth:
-      {
-        token: getAuthToken()
-      }
-    });
-    store.commit("setGameSocket", gameSocket)
-  }
+
 }
 
 async function updateRouteStatus(toName: any) {
@@ -302,11 +290,15 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  if (to.meta.publicArcade === true)
+  if (to.meta.publicArcade === true) {
+    clearLoginIntent();
     return next();
+  }
   if (to.name === 'login')
   {
-    if(to.query.token)
+    if (Object.prototype.hasOwnProperty.call(to.query, 'next')) rememberLoginIntent(to.query.next);
+    if (to.query.logout) clearLoginIntent();
+    if(to.query.token === 'check')
     {
       const token = cookies.get('token');
       if(token != null)
@@ -340,14 +332,19 @@ router.beforeEach(async (to, from, next) => {
   }
 	else
   {
-    if (!getAuthToken())
+    const onlineDestination = parseLoginDestination(to.path);
+    if (!getAuthToken()) {
+      if (onlineDestination) rememberLoginIntent(onlineDestination);
       return next({ name: 'login' });
+    }
 
     if (to.name == 'board')
     {
       const authDestination = await error_check(to.name);
-      if (authDestination)
+      if (authDestination) {
+        if (onlineDestination) rememberLoginIntent(onlineDestination);
         return next(authDestination);
+      }
 
       const matchDestination = await match_check();
       if (matchDestination)
@@ -356,9 +353,18 @@ router.beforeEach(async (to, from, next) => {
     else
     {
       const authDestination = await error_check(to.name);
-      if (authDestination)
+      if (authDestination) {
+        if (onlineDestination) rememberLoginIntent(onlineDestination);
         return next(authDestination);
+      }
     }
+
+    // A successful protected lookup, including nickname/2FA prerequisites,
+    // is required before consuming a saved destination.
+    if (to.name === 'home') {
+      const destination = consumeLoginIntent();
+      if (destination) return next(destination);
+    } else if (to.name !== 'info' && to.name !== 'tfa') clearLoginIntent();
 
     connectSocket(to.name);
 

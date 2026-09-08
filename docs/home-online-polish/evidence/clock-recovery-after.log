@@ -1,0 +1,16 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+PASS src/game/clock-recovery.spec.ts (33.41 s)
+  real runner and buffer recover interpolation after scheduler time loss
+    ✓ establishes real 60Hz simulation/20Hz delivery and strict interpolation before impairment (89 ms)
+    ✓ recovers strict interpolation within 300ms after a 200ms server stall (113 ms)
+    ✓ recovers strict interpolation within 300ms after a 500ms server stall (95 ms)
+    ✓ recovers strict interpolation within 300ms after a 1000ms server stall (27 ms)
+    ✓ recovers within the same bound after each of three separate 500ms stalls (46 ms)
+    ✓ keeps real interpolation and monotone presentation under bounded ±40ms arrival jitter (55 ms)
+    ✓ recovers after a deliberate 500ms server pause/resume without inventing simulation ticks (41 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        33.697 s
+Ran all test suites.

@@ -1,0 +1,26 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+FAIL src/game/audio-feedback.spec.ts
+  ● owned synthesized audio nodes (adapter, not human listening) › cannot reuse a running context to bypass a missing gesture after mute
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 0
+    Received length: 1
+    Received array:  [{"connect": [Function mockConstructor], "disconnect": [Function mockConstructor], "frequency": {"value": 330}, "onended": [Function anonymous], "start": [Function mockConstructor], "stop": [Function mockConstructor]}]
+
+      63 |       expect(audio.status).toBe('gesture-required');
+      64 |       audio.play([{ type: 'paddle', tick: 1, side: 'left' }]);
+    > 65 |       expect(FakeAudioContext.instances[0].oscillators).toHaveLength(0);
+         |                                                         ^
+      66 |     } finally {
+      67 |       if (descriptor) Object.defineProperty(globalThis, 'navigator', descriptor);
+      68 |       else Reflect.deleteProperty(globalThis, 'navigator');
+
+      at Object.<anonymous> (backend/src/game/audio-feedback.spec.ts:65:57)
+
+
+Test Suites: 1 failed, 1 skipped, 1 of 2 total
+Tests:       1 failed, 4 skipped, 5 total
+Snapshots:   0 total
+Time:        4.727 s, estimated 6 s
+Ran all test suites with tests matching "cannot reuse".

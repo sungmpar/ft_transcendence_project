@@ -1,0 +1,18 @@
+PASS src/game/frontend-lifecycle.spec.ts
+  frontend game lifecycle and input contracts
+    ✓ C08: repeated start owns only one RAF loop and one listener per event (117 ms)
+    ✓ C08: stop removes the current loop and keyboard listeners (21 ms)
+    ✓ C08: a late callback from a stopped generation cannot restart rendering (17 ms)
+    ✓ C08: dispose is safe before start and when repeated (18 ms)
+    ✓ C08: callbacks from a replaced generation cannot affect the new game (19 ms)
+    ✓ an old route unmount cannot dispose the new route canvas session (39 ms)
+    ✓ C03: server ready roomMode=true is retained (24 ms)
+    ✓ C03: server ready roomMode=false is retained (27 ms)
+    ✓ C04: opposing held movement keys produce neutral input (30 ms)
+    ✓ C04: held movement and a Power press are both represented (32 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        0.88 s, estimated 2 s
+Ran all test suites.

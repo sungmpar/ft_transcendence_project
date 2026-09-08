@@ -1,0 +1,144 @@
+{
+  "scope": "Independent D/E browser verification; exact executor commands and terminal exit results. No production edits. Each attempt has separate immutable evidence.",
+  "records": [
+    {
+      "id": "e-final-online-first",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST=/private/tmp/ft-transcendence-d-dist ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-online-first node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-final-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-online-first.log 2>&1",
+      "exitCode": 1,
+      "evidence": "e-final-online-first.log and final-online-first/",
+      "result": "First case actual six-point 6:1 and real mouse rematch PASS. Observer case timed out waiting for transient recovered status text; stable tick/input checks and effects case not reached. Aggregate FAIL. No post-browser DB assertion was reached."
+    },
+    {
+      "id": "e-final-online-observer",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST=/private/tmp/ft-transcendence-d-dist ARCADE_FINAL_CASE=observer ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-online-observer node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-final-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-online-observer.log 2>&1",
+      "exitCode": 0,
+      "evidence": "e-final-online-observer.log and final-online-observer/",
+      "result": "PASS actual observer-only reconnection: new native WebSocket and greater spectator generation, same live match and advancing tick, observer input0 at app/native transport, both player connections unchanged and same live match before/after both screenshots. No page errors. Python64.403s; Jest74.842s. Isolated post-case DB has no completed result (not a six-point persistence test)."
+    },
+    {
+      "id": "e-final-online-effects",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST=/private/tmp/ft-transcendence-d-dist ARCADE_FINAL_CASE=effects ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-online-effects node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-final-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-online-effects.log 2>&1",
+      "exitCode": 1,
+      "evidence": "e-final-online-effects.log and final-online-effects/",
+      "result": "Five feedback assertions PASS: actual server hit/native canvas flash while default muted, actual native AudioContext/oscillator gesture unlock, mute after presented hit, OS and explicit reduced-motion after presented hit. Then court-click blocked by normal match-end overlay after WASD selection; outgoing-key and route-disposal assertions not reached. Aggregate FAIL, post-browser DB assertion not reached."
+    },
+    {
+      "id": "e-final-online-effects-retry",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST=/private/tmp/ft-transcendence-d-dist ARCADE_FINAL_CASE=effects ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-online-effects-retry node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-final-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-online-effects-retry.log 2>&1",
+      "exitCode": 1,
+      "evidence": "e-final-online-effects-retry.log and final-online-effects-retry/",
+      "result": "Actual WASD HUD/outgoing movement, inactive arrow input, default-muted native hit/flash, native audio unlock PASS. Strict effect-window guard detected cumulative skipped effects during mute observation; aggregate FAIL, no mute/motion/cleanup pass claimed for this run. Python30.959s."
+    },
+    {
+      "id": "e-final-harness-lint",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js test/online-final-browser.e2e-spec.ts > ../docs/home-online-polish/evidence/e-final-harness-lint.log 2>&1",
+      "exitCode": 1,
+      "result": "Existing backend tsconfig includes src/shared but excludes test: ESLint project parser rejected this e2e file before rule checks."
+    },
+    {
+      "id": "e-final-harness-lint-test-override",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js test/online-final-browser.e2e-spec.ts --parser-options '{\"project\":null}' > ../docs/home-online-polish/evidence/e-final-harness-lint-test-override.log 2>&1",
+      "exitCode": 1,
+      "result": "Explicit test-file parser invocation, same recommended rules: 22 Prettier formatting errors. No repository lint config changed."
+    },
+    {
+      "id": "e-final-harness-format",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/prettier/bin-prettier.js --write test/online-final-browser.e2e-spec.ts",
+      "exitCode": 0,
+      "result": "Formatted only reviewer-owned new e2e wrapper with existing formatter. No production file or assertion changed."
+    },
+    {
+      "id": "e-final-online-effects-stable",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST=/private/tmp/ft-transcendence-d-dist ARCADE_FINAL_CASE=effects ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-online-effects-stable node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-final-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-online-effects-stable.log 2>&1",
+      "exitCode": 0,
+      "evidence": "e-final-online-effects-stable.log and final-online-effects-stable/",
+      "result": "All selected actual effects, native audio, mute, OS/manual reduced motion, WASD/HUD/outgoing movement, route native audio disposal and restored preference/no-autostart checks PASS. Python63.771s; Jest76.202s. Mute stable window rearmed after two older skip boundaries (6 each); tone invariance remained anchored before both. Motion windows required no rearms. Actual disposable DB row 6:1 observed; selected effects case does not enforce match-case DB minimum. All contexts/fixture cleaned up."
+    },
+    {
+      "id": "e-final-harness-lint-final",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js test/online-final-browser.e2e-spec.ts --parser-options '{\"project\":null}' > ../docs/home-online-polish/evidence/e-final-harness-lint-final.log 2>&1",
+      "exitCode": 0,
+      "result": "Scoped new e2e wrapper lint PASS with explicit parser override because existing tsconfig excludes tests. Same recommended and Prettier rules; no repository config changed. Actual ts-jest test run separately compiles this wrapper."
+    },
+    {
+      "id": "e-final-online-diagnostic-all",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST= ARCADE_FINAL_CASE= ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-online-diagnostic-all node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-final-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-online-diagnostic-all.log 2>&1",
+      "exitCode": 0,
+      "evidence": "e-final-online-diagnostic-all.log and final-online-diagnostic-all/",
+      "result": "PASS all 3 actual scenarios with latest default dist4de1388331743be3: 0:6 fullmatch/mouse rematch/menu; observer-only new connection/generation/live match and input0 before/after screenshots; strengthened native keydown-to-packet causal check, hit/effects/audio/mute/motion/route disposal/preferences. Formal actual Match assertion: completed4, six-point1, score6:0. Python164.491s; Jest175.014s. Observer trace contains an offline transport error and later third-connection recovery, not an active-session conflict. Earlier root group failure remains unexplained. All own contexts/fixture cleaned up."
+    },
+    {
+      "id": "e-rejected-session-before",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST= ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/rejected-session-before node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-rejected-session-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-rejected-session-before.log 2>&1",
+      "exitCode": 1,
+      "result": "FAIL at the expected namespace DISCONNECT condition; not the intended missing-retry reproduction. Jest 47.553s. No before-cleanup reason history was captured in the first attempt."
+    },
+    {
+      "id": "e-rejected-session-before-diagnostic",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST= ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/rejected-session-before-diagnostic node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-rejected-session-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-rejected-session-before-diagnostic.log 2>&1",
+      "exitCode": 1,
+      "result": "FAIL at the expected namespace DISCONNECT condition; not the intended missing-retry reproduction. Jest 45.979s. Before-cleanup diagnostics show the active owner protected with one real session, and duplicate rejected with active-session-conflict/clean transport close then auto-retrying (19 connections by ~23 seconds). No namespace41 was observed, contradicting the assumed automatic-retry-stop path."
+    },
+    {
+      "id": "e-rejected-session-churn-before",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST= ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/rejected-session-churn-before node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-rejected-session-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-rejected-session-churn-before.log 2>&1",
+      "exitCode": 1,
+      "result": "REPRODUCED separate exact-conflict churn/reason loss: 5 additional automatic attempts in6s, visible conflict reason false, original owner protected. Closing original removes its server generation and reaches count0; rejected page automatically recovers without reload to authenticated server1. No permanent auto-stop reproduced. Python23.182s/Jest44.401s; contexts/fixture cleaned up. Both before/after-owner-close PNGs opened by reviewer."
+    },
+    {
+      "id": "e-rejected-harness-format",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/prettier/bin-prettier.js --write test/online-rejected-session-browser.e2e-spec.ts",
+      "exitCode": 0,
+      "result": "Existing formatter applied only to the new reviewer-owned wrapper; three-route runtime budget increased from150s to210s with no assertion removed."
+    },
+    {
+      "id": "e-rejected-harness-lint",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js test/online-rejected-session-browser.e2e-spec.ts --parser-options '{\"project\":null}' > ../docs/home-online-polish/evidence/e-rejected-harness-lint.log 2>&1",
+      "exitCode": 0,
+      "result": "Scoped e2e wrapper lint PASS with command-local parser override because existing tsconfig excludes tests. No rule/config change."
+    },
+    {
+      "id": "e-lifecycle-harness-lint",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js test/online-lifecycle-browser.e2e-spec.ts --parser-options '{\"project\":null}' > ../docs/home-online-polish/evidence/e-lifecycle-harness-lint.log 2>&1",
+      "exitCode": 1,
+      "result": "One existing no-var-requires violation at dynamic Playwright require. Kept unchanged; no lint rule/config weakened. Existing formatter was run on edited test only."
+    },
+    {
+      "id": "e-final-lifecycle-controlled",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-lifecycle-controlled node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-lifecycle-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-lifecycle-controlled.log 2>&1",
+      "exitCode": 1,
+      "result": "FAIL74.353s at newly added duplicate native-frame category observer. Original pause200ms/sameTick, greater generation/same match+side, resumed peer and screenshot all reached. Confirmed observer bug: parser used JSON slice(2), incompatible with Socket.IO namespace42/game,[] frames. Duplicate UI conflict/open0 present. Actual browser transport1000close18888ms/reconnect20193ms; root-approved controlled-fault scope distinct from previous setOffline-only failure. Snapshot opened; context/fixture cleaned."
+    },
+    {
+      "id": "e-final-lifecycle-controlled-parser-fixed",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-lifecycle-controlled-parser-fixed node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-lifecycle-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-lifecycle-controlled-parser-fixed.log 2>&1",
+      "exitCode": 0,
+      "result": "PASS59.053s: actual pause317->317 after200ms, greatergeneration/sameMatch/sameSide/resumedpeer, duplicateactualconflict+open0/activeownerretained, explicitforfeitendedpeer. No pageerrors; fixture/contextsclosed;1440x900PNG opened/live0:2. Gate enabled611ms; no newconnection happened inthatinterval, so blocked-attempt branch not exercised. Standardbrowser1000close19834ms/reopen21506ms observed; actualSocket.IO with Playwrightforwarding, no state injection. Original setOffline failure preserved."
+    },
+    {
+      "id": "e-final-online-after-conflict",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_FINAL_FRONTEND_DIST= ARCADE_FINAL_CASE= ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-online-after-conflict node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-final-browser-jest.json --runInBand --watchman=false > ../docs/home-online-polish/evidence/e-final-online-after-conflict.log 2>&1",
+      "exitCode": 0,
+      "result": "PASS all3cases on frozen99110685ef45f988; Jest170.514s/Python159.829s. Actual0:6/mouse same-new-match/menu; observernewnativeconnection+generation/samelive/tickadvance/input0 before+afterPNGs/unchangedplayerconnections; nativekeycausality/authoritativehit+Canvasflash/AudioContext+oscillator/mute/OS+manualmotion/routeaudio disposal/preferences. ActualDB4completed/1sixpoint6:0. All5PNGs opened. Systemmotionrearmed1(skip1), manualmotionrearmed2(skips3+2); successfulwindows0newskips, nativeinvariantbaselines preserved acrossrearms. All contexts/fixtureclosed."
+    }
+  ]
+}

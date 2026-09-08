@@ -6,7 +6,7 @@
 		<div className='content-list mt-4' id="msgContainer">
 				<MessageBubble v-for="message in channel.messages" :key="message" :userId="message.userId" :userName="message.userName" :message="message.message"/>
 		</div>
-		<div class="flex items-center w-11/12">
+		<div class="chat-composer flex items-center w-11/12">
 			<div class='bottom-bar'>
 				<input type='text' placeholder='Enter message...' class='bottom-bar-input' v-model="userText"/>
 			</div>

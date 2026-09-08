@@ -1,0 +1,15 @@
+FAIL src/game/connection-retry.spec.ts
+  ● Test suite failed to run
+
+    [96msrc/game/connection-retry.spec.ts[0m:[93m6[0m:[93m39[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ doNotFake: string[]; }' is not assignable to parameter of type '"modern" | "legacy"'.
+
+    [7m6[0m   beforeEach(() => jest.useFakeTimers({ doNotFake: ['performance'] }));
+    [7m [0m [91m                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+PASS src/game/login-intent.spec.ts
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        4.801 s, estimated 6 s
+Ran all test suites.

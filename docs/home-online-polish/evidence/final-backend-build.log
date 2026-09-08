@@ -1,0 +1,8 @@
+
+> ft_transcendence@0.0.1 prebuild
+> rimraf dist
+
+
+> ft_transcendence@0.0.1 build
+> nest build
+

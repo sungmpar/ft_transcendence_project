@@ -1,0 +1,300 @@
+
+[navigation] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/navigation-jest.json --runInBand --watchman=false (backend cwd)
+PASS src/game/login-intent.spec.ts
+  bounded online login intent across a full document redirect
+    ✓ only permits the exact online destination /game (3 ms)
+    ✓ only permits the exact online destination /invite (1 ms)
+    ✓ only permits the exact online destination /spectate (1 ms)
+    ✓ rejects invalid destinations ("https://example.com/game") (23 ms)
+    ✓ rejects invalid destinations ("//example.com/game") (3 ms)
+    ✓ rejects invalid destinations ("javascript:alert(1)") (4 ms)
+    ✓ rejects invalid destinations ("/login?token=check") (1 ms)
+    ✓ rejects invalid destinations ("/") (13 ms)
+    ✓ rejects invalid destinations ("/play") (3 ms)
+    ✓ rejects invalid destinations ("/game?next=https://example.com") (4 ms)
+    ✓ rejects invalid destinations ("/game#fragment")
+    ✓ rejects invalid destinations ("/game/") (12 ms)
+    ✓ rejects invalid destinations ("/%67ame") (3 ms)
+    ✓ rejects invalid destinations (["/game"])
+    ✓ rejects invalid destinations ({"path": "/game"}) (1 ms)
+    ✓ rejects invalid destinations (null) (4 ms)
+    ✓ rejects invalid destinations (" /game") (1 ms)
+    ✓ survives module reload, is single use, and stores no credentials (2 ms)
+    ✓ expires after ten minutes and rejects future/corrupt records (1 ms)
+    ✓ explicit cancellation removes a pending destination
+    ✓ unavailable storage cannot break login or public play
+
+Test Suites: 1 passed, 1 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        4.312 s
+Ran all test suites.
+
+[core] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/core-jest.json --runInBand --watchman=false (backend cwd)
+PASS src/game/ai.spec.ts
+PASS src/game/core.spec.ts
+PASS src/game/protocol.spec.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       43 passed, 43 total
+Snapshots:   0 total
+Time:        5.685 s
+Ran all test suites.
+
+[local] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/local-jest.json --runInBand --watchman=false (backend cwd)
+PASS src/game/local-runner.spec.ts
+  local keyboard ownership and simultaneous input
+    ✓ both players hold movement while each action edge is consumed once (3 ms)
+    ✓ opposite held keys are neutral, preserving an independent action (1 ms)
+    ✓ only owned game keys prevent defaults; form/contenteditable input stays untouched (5 ms)
+    ✓ blur/hidden clear held state and request pause; visibility return never requests resume (3 ms)
+    ✓ surface blur, remapping, disable, and disposal release input (5 ms)
+    ✓ attach is idempotent, Escape is a command edge, key repeat does not retrigger pause (2 ms)
+    ✓ duplicate, reserved, and missing binding fields are rejected
+    ✓ malformed persisted key fields and unavailable storage fall back to usable defaults (1 ms)
+  local fixed-tick runner lifecycle
+    ✓ start/stop/dispose are idempotent and late generations cannot create another RAF (2 ms)
+    ✓ pause/resume drops hidden wall time and restarts with a neutral clock
+    ✓ a long frame advances at most eight ticks and reports dropped time (1 ms)
+    ✓ same seed/tick input yields identical states at 30, 60 and 120 RAF Hz (19 ms)
+    ✓ separate matches, returned snapshots and restart do not share mutable state (8 ms)
+    ✓ a full real-core match finishes once and restart creates another ready match (55 ms)
+    ✓ restarting in an event callback cannot spend the old frame backlog on the new match (2 ms)
+    ✓ a step failure stops the runner and reports the real error (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        3.762 s, estimated 4 s
+Ran all test suites.
+
+[snapshot] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/snapshot-jest.json --runInBand --watchman=false (backend cwd)
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+PASS src/game/snapshot-buffer.spec.ts
+  captured snapshot presentation buffer
+    ✓ presents real 60Hz core snapshots captured at 20Hz with 200ms injected arrival delay (25 ms)
+    ✓ validates packets and caller time at runtime without changing valid state (2 ms)
+    ✓ captures owned scalars and returns independently owned display state (2 ms)
+    ✓ interpolates ball and both paddles with one common tick axis (2 ms)
+    ✓ does not move presentation backward after a later jittered arrival or regressing local call (4 ms)
+    ✓ discards late/duplicate sequences, backwards ticks and backwards arrival times (3 ms)
+    ✓ freezes on underflow without extrapolation and counts underflow episodes (2 ms)
+    ✓ holds across a point reset, then snaps without drawing the goal-to-center path
+    ✓ does not interpolate across a rallyId discontinuity (4 ms)
+    ✓ does not interpolate across a score discontinuity (3 ms)
+    ✓ does not interpolate across a height discontinuity (3 ms)
+    ✓ does not interpolate across a config discontinuity (3 ms)
+    ✓ clears state on match replacement and explicit full resynchronization (1 ms)
+    ✓ bounds retained snapshots at 32 and records actual sequence gaps/arrival jitter (4 ms)
+    ✓ computes arrival interval statistics from actual accepted arrival times
+    ✓ supports a latest-state comparator using the same captured snapshots (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
+Snapshots:   0 total
+Time:        4.709 s
+Ran all test suites.
+
+[frontend-contract] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/frontend-contract-jest.json --runInBand --watchman=false (backend cwd)
+PASS src/game/frontend-lifecycle.spec.ts
+  frontend game lifecycle and input contracts
+    ✓ C08: repeated start owns only one RAF loop and one listener per event (103 ms)
+    ✓ C08: stop removes the current loop and keyboard listeners (20 ms)
+    ✓ C08: a late callback from a stopped generation cannot restart rendering (19 ms)
+    ✓ C08: dispose is safe before start and when repeated (28 ms)
+    ✓ C08: callbacks from a replaced generation cannot affect the new game (21 ms)
+    ✓ an old route unmount cannot dispose the new route canvas session (26 ms)
+    ✓ C03: server ready roomMode=true is retained (32 ms)
+    ✓ C03: server ready roomMode=false is retained (24 ms)
+    ✓ C04: opposing held movement keys produce neutral input (31 ms)
+    ✓ C04: held movement and a Power press are both represented (22 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        1.251 s
+Ran all test suites.
+
+[online-session] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-session-jest.json --runInBand --watchman=false (backend cwd)
+FAIL src/game/online-session.spec.ts
+  actual online session class with owned fake DOM and transport
+    ✓ receives 20Hz snapshots without adding RAF loops or advancing simulation (10 ms)
+    ✓ restores every owned listener and cancels late callbacks when disposed repeatedly (2 ms)
+    ✓ ignores late transport status callbacks after the session owner is disposed (3 ms)
+    ✓ ignores missing or wrong match IDs in result and connection status events (2 ms)
+    ✓ sends held movement plus one ability edge using valid increasing DTOs (4 ms)
+    ✓ refreshes a held movement at 100ms without manufacturing action presses (4 ms)
+    ✓ ignores form typing and returns neutral input on focus loss (6 ms)
+    ✓ clears held movement on window blur and hidden without stopping server rendering (4 ms)
+    ✓ never emits spectator input, including blur, layout changes and disposal (7 ms)
+    ✓ rejects invalid, wrong-match, duplicate and old snapshots (5 ms)
+    ✓ owns ready and received snapshot data used for latest state and completion (4 ms)
+    ✓ flushes the authoritative winning score on completion ahead of interpolation delay (4 ms)
+    ✓ blocks old-generation input after reconnect until a new session supplies full ready (5 ms)
+    ✓ measures input-to-ack round trip using the same injected local clock (6 ms)
+    ✓ measures a matching latency probe with one local clock and rejects unknown nonce values (2 ms)
+    ✓ does not accept a superseded probe callback as the current round trip (2 ms)
+    ✓ does not change metrics from a latency probe callback after disposal (6 ms)
+  identified recovery request lifecycle
+    ✕ requests last match identity and times out once without declaring an outcome (2 ms)
+    ✕ rejects malformed, old-request and wrong-match replies and consumes the current reply once (2 ms)
+    ✕ handles automatic ready before recovery acknowledgement without duplicate session construction
+    ✕ ignores an old ready or end after a different match and blocks duplicate ends
+    ✕ clears pending work and rejects callbacks after disposal
+
+  ● identified recovery request lifecycle › requests last match identity and times out once without declaring an outcome
+
+    TypeError: Cannot assign to read only property 'performance' of object '[object global]'
+
+      208 |   let receive: jest.Mock;
+      209 |   beforeEach(() => {
+    > 210 |     jest.useFakeTimers();
+          |          ^
+      211 |     fixture = new OnlineBrowserFixture(); receive = jest.fn();
+      212 |     recovery = new SessionRecovery(fixture.socket, 'player', receive);
+      213 |   });
+
+      at hijackMethod (backend/node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:946:32)
+      at Object.install (backend/node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1733:17)
+      at FakeTimers.useFakeTimers (backend/node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:210:10)
+
+  ● identified recovery request lifecycle › requests last match identity and times out once without declaring an outcome
+
+    TypeError: Cannot read properties of undefined (reading 'dispose')
+
+      257 |     expect(recovery.acceptReady({ ...first, generation: 99 })).toBe(false);
+      258 |     expect(recovery.finish('41')).toBe(false);
+    > 259 |   });
+          |      ^
+      260 |
+      261 |   it('clears pending work and rejects callbacks after disposal', () => {
+      262 |     recovery.resume('41'); const acknowledge = fixture.socket.emit.mock.calls[0][2];
+
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:259:32)
+
+  ● identified recovery request lifecycle › rejects malformed, old-request and wrong-match replies and consumes the current reply once
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      208 |   let receive: jest.Mock;
+      209 |   beforeEach(() => {
+    > 210 |     jest.useFakeTimers();
+          |          ^
+      211 |     fixture = new OnlineBrowserFixture(); receive = jest.fn();
+      212 |     recovery = new SessionRecovery(fixture.socket, 'player', receive);
+      213 |   });
+
+      at Object.install (backend/node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (backend/node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:210:10)
+
+  ● identified recovery request lifecycle › rejects malformed, old-request and wrong-match replies and consumes the current reply once
+
+    TypeError: Cannot read properties of undefined (reading 'dispose')
+
+      257 |     expect(recovery.acceptReady({ ...first, generation: 99 })).toBe(false);
+      258 |     expect(recovery.finish('41')).toBe(false);
+    > 259 |   });
+          |      ^
+      260 |
+      261 |   it('clears pending work and rejects callbacks after disposal', () => {
+      262 |     recovery.resume('41'); const acknowledge = fixture.socket.emit.mock.calls[0][2];
+
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:259:32)
+
+  ● identified recovery request lifecycle › handles automatic ready before recovery acknowledgement without duplicate session construction
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      208 |   let receive: jest.Mock;
+      209 |   beforeEach(() => {
+    > 210 |     jest.useFakeTimers();
+          |          ^
+      211 |     fixture = new OnlineBrowserFixture(); receive = jest.fn();
+      212 |     recovery = new SessionRecovery(fixture.socket, 'player', receive);
+      213 |   });
+
+      at Object.install (backend/node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (backend/node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:210:10)
+
+  ● identified recovery request lifecycle › handles automatic ready before recovery acknowledgement without duplicate session construction
+
+    TypeError: Cannot read properties of undefined (reading 'dispose')
+
+      257 |     expect(recovery.acceptReady({ ...first, generation: 99 })).toBe(false);
+      258 |     expect(recovery.finish('41')).toBe(false);
+    > 259 |   });
+          |      ^
+      260 |
+      261 |   it('clears pending work and rejects callbacks after disposal', () => {
+      262 |     recovery.resume('41'); const acknowledge = fixture.socket.emit.mock.calls[0][2];
+
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:259:32)
+
+  ● identified recovery request lifecycle › ignores an old ready or end after a different match and blocks duplicate ends
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      208 |   let receive: jest.Mock;
+      209 |   beforeEach(() => {
+    > 210 |     jest.useFakeTimers();
+          |          ^
+      211 |     fixture = new OnlineBrowserFixture(); receive = jest.fn();
+      212 |     recovery = new SessionRecovery(fixture.socket, 'player', receive);
+      213 |   });
+
+      at Object.install (backend/node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (backend/node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:210:10)
+
+  ● identified recovery request lifecycle › ignores an old ready or end after a different match and blocks duplicate ends
+
+    TypeError: Cannot read properties of undefined (reading 'dispose')
+
+      257 |     expect(recovery.acceptReady({ ...first, generation: 99 })).toBe(false);
+      258 |     expect(recovery.finish('41')).toBe(false);
+    > 259 |   });
+          |      ^
+      260 |
+      261 |   it('clears pending work and rejects callbacks after disposal', () => {
+      262 |     recovery.resume('41'); const acknowledge = fixture.socket.emit.mock.calls[0][2];
+
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:259:32)
+
+  ● identified recovery request lifecycle › clears pending work and rejects callbacks after disposal
+
+    TypeError: Can't install fake timers twice on the same global object.
+
+      208 |   let receive: jest.Mock;
+      209 |   beforeEach(() => {
+    > 210 |     jest.useFakeTimers();
+          |          ^
+      211 |     fixture = new OnlineBrowserFixture(); receive = jest.fn();
+      212 |     recovery = new SessionRecovery(fixture.socket, 'player', receive);
+      213 |   });
+
+      at Object.install (backend/node_modules/@sinonjs/fake-timers/src/fake-timers-src.js:1642:19)
+      at FakeTimers.useFakeTimers (backend/node_modules/@jest/fake-timers/build/modernFakeTimers.js:110:36)
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:210:10)
+
+  ● identified recovery request lifecycle › clears pending work and rejects callbacks after disposal
+
+    TypeError: Cannot read properties of undefined (reading 'dispose')
+
+      257 |     expect(recovery.acceptReady({ ...first, generation: 99 })).toBe(false);
+      258 |     expect(recovery.finish('41')).toBe(false);
+    > 259 |   });
+          |      ^
+      260 |
+      261 |   it('clears pending work and rejects callbacks after disposal', () => {
+      262 |     recovery.resume('41'); const acknowledge = fixture.socket.emit.mock.calls[0][2];
+
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:259:32)
+
+Test Suites: 1 failed, 1 total
+Tests:       5 failed, 17 passed, 22 total
+Snapshots:   0 total
+Time:        1.483 s
+Ran all test suites.

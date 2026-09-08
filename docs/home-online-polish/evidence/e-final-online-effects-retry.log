@@ -1,0 +1,51 @@
+  console.log
+    WS ChatGateway init
+
+      at ChatGateway.afterInit (src/chat/chat.gateway.ts:369:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+FAIL test/online-final-browser.e2e-spec.ts (44.993 s)
+  independent final online browser scenarios
+    ✕ executes the real browser effects scenarios (38706 ms)
+
+  ● independent final online browser scenarios › executes the real browser effects scenarios
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      44 |     });
+      45 |     writeFileSync(resolve(evidence, 'online-final-python.log'), output);
+    > 46 |     expect(exit).toBe(0);
+         |                  ^
+      47 |     const matches = await fixture.dataSource.getRepository(Match).find();
+      48 |     const completed = matches.filter(match => match.winner && match.loser);
+      49 |     const scored = completed.filter(match => match.winnerScore === 6);
+
+      at Object.<anonymous> (test/online-final-browser.e2e-spec.ts:46:18)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        45.066 s, estimated 74 s
+Ran all test suites.

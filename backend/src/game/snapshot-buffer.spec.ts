@@ -11,7 +11,7 @@ function snapshot(tick: number, seq: number, id = 'match-1'): Snapshot {
   state.ball.y = 200 + tick;
   state.players.left.y = 100 + tick;
   state.players.right.y = 500 - tick;
-  return captureSnapshot(state, id, seq, { left: seq, right: seq });
+  return captureSnapshot(state, id, seq, { left: seq, right: seq }, { instanceId: 'buffer-fixture', clockEpoch: 0 });
 }
 
 describe('captured snapshot presentation buffer', () => {
@@ -27,7 +27,7 @@ describe('captured snapshot presentation buffer', () => {
         right: NEUTRAL_INPUT,
       }, rng).state;
       if (tick % 3 !== 0) continue;
-      const packet = captureSnapshot(state, 'actual-core', tick / 3, { left: tick, right: tick });
+      const packet = captureSnapshot(state, 'actual-core', tick / 3, { left: tick, right: tick }, { instanceId: 'core-fixture', clockEpoch: 0 });
       captured.set(tick, packet);
       const arrival = tick * 1000 / 60 + 200;
       expect(buffer.receive(packet, arrival)).toBe(true);
@@ -197,5 +197,46 @@ describe('captured snapshot presentation buffer', () => {
     expect(latest.display(150)!.ball.x).toBe(312);
     expect(buffered.display(150)!.ball.x).toBe(306);
     expect(latest.metrics.displayDelayMs).toBeCloseTo(50);
+  });
+
+  it('re-anchors only an explicit higher epoch and retains underflow/rejection diagnostics', () => {
+    const buffer = new SnapshotBuffer();
+    buffer.receive(snapshot(60, 20), 1000); buffer.display(1500);
+    expect(buffer.metrics.underflowCount).toBe(1);
+    const resumed = snapshot(68, 21); resumed.clockEpoch = 1;
+    expect(buffer.receive(resumed, 1550)).toBe(true);
+    expect(buffer.display(1550)!.tick).toBe(68); // Explicit snap, no invented catch-up path.
+    expect(buffer.metrics).toMatchObject({ depth: 1, received: 2, resyncCount: 1, clockEpoch: 1, underflowCount: 1 });
+    const next = snapshot(74, 22); next.clockEpoch = 1;
+    buffer.receive(next, 1650);
+    expect(buffer.display(1700)!.ball.x).toBeCloseTo(442); // tick 71, a real interior point.
+    expect(buffer.metrics.presentationTick).toBeCloseTo(71);
+    expect(buffer.metrics.resyncCount).toBe(1);
+  });
+
+  it('rejects old epochs and regressing sequence/tick/arrival even when a packet claims a newer epoch', () => {
+    const buffer = new SnapshotBuffer();
+    const current = snapshot(60, 20); current.clockEpoch = 2;
+    buffer.receive(current, 1000);
+    const variants = [
+      { ...snapshot(63, 21), clockEpoch: 1 },
+      { ...snapshot(63, 20), clockEpoch: 3 },
+      { ...snapshot(59, 21), clockEpoch: 3 },
+    ];
+    for (const packet of variants) expect(buffer.receive(packet, 1050)).toBe(false);
+    expect(buffer.receive({ ...snapshot(63, 21), clockEpoch: 3 }, 999)).toBe(false);
+    expect(buffer.metrics).toMatchObject({ lastSeq: 20, clockEpoch: 2, resyncCount: 0, rejected: 4 });
+  });
+
+  it('requires a deliberate full reset before adopting a different same-match server instance', () => {
+    const buffer = new SnapshotBuffer();
+    buffer.receive(snapshot(60, 20), 1000);
+    const restarted = { ...snapshot(0, 1), instanceId: 'restarted-server' };
+    expect(buffer.receive(restarted, 1500)).toBe(false);
+    buffer.reset();
+    expect(buffer.receive(restarted, 1500)).toBe(true);
+    expect(buffer.display(1500)!.tick).toBe(0);
+    expect(buffer.receive(snapshot(63, 21), 1550)).toBe(false);
+    expect(buffer.metrics).toMatchObject({ lastSeq: 1, depth: 1, clockEpoch: 0 });
   });
 });

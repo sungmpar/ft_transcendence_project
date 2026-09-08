@@ -1,0 +1,30 @@
+{"status": "FAIL", "at": "2026-09-08T03:31:59.075675+00:00", "viewport": [1440, 900], "authentication": "actual guest HTTP redirects", "environment": "Owned loopback fixture; real headless Chrome, keyboard, Socket.IO and native Canvas/AudioContext", "limits": "Automated keyboard, not physical play; native audio method observations, not human hearing; controlled observer WebSocket closure, not WAN", "browser": "152.0.7977.77", "failure": "TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.", "cases": [{"case": "real-six-point-match-and-mouse-rematch", "status": "PASS", "confirmedVisibleScores": [0, 6], "mouseRematchSameNewMatch": true, "menuDisposed": true}, {"case": "observer-alone-reconnect-with-players-live", "status": "FAIL", "failureState": [{"sameOwnedMatch": true, "side": "right", "generation": 3, "tick": 3629, "phase": "rally", "inputMessages": 416, "socketsOpened": 1, "openSockets": 1, "inputPackets": 416, "statusDisconnected": false, "statusRecovered": false, "statusWatching": false, "statusLookupFailure": false, "statusUnavailable": false, "statusSaved": false, "resultVisible": false}, {"sameOwnedMatch": true, "side": "left", "generation": 4, "tick": 3632, "phase": "rally", "inputMessages": 464, "socketsOpened": 1, "openSockets": 1, "inputPackets": 464, "statusDisconnected": false, "statusRecovered": false, "statusWatching": false, "statusLookupFailure": false, "statusUnavailable": false, "statusSaved": false, "resultVisible": false}, {"sameOwnedMatch": true, "side": "spectator", "generation": 5, "tick": 1618, "phase": "rally", "inputMessages": 0, "socketsOpened": 2, "openSockets": 0, "inputPackets": 0, "statusDisconnected": false, "statusRecovered": false, "statusWatching": false, "statusLookupFailure": false, "statusUnavailable": false, "statusSaved": false, "resultVisible": false}]}], "pageErrors": [], "elapsedSeconds": 144.351}
+Traceback (most recent call last):
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 510, in <module>
+    asyncio.run(main())
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/base_events.py", line 685, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 491, in main
+    await getattr(checks, case)()
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 231, in observer
+    await watcher.wait_for_function('''old => {
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 11479, in wait_for_function
+    await self._impl_obj.wait_for_function(
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_page.py", line 1113, in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 860, in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.

@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-09-08T00:55:50Z",
+  "baseline": "2f11bee69c2d55ed938b53f9750119a890396fb7",
+  "repository": "sungmpar/ft_transcendence_project",
+  "branch": "main",
+  "scope": "All commands below ran before this Goal's production changes. The only assigned file writes were new baseline evidence logs; builds also regenerated ignored dist artifacts.",
+  "runtime": "Node v18.20.8 at /private/tmp/ft-transcendence-runtime/node_modules/.bin/node",
+  "commands": [
+    { "cwd": "/Users/sm/dev_park/ft_transcendence_project", "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs unit > docs/home-online-polish/evidence/baseline-unit.log 2>&1", "exitCode": 0, "result": "8 configs; 136 tests passed (43+16+16+9+17+8+13+14)." },
+    { "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend", "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit > ../docs/home-online-polish/evidence/baseline-frontend-noemit.log 2>&1", "exitCode": 0, "result": "No TypeScript diagnostics." },
+    { "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend", "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src --ext .ts,.vue --no-fix > ../docs/home-online-polish/evidence/baseline-frontend-lint.log 2>&1", "exitCode": 1, "result": "Existing src-only lint debt: 1 error in src/plugins/score.ts (mixed spaces and tabs), 64 warnings. No autofix." },
+    { "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend", "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js 'src/**/*.ts' --ignore-pattern '*spec.ts' --no-fix > ../docs/home-online-polish/evidence/baseline-backend-lint.log 2>&1", "exitCode": 1, "result": "Existing src-only non-spec lint debt: 1858 errors, 32 warnings. No autofix." },
+    { "cwd": "/Users/sm/dev_park/ft_transcendence_project", "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs online > docs/home-online-polish/evidence/baseline-online.log 2>&1", "exitCode": 1, "result": "Environment failure: isolated PostgreSQL connect blocked with EPERM; first config reported 3 failed tests during beforeAll. No product verdict; later configs did not run." },
+    { "cwd": "/Users/sm/dev_park/ft_transcendence_project", "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs online > docs/home-online-polish/evidence/baseline-online-loopback.log 2>&1", "exitCode": 0, "execution": "Permitted loopback retry outside filesystem/network sandbox", "result": "3 configs; 15 tests passed (online3+lifecycle7+service5). Real isolated PostgreSQL/HTTP/Socket.IO; unique temporary fixture schemas. No browser suite." },
+    { "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend", "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH npm run build > ../docs/home-online-polish/evidence/baseline-backend-build.log 2>&1", "exitCode": 0, "result": "Existing Nest build completed." },
+    { "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend", "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_ENABLE_GUEST_LOGIN=true VUE_APP_ARCADE_DEBUG=true yarn build > ../docs/home-online-polish/evidence/baseline-frontend-build.log 2>&1", "exitCode": 0, "result": "Build hash 705af758a21aa3ca, 2026-09-08T00:54:26.780Z. Existing webpack bundle-size warnings remain. No deployment." }
+  ],
+  "notRun": [
+    "Existing browser Jest configs were intentionally not run here because their evidence destinations were hardcoded to historical docs/arcade-upgrade/evidence. Root separately captured baseline screens.",
+    "No N1/N2/N3/event failing regression was added or run in this read-only preflight/baseline assignment.",
+    "No physical human play, WAN/TCP fault, external OAuth/mail, Docker, Safari/Firefox/WebKit or production service verification."
+  ],
+  "externalActions": "No commit, push, PR, GitHub comment, deployment or production DB access/mutation."
+}

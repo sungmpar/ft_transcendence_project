@@ -1,0 +1,5 @@
+[local-browser] /opt/miniconda3/bin/python scripts/browser-check.py (repository cwd)
+{"status": "PASS", "checks": 25, "browser": "152.0.7977.77"}
+[local-browser] /opt/miniconda3/bin/python scripts/browser-local-modes.py (repository cwd)
+{"status": "PASS", "checks": 31}
+All 2 local-browser browser commands completed successfully.

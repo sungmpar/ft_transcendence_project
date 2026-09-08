@@ -1,0 +1,28 @@
+ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
+PASS src/game/snapshot-buffer.spec.ts (16.943 s)
+  captured snapshot presentation buffer
+    ✓ presents real 60Hz core snapshots captured at 20Hz with 200ms injected arrival delay (32 ms)
+    ✓ validates packets and caller time at runtime without changing valid state (2 ms)
+    ✓ captures owned scalars and returns independently owned display state (2 ms)
+    ✓ interpolates ball and both paddles with one common tick axis (1 ms)
+    ✓ does not move presentation backward after a later jittered arrival or regressing local call (5 ms)
+    ✓ discards late/duplicate sequences, backwards ticks and backwards arrival times (4 ms)
+    ✓ freezes on underflow without extrapolation and counts underflow episodes (2 ms)
+    ✓ holds across a point reset, then snaps without drawing the goal-to-center path
+    ✓ does not interpolate across a rallyId discontinuity (4 ms)
+    ✓ does not interpolate across a score discontinuity (3 ms)
+    ✓ does not interpolate across a height discontinuity (5 ms)
+    ✓ does not interpolate across a config discontinuity (4 ms)
+    ✓ clears state on match replacement and explicit full resynchronization (1 ms)
+    ✓ bounds retained snapshots at 32 and records actual sequence gaps/arrival jitter (8 ms)
+    ✓ computes arrival interval statistics from actual accepted arrival times (1 ms)
+    ✓ supports a latest-state comparator using the same captured snapshots (2 ms)
+    ✓ re-anchors only an explicit higher epoch and retains underflow/rejection diagnostics (6 ms)
+    ✓ rejects old epochs and regressing sequence/tick/arrival even when a packet claims a newer epoch
+    ✓ requires a deliberate full reset before adopting a different same-match server instance (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       19 passed, 19 total
+Snapshots:   0 total
+Time:        17.373 s
+Ran all test suites.

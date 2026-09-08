@@ -1,0 +1,58 @@
+
+[online] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-jest.json --runInBand --watchman=false (backend cwd)
+FAIL test/online-integration.e2e-spec.ts (8.576 s)
+  real isolated online game service
+    ✕ rejects missing, malformed, and signed-but-unknown-user authentication
+    ✕ matches two authenticated clients, advances a full score-ended game, and stores that result (1 ms)
+    ✕ preserves friend invitation/refusal, accepted matches, and spectator updates
+
+  ● real isolated online game service › rejects missing, malformed, and signed-but-unknown-user authentication
+
+    Disposable online fixture initialization failed [connect/Error] (EPERM); inspect the isolated test setup
+
+      184 |       'DataTypeNotSupportedError', 'DriverPackageNotInstalledError', 'ColumnTypeUndefinedError', 'MissingPrimaryColumnError', 'TypeORMError'];
+      185 |     const category = categories.includes(error?.name) ? error.name : 'OtherError';
+    > 186 |     throw new Error(`Disposable online fixture initialization failed [${stage}/${category}]${code}; inspect the isolated test setup`);
+          |           ^
+      187 |   }
+      188 | }
+      189 |
+
+      at startOnlineFixture (test/online-fixture.ts:186:11)
+      at Object.<anonymous> (test/online-integration.e2e-spec.ts:22:15)
+
+  ● real isolated online game service › matches two authenticated clients, advances a full score-ended game, and stores that result
+
+    Disposable online fixture initialization failed [connect/Error] (EPERM); inspect the isolated test setup
+
+      184 |       'DataTypeNotSupportedError', 'DriverPackageNotInstalledError', 'ColumnTypeUndefinedError', 'MissingPrimaryColumnError', 'TypeORMError'];
+      185 |     const category = categories.includes(error?.name) ? error.name : 'OtherError';
+    > 186 |     throw new Error(`Disposable online fixture initialization failed [${stage}/${category}]${code}; inspect the isolated test setup`);
+          |           ^
+      187 |   }
+      188 | }
+      189 |
+
+      at startOnlineFixture (test/online-fixture.ts:186:11)
+      at Object.<anonymous> (test/online-integration.e2e-spec.ts:22:15)
+
+  ● real isolated online game service › preserves friend invitation/refusal, accepted matches, and spectator updates
+
+    Disposable online fixture initialization failed [connect/Error] (EPERM); inspect the isolated test setup
+
+      184 |       'DataTypeNotSupportedError', 'DriverPackageNotInstalledError', 'ColumnTypeUndefinedError', 'MissingPrimaryColumnError', 'TypeORMError'];
+      185 |     const category = categories.includes(error?.name) ? error.name : 'OtherError';
+    > 186 |     throw new Error(`Disposable online fixture initialization failed [${stage}/${category}]${code}; inspect the isolated test setup`);
+          |           ^
+      187 |   }
+      188 | }
+      189 |
+
+      at startOnlineFixture (test/online-fixture.ts:186:11)
+      at Object.<anonymous> (test/online-integration.e2e-spec.ts:22:15)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        8.645 s, estimated 21 s
+Ran all test suites.

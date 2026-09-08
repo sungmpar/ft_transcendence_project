@@ -1,0 +1,73 @@
+FAIL src/game/online-session.spec.ts
+  actual online session class with owned fake DOM and transport
+    ✕ clears an actual presented hit flash at disconnect without inventing another event (9 ms)
+    ✕ clears an actual presented hit flash at waiting without inventing another event (4 ms)
+    ○ skipped receives 20Hz snapshots without adding RAF loops or advancing simulation
+    ○ skipped restores every owned listener and cancels late callbacks when disposed repeatedly
+    ○ skipped ignores late transport status callbacks after the session owner is disposed
+    ○ skipped ignores missing or wrong match IDs in result and connection status events
+    ○ skipped sends held movement plus one ability edge using valid increasing DTOs
+    ○ skipped refreshes a held movement at 100ms without manufacturing action presses
+    ○ skipped ignores form typing and returns neutral input on focus loss
+    ○ skipped clears held movement on window blur and hidden without stopping server rendering
+    ○ skipped never emits spectator input, including blur, layout changes and disposal
+    ○ skipped rejects invalid, wrong-match, duplicate and old snapshots
+    ○ skipped adopts higher clock epochs without recreating input/RAF ownership and rejects past epochs or another instance
+    ○ skipped uses a new full-ready session as the explicit boundary for a different server instance
+    ○ skipped owns ready and received snapshot data used for latest state and completion
+    ○ skipped flushes the authoritative winning score on completion ahead of interpolation delay
+    ○ skipped blocks old-generation input after reconnect until a new session supplies full ready
+    ○ skipped measures input-to-ack round trip using the same injected local clock
+    ○ skipped measures a matching latency probe with one local clock and rejects unknown nonce values
+    ○ skipped does not accept a superseded probe callback as the current round trip
+    ○ skipped does not change metrics from a latency probe callback after disposal
+  identified recovery request lifecycle
+    ○ skipped requests last match identity and times out once without declaring an outcome
+    ○ skipped rejects malformed, old-request and wrong-match replies and consumes the current reply once
+    ○ skipped handles automatic ready before recovery acknowledgement without duplicate session construction
+    ○ skipped does not reinterpret a higher input generation as permission to replace an active server instance
+    ○ skipped keeps the owner timeout when a matching recovery ACK contains an inadmissible server instance
+    ○ skipped ignores an old ready or end after a different match and blocks duplicate ends
+    ○ skipped clears pending work and rejects callbacks after disposal
+    ○ skipped resubscribes an observer without accepting player control or an old target response
+    ○ skipped expires the installed Socket.IO ACK registry and send buffer after unacknowledged recovery
+
+  ● actual online session class with owned fake DOM and transport › clears an actual presented hit flash at disconnect without inventing another event
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected value: not "#ffffff"
+    Received array:     ["#101624", "#ffffff", "#af9bff"]
+
+      174 |     expect(session!.latest.tick).toBe(3);
+      175 |     expect(session!.measurement.snapshots).toBe(1);
+    > 176 |     expect(fixture.callbacks.size).toBe(1);
+          |                            ^
+      177 |   });
+      178 |
+      179 |   it('owns ready and received snapshot data used for latest state and completion', () => {
+
+      at backend/src/game/online-session.spec.ts:176:28
+
+  ● actual online session class with owned fake DOM and transport › clears an actual presented hit flash at waiting without inventing another event
+
+    expect(received).not.toContain(expected) // indexOf
+
+    Expected value: not "#ffffff"
+    Received array:     ["#101624", "#ffffff", "#af9bff"]
+
+      174 |     expect(session!.latest.tick).toBe(3);
+      175 |     expect(session!.measurement.snapshots).toBe(1);
+    > 176 |     expect(fixture.callbacks.size).toBe(1);
+          |                            ^
+      177 |   });
+      178 |
+      179 |   it('owns ready and received snapshot data used for latest state and completion', () => {
+
+      at backend/src/game/online-session.spec.ts:176:28
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 28 skipped, 30 total
+Snapshots:   0 total
+Time:        1.936 s
+Ran all test suites with tests matching "clears an actual presented hit flash".

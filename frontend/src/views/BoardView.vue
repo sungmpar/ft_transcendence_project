@@ -1,21 +1,21 @@
 <template>
-	<div class = "bg-gray-800 w-full h-screen">
+	<div class = "board-page bg-gray-800 w-full h-screen">
 		<div class="top-0 right-0 bottom-0 left-20">
-			<div class="flex rounded-lg bg-gradient-to-r from-purple-400 via-violet-600  to-purple-700 animate-gradient-x px-3 pt-0 pb-2 mb-2">
-				<div class="flex flex-row text-3xl mt-2 px-2 pt-4 pb-2 mb-2">
+			<div class="board-header flex rounded-lg bg-gradient-to-r from-purple-400 via-violet-600  to-purple-700 animate-gradient-x px-3 pt-0 pb-2 mb-2">
+				<div class="board-title flex flex-row text-3xl mt-2 px-2 pt-4 pb-2 mb-2">
 					<p class="drop-shadow-lg font-extrabold text-black-700 ">Leader &nbsp;</p>
 					<p class="drop-shadow-lg font-extrabold text-black-700">&nbsp;B</p>
 					<img src="../assets/pong.png" class="drop-shadow-lg animate-bounce h-8 pt-2">
 					<p class="drop-shadow-lg font-extrabold text-black-700 ">ard</p>
 			</div>
-				<div class="ml-auto pt-8">
+				<div class="board-user ml-auto pt-8">
 					<p class="text-gray-400 drop-shadow-lg font-bold">{{ store.getters.usernickname }}</p>
 				</div>
-				<div class="ml-3 px-1" v-if="store.getters.userid != 0">
+				<div class="board-avatar ml-3 px-1" v-if="store.getters.userid != 0">
 					<img :src="get_avatar(store.getters.userid)" class=" object-contain h-20 w-20 pt-2"/>
 				</div>
 			</div>
-			<div class="flex flex-col rounded-lg bg-gradient-to-r from-purple-400 via-violet-600  to-purple-700 animate-gradient-x px-8 pt-6 pb-8 mb-4">
+			<div class="board-table-scroll flex flex-col rounded-lg bg-gradient-to-r from-purple-400 via-violet-600  to-purple-700 animate-gradient-x px-8 pt-6 pb-8 mb-4" role="region" aria-label="전적 표 · 가로로 스크롤할 수 있습니다" tabindex="0">
 				<table class="table-fixed text-center divide-y divide-gray-200 dark:divide-gray-700" >
 					<thead>
 						<tr>
@@ -104,3 +104,18 @@ async function openModal(userId: number) {
 }
 
 </script>
+
+<style scoped>
+.board-page { min-width: 0; min-height: 100vh; height: auto; }
+.board-table-scroll { max-width: 100%; overflow-x: auto; }
+.board-table-scroll table { width: 100%; min-width: 720px; }
+.board-table-scroll:focus-visible { outline: 2px solid #92f0d1; outline-offset: -3px; }
+@media (max-width: 640px) {
+  .board-header { flex-wrap: wrap; align-items: center; gap: 8px; }
+  .board-title { flex-basis: 100%; padding: 8px 0 0; margin-bottom: 0; font-size: 24px; }
+  .board-user { margin-left: 0; padding-top: 0; min-width: 0; overflow-wrap: anywhere; }
+  .board-avatar { margin-left: auto; }
+  .board-avatar img { width: 40px; height: 40px; padding-top: 0; }
+  .board-table-scroll { padding-left: 16px; padding-right: 16px; }
+}
+</style>

@@ -1,0 +1,205 @@
+{
+  "recordedAt": "2026-09-08T04:31:19.678Z",
+  "repository": "sungmpar/ft_transcendence_project",
+  "branch": "main",
+  "head": "2f11bee69c2d55ed938b53f9750119a890396fb7",
+  "runs": [
+    {
+      "id": "final-unit",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs unit > /Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-unit.log 2>&1",
+      "log": "/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-unit.log",
+      "chunk_id": "4e1720",
+      "wall_time_seconds": 5.00165425,
+      "session_id": 69717,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 0,
+      "note": "All 11 config commands completed successfully; see final-unit.log."
+    },
+    {
+      "id": "final-frontend-noemit",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/typescript/bin/tsc --noEmit > /Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-frontend-noemit.log 2>&1",
+      "log": "/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-frontend-noemit.log",
+      "chunk_id": "6a0bd0",
+      "wall_time_seconds": 2.92e-7,
+      "session_id": 16753,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 0
+    },
+    {
+      "id": "final-backend-build",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH npm run build > /Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-backend-build.log 2>&1",
+      "log": "/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-backend-build.log",
+      "chunk_id": "d87a35",
+      "wall_time_seconds": 3.33e-7,
+      "session_id": 96075,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 0
+    },
+    {
+      "id": "final-frontend-lint",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src --ext .ts,.vue --no-fix > /Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-frontend-lint.log 2>&1",
+      "log": "/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-frontend-lint.log",
+      "chunk_id": "4fc11c",
+      "wall_time_seconds": 2.08e-7,
+      "session_id": 1874,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 1
+    },
+    {
+      "id": "final-backend-lint",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js 'src/**/*.ts' --ignore-pattern '*spec.ts' --no-fix > /Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-backend-lint.log 2>&1",
+      "log": "/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-backend-lint.log",
+      "chunk_id": "25823d",
+      "wall_time_seconds": 1.67e-7,
+      "session_id": 88260,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 1
+    },
+    {
+      "id": "final-backend-lint-corrected",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js 'src/**/*.ts' --ignore-pattern '*spec.ts' --no-fix > ../docs/home-online-polish/evidence/final-backend-lint-corrected.log 2>&1",
+      "session_id": 8837,
+      "log": "docs/home-online-polish/evidence/final-backend-lint-corrected.log",
+      "exit_code": 1
+    },
+    {
+      "id": "final-backend-lint-verified",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js 'src/**/*.ts' --ignore-pattern '*spec.ts' --no-fix > ../docs/home-online-polish/evidence/final-backend-lint-verified.log 2>&1",
+      "log": "../docs/home-online-polish/evidence/final-backend-lint-verified.log",
+      "chunk_id": "d488c3",
+      "wall_time_seconds": 5.42e-7,
+      "session_id": 70358,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 1
+    },
+    {
+      "id": "final-backend-build-formatted",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH npm run build > ../docs/home-online-polish/evidence/final-backend-build-formatted.log 2>&1",
+      "log": "../docs/home-online-polish/evidence/final-backend-build-formatted.log",
+      "chunk_id": "609d65",
+      "wall_time_seconds": 0.000001416,
+      "session_id": 64314,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 0
+    },
+    {
+      "id": "final-frontend-build",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_ENABLE_GUEST_LOGIN=true VUE_APP_ARCADE_DEBUG=true yarn build --report-json > ../docs/home-online-polish/evidence/final-frontend-build.log 2>&1",
+      "log": "docs/home-online-polish/evidence/final-frontend-build.log",
+      "chunk_id": "7b32ed",
+      "wall_time_seconds": 1.001608125,
+      "session_id": 53349,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 0
+    },
+    {
+      "id": "final-browser",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_FINAL_CASE= ARCADE_FINAL_FRONTEND_DIST= ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-browser node scripts/check-arcade.cjs browser > docs/home-online-polish/evidence/final-browser-command.log 2>&1",
+      "log": "docs/home-online-polish/evidence/final-browser-command.log",
+      "chunk_id": "d98409",
+      "wall_time_seconds": 1.002552416,
+      "session_id": 71502,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 1
+    },
+    {
+      "id": "final-local-browser",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-local node scripts/check-arcade.cjs local-browser > docs/home-online-polish/evidence/final-local-command.log 2>&1",
+      "log": "docs/home-online-polish/evidence/final-local-command.log",
+      "chunk_id": "de6715",
+      "wall_time_seconds": 1.000981208,
+      "session_id": 36485,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 0
+    },
+    {
+      "id": "final-frontend-build-after-connection-retry",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH VUE_APP_BACKEND_URL= VUE_APP_WS_URL= VUE_APP_ENABLE_GUEST_LOGIN=true VUE_APP_ARCADE_DEBUG=true yarn build --report-json > ../docs/home-online-polish/evidence/final-frontend-build-after-connection-retry.log 2>&1",
+      "log": "docs/home-online-polish/evidence/final-frontend-build-after-connection-retry.log",
+      "chunk_id": "303263",
+      "wall_time_seconds": 1.002439375,
+      "session_id": 73191,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 0
+    },
+    {
+      "id": "final-frontend-lint-after-connection-retry",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js src --ext .ts,.vue --no-fix > ../docs/home-online-polish/evidence/final-frontend-lint-after-connection-retry.log 2>&1",
+      "log": "docs/home-online-polish/evidence/final-frontend-lint-after-connection-retry.log",
+      "chunk_id": "a47ed5",
+      "wall_time_seconds": 1.002003292,
+      "session_id": 88327,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 1
+    },
+    {
+      "id": "final-unit-after-connection-retry",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node scripts/check-arcade.cjs unit > docs/home-online-polish/evidence/final-unit-after-connection-retry.log 2>&1",
+      "log": "docs/home-online-polish/evidence/final-unit-after-connection-retry.log",
+      "chunk_id": "a6dcce",
+      "wall_time_seconds": 1.002024,
+      "session_id": 16011,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 0
+    },
+    {
+      "id": "final-browser-after-connection-retry",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_FINAL_CASE= ARCADE_FINAL_FRONTEND_DIST= ARCADE_REJECTED_ROUTES= ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-browser-after-connection-retry node scripts/check-arcade.cjs browser > docs/home-online-polish/evidence/final-browser-after-connection-retry-command.log 2>&1",
+      "log": "docs/home-online-polish/evidence/final-browser-after-connection-retry-command.log",
+      "chunk_id": "d364f6",
+      "wall_time_seconds": 1.0013725,
+      "session_id": 66229,
+      "original_token_count": 0,
+      "output": "",
+      "exit_code": 1
+    },
+    {
+      "id": "final-lint-analysis-after-connection-retry",
+      "command": "/opt/miniconda3/bin/python docs/home-online-polish/evidence/final-lint-analysis.py > docs/home-online-polish/evidence/final-lint-analysis-after-connection-retry.log",
+      "log": "docs/home-online-polish/evidence/final-lint-analysis-after-connection-retry.log",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "exit_code": 0
+    },
+    {
+      "id": "final-bundle-boundary-after-connection-retry",
+      "command": "/opt/miniconda3/bin/python docs/home-online-polish/evidence/check-bundle-boundary.py > docs/home-online-polish/evidence/final-bundle-boundary-after-connection-retry.log",
+      "log": "docs/home-online-polish/evidence/final-bundle-boundary-after-connection-retry.log",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "exit_code": 0
+    }
+  ],
+  "relatedExecutionRecords": [
+    "final-home-execution-record.json",
+    "final-online-execution-record.json",
+    "recovery-execution-record.json"
+  ],
+  "note": "Only actual root executions are listed. Agent command records are separate. Nonzero wrapper executions are preserved; later individual config passes do not alter a wrapper exit code."
+}

@@ -1,0 +1,110 @@
+{
+  "environment": "Synthetic 10ms scheduler/50ms transit/10ms client sampling; real ServerMatchRunner and SnapshotBuffer; no WAN or browser claims",
+  "criterion": "Within 300ms after resumption, presentation tick and moving coordinates strictly between two actual post-resume snapshots, with exact lerp coordinates",
+  "reports": [
+    {
+      "name": "normal",
+      "status": "PASS",
+      "firstSecond": {
+        "ticks": 60,
+        "snapshots": 20
+      },
+      "strictInterpolationSamples": 226,
+      "sample": {
+        "localTime": 205,
+        "beforeTick": 3,
+        "afterTick": 6,
+        "presentationTick": 3.299999999999999,
+        "alpha": 0.09999999999999964,
+        "movingAxes": [
+          "leftY",
+          "rightY"
+        ]
+      }
+    },
+    {
+      "name": "stall-200",
+      "status": "PASS",
+      "resumedAt": 2700,
+      "recoveryBoundMs": 300,
+      "droppedMs": 66.66666666666667,
+      "proof": {
+        "localTime": 2805,
+        "beforeTick": 158,
+        "afterTick": 161,
+        "presentationTick": 159.29999999999998,
+        "alpha": 0.43333333333332763,
+        "movingAxes": [
+          "ballX",
+          "ballY",
+          "leftY",
+          "rightY"
+        ]
+      },
+      "finalPresentationTick": 171.29999999999998,
+      "finalServerTick": 176,
+      "underflowEpisodes": 6
+    },
+    {
+      "name": "stall-500",
+      "status": "FAIL",
+      "resumedAt": 3000,
+      "recoveryBoundMs": 300,
+      "droppedMs": 366.6666666666667,
+      "proof": null,
+      "finalPresentationTick": 173,
+      "finalServerTick": 176,
+      "underflowEpisodes": 1
+    },
+    {
+      "name": "stall-1000",
+      "status": "FAIL",
+      "resumedAt": 3500,
+      "recoveryBoundMs": 300,
+      "droppedMs": 866.6666666666666,
+      "proof": null,
+      "finalPresentationTick": 173,
+      "finalServerTick": 176,
+      "underflowEpisodes": 1
+    },
+    {
+      "name": "repeated-stall-1",
+      "status": "FAIL",
+      "resumedAt": 3000,
+      "droppedMs": 366.6666666666667,
+      "proof": null
+    },
+    {
+      "name": "repeated-stall-2",
+      "status": "FAIL",
+      "resumedAt": 3800,
+      "droppedMs": 366.6666666666667,
+      "proof": null
+    },
+    {
+      "name": "repeated-stall-3",
+      "status": "FAIL",
+      "resumedAt": 4600,
+      "droppedMs": 366.66666666666663,
+      "proof": null
+    },
+    {
+      "name": "arrival-jitter-40ms",
+      "status": "PASS",
+      "strictInterpolationSamples": 200,
+      "presentationNeverReversed": true,
+      "droppedMs": 0
+    },
+    {
+      "name": "pause-resume-500ms",
+      "status": "FAIL",
+      "resumedAt": 3000,
+      "recoveryBoundMs": 300,
+      "droppedMs": 0,
+      "proof": null,
+      "finalPresentationTick": 165,
+      "finalServerTick": 168,
+      "underflowEpisodes": 1
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "status": "PASS",
+  "base": "http://127.0.0.1:59707",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "authentication": "Actual guest cookie and full document redirect; no credential injection",
+  "checks": [
+    {
+      "name": "Real full guest redirect returns once to /game",
+      "status": "PASS",
+      "destination": "/game"
+    },
+    {
+      "name": "Real full guest redirect returns once to /invite",
+      "status": "PASS",
+      "destination": "/invite"
+    },
+    {
+      "name": "Real full guest redirect returns once to /spectate",
+      "status": "PASS",
+      "destination": "/spectate"
+    },
+    {
+      "name": "Rejected login destination https",
+      "status": "PASS"
+    },
+    {
+      "name": "Rejected login destination //example.invalid",
+      "status": "PASS"
+    },
+    {
+      "name": "Rejected login destination javascript",
+      "status": "PASS"
+    },
+    {
+      "name": "Rejected login destination /login",
+      "status": "PASS"
+    },
+    {
+      "name": "Rejected login destination /game",
+      "status": "PASS"
+    },
+    {
+      "name": "Full redirect with missing stored intent safely reaches Home",
+      "status": "PASS"
+    },
+    {
+      "name": "Full redirect with expired stored intent safely reaches Home",
+      "status": "PASS"
+    },
+    {
+      "name": "Full redirect with malformed stored intent safely reaches Home",
+      "status": "PASS"
+    },
+    {
+      "name": "Cancel clears login intent and keeps public AI entry usable",
+      "status": "PASS"
+    },
+    {
+      "name": "Fresh context backend blocked /play",
+      "status": "PASS",
+      "backendRequests": 0,
+      "sockets": 0
+    },
+    {
+      "name": "Fresh context backend blocked /play/local",
+      "status": "PASS",
+      "backendRequests": 0,
+      "sockets": 0
+    },
+    {
+      "name": "Fresh context backend blocked /play/ai",
+      "status": "PASS",
+      "backendRequests": 0,
+      "sockets": 0
+    },
+    {
+      "name": "Required 2FA gate retains online intent without opening a game socket",
+      "status": "PASS",
+      "emailSent": false,
+      "destinationStillPending": true
+    },
+    {
+      "name": "Friend drawer distinguishes empty/error and restores keyboard focus",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed server logout truthfully reports local cleanup and releases sockets",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "No real 42 OAuth or external 2FA email/code executed",
+    "Nickname-missing callback and truly expired signed JWT are not exercised by this browser fixture",
+    "Guest-disabled build not supplied to this invocation"
+  ],
+  "browser": "152.0.7977.77",
+  "elapsedSeconds": 154.251,
+  "executedAt": "2026-09-08T01:13:12.902753+00:00"
+}

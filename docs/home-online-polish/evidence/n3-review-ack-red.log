@@ -1,0 +1,54 @@
+FAIL src/game/online-session.spec.ts
+  actual online session class with owned fake DOM and transport
+    ○ skipped receives 20Hz snapshots without adding RAF loops or advancing simulation
+    ○ skipped restores every owned listener and cancels late callbacks when disposed repeatedly
+    ○ skipped ignores late transport status callbacks after the session owner is disposed
+    ○ skipped ignores missing or wrong match IDs in result and connection status events
+    ○ skipped sends held movement plus one ability edge using valid increasing DTOs
+    ○ skipped refreshes a held movement at 100ms without manufacturing action presses
+    ○ skipped ignores form typing and returns neutral input on focus loss
+    ○ skipped clears held movement on window blur and hidden without stopping server rendering
+    ○ skipped never emits spectator input, including blur, layout changes and disposal
+    ○ skipped rejects invalid, wrong-match, duplicate and old snapshots
+    ○ skipped adopts higher clock epochs without recreating input/RAF ownership and rejects past epochs or another instance
+    ○ skipped uses a new full-ready session as the explicit boundary for a different server instance
+    ○ skipped owns ready and received snapshot data used for latest state and completion
+    ○ skipped flushes the authoritative winning score on completion ahead of interpolation delay
+    ○ skipped blocks old-generation input after reconnect until a new session supplies full ready
+    ○ skipped measures input-to-ack round trip using the same injected local clock
+    ○ skipped measures a matching latency probe with one local clock and rejects unknown nonce values
+    ○ skipped does not accept a superseded probe callback as the current round trip
+    ○ skipped does not change metrics from a latency probe callback after disposal
+  identified recovery request lifecycle
+    ✕ keeps the owner timeout when a matching recovery ACK contains an inadmissible server instance (8 ms)
+    ○ skipped requests last match identity and times out once without declaring an outcome
+    ○ skipped rejects malformed, old-request and wrong-match replies and consumes the current reply once
+    ○ skipped handles automatic ready before recovery acknowledgement without duplicate session construction
+    ○ skipped does not reinterpret a higher input generation as permission to replace an active server instance
+    ○ skipped ignores an old ready or end after a different match and blocks duplicate ends
+    ○ skipped clears pending work and rejects callbacks after disposal
+    ○ skipped resubscribes an observer without accepting player control or an old target response
+    ○ skipped expires the installed Socket.IO ACK registry and send buffer after unacknowledged recovery
+
+  ● identified recovery request lifecycle › keeps the owner timeout when a matching recovery ACK contains an inadmissible server instance
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 1
+
+    1: {"matchId": "41", "ready": {"generation": 99, "leftName": "left fixture", "rightName": "right fixture", "roomId": "41", "roomMode": false, "side": "left", "snapshot": {"ack": {"left": 0, "right": 0}, "clockEpoch": 0, "instanceId": "different-server", "matchId": "41", "seq": 0, "state": {"ball": {"radius": 15, "vx": 0, "vy": 0, "x": 600, "y": 400}, "config": {"ballRadius": 15, "ballSpeed": 720, "height": 800, "hitAcceleration": 1.025, "maxBallSpeed": 1500, "maxBounceAngle": 1.0471975511965976, "mode": "classic", "paddleHeight": 200, "paddleInset": 20, "paddleSpeed": 900, "paddleWidth": 30, "pointTicks": 60, "poweredHeight": 400, "readyTicks": 120, "tickRate": 60, "width": 1200, "winningScore": 6}, "phase": "ready", "phaseTicks": 120, "players": {"left": {"charge": 0, "height": 200, "powered": false, "score": 0, "width": 30, "x": 20, "y": 300}, "right": {"charge": 0, "height": 200, "powered": false, "score": 0, "width": 30, "x": 1150, "y": 300}}, "rallyId": 0, "serveToward": "right", "tick": 0, "winner": null}, "tick": 0, "v": 1}, "v": 1}, "requestId": "sync-1", "status": "active", "v": 1}
+
+      357 |     client.disconnect();
+      358 |   });
+    > 359 | });
+          |    ^
+      360 |
+
+      at Object.<anonymous> (backend/src/game/online-session.spec.ts:359:29)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 27 skipped, 28 total
+Snapshots:   0 total
+Time:        1.291 s, estimated 11 s
+Ran all test suites with tests matching "keeps the owner timeout".

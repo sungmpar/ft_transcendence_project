@@ -1,0 +1,90 @@
+{
+  "scope": "Actual guest HTTP/cookie/JWT and browser UI on isolated PostgreSQL; no credential injection; two temporary frontend builds",
+  "splitOriginScope": "Same host, different ports; cross-site/subdomain cookie policies not covered",
+  "createdAt": "2026-09-08T04:14:28.655Z",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "rootDistWrittenByThisSuite": false,
+  "temporaryBuildRoot": "/private/tmp/ft-home-guest-entry-20284",
+  "browserVersion": "152.0.7977.77",
+  "frontendScripts": {
+    "same-origin": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.f9b85f4e.js"
+    ],
+    "split-origin": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.dadd0ef3.js"
+    ]
+  },
+  "results": [
+    {
+      "name": "same-origin-real-guest",
+      "status": "PASS",
+      "guestAccountsAdded": 1,
+      "guestRequests": 1,
+      "fullCallbacks": 1,
+      "finalRoute": "/game"
+    },
+    {
+      "name": "same-origin-503-fallback",
+      "status": "PASS",
+      "http503InjectedAtRealService": true,
+      "guestRequests": 1,
+      "fullCallbacks": 0,
+      "accountsAdded": 0,
+      "finalRoute": "/play/ai"
+    },
+    {
+      "name": "split-origin-real-guest",
+      "status": "PASS",
+      "guestAccountsAdded": 1,
+      "guestRequests": 1,
+      "fullCallbacks": 1,
+      "finalRoute": "/game"
+    },
+    {
+      "name": "split-origin-503-fallback",
+      "status": "PASS",
+      "http503InjectedAtRealService": true,
+      "guestRequests": 1,
+      "fullCallbacks": 0,
+      "accountsAdded": 0,
+      "finalRoute": "/play/ai"
+    },
+    {
+      "name": "double-click-single-guest",
+      "status": "PASS",
+      "guestRequests": 1,
+      "accountsAdded": 1,
+      "fullCallbacks": 1
+    },
+    {
+      "name": "pending-guest-cancel-to-public",
+      "status": "PASS",
+      "guestRequests": 1,
+      "fullCallbacks": 0,
+      "finalRoute": "/play/ai",
+      "serverAccountsAddedAfterCancellation": 1,
+      "note": "Aborting transport does not promise cancellation of already running server work"
+    },
+    {
+      "name": "new-tab-preserves-spectator-intent",
+      "status": "PASS",
+      "query": "next=/spectate",
+      "actualGuestCallbackFinalRoute": "/spectate"
+    },
+    {
+      "name": "guest-header-scope-and-disabled-flag",
+      "status": "PASS",
+      "allowedOriginExact": true,
+      "credentialsAllowedOnlyOnGuest": true,
+      "disabledStatus": 403,
+      "untrustedOriginCredentialsAbsent": true,
+      "missingConfigurationCredentialsAbsent": true,
+      "varyOrigin": true
+    }
+  ]
+}

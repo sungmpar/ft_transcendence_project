@@ -1,0 +1,14 @@
+{
+  "status": "FAIL",
+  "at": "2026-09-08T03:53:48.827146+00:00",
+  "viewport": [
+    1440,
+    900
+  ],
+  "authentication": "Actual guest HTTP redirect; duplicate tab shares its native browser context",
+  "limits": "Owned loopback fixture, automated browser input; aggregate read-only server session observation, no account or socket-state injection",
+  "browser": "152.0.7977.77",
+  "failure": "TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.",
+  "pageErrors": [],
+  "elapsedSeconds": 33.725
+}

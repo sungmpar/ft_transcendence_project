@@ -1,0 +1,76 @@
+FAIL src/game/session-recovery.spec.ts (6.415 s)
+  ● N2 observer-owned resubscription › resubscribes only the disconnected observer with one registration and no input ownership
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 5
+    + Received  + 1
+
+      Object {
+    -   "ready": Object {
+    -     "roomId": "41",
+    -     "side": "spectator",
+    -   },
+    -   "status": "active",
+    +   "status": "unavailable",
+      }
+
+      51 |     const returning = socket(3); await game.addUser(returning);
+      52 |     const first = await sync(game, returning, watchRequest());
+    > 53 |     expect(first).toMatchObject({ status: 'active', ready: { roomId: '41', side: 'spectator' } });
+         |                   ^
+      54 |     expect(await sync(game, returning, watchRequest('watch-2'))).toMatchObject({ status: 'active' });
+      55 |     expect(internals.rooms.get('41').spectators).toEqual([returning]);
+      56 |     expect(internals.watching.get(returning)).toBe('41');
+
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:53:19)
+
+  ● N2 observer-owned resubscription › returns a saved result when the match ended while its observer was offline
+
+    expect(received).toMatchObject(expected)
+
+    - Expected  - 6
+    + Received  + 1
+
+      Object {
+    -   "result": Object {
+    -     "loserScore": 0,
+    -     "outcome": "spectator",
+    -     "winnerScore": 0,
+    -   },
+    -   "status": "saved",
+    +   "status": "unavailable",
+      }
+
+      64 |     await game.dropUser(players[2], true); await game.dropUser(players[0]);
+      65 |     const returning = socket(3); await game.addUser(returning);
+    > 66 |     expect(await sync(game, returning, watchRequest())).toMatchObject({ status: 'saved', result: { outcome: 'spectator', winnerScore: 0, loserScore: 0 } });
+         |                                                         ^
+      67 |   });
+      68 |
+      69 |   it('does not let a current player subscribe as a spectator', async () => {
+
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:66:57)
+
+  ● N2 observer-owned resubscription › ignores a completed lookup after a newer target was requested
+
+    TypeError: resolve is not a function
+
+      80 |     const old = sync(game, players[2], watchRequest());
+      81 |     expect(await sync(game, players[2], watchRequest('watch-2', '42'))).toMatchObject({ status: 'unavailable' });
+    > 82 |     resolve({ winner: { nickname: 'a' }, loser: { nickname: 'b' }, winnerScore: 6, loserScore: 3 });
+         |     ^
+      83 |     expect(await old).toBeUndefined();
+      84 |   });
+      85 | });
+
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:82:5)
+
+PASS src/game/game-session.spec.ts
+PASS src/game/server-match-runner.spec.ts
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       3 failed, 22 passed, 25 total
+Snapshots:   0 total
+Time:        7.222 s, estimated 8 s
+Ran all test suites.

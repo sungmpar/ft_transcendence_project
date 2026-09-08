@@ -1,0 +1,70 @@
+{
+  "method": "Same src-only --no-fix commands as baseline. Added-line diagnostics include untracked src files. No rule suppression or unrelated formatting.",
+  "frontend": {
+    "before": {
+      "error": 1,
+      "warning": 64
+    },
+    "firstIntegrationAttempt": {
+      "error": 1,
+      "warning": 61
+    },
+    "after": {
+      "error": 1,
+      "warning": 61
+    },
+    "changedCountsByFile": [
+      {
+        "path": "frontend/src/components/SideBar.vue",
+        "before": {
+          "error": 0,
+          "warning": 2
+        },
+        "after": {
+          "error": 0,
+          "warning": 0
+        }
+      },
+      {
+        "path": "frontend/src/components/game/SpectateSlider.vue",
+        "before": {
+          "error": 0,
+          "warning": 1
+        },
+        "after": {
+          "error": 0,
+          "warning": 0
+        }
+      }
+    ],
+    "diagnosticsOnAddedLines": []
+  },
+  "backend": {
+    "before": {
+      "error": 1858,
+      "warning": 32
+    },
+    "firstIntegrationAttempt": {
+      "error": 1884,
+      "warning": 32
+    },
+    "after": {
+      "error": 1857,
+      "warning": 32
+    },
+    "changedCountsByFile": [
+      {
+        "path": "backend/src/auth/auth.controller.ts",
+        "before": {
+          "error": 70,
+          "warning": 3
+        },
+        "after": {
+          "error": 69,
+          "warning": 3
+        }
+      }
+    ],
+    "diagnosticsOnAddedLines": []
+  }
+}

@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { writeFileSync } from 'fs';
+import { mkdirSync, writeFileSync } from 'fs';
 import { Match } from '../src/user/entity/match.entity';
 import { OnlineFixture, startOnlineFixture, waitForFixture } from './online-fixture';
 
@@ -8,7 +8,10 @@ import { OnlineFixture, startOnlineFixture, waitForFixture } from './online-fixt
 const playwrightModule = process.env.ARCADE_PLAYWRIGHT_MODULE ||
   '/opt/miniconda3/lib/python3.12/site-packages/playwright/driver/package';
 const { chromium } = require(playwrightModule);
-const evidence = resolve(__dirname, '../../docs/arcade-upgrade/evidence');
+const evidence = process.env.ARCADE_EVIDENCE_DIR
+  ? resolve(process.env.ARCADE_EVIDENCE_DIR)
+  : resolve(__dirname, '../../docs/home-online-polish/evidence');
+mkdirSync(evidence, { recursive: true });
 
 describe('two real browser clients with actual HTTP and Socket.IO authentication', () => {
   let fixture: OnlineFixture;

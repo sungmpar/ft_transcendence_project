@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-recovery.py", line 128, in <module>
+    assert tick_after > tick_before, 'Observer failed to resubscribe'
+AssertionError: Observer failed to resubscribe

@@ -1,0 +1,21 @@
+{
+  "repository": "sungmpar/ft_transcendence_project",
+  "remote": "https://github.com/sungmpar/ft_transcendence_project",
+  "branch": "main",
+  "head": "2f11bee69c2d55ed938b53f9750119a890396fb7",
+  "originMain": "2f11bee69c2d55ed938b53f9750119a890396fb7",
+  "worktree": "worktree /Users/sm/dev_park/ft_transcendence_project\nHEAD 2f11bee69c2d55ed938b53f9750119a890396fb7\nbranch refs/heads/main",
+  "staged": [],
+  "preservedPathsDiff": [],
+  "gitDiffCheckExit": 0,
+  "localHttp": [
+    {
+      "url": "http://127.0.0.1:4173/play",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:52262/login",
+      "status": 200
+    }
+  ]
+}

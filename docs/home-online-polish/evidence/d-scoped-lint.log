@@ -1,0 +1,6 @@
+
+/Users/sm/dev_park/ft_transcendence_project/frontend/src/arcade/event-presentation.ts
+  48:68  warning  Forbidden non-null assertion  @typescript-eslint/no-non-null-assertion
+
+✖ 1 problem (0 errors, 1 warning)
+

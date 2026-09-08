@@ -47,6 +47,14 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 		this.gameService.listenKeyEvent(socket, data);
 	}
 
+  @SubscribeMessage('sessionSync')
+  sessionSync(
+    @ConnectedSocket() socket: AuthSocket,
+    @MessageBody() data: unknown,
+  ) {
+    return this.gameService.syncSession(socket, data);
+  }
+
 	@SubscribeMessage('matchmaking')
 	async joinMatch(
 		@ConnectedSocket() socket: AuthSocket,

@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "browser": "152.0.7977.77",
+  "clock": "real browser/server wall clock",
+  "input": "synthetic held keyboard input; no game-state injection",
+  "durationMs": 29670,
+  "lastObservedTick": 958,
+  "score": [
+    6,
+    0
+  ],
+  "rematchStarted": true,
+  "menuDisposed": true,
+  "telemetry": [
+    {
+      "receivedFrames": 429,
+      "websocketPayloadBytes": 399838,
+      "lastMetrics": {
+        "fps": 58,
+        "snapshots": 320,
+        "inputMessages": 108,
+        "ackRoundTripMs": 6.800000095368887,
+        "transportRoundTripMs": 1.2000000476837158,
+        "bufferDepth": 32,
+        "displayDelayMs": 100,
+        "underflows": 9,
+        "presentationTick": 954.0739999914169,
+        "clockEpoch": 0,
+        "clockResyncs": 0,
+        "serverEventsReceived": 15,
+        "effectsPresented": 13,
+        "effectsSkipped": 2,
+        "effectQueueDepth": 0,
+        "audioTones": 0
+      }
+    },
+    {
+      "receivedFrames": 452,
+      "websocketPayloadBytes": 419398,
+      "lastMetrics": {
+        "fps": 60.00774293457195,
+        "snapshots": 320,
+        "inputMessages": 103,
+        "ackRoundTripMs": 17.09999990463257,
+        "transportRoundTripMs": 1.0999999046325684,
+        "bufferDepth": 32,
+        "displayDelayMs": 100,
+        "underflows": 9,
+        "presentationTick": 953.4439999942779,
+        "clockEpoch": 0,
+        "clockResyncs": 0,
+        "serverEventsReceived": 15,
+        "effectsPresented": 11,
+        "effectsSkipped": 4,
+        "effectQueueDepth": 0,
+        "audioTones": 0
+      }
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "bytesDefinition": "Received WebSocket payload bytes including Socket.IO framing, not TCP/TLS or total network bandwidth"
+}

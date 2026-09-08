@@ -6,6 +6,7 @@
     :active="active"
     :waiting="waiting"
     :result="result"
+    :recovered-result="recoveredResult"
     v-model:mode="mode"
     v-model:map="map"
     v-model:layout="layout"
@@ -15,7 +16,7 @@
       ><button
         v-if="store.getters.inviteFriendName"
         class="arcade-button primary mint-button"
-        :disabled="waiting || !connected"
+        :disabled="waiting || !connected || syncing || recoveryIssue"
         @click="inviteGame"
         data-testid="online-play"
       >
@@ -23,7 +24,7 @@
       ><button
         v-else
         class="arcade-button primary mint-button"
-        :disabled="!connected"
+        :disabled="!connected || syncing || recoveryIssue"
         @click="findInviteList"
         data-testid="online-play"
       >
@@ -31,6 +32,10 @@
       </button></template
     >
     <template #actions
+      ><p v-if="connectionState.message" class="power-note" role="status" data-testid="online-connection-notice">{{ connectionState.message }}</p
+      ><button v-if="connectionState.message" class="arcade-button" :disabled="connectionState.pending" @click="retryConnection" data-testid="online-reconnect">{{ connectionState.pending ? '연결 확인 중…' : '연결 다시 확인' }}</button
+      ><button v-if="recoveryIssue" class="arcade-button" :disabled="!connected || syncing" @click="retryRecovery">경기 상태 다시 확인</button
+      ><button v-if="recoveryIssue" class="arcade-button" @click="leaveRecovery">로비로 돌아가기</button
       ><button
         class="arcade-button"
         :disabled="active || !connected"
@@ -40,7 +45,7 @@
       ><button
         v-if="store.getters.inviteFriendName"
         class="arcade-button"
-        :disabled="active || waiting || !connected"
+        :disabled="active || waiting || !connected || syncing || recoveryIssue"
         @click="inviteGame"
       >
         친구 초대</button
@@ -51,7 +56,7 @@
     <template #result-actions
       ><button
         class="arcade-button primary mint-button"
-        :disabled="!connected"
+        :disabled="!connected || syncing || recoveryIssue"
         @click="
           store.getters.inviteFriendName ? inviteGame() : findInviteList()
         "
@@ -66,16 +71,20 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import type { Socket } from "socket.io-client";
-import { isReadyMessage, ReadyMessage } from "../../../shared/protocol";
+import { createRouteGameSocket } from "@/arcade/route-game-socket";
+import { ConnectionRetry } from "@/arcade/connection-retry";
+import { isMatchEnded, ReadyMessage, RecoveredResult, SessionSyncResponse } from "../../../shared/protocol";
 import { GameplayService } from "@/plugins/gamePlayService";
 import OnlineGameShell from "@/components/game/OnlineGameShell.vue";
 import InviteSlider from "@/components/game/InviteSlider.vue";
 import store from "@/store";
 import { OnlineResultNotice } from "@/arcade/online-result";
+import { SessionRecovery, recoveryMessage } from "@/arcade/session-recovery";
 
 const route = useRoute();
-const socket = store.getters.gameSocket as Socket | null;
+const socket = createRouteGameSocket();
+const connectionState = ref({ pending: false, message: '' });
+const connectionRetry = new ConnectionRetry(socket, (state) => { connectionState.value = state; });
 const active = ref(false),
   waiting = ref(false),
   connected = ref(socket?.connected || false);
@@ -89,6 +98,47 @@ let pendingReady: ReadyMessage | undefined;
 const persistence = new OnlineResultNotice();
 let disposed = false;
 let ownSide: ReadyMessage["side"] = "spectator";
+const syncing = ref(false), recoveryIssue = ref(false);
+const recoveredResult = ref<RecoveredResult | null>(null);
+const recovery = new SessionRecovery(socket, 'player', onRecovery);
+function retryConnection() {
+  if (!disposed) connectionRetry.retry();
+}
+function retryRecovery() {
+  if (!socket.connected || !store.getters.room.roomId) return;
+  syncing.value = true; recoveryIssue.value = false;
+  status.value = '서버의 이전 경기 상태를 확인합니다.';
+  recovery.resume(store.getters.room.roomId);
+}
+function leaveRecovery() {
+  if (socket.connected) socket.emit('end');
+  recovery.clear(); syncing.value = false; recoveryIssue.value = false;
+  GameplayService.disposeFor(context?.canvas);
+  clearDisplay(); store.commit('setOnlineState', null);
+  result.value = ''; active.value = false; waiting.value = false;
+  status.value = '로비로 돌아왔습니다. 상대를 선택해 다시 플레이하세요.';
+}
+function onRecovery(value: SessionSyncResponse | null) {
+  if (disposed) return;
+  syncing.value = false;
+  if (value && 'ready' in value) {
+    onReady(value.ready); status.value = recoveryMessage(value); return;
+  }
+  GameplayService.disposeFor(context?.canvas);
+  store.commit('setOnlineState', null);
+  active.value = false; waiting.value = false;
+  status.value = recoveryMessage(value);
+  if (value && 'result' in value) {
+    recoveredResult.value = value.result;
+    persistence.reset(value.matchId);
+    persistence.receive({ roomId: value.matchId, status: value.status });
+    syncing.value = value.status === 'saving' || value.status === 'retrying';
+    result.value = value.result.outcome === 'won' ? '승리했습니다!' : '패배했습니다.';
+    if (!syncing.value) recovery.finish(value.matchId);
+  } else {
+    result.value = ''; recoveryIssue.value = true;
+  }
+}
 function setContext(value: CanvasRenderingContext2D) {
   if (disposed) return;
   context = value;
@@ -110,10 +160,10 @@ function startGame(data: ReadyMessage) {
 }
 function onReady(value: unknown) {
   if (disposed) return;
-  if (!isReadyMessage(value)) {
-    status.value = "서버 경기 정보가 올바르지 않아 적용하지 않았습니다.";
+  if (!recovery.acceptReady(value)) {
     return;
   }
+  syncing.value = false; recoveryIssue.value = false; recoveredResult.value = null;
   ownSide = value.side;
   mode.value = value.roomMode;
   persistence.reset(value.roomId);
@@ -126,12 +176,13 @@ function onReady(value: unknown) {
 }
 function onEnd(value: unknown) {
   if (disposed || persistence.status === "aborted") return;
-  if (value !== "left" && value !== "right") return;
+  if (!isMatchEnded(value) || !recovery.finish(value.roomId)) return;
+  syncing.value = false; recoveryIssue.value = false;
   active.value = false;
   waiting.value = false;
-  result.value = ownSide === value ? "승리했습니다!" : "패배했습니다.";
+  result.value = ownSide === value.winner ? "승리했습니다!" : "패배했습니다.";
   status.value = persistence.message;
-  GameplayService.stop(value);
+  GameplayService.stop(value.winner);
 }
 function onRefuse() {
   if (disposed) return;
@@ -154,6 +205,11 @@ function onInviteList(value: unknown) {
 }
 function onError(value: unknown) {
   if (disposed) return;
+  if (connectionRetry.reject(value)) {
+    connected.value = false; waiting.value = false;
+    status.value = connectionState.value.message;
+    return;
+  }
   status.value =
     value &&
     typeof value === "object" &&
@@ -165,24 +221,28 @@ function onError(value: unknown) {
 }
 function onConnect() {
   if (disposed) return;
+  if (!connectionRetry.connected()) return;
   connected.value = true;
+  if (store.getters.room.roomId && (active.value || syncing.value || recoveryIssue.value)) { retryRecovery(); return; }
   status.value = active.value
     ? "다시 연결됐습니다. 경기 상태를 확인합니다."
     : "친구를 초대하거나 받은 초대를 선택하세요.";
 }
 function onDisconnect() {
   if (disposed) return;
+  recovery.cancel();
   connected.value = false;
   waiting.value = false;
-  status.value = "연결이 끊겼습니다. 재연결을 기다립니다.";
+  status.value = connectionState.value.message || "연결이 끊겼습니다. 재연결을 기다립니다.";
 }
 function findInviteList() {
-  if (!socket?.connected || active.value) return;
+  if (!socket?.connected || active.value || syncing.value || recoveryIssue.value) return;
+  if (result.value) { clearDisplay(); result.value = ""; }
   socket.emit("invitelist");
   store.commit("setIsSearching", false);
 }
 function inviteGame() {
-  if (!socket?.connected || active.value || waiting.value) return;
+  if (!socket?.connected || active.value || waiting.value || syncing.value || recoveryIssue.value) return;
   const friendId = Number(store.getters.inviteFriendId);
   if (!Number.isSafeInteger(friendId) || friendId < 1) {
     status.value = "친구 목록에서 초대할 사람을 선택해 주세요.";
@@ -217,8 +277,11 @@ function onSessionStatus(value: unknown) {
 function onResultStatus(value: unknown) {
   if (disposed || !persistence.receive(value)) return;
   status.value = persistence.message;
+  syncing.value = persistence.status === "saving" || persistence.status === "retrying";
 }
 function clearDisplay() {
+  recoveredResult.value = null;
+  recovery.clear();
   persistence.reset();
   store.commit("setOnlineMetrics", {
     ackRoundTripMs: null,
@@ -245,7 +308,7 @@ function clearDisplay() {
 }
 watch(layout, (value) => GameplayService.useKeyLayout(value));
 socket?.on("ready", onReady);
-socket?.on("end", onEnd);
+socket?.on("matchEnded", onEnd);
 socket?.on("resultStatus", onResultStatus);
 socket?.on("sessionStatus", onSessionStatus);
 socket?.on("refuse", onRefuse);
@@ -259,18 +322,19 @@ socket?.on("disconnect", onDisconnect);
 clearDisplay();
 store.commit("setOnlineState", null);
 onMounted(() => {
-  if (route.params.friendId)
-    store.commit("setInviteFriendId", route.params.friendId);
-  if (route.params.friendName)
-    store.commit("setInviteFriendName", route.params.friendName);
+  store.commit("setInviteFriendId", route.params.friendId || 0);
+  store.commit("setInviteFriendName", route.params.friendName || "");
   store.commit("setIsSearching", true);
+  socket.connect();
 });
 onUnmounted(() => {
   disposed = true;
+  connectionRetry.dispose();
+  recovery.dispose();
   pendingReady = undefined;
-  GameplayService.dispose();
+  GameplayService.disposeFor(context?.canvas);
   socket?.off("ready", onReady);
-  socket?.off("end", onEnd);
+  socket?.off("matchEnded", onEnd);
   socket?.off("resultStatus", onResultStatus);
   socket?.off("sessionStatus", onSessionStatus);
   socket?.off("refuse", onRefuse);
@@ -281,9 +345,10 @@ onUnmounted(() => {
   socket?.off("connect_error", onError);
   socket?.off("connect", onConnect);
   socket?.off("disconnect", onDisconnect);
-  socket?.emit("end");
+  if (socket.connected) socket.emit("end");
   socket?.close();
-  if (store.getters.gameSocket === socket) store.commit("setGameSocket", null);
+  if (store.getters.gameSocket !== socket) return;
+  store.commit("setGameSocket", null);
   clearDisplay();
   store.commit("setOnlineState", null);
   store.commit("setIsSearching", false);

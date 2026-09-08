@@ -1,0 +1,20 @@
+{
+  "case": "player",
+  "phase": "after",
+  "status": "FAIL",
+  "at": "2026-09-08T02:01:54.489734+00:00",
+  "base": "http://127.0.0.1:64424",
+  "authentication": "Actual guest full HTTP redirect; no JWT injection",
+  "fault": "Actual browser WebSocket.close followed by context offline/online; controlled transport closure, not WAN/TCP fault",
+  "clock": "Real browser/server time; no game-state or UI-state mutation",
+  "browser": "152.0.7977.77",
+  "started": true,
+  "recognitionDelaySeconds": 1.706,
+  "graceUntilPeerResultSeconds": 4.129,
+  "samePageRecoveredResult": true,
+  "reconnectedStatus": "경기 결과가 저장되었습니다. 승자 2점 · 패자 0점.",
+  "peerSavedResultVisible": true,
+  "confirmedRecoveredScoreVisible": true,
+  "staleLeftRightScoreHidden": true,
+  "failure": "TimeoutError: Locator.click: Timeout 15000ms exceeded."
+}

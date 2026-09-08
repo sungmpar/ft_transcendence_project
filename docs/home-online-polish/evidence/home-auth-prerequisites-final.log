@@ -1,0 +1,11 @@
+PASS test/home-auth-prerequisites.e2e-spec.ts (43.162 s)
+  Home online intent respects actual authentication prerequisites
+    ✓ rejects an actually expired signed JWT before any online socket is created (7317 ms)
+    ✓ retains the intended game behind missing-nickname setup and resumes after the actual profile form (10249 ms)
+    ✓ keeps 2FA required until the original verification form succeeds, without sending external mail (13483 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        43.238 s, estimated 70 s
+Ran all test suites.

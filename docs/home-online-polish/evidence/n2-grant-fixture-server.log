@@ -1,0 +1,295 @@
+WS ChatGateway init
+Disposable online demo: http://127.0.0.1:65199/login
+Use two separate browser profiles and the existing guest login. All new accounts and matches stay in the disposable fixture schema.
+Ctrl+C closes this server and removes only its owned test schema. No production OAuth/mail is configured.
+value :  online
+value :  ingame
+value :  online
+value :  ingame
+value :  online
+value :  ingame
+value :  online
+value :  ingame
+value :  online
+value :  ingame
+value :  online
+[
+  {
+    id: 1,
+    nickname: 'gts1f7hq',
+    match: [ 'gts1fepq(0) : gts1f7hq(0)', 'gts1fepq(0) : gts1f7hq(0)' ],
+    won: 0,
+    lost: 2,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 2,
+    nickname: 'gts1fepq',
+    match: [ 'gts1fepq(0) : gts1f7hq(0)', 'gts1fepq(0) : gts1f7hq(0)' ],
+    won: 2,
+    lost: 0,
+    ladder: 'Gold',
+    achievement: [ 'first win' ]
+  },
+  {
+    id: 4,
+    nickname: 'gts1it6t',
+    match: [ 'gts1ilw6(6) : gts1it6t(3)' ],
+    won: 0,
+    lost: 1,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 5,
+    nickname: 'gts1j1wu',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 6,
+    nickname: 'gts1jb7l',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 3,
+    nickname: 'gts1ilw6',
+    match: [ 'gts1ilw6(6) : gts1it6t(3)' ],
+    won: 1,
+    lost: 0,
+    ladder: 'Gold',
+    achievement: [ 'first win' ]
+  }
+]
+value :  online
+value :  online
+value :  ingame
+value :  online
+value :  ingame
+value :  online
+value :  online
+value :  ingame
+[
+  {
+    id: 1,
+    nickname: 'gts1f7hq',
+    match: [ 'gts1fepq(0) : gts1f7hq(0)', 'gts1fepq(0) : gts1f7hq(0)' ],
+    won: 0,
+    lost: 2,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 2,
+    nickname: 'gts1fepq',
+    match: [ 'gts1fepq(0) : gts1f7hq(0)', 'gts1fepq(0) : gts1f7hq(0)' ],
+    won: 2,
+    lost: 0,
+    ladder: 'Gold',
+    achievement: [ 'first win' ]
+  },
+  {
+    id: 4,
+    nickname: 'gts1it6t',
+    match: [ 'gts1ilw6(6) : gts1it6t(3)' ],
+    won: 0,
+    lost: 1,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 5,
+    nickname: 'gts1j1wu',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 3,
+    nickname: 'gts1ilw6',
+    match: [ 'gts1ilw6(6) : gts1it6t(3)' ],
+    won: 1,
+    lost: 0,
+    ladder: 'Gold',
+    achievement: [ 'first win' ]
+  },
+  {
+    id: 6,
+    nickname: 'gts1jb7l',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 7,
+    nickname: 'gts1led8',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 8,
+    nickname: 'gts1lq5d',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 9,
+    nickname: 'gts1lz5l',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 10,
+    nickname: 'gts1m57q',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  }
+]
+value :  online
+value :  online
+value :  online
+value :  online
+[
+  {
+    id: 1,
+    nickname: 'gts1f7hq',
+    match: [ 'gts1fepq(0) : gts1f7hq(0)', 'gts1fepq(0) : gts1f7hq(0)' ],
+    won: 0,
+    lost: 2,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 12,
+    nickname: 'gts1pfnl',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 13,
+    nickname: 'gts1rixu',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 2,
+    nickname: 'gts1fepq',
+    match: [ 'gts1fepq(0) : gts1f7hq(0)', 'gts1fepq(0) : gts1f7hq(0)' ],
+    won: 2,
+    lost: 0,
+    ladder: 'Gold',
+    achievement: [ 'first win' ]
+  },
+  {
+    id: 4,
+    nickname: 'gts1it6t',
+    match: [ 'gts1ilw6(6) : gts1it6t(3)' ],
+    won: 0,
+    lost: 1,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 5,
+    nickname: 'gts1j1wu',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 3,
+    nickname: 'gts1ilw6',
+    match: [ 'gts1ilw6(6) : gts1it6t(3)' ],
+    won: 1,
+    lost: 0,
+    ladder: 'Gold',
+    achievement: [ 'first win' ]
+  },
+  {
+    id: 6,
+    nickname: 'gts1jb7l',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 8,
+    nickname: 'gts1lq5d',
+    match: [ 'gts1led8(6) : gts1lq5d(5)' ],
+    won: 0,
+    lost: 1,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 10,
+    nickname: 'gts1m57q',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 9,
+    nickname: 'gts1lz5l',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 11,
+    nickname: 'gts1n095',
+    match: [],
+    won: 0,
+    lost: 0,
+    ladder: 'Newbie',
+    achievement: []
+  },
+  {
+    id: 7,
+    nickname: 'gts1led8',
+    match: [ 'gts1led8(6) : gts1lq5d(5)' ],
+    won: 1,
+    lost: 0,
+    ladder: 'Gold',
+    achievement: [ 'first win' ]
+  }
+]
+value :  online

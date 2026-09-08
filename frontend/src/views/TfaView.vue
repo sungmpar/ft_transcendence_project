@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-800 justify-center absolute top-0 right-0 bottom-0 left-0">
+  <div class="security-page bg-gray-800">
     <div class=" rounded-lg bg-gradient-to-r from-blue-400 via-amber-200  to-sky-400 animate-gradient-x px-2 pt-2 pb-2 mb-2" v-if="this.$store.getters.userneed2fa == true || this.$store.getters.userid == 0 || this.$store.getters.userneed2fa == undefined">
 
       <div class="flex justify-center text-2xl" v-show="this.$store.getters.useris2fa == true">
@@ -79,7 +79,7 @@
       </button>
       </div>
 
-      <div v-show="true" class="flex justify-center" style="position: absolute; right: 0px; bottom: 0px;">
+      <div v-show="true" class="security-exit flex justify-center">
         <button class="gray-button" type="button" @click="logout">
           Logout
         </button>
@@ -89,6 +89,8 @@
 
   <script lang="ts">
     import axios from 'axios';
+import { logoutSession } from '@/arcade/auth-session';
+import { readLoginIntent } from '@/arcade/login-intent';
 
     import { defineComponent } from "vue";
 
@@ -105,8 +107,7 @@
       },
 
       async goTomain(){
-        var url = `${window.location.origin}/`;
-        document.location = url;
+        await this.$router.push('/');
       },
 
       async send_code() {
@@ -129,7 +130,7 @@
         .catch(error => {console.log(error);});
 
         await axios.get('/user/me')
-        .then(res => { store.commit('setUser', res.data);})
+        .then(res => { store.commit('setUser', res.data); if (readLoginIntent()) this.$router.replace('/'); })
         .catch(error => {
         if(error.response.status == 401)
         {
@@ -181,15 +182,8 @@
       },
 
       async logout() {
-      await axios.get('/auth/logout')
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-      localStorage.removeItem("token");
-      this.$router.push("/login");
+      const { serverConfirmed } = await logoutSession();
+      this.$router.replace(serverConfirmed ? '/login' : '/login?logout=unconfirmed');
       },
 
     },
@@ -201,3 +195,10 @@
       },
     })
   </script>
+
+<style scoped>
+.security-page { min-width: 0; min-height: 100vh; display: flex; flex-direction: column; padding-bottom: 24px; }
+.security-page .flex { flex-wrap: wrap; }
+.security-page button { max-width: 100%; white-space: normal; }
+.security-exit { margin-top: auto; padding-top: 24px; }
+</style>

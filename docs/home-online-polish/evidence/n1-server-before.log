@@ -1,0 +1,113 @@
+PASS src/game/game-session.spec.ts (6.642 s)
+PASS src/game/server-match-runner.spec.ts
+FAIL src/game/session-recovery.spec.ts
+  ● N1 authenticated same-page match recovery › returns the expired match result after room release without inventing six points
+
+    TypeError: game.syncSession is not a function
+
+      18 | }
+      19 | const request = (requestId = 'request-1', matchId = '41') => ({ v: 1, requestId, matchId, role: 'player' });
+    > 20 | const sync = (game: GameService, client: any, data = request()): Promise<any> => (game as any).syncSession(client, data);
+         |                                                                                                ^
+      21 |
+      22 | describe('N1 authenticated same-page match recovery', () => {
+      23 |   it('returns the expired match result after room release without inventing six points', async () => {
+
+      at sync (src/game/session-recovery.spec.ts:20:96)
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:31:18)
+
+  ● N1 authenticated same-page match recovery › reports saving and binds the returning participant to the eventual identified end
+
+    TypeError: game.syncSession is not a function
+
+      18 | }
+      19 | const request = (requestId = 'request-1', matchId = '41') => ({ v: 1, requestId, matchId, role: 'player' });
+    > 20 | const sync = (game: GameService, client: any, data = request()): Promise<any> => (game as any).syncSession(client, data);
+         |                                                                                                ^
+      21 |
+      22 | describe('N1 authenticated same-page match recovery', () => {
+      23 |   it('returns the expired match result after room release without inventing six points', async () => {
+
+      at sync (src/game/session-recovery.spec.ts:20:96)
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:41:18)
+
+  ● N1 authenticated same-page match recovery › distinguishes retrying and final storage failure from a saved outcome
+
+    TypeError: game.syncSession is not a function
+
+      18 | }
+      19 | const request = (requestId = 'request-1', matchId = '41') => ({ v: 1, requestId, matchId, role: 'player' });
+    > 20 | const sync = (game: GameService, client: any, data = request()): Promise<any> => (game as any).syncSession(client, data);
+         |                                                                                                ^
+      21 |
+      22 | describe('N1 authenticated same-page match recovery', () => {
+      23 |   it('returns the expired match result after room release without inventing six points', async () => {
+
+      at sync (src/game/session-recovery.spec.ts:20:96)
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:51:18)
+
+  ● N1 authenticated same-page match recovery › uses an authorized saved DB result after restart and reports an unfinished row as unavailable
+
+    TypeError: game.syncSession is not a function
+
+      18 | }
+      19 | const request = (requestId = 'request-1', matchId = '41') => ({ v: 1, requestId, matchId, role: 'player' });
+    > 20 | const sync = (game: GameService, client: any, data = request()): Promise<any> => (game as any).syncSession(client, data);
+         |                                                                                                ^
+      21 |
+      22 | describe('N1 authenticated same-page match recovery', () => {
+      23 |   it('returns the expired match result after room release without inventing six points', async () => {
+
+      at sync (src/game/session-recovery.spec.ts:20:96)
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:60:18)
+
+  ● N1 authenticated same-page match recovery › does not disclose a released result to a nonparticipant or a superseded socket
+
+    TypeError: game.syncSession is not a function
+
+      18 | }
+      19 | const request = (requestId = 'request-1', matchId = '41') => ({ v: 1, requestId, matchId, role: 'player' });
+    > 20 | const sync = (game: GameService, client: any, data = request()): Promise<any> => (game as any).syncSession(client, data);
+         |                                                                                                ^
+      21 |
+      22 | describe('N1 authenticated same-page match recovery', () => {
+      23 |   it('returns the expired match result after room release without inventing six points', async () => {
+
+      at sync (src/game/session-recovery.spec.ts:20:96)
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:70:18)
+
+  ● N1 authenticated same-page match recovery › returns lookup error without creating an outcome and ignores malformed requests
+
+    TypeError: game.syncSession is not a function
+
+      18 | }
+      19 | const request = (requestId = 'request-1', matchId = '41') => ({ v: 1, requestId, matchId, role: 'player' });
+    > 20 | const sync = (game: GameService, client: any, data = request()): Promise<any> => (game as any).syncSession(client, data);
+         |                                                                                                ^
+      21 |
+      22 | describe('N1 authenticated same-page match recovery', () => {
+      23 |   it('returns the expired match result after room release without inventing six points', async () => {
+
+      at sync (src/game/session-recovery.spec.ts:20:96)
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:79:18)
+
+  ● N1 authenticated same-page match recovery › ignores a DB response superseded by a newer recovery request
+
+    TypeError: game.syncSession is not a function
+
+      18 | }
+      19 | const request = (requestId = 'request-1', matchId = '41') => ({ v: 1, requestId, matchId, role: 'player' });
+    > 20 | const sync = (game: GameService, client: any, data = request()): Promise<any> => (game as any).syncSession(client, data);
+         |                                                                                                ^
+      21 |
+      22 | describe('N1 authenticated same-page match recovery', () => {
+      23 |   it('returns the expired match result after room release without inventing six points', async () => {
+
+      at sync (src/game/session-recovery.spec.ts:20:96)
+      at Object.<anonymous> (src/game/session-recovery.spec.ts:88:18)
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       7 failed, 14 passed, 21 total
+Snapshots:   0 total
+Time:        7.689 s
+Ran all test suites.

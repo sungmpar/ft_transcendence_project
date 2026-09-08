@@ -1,0 +1,8 @@
+
+/Users/sm/dev_park/ft_transcendence_project/backend/test/online-final-browser.e2e-spec.ts
+  0:0  error  Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.
+The file does not match your project config: test/online-final-browser.e2e-spec.ts.
+The file must be included in at least one of the projects provided
+
+✖ 1 problem (1 error, 0 warnings)
+

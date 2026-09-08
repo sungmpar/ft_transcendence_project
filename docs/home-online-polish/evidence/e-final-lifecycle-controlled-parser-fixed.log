@@ -1,0 +1,34 @@
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  ingame
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+  console.log
+    value :  online
+
+      at UserController.setStatus (src/user/user.controller.ts:32:11)
+
+PASS test/online-lifecycle-browser.e2e-spec.ts (58.981 s)
+  real browser reconnect and ownership lifecycle
+    ✓ pauses a disconnected match, resumes full state with a new generation, and rejects another active tab (48030 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        59.053 s, estimated 75 s
+Ran all test suites.

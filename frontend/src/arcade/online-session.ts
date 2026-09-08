@@ -1,10 +1,17 @@
-import { cloneGameState, GameState, PlayerInput } from '../../../shared/game-core';
+import { cloneGameState, GameEvent, GameState, PlayerInput } from '../../../shared/game-core';
 import { captureSnapshot, isSnapshot, MatchInput, ReadyMessage, Snapshot } from '../../../shared/protocol';
 import { CourtRenderer } from './court-renderer';
-import { copyBindings, DEFAULT_BINDINGS, KeyboardController } from './keyboard-controller';
+import { KeyboardController } from './keyboard-controller';
 import { SnapshotBuffer } from './snapshot-buffer';
+import { EventPresentation } from './event-presentation';
+import { onlineBindings, OnlineKeyLayout } from './online-preferences';
+import type { AudioFeedback } from './audio-feedback';
 
-export type OnlineKeyLayout = 'arrows' | 'wasd';
+export type { OnlineKeyLayout } from './online-preferences';
+export interface OnlineFeedback {
+  audio: Pick<AudioFeedback, 'play' | 'silence' | 'measurement'>;
+  reducedMotion: boolean;
+}
 export interface GameTransport {
   connected: boolean;
   on(event: string, listener: (value: unknown) => void): unknown;
@@ -20,6 +27,14 @@ export interface OnlineMetrics {
   bufferDepth: number;
   displayDelayMs: number;
   underflows: number;
+  presentationTick: number | null;
+  clockEpoch: number;
+  clockResyncs: number;
+  serverEventsReceived: number;
+  effectsPresented: number;
+  effectsSkipped: number;
+  effectQueueDepth: number;
+  audioTones: number;
 }
 export interface OnlineOptions {
   canvas: HTMLCanvasElement;
@@ -28,6 +43,7 @@ export interface OnlineOptions {
   background?: string;
   keyLayout?: OnlineKeyLayout;
   displayMode?: 'interpolate' | 'latest';
+  feedback?: OnlineFeedback;
   onState(state: GameState, metrics: OnlineMetrics): void;
   onStatus(message: string): void;
 }
@@ -51,29 +67,38 @@ export class OnlineSession {
   private layout: OnlineKeyLayout;
   private snapshot: GameState;
   private networkSnapshot: Snapshot;
+  private readonly instanceId: string;
+  private readonly presentation: EventPresentation;
+  private reducedMotion = false;
   private lastFrameTime: number | null = null;
   private fpsFrames = 0;
   private fpsElapsed = 0;
   private motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   private metrics: OnlineMetrics = { fps: 0, snapshots: 0, inputMessages: 0,
-    ackRoundTripMs: null, transportRoundTripMs: null, bufferDepth: 0, displayDelayMs: 0, underflows: 0 };
+    ackRoundTripMs: null, transportRoundTripMs: null, bufferDepth: 0, displayDelayMs: 0, underflows: 0,
+    presentationTick: null, clockEpoch: 0, clockResyncs: 0, serverEventsReceived: 0,
+    effectsPresented: 0, effectsSkipped: 0, effectQueueDepth: 0, audioTones: 0 };
 
   constructor(private options: OnlineOptions) {
     this.layout = options.keyLayout || 'arrows';
     this.buffer = new SnapshotBuffer(options.displayMode || 'interpolate');
     const initial = options.ready.snapshot;
-    this.networkSnapshot = captureSnapshot(initial.state, initial.matchId, initial.seq, initial.ack);
+    this.instanceId = initial.instanceId;
+    this.presentation = new EventPresentation(initial);
+    this.reducedMotion = options.feedback?.reducedMotion || false;
+    options.feedback?.audio.silence();
+    this.networkSnapshot = captureSnapshot(initial.state, initial.matchId, initial.seq, initial.ack, initial, initial);
     this.snapshot = cloneGameState(options.ready.snapshot.state);
     this.buffer.receive(options.ready.snapshot, performance.now());
-    this.renderer = new CourtRenderer(options.canvas, this.motion.matches, options.background);
-    const bindings = copyBindings(DEFAULT_BINDINGS);
-    bindings.right.action = 'Space';
+    this.renderer = new CourtRenderer(options.canvas, this.motion.matches || this.reducedMotion, options.background);
+    const bindings = { left: onlineBindings('wasd'), right: onlineBindings('arrows') };
     this.keyboard = new KeyboardController({
       events: window, visibility: document, surface: options.canvas,
       isFocused: () => document.activeElement === options.canvas,
       isHidden: () => document.hidden,
       onPause: () => this.sendNeutral(),
     }, bindings);
+    this.keyboard.setActiveSide(this.layout === 'wasd' ? 'left' : 'right');
     this.keyboard.attach();
     this.keyboard.setEnabled(options.ready.side !== 'spectator');
     options.canvas.tabIndex = 0;
@@ -92,23 +117,32 @@ export class OnlineSession {
 
   get state(): GameState { return cloneGameState(this.snapshot); }
   get latest(): GameState { return cloneGameState(this.networkSnapshot.state); }
-  get measurement(): OnlineMetrics { return { ...this.metrics }; }
+  get measurement(): OnlineMetrics {
+    const events = this.presentation.metrics, buffer = this.buffer.metrics;
+    return { ...this.metrics, presentationTick: buffer.presentationTick, clockEpoch: this.networkSnapshot.clockEpoch,
+      clockResyncs: buffer.resyncCount, serverEventsReceived: events.received, effectsPresented: events.presented,
+      effectsSkipped: events.skipped, effectQueueDepth: events.queued,
+      audioTones: this.options.feedback?.audio.measurement.tones || 0 };
+  }
 
   useKeyLayout(layout: OnlineKeyLayout): void {
     this.sendNeutral();
     this.keyboard.clear();
     this.layout = layout;
+    this.keyboard.setActiveSide(layout === 'wasd' ? 'left' : 'right');
   }
+  useReducedMotion(value: boolean): void { this.reducedMotion = value; this.motionChanged(); }
 
   complete(): void {
     if (this.disposed) return;
     this.snapshot = cloneGameState(this.networkSnapshot.state);
+    this.present(this.presentation.terminal(this.networkSnapshot), true);
     this.renderer.draw(this.snapshot);
     this.options.onState(this.state, this.measurement);
-    this.dispose();
+    this.dispose(true);
   }
 
-  dispose(): void {
+  dispose(preserveTerminalTone = false): void {
     if (this.disposed) return;
     this.sendNeutral();
     this.disposed = true;
@@ -124,6 +158,8 @@ export class OnlineSession {
     window.removeEventListener('resize', this.resize);
     this.motion.removeEventListener('change', this.motionChanged);
     this.pending.clear();
+    this.presentation.dispose();
+    if (!preserveTerminalTone) this.options.feedback?.audio.silence();
   }
 
   private sendNeutral(): void {
@@ -147,10 +183,15 @@ export class OnlineSession {
   }
 
   private receive = (value: unknown): void => {
-    if (this.disposed || !isSnapshot(value) || value.matchId !== this.options.ready.roomId) return;
+    if (this.disposed || !isSnapshot(value) || value.matchId !== this.options.ready.roomId ||
+      value.instanceId !== this.instanceId) return;
     const now = performance.now();
     if (!this.buffer.receive(value, now)) return;
-    this.networkSnapshot = captureSnapshot(value.state, value.matchId, value.seq, value.ack);
+    if (value.clockEpoch !== this.networkSnapshot.clockEpoch) {
+      this.renderer.reset(); this.options.feedback?.audio.silence();
+    }
+    this.presentation.receive(value);
+    this.networkSnapshot = captureSnapshot(value.state, value.matchId, value.seq, value.ack, value, value);
     this.metrics.snapshots++;
     const side = this.options.ready.side;
     if (side !== 'spectator') {
@@ -168,6 +209,7 @@ export class OnlineSession {
     if (this.disposed) return;
     this.keyboard.clear();
     this.pending.clear();
+    this.presentation.discardPending(); this.renderer.reset(); this.options.feedback?.audio.silence();
     this.options.onStatus('연결이 끊겼습니다 · 재연결 상태를 확인하고 있습니다');
   };
   private connected = (): void => {
@@ -190,6 +232,7 @@ export class OnlineSession {
     const status = (value as { status?: unknown } | null)?.status;
     if (status === 'waiting') {
       this.sendNeutral();
+      this.presentation.discardPending(); this.renderer.reset(); this.options.feedback?.audio.silence();
       const grace = (value as { graceMs?: unknown }).graceMs;
       const duration = typeof grace === 'number' && Number.isFinite(grace) && grace > 0
         ? ` · 최대 ${Math.ceil(grace / 1000)}초` : '';
@@ -204,8 +247,16 @@ export class OnlineSession {
   private resize = (): void => { if (!this.disposed) this.renderer.draw(this.snapshot); };
   private motionChanged = (): void => {
     if (this.disposed) return;
-    this.renderer.setReducedMotion(this.motion.matches); this.resize();
+    this.renderer.setReducedMotion(this.motion.matches || this.reducedMotion); this.resize();
   };
+
+  private present(events: GameEvent[], reset = false): void {
+    if (reset || events.some(event => ['serve', 'point', 'finished'].includes(event.type))) {
+      this.renderer.reset(); this.options.feedback?.audio.silence();
+    }
+    if (!events.length) return;
+    this.renderer.events(events); this.options.feedback?.audio.play(events);
+  }
 
   private frame(time: number, generation: number): void {
     if (this.disposed || generation !== this.generation) return;
@@ -237,6 +288,7 @@ export class OnlineSession {
       this.metrics.bufferDepth = metrics.depth;
       this.metrics.displayDelayMs = metrics.displayDelayMs;
       this.metrics.underflows = metrics.underflowCount;
+      this.present(this.presentation.take(metrics.presentationTick));
       this.renderer.draw(displayed);
       this.options.onState(cloneGameState(displayed), this.measurement);
     }

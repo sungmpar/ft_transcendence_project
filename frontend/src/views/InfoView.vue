@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-800 absolute top-0 right-0 bottom-0 left-0">
+  <div class="profile-page bg-gray-800">
   <div>
 
 <template v-if="this.$store.getters.usernickname">
@@ -51,7 +51,7 @@
     </button>
   </div>
 
-  <div v-show="true" class="flex justify-center" style="position: absolute; right: 0px; bottom: 0px;">
+  <div v-show="true" class="profile-exit flex justify-center">
       <button class="gray-button" type="button" @click="logout">
         Logout
       </button>
@@ -87,6 +87,8 @@
 
 <script lang="ts">
 import axios from 'axios';
+import { logoutSession } from '@/arcade/auth-session';
+import { readLoginIntent } from '@/arcade/login-intent';
 
 import { defineComponent } from "vue";
 
@@ -101,7 +103,7 @@ export default defineComponent({
     },
 
     async goTomain(){
-      document.location = `${window.location.origin}/`;
+      await this.$router.push('/');
     },
 
     input_words: function(event:Event) {
@@ -137,7 +139,7 @@ export default defineComponent({
     });
 
     await axios.get('/user/me')
-    .then(res => { store.commit('setUser', res.data);})
+    .then(res => { store.commit('setUser', res.data); if (res.data.nickname && readLoginIntent()) this.$router.replace('/'); })
     .catch(error => {console.log(error);});
     },
 
@@ -170,15 +172,8 @@ export default defineComponent({
       }
     },
     async logout() {
-    await axios.get('/auth/logout')
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    localStorage.removeItem("token");
-    this.$router.push("/login");
+      const { serverConfirmed } = await logoutSession();
+      this.$router.replace(serverConfirmed ? '/login' : '/login?logout=unconfirmed');
     },
 
 		get_avatar(id: number) {
@@ -203,3 +198,10 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped>
+.profile-page { min-width: 0; min-height: 100vh; padding-bottom: 24px; }
+.profile-page input { max-width: 100%; }
+.profile-exit { margin-top: 16px; }
+.profile-page table { width: 100%; overflow-wrap: anywhere; }
+</style>

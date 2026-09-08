@@ -1,56 +1,51 @@
 <template>
   <TransitionRoot as="template" :show="store.getters.isSearching">
-    <Dialog as="div" class="relative z-10" @close="closeSlider">
-      <TransitionChild as="template" enter="ease-in-out duration-500" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in-out duration-500" leave-from="opacity-100" leave-to="opacity-0">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-      </TransitionChild>
-      <div class="fixed inset-0 overflow-hidden">
-        <div class="absolute inset-0 overflow-hidden">
-          <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-            <TransitionChild as="template" enter="transform transition ease-in-out duration-500 sm:duration-700" enter-from="translate-x-full" enter-to="translate-x-0" leave="transform transition ease-in-out duration-500 sm:duration-700" leave-from="translate-x-0" leave-to="translate-x-full">
-              <DialogPanel class="pointer-events-auto relative w-screen max-w-md">
-                <TransitionChild as="template" enter="ease-in-out duration-500" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in-out duration-500" leave-from="opacity-100" leave-to="opacity-0">
-                  <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4">
-										<button type="button" class="rounded-md text-gray-300 hover:text-white focus:outline-none" @click="closeSlider">
-                      <font-awesome-icon icon="fa-solid fa-x" />
-                    </button>
-									</div>
-                </TransitionChild>
-                <div class="flex h-full flex-col overflow-y-scroll bg-gray-800 py-6 shadow-xl">
-                  <div class="px-4 sm:px-6">
-                    <DialogTitle class="text-lg font-medium text-gray-200"> Game List </DialogTitle>
-                  </div>
-                  <div class="relative mt-6 flex-1 px-4 sm:px-6 flex-col">
-									<div v-for="room in store.getters.roomList" v-bind:key="room">
-										<div class="roomlist-element" @click="insertRoomData(room)">
-											<p>{{ room.leftName }} vs {{ room.rightName}}</p>
-										</div>
-									</div>
-                  </div>
-                </div>
-              </DialogPanel>
-            </TransitionChild>
-          </div>
-        </div>
+    <Dialog as="div" class="spectate-dialog" @close="closeSlider">
+      <div class="spectate-backdrop" aria-hidden="true" />
+      <div class="spectate-position">
+        <DialogPanel class="spectate-panel">
+          <header><DialogTitle>경기 목록</DialogTitle><button type="button" aria-label="경기 목록 닫기" class="spectate-close" @click="closeSlider">✕</button></header>
+          <p class="spectate-intro">진행 중인 경기를 선택한 뒤 ‘선택한 경기 관전’을 누르세요. 관전자는 경기를 조작하지 않습니다.</p>
+          <p v-if="loading" role="status" data-testid="spectator-loading">진행 중인 경기를 불러오는 중…</p>
+          <div v-else-if="error" role="status"><p data-testid="spectator-list-error">{{ error }}</p><button type="button" class="spectate-retry" @click="$emit('retry')">다시 시도</button></div>
+          <p v-else-if="!store.getters.roomList.length" role="status" data-testid="spectator-empty">현재 관전할 경기가 없습니다. 두 플레이어가 대전을 시작하면 목록에 표시됩니다.</p>
+          <ul v-else class="spectate-list">
+            <li v-for="room in store.getters.roomList" :key="room.roomId"><button type="button" @click="insertRoomData(room)"><span>{{ room.leftName }} <span class="spectate-vs">vs</span> {{ room.rightName }}</span><span class="spectate-select">선택 →</span></button></li>
+          </ul>
+        </DialogPanel>
       </div>
     </Dialog>
   </TransitionRoot>
 </template>
-
 <script setup lang="ts">
-import store from "@/store"
-import { Dialog, DialogPanel, DialogTitle,TransitionChild, TransitionRoot } from '@headlessui/vue'
-
-function closeSlider() {
-	store.commit('setIsSearching', false)
+import { defineEmits, defineProps } from 'vue';
+import store from '@/store';
+import { Dialog, DialogPanel, DialogTitle, TransitionRoot } from '@headlessui/vue';
+defineProps<{ loading: boolean; error: string }>();
+defineEmits<{ (event: 'retry'): void }>();
+interface ListedRoom { roomId: string; leftName: string; rightName: string; roomMode?: boolean }
+function closeSlider() { store.commit('setIsSearching', false); }
+function insertRoomData(room: ListedRoom) {
+  store.commit('setRoom', room);
+  closeSlider();
 }
-
-function insertRoomData(room: any) {
-	console.log("room id :", room.roomId)
-	console.log("room left :", room.leftName)
-	console.log("room right :", room.rightName)
-	store.commit('setRoom', room);
-	closeSlider();
-}
-
 </script>
+<style scoped>
+.spectate-dialog { position:relative; z-index:40; color:#eef2ff; }
+.spectate-backdrop { position:fixed; inset:0; background:rgb(0 0 0 / .6); }
+.spectate-position { position:fixed; inset:0; padding-left:80px; display:flex; justify-content:flex-end; pointer-events:none; }
+.spectate-panel { box-sizing:border-box; width:min(430px,100%); overflow-y:auto; background:#141c2b; padding:24px; border-left:1px solid #39475f; pointer-events:auto; }
+.spectate-panel header { display:flex; justify-content:space-between; align-items:center; font-size:23px; font-weight:750; margin-bottom:20px; }
+.spectate-panel p { font-size:14px; line-height:1.8; color:#adb9ce; }
+.spectate-intro { margin-bottom:24px; }
+.spectate-panel button:focus-visible { outline:3px solid #92f0d1; outline-offset:3px; }
+.spectate-close { width:40px; height:40px; border:1px solid #4a5871; border-radius:8px; font-size:17px; }
+.spectate-retry { margin-top:16px; color:#92f0d1; padding:10px 15px; border:1px solid #4a5871; border-radius:7px; }
+.spectate-list { list-style:none; margin:0; padding:0; }
+.spectate-list li { border-top:1px solid #293347; }
+.spectate-list button { width:100%; min-width:0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; text-align:left; padding:22px 0; }
+.spectate-list button>span:first-child { overflow-wrap:anywhere; }
+.spectate-vs { color:#9ca9c0; font-size:13px; }
+.spectate-select { color:#92f0d1; font-size:13px; }
+@media(max-width:480px) { .spectate-panel { padding:18px; } }
+</style>

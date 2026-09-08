@@ -1,9 +1,9 @@
 <template>
-	<div class="w-full flex">
-		<div class="flex">
+	<div class="chat-layout w-full flex">
+		<div class="chat-channels flex">
 		<ChannelBar />
 		</div>
-		<div class="flex flex-auto">
+		<div class="chat-messages flex flex-auto">
 		<ChatContainer />
 		</div>
 		<JoinChannelModal />
@@ -117,3 +117,21 @@ onUnmounted(() => {
 });
 
 </script>
+
+<style scoped>
+/* Keep the existing chat handlers; each pane owns its width and scrolling. */
+.chat-layout { min-width: 0; }
+.chat-channels { flex: 0 0 320px; min-width: 0; }
+.chat-messages { flex: 1; min-width: 0; }
+.chat-messages :deep(.chat-composer) { width: 100%; padding: 0 16px 16px; gap: 8px; flex-shrink: 0; }
+.chat-messages :deep(.chat-composer .normal-button) { flex: 0 0 auto; margin: 0; padding: 12px 16px; }
+.chat-messages :deep(.bottom-bar) { flex: 1; min-width: 0; margin: 0; }
+.chat-messages :deep(.bottom-bar-input) { min-width: 0; margin-left: 0; margin-right: 0; }
+@media (max-width: 800px) {
+  .chat-layout { flex-direction: column; }
+  .chat-channels { flex: none; width: 100%; }
+  .chat-channels :deep(.channel-bar) { width: 100%; height: auto; max-height: 40vh; overflow: auto; }
+  .chat-messages { width: 100%; }
+  .chat-messages :deep(.chat-container) { height: 70vh; min-height: 360px; }
+}
+</style>

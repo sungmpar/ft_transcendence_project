@@ -1,0 +1,24 @@
+{
+  "scope": "A separate frontend build with the guest feature flag disabled; no backend and no frontend/dist overwrite",
+  "build": {
+    "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+    "command": "VUE_APP_ENABLE_GUEST_LOGIN=false VUE_APP_ARCADE_DEBUG=true /private/tmp/ft-transcendence-runtime/node_modules/.bin/node node_modules/@vue/cli-service/bin/vue-cli-service.js build --dest /private/tmp/ft-home-guest-disabled-output > ../docs/home-online-polish/evidence/guest-disabled-build.log 2>&1",
+    "exitCode": 0,
+    "webpackHash": "6f7483b7794b3b87",
+    "buildAt": "2026-09-08T01:17:07.933Z"
+  },
+  "preview": {
+    "command": "/private/tmp/ft-transcendence-runtime/node_modules/.bin/node /private/tmp/ft-home-guest-disabled-server.cjs",
+    "scope": "Temporary preview serving only the named build directory, random loopback port, auth/user/socket endpoints return 503",
+    "originDuringTest": "http://127.0.0.1:61643",
+    "stateAfterTest": "Stopped with SIGINT; this URL is no longer advertised as live"
+  },
+  "browser": {
+    "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+    "command": "/opt/miniconda3/bin/python scripts/browser-home-auth.py http://127.0.0.1:59707 --disabled-base http://127.0.0.1:61643 --only Guest-disabled",
+    "exitCode": 0,
+    "checks": 1,
+    "elapsedSeconds": 11.489,
+    "result": "Guest-disabled notice visible, guest action absent, real login-page AI link reaches the public court"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "scope": "Final Home group against the explicitly assigned owned loopback fixture. Completed commands only; no application source or assertions were changed for this rerun.",
+  "repository": "sungmpar/ft_transcendence_project",
+  "sourceChanges": [
+    {
+      "path": "scripts/browser-home-auth.py",
+      "change": "Only evidence output directory: ARCADE_EVIDENCE_DIR with the previous docs/home-online-polish/evidence fallback."
+    },
+    {
+      "path": "scripts/browser-home-navigation.py",
+      "change": "Same evidence output directory change; assertions and application source unchanged."
+    }
+  ],
+  "records": [
+    {
+      "id": "final-home-output-path-compile",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python - <<'PY' > docs/home-online-polish/evidence/final-home-output-path-compile.log 2>&1\nimport py_compile\npy_compile.compile('scripts/browser-home-auth.py', cfile='/private/tmp/ft-home-auth-output-path.pyc', doraise=True)\npy_compile.compile('scripts/browser-home-navigation.py', cfile='/private/tmp/ft-home-navigation-output-path.pyc', doraise=True)\nprint('PASS: both Home browser scripts compiled; bytecode written only under /private/tmp.')\nPY",
+      "exitCode": 0,
+      "result": "Both files compile. This is syntax verification, not a browser assertion or product PASS.",
+      "log": "docs/home-online-polish/evidence/final-home-output-path-compile.log"
+    },
+    {
+      "id": "final-home-group",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_DEMO_URL=http://127.0.0.1:52262 ARCADE_PREVIEW_URL=http://127.0.0.1:4173 ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-home node scripts/check-arcade.cjs home > docs/home-online-polish/evidence/final-home-command.log 2>&1",
+      "exitCode": 0,
+      "executionSession": 47770,
+      "exitObservedByReviewer": true,
+      "frontendBuild": "4de1388331743be3",
+      "builtIndexSha256": "9496dfbe265b3b0b4f0e62e97629f6eaf33095be4e8cb784e888019fa62ba5f3",
+      "app": "/js/app.89b642c7.js",
+      "log": "docs/home-online-polish/evidence/final-home-command.log",
+      "result": "All three actual Chrome subprocesses completed successfully. Visual/public48 PASS; auth18 PASS (156.347s); navigation4 PASS plus1 OBSERVED (55.711s).",
+      "authentication": "Fresh actual guest HTTP cookie/JWT and full callback on the assigned disposable fixture; no credential injection.",
+      "screenshotsReviewed": 9,
+      "cleanup": "All contexts/browser subprocesses closed. Chrome released to root. Root-owned 52262 and4173 servers, defaultdist and previous matched screenshots unchanged.",
+      "limits": "Same viewport sizes, but this new fixture uses fresh accounts rather than the earlier matched baseline guest. Full-page PNGs retain vertical scroll. No new complete game, human hearing, physical input, external OAuth/email or WAN claim."
+    },
+    {
+      "id": "final-home-visual-after-connection-retry",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "ARCADE_PREVIEW_URL=http://127.0.0.1:4173 ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-home-after-connection-retry /opt/miniconda3/bin/python scripts/browser-home-visual.py http://127.0.0.1:52262 > docs/home-online-polish/evidence/final-home-after-connection-retry-visual-command.log 2>&1",
+      "exitCode": 0,
+      "executionSession": 12359,
+      "exitObservedByReviewer": true,
+      "frontendBuild": "99110685ef45f988",
+      "builtIndexSha256": "e60b86fcc3aa8596dd33c3250bfbc7c7d171ceeade93b6bc2c256b93189a735a",
+      "app": "/js/app.f9b85f4e.js",
+      "log": "docs/home-online-polish/evidence/final-home-after-connection-retry-visual-command.log",
+      "result": "48 Python checks PASS. New actual guest, native Home/public navigation. Nine new PNGs personally opened and reviewed.",
+      "screenshotsReviewed": 9,
+      "limits": "Not a rerun of auth18 or same-account baseline capture. Full-page images at the same viewport sizes are separate from preserved original matched images."
+    },
+    {
+      "id": "final-home-navigation-after-connection-retry",
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/home-online-polish/evidence/final-home-after-connection-retry /opt/miniconda3/bin/python scripts/browser-home-navigation.py http://127.0.0.1:52262 --phase after > docs/home-online-polish/evidence/final-home-after-connection-retry-navigation-command.log 2>&1",
+      "exitCode": 0,
+      "executionSession": 50424,
+      "exitObservedByReviewer": true,
+      "frontendBuild": "99110685ef45f988",
+      "log": "docs/home-online-polish/evidence/final-home-after-connection-retry-navigation-command.log",
+      "result": "4 PASS plus1 OBSERVED; actual guest/friend UI target, refusal/acceptance, both invitation courts, spectator empty/timeout/retry, two back/forward cycles and owned resources. Python67.055s; page errors0.",
+      "cleanup": "All contexts/browser closed and Chrome released to root. Root-owned52262/4173 servers, defaultdist and original evidence unchanged. No source or assertion changes in these two runs."
+    }
+  ]
+}

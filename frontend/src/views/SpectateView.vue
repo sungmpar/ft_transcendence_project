@@ -1,11 +1,12 @@
 <template>
-  <SpectateSlider />
+  <SpectateSlider :loading="roomsLoading" :error="roomsError" @retry="findRoomList" />
   <OnlineGameShell
     title="경기 관전"
     :status="status"
     :active="active"
     :waiting="waiting"
     :result="result"
+    :recovered-result="recoveredResult"
     :mode="mode"
     v-model:map="map"
     layout="arrows"
@@ -23,6 +24,8 @@
       </button></template
     >
     <template #actions
+      ><p v-if="connectionState.message" class="power-note" role="status" data-testid="online-connection-notice">{{ connectionState.message }}</p
+      ><button v-if="connectionState.message" class="arcade-button" :disabled="connectionState.pending" @click="retryConnection" data-testid="online-reconnect">{{ connectionState.pending ? '연결 확인 중…' : '연결 다시 확인' }}</button
       ><button
         class="arcade-button"
         :disabled="waiting || !connected"
@@ -51,16 +54,20 @@
 </template>
 
 <script setup lang="ts">
-import { onUnmounted, ref } from "vue";
-import type { Socket } from "socket.io-client";
-import { isReadyMessage, ReadyMessage } from "../../../shared/protocol";
+import { onMounted, onUnmounted, ref, watch } from "vue";
+import { createRouteGameSocket } from "@/arcade/route-game-socket";
+import { ConnectionRetry } from "@/arcade/connection-retry";
+import { isMatchEnded, ReadyMessage, RecoveredResult, SessionSyncResponse } from "../../../shared/protocol";
 import { GameplayService } from "@/plugins/gamePlayService";
 import OnlineGameShell from "@/components/game/OnlineGameShell.vue";
 import SpectateSlider from "@/components/game/SpectateSlider.vue";
 import store from "@/store";
 import { OnlineResultNotice } from "@/arcade/online-result";
+import { SessionRecovery, recoveryMessage } from "@/arcade/session-recovery";
 
-const socket = store.getters.gameSocket as Socket | null;
+const socket = createRouteGameSocket();
+const connectionState = ref({ pending: false, message: '' });
+const connectionRetry = new ConnectionRetry(socket, (state) => { connectionState.value = state; });
 const active = ref(false),
   waiting = ref(false),
   connected = ref(socket?.connected || false);
@@ -72,6 +79,46 @@ let context: CanvasRenderingContext2D | undefined;
 let pendingReady: ReadyMessage | undefined;
 const persistence = new OnlineResultNotice();
 let disposed = false;
+let desiredRoom = '';
+let retryDesiredRoom = false;
+const recoveredResult = ref<RecoveredResult | null>(null);
+const recovery = new SessionRecovery(socket, 'spectator', onRecovery);
+function retryConnection() {
+  if (disposed || socket.connected || connectionState.value.pending) return;
+  retryDesiredRoom = Boolean(desiredRoom);
+  connectionRetry.retry();
+}
+function onRecovery(value: SessionSyncResponse | null) {
+  if (disposed) return;
+  waiting.value = false;
+  if (value && 'ready' in value) {
+    onReady(value.ready); status.value = recoveryMessage(value); return;
+  }
+  pendingReady = undefined;
+  GameplayService.disposeFor(context?.canvas);
+  store.commit('setOnlineState', null);
+  active.value = false;
+  status.value = recoveryMessage(value);
+  if (value && 'result' in value) {
+    recoveredResult.value = value.result;
+    persistence.reset(value.matchId);
+    persistence.receive({ roomId: value.matchId, status: value.status });
+    result.value = `${value.result.winnerName} 승리!`;
+    if (value.status === 'saved' || value.status === 'failed') recovery.finish(value.matchId);
+  } else result.value = '';
+}
+const roomsLoading = ref(false), roomsError = ref('');
+let roomsTimeout: ReturnType<typeof setTimeout> | undefined;
+function cancelRoomRequest() {
+  if (roomsTimeout !== undefined) clearTimeout(roomsTimeout);
+  roomsTimeout = undefined;
+  roomsLoading.value = false;
+}
+function failRoomRequest() {
+  if (!roomsLoading.value) return;
+  cancelRoomRequest();
+  roomsError.value = '경기 목록을 불러오지 못했습니다. 연결을 확인하고 다시 시도해 주세요.';
+}
 function setContext(value: CanvasRenderingContext2D) {
   if (disposed) return;
   context = value;
@@ -92,11 +139,9 @@ function startGame(data: ReadyMessage) {
 }
 function onReady(value: unknown) {
   if (disposed) return;
-  if (!isReadyMessage(value) || value.side !== "spectator") {
-    status.value = "서버 관전 정보가 올바르지 않아 적용하지 않았습니다.";
-    waiting.value = false;
-    return;
-  }
+  if (!recovery.acceptReady(value)) return;
+  desiredRoom = value.roomId;
+  recoveredResult.value = null;
   persistence.reset(value.roomId);
   store.commit("setRoom", value);
   mode.value = value.roomMode;
@@ -108,53 +153,32 @@ function onReady(value: unknown) {
 }
 function onEnd(value: unknown) {
   if (disposed || persistence.status === "aborted") return;
-  if (value !== "left" && value !== "right") return;
+  if (!isMatchEnded(value) || !recovery.finish(value.roomId)) return;
   const winner =
-    value === "left"
+    value.winner === "left"
       ? store.getters.room.leftName
       : store.getters.room.rightName;
-  result.value = `${winner || (value === "left" ? "P1" : "P2")} 승리!`;
+  result.value = `${winner || (value.winner === "left" ? "P1" : "P2")} 승리!`;
   active.value = false;
   waiting.value = false;
   status.value = persistence.message;
-  GameplayService.stop(value);
+  GameplayService.stop(value.winner);
 }
 function onRooms(value: unknown) {
-  if (disposed) return;
-  if (Array.isArray(value)) store.commit("setRoomList", value);
-}
-function onFinish(value: unknown) {
-  if (disposed) return;
-  if (
-    !value ||
-    typeof value !== "object" ||
-    !("leftName" in value) ||
-    !("rightName" in value) ||
-    !("leftScore" in value) ||
-    !("rightScore" in value) ||
-    typeof value.leftName !== "string" ||
-    typeof value.rightName !== "string" ||
-    !Number.isSafeInteger(value.leftScore) ||
-    !Number.isSafeInteger(value.rightScore) ||
-    (value.leftScore as number) < 0 ||
-    (value.rightScore as number) < 0
-  ) {
-    status.value = "저장된 경기 결과 형식을 확인하지 못했습니다.";
-    waiting.value = false;
-    return;
-  }
-  GameplayService.dispose();
-  store.commit("setOnlineState", null);
-  persistence.reset(store.getters.room.roomId);
-  persistence.receive({ roomId: store.getters.room.roomId, status: "saved" });
-  store.commit("setRoomData", value);
-  active.value = false;
-  waiting.value = false;
-  result.value = `${value.leftName} 승리!`;
-  status.value = "저장된 완료 경기 결과입니다.";
+  if (disposed || !roomsLoading.value) return;
+  if (!Array.isArray(value)) { failRoomRequest(); return; }
+  cancelRoomRequest();
+  roomsError.value = '';
+  store.commit("setRoomList", value);
 }
 function onError(value: unknown) {
   if (disposed) return;
+  failRoomRequest();
+  if (connectionRetry.reject(value)) {
+    connected.value = false; waiting.value = false;
+    status.value = connectionState.value.message;
+    return;
+  }
   status.value =
     value &&
     typeof value === "object" &&
@@ -166,19 +190,32 @@ function onError(value: unknown) {
 }
 function onConnect() {
   if (disposed) return;
+  if (!connectionRetry.connected()) return;
   connected.value = true;
+  if (desiredRoom && (active.value || waiting.value || retryDesiredRoom)) {
+    retryDesiredRoom = false;
+    waiting.value = true; recovery.resume(desiredRoom); return;
+  }
   status.value = active.value
     ? "다시 연결됐습니다. 관전 상태를 확인합니다."
     : "경기 목록에서 관전할 방을 선택하세요.";
 }
 function onDisconnect() {
   if (disposed) return;
+  failRoomRequest();
+  recovery.cancel();
   connected.value = false;
-  waiting.value = false;
-  status.value = "연결이 끊겼습니다. 재연결을 기다립니다.";
+  status.value = connectionState.value.message || "연결이 끊겼습니다. 재연결을 기다립니다.";
 }
 function findRoomList() {
-  if (!socket?.connected) return;
+  if (roomsLoading.value) return;
+  store.commit("setIsSearching", true);
+  roomsError.value = '';
+  store.commit("setRoomList", []);
+  if (!socket?.connected) {
+    roomsError.value = '서버에 연결되지 않아 경기 목록을 확인하지 못했습니다.';
+    return;
+  }
   if (active.value) socket.emit("end");
   GameplayService.dispose();
   active.value = false;
@@ -186,8 +223,11 @@ function findRoomList() {
   pendingReady = undefined;
   store.commit("setOnlineState", null);
   clearDisplay();
+  roomsLoading.value = true;
+  roomsTimeout = setTimeout(() => {
+    if (!disposed) failRoomRequest();
+  }, 5000);
   socket.emit("roomlist");
-  store.commit("setIsSearching", true);
 }
 function spectateGame() {
   if (!socket?.connected || waiting.value) return;
@@ -198,9 +238,11 @@ function spectateGame() {
   }
   result.value = "";
   waiting.value = true;
+  desiredRoom = roomId;
+  recovery.expect(roomId);
   persistence.reset(roomId);
   status.value = "서버의 현재 경기 상태를 기다립니다.";
-  socket.emit("spectate", { id: roomId });
+  recovery.resume(roomId);
 }
 function onSessionStatus(value: unknown) {
   if (disposed || !active.value || !persistence.abort(value)) return;
@@ -216,6 +258,10 @@ function onResultStatus(value: unknown) {
   status.value = persistence.message;
 }
 function clearDisplay() {
+  recoveredResult.value = null;
+  desiredRoom = "";
+  retryDesiredRoom = false;
+  recovery.clear();
   persistence.reset();
   store.commit("setOnlineMetrics", {
     ackRoundTripMs: null,
@@ -242,10 +288,9 @@ function clearDisplay() {
 }
 socket?.on("setData", onReady);
 socket?.on("ready", onReady);
-socket?.on("end", onEnd);
+socket?.on("matchEnded", onEnd);
 socket?.on("resultStatus", onResultStatus);
 socket?.on("sessionStatus", onSessionStatus);
-socket?.on("finish", onFinish);
 socket?.on("roomlist", onRooms);
 socket?.on("error", onError);
 socket?.on("exception", onError);
@@ -255,25 +300,39 @@ socket?.on("disconnect", onDisconnect);
 clearDisplay();
 store.commit("setOnlineState", null);
 store.commit("setIsSearching", false);
+watch(() => store.getters.isSearching, (open) => {
+  if (!open) cancelRoomRequest();
+});
+watch(() => store.getters.room.roomId, (roomId) => {
+  if (roomId && roomId !== desiredRoom) {
+    desiredRoom = roomId;
+    pendingReady = undefined;
+    recovery.expect(roomId);
+  }
+}, { flush: 'sync' });
+onMounted(() => socket.connect());
 onUnmounted(() => {
   disposed = true;
+  connectionRetry.dispose();
+  recovery.dispose();
+  cancelRoomRequest();
   pendingReady = undefined;
-  GameplayService.dispose();
+  GameplayService.disposeFor(context?.canvas);
   socket?.off("setData", onReady);
   socket?.off("ready", onReady);
-  socket?.off("end", onEnd);
+  socket?.off("matchEnded", onEnd);
   socket?.off("resultStatus", onResultStatus);
   socket?.off("sessionStatus", onSessionStatus);
-  socket?.off("finish", onFinish);
   socket?.off("roomlist", onRooms);
   socket?.off("error", onError);
   socket?.off("exception", onError);
   socket?.off("connect_error", onError);
   socket?.off("connect", onConnect);
   socket?.off("disconnect", onDisconnect);
-  socket?.emit("end");
+  if (socket.connected) socket.emit("end");
   socket?.close();
-  if (store.getters.gameSocket === socket) store.commit("setGameSocket", null);
+  if (store.getters.gameSocket !== socket) return;
+  store.commit("setGameSocket", null);
   clearDisplay();
   store.commit("setOnlineState", null);
   store.commit("setIsSearching", false);

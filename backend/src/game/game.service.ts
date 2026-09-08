@@ -8,12 +8,20 @@ import { MatchService } from '../user/match.service';
 import { UserService } from '../user/user.service';
 import { SpecData } from './interface/spec.data';
 import { createSeededRng, Side } from '../../../shared/game-core';
-import { Snapshot } from '../../../shared/protocol';
+import {
+  Snapshot,
+  isSessionSyncRequest,
+  RecoveredResult,
+  SessionSyncRequest,
+  SessionSyncResponse,
+} from '../../../shared/protocol';
 import { ServerMatchRunner } from './server-match-runner';
 
 export const GAME_CLOCK = Symbol('GAME_CLOCK');
 export const RECONNECT_GRACE_MS = 5000;
 const MAX_SAVE_ATTEMPTS = 3;
+const OBSERVER_GRANT_MS = 10 * 60 * 1000;
+const MAX_OBSERVER_GRANTS = 1000;
 type Session = { socket: AuthSocket; generation: number };
 type Binding = { roomId: string; side: Side };
 const object = (value: unknown): value is Record<string, unknown> =>
@@ -31,8 +39,24 @@ export class GameService implements OnModuleDestroy {
   private bindings = new Map<AuthSocket, Binding>();
   private matchByUser = new Map<number, Binding>();
   private watching = new Map<AuthSocket, string>();
+  private observerGrants = new Map<string, number>();
   private reservations = new Map<number, AuthSocket>();
   private generation = 0;
+  private syncRequests = new WeakMap<AuthSocket, SessionSyncRequest>();
+  private recoveryLookups = new Map<
+    number,
+    { key: string; task: ReturnType<MatchService['getOne']> }
+  >();
+  private recentResults = new Map<
+    string,
+    {
+      expiresAt: number;
+      participants: number[];
+      status: 'saved' | 'failed';
+      winnerId: number;
+      result: Omit<RecoveredResult, 'outcome'>;
+    }
+  >();
   private failedResults: Array<{
     roomId: string;
     winner: Side | null;
@@ -150,6 +174,191 @@ export class GameService implements OnModuleDestroy {
     const index = this.userList.indexOf(socket);
     if (index !== -1) this.userList.splice(index, 1);
     if (this.current(socket)) this.sessions.delete(socket.user.id);
+  }
+
+  /** A transport connection is not proof that its previous match still exists. */
+  async syncSession(
+    client: AuthSocket,
+    value: unknown,
+  ): Promise<SessionSyncResponse | undefined> {
+    if (!this.current(client) || !isSessionSyncRequest(value)) return;
+    const request = { ...value };
+    this.syncRequests.set(client, request);
+    const identity = {
+      v: 1 as const,
+      requestId: request.requestId,
+      matchId: request.matchId,
+    };
+    const response = (data: object) =>
+      ({ ...identity, ...data } as SessionSyncResponse);
+    if (request.role === 'spectator') {
+      if (this.busy(client)) return response({ status: 'unavailable' });
+      const watched = this.rooms.get(request.matchId);
+      // Public live spectating must not authorize arbitrary historical results.
+      // Only an account that actually subscribed while this match was active
+      // can recover its completed result, for a bounded period in this process.
+      if (
+        watched?.persistence !== 'active' &&
+        !this.hasObserverGrant(client, request.matchId)
+      )
+        return response({ status: 'unavailable' });
+      if (watched) {
+        const ready = this.watchRoom(client, watched);
+        if (watched.persistence === 'active')
+          return response({
+            status: watched.offline.size ? 'waiting' : 'active',
+            ready,
+          });
+        if (watched.result)
+          return response({
+            status: watched.persistence === 'saving' ? 'saving' : 'retrying',
+            result: { ...this.roomResult(watched), outcome: 'spectator' },
+          });
+      }
+      const recent = this.recentResults.get(request.matchId);
+      if (recent && this.now() < recent.expiresAt)
+        return response({
+          status: recent.status,
+          result: { ...recent.result, outcome: 'spectator' },
+        });
+      try {
+        const match = await this.lookupRecoveryResult(client, request);
+        if (
+          !this.current(client) ||
+          this.syncRequests.get(client) !== request ||
+          this.busy(client)
+        )
+          return;
+        if (!this.hasObserverGrant(client, request.matchId))
+          return response({ status: 'unavailable' });
+        if (!match?.winner || !match.loser)
+          return response({ status: 'unavailable' });
+        return response({
+          status: 'saved',
+          result: {
+            winnerName: match.winner.nickname,
+            loserName: match.loser.nickname,
+            winnerScore: match.winnerScore,
+            loserScore: match.loserScore,
+            outcome: 'spectator',
+          },
+        });
+      } catch {
+        if (!this.current(client) || this.syncRequests.get(client) !== request)
+          return;
+        return response({ status: 'error' });
+      }
+    }
+    const binding = this.matchByUser.get(client.user.id);
+    const room = this.rooms.get(request.matchId);
+    if (room) {
+      if (
+        !binding ||
+        binding.roomId !== request.matchId ||
+        !room.players.some((player) => player.user.id === client.user.id)
+      )
+        return response({ status: 'unavailable' });
+      if (room.persistence === 'active')
+        return response({
+          status: room.offline.size ? 'waiting' : 'active',
+          ready: this.ready(room, client, binding.side),
+        });
+      if (room.result) {
+        // The returning authenticated participant must receive the pending save's
+        // final notification, even though this match will never resume physics.
+        room.players[binding.side === 'left' ? 0 : 1] = client;
+        this.bindings.set(client, binding);
+        const winner = room.result.winner === 'left' ? 0 : 1;
+        return response({
+          status: room.persistence === 'saving' ? 'saving' : 'retrying',
+          result: {
+            ...this.roomResult(room),
+            outcome:
+              room.players[winner].user.id === client.user.id ? 'won' : 'lost',
+          },
+        });
+      }
+    }
+    for (const [id, result] of this.recentResults)
+      if (this.now() >= result.expiresAt) this.recentResults.delete(id);
+    const recent = this.recentResults.get(request.matchId);
+    if (recent)
+      return response(
+        recent.participants.includes(client.user.id)
+          ? {
+              status: recent.status,
+              result: {
+                ...recent.result,
+                outcome: recent.winnerId === client.user.id ? 'won' : 'lost',
+              },
+            }
+          : { status: 'unavailable' },
+      );
+    try {
+      const match = await this.lookupRecoveryResult(client, request);
+      if (
+        !this.current(client) ||
+        this.syncRequests.get(client) !== request ||
+        (this.matchByUser.has(client.user.id) &&
+          this.matchByUser.get(client.user.id).roomId !== request.matchId)
+      )
+        return;
+      if (!match?.winner || !match.loser)
+        return response({ status: 'unavailable' });
+      return response({
+        status: 'saved',
+        result: {
+          winnerName: match.winner.nickname,
+          loserName: match.loser.nickname,
+          winnerScore: match.winnerScore,
+          loserScore: match.loserScore,
+          outcome: match.winner.id === client.user.id ? 'won' : 'lost',
+        },
+      });
+    } catch {
+      if (!this.current(client) || this.syncRequests.get(client) !== request)
+        return;
+      return response({ status: 'error' });
+    }
+  }
+
+  private roomResult(room: Room): Omit<RecoveredResult, 'outcome'> {
+    const winner = room.result.winner;
+    const loser = winner === 'left' ? 'right' : 'left';
+    return {
+      winnerName: room.players[winner === 'left' ? 0 : 1].user.nickname,
+      loserName: room.players[loser === 'left' ? 0 : 1].user.nickname,
+      winnerScore: room.runner.state.players[winner].score,
+      loserScore: room.runner.state.players[loser].score,
+    };
+  }
+
+  private lookupRecoveryResult(
+    client: AuthSocket,
+    request: SessionSyncRequest,
+  ) {
+    const key = request.role + ':' + request.matchId;
+    const existing = this.recoveryLookups.get(client.user.id);
+    if (existing) {
+      if (existing.key !== key)
+        throw new Error('A previous recovery lookup is still pending');
+      return existing.task;
+    }
+    const task =
+      request.role === 'player'
+        ? this.matchService.getOneForParticipant(
+            request.matchId,
+            client.user.id,
+          )
+        : this.matchService.getOne(request.matchId);
+    const owned = { key, task };
+    this.recoveryLookups.set(client.user.id, owned);
+    const release = () => {
+      if (this.recoveryLookups.get(client.user.id) === owned)
+        this.recoveryLookups.delete(client.user.id);
+    };
+    void task.then(release, release);
+    return task;
   }
 
   async deleteInviteList(client: AuthSocket): Promise<void> {
@@ -394,6 +603,33 @@ export class GameService implements OnModuleDestroy {
     this.watching.delete(client);
   }
 
+  private hasObserverGrant(client: AuthSocket, roomId: string): boolean {
+    for (const [key, expiresAt] of this.observerGrants)
+      if (this.now() >= expiresAt) this.observerGrants.delete(key);
+    return this.observerGrants.has(`${client.user.id}:${roomId}`);
+  }
+
+  private watchRoom(client: AuthSocket, room: Room) {
+    if (room.persistence === 'active') {
+      const key = `${client.user.id}:${room.roomIndex}`;
+      this.hasObserverGrant(client, room.roomIndex);
+      this.observerGrants.delete(key);
+      this.observerGrants.set(key, this.now() + OBSERVER_GRANT_MS);
+      while (this.observerGrants.size > MAX_OBSERVER_GRANTS)
+        this.observerGrants.delete(this.observerGrants.keys().next().value);
+    }
+    this.removeWaiting(client);
+    if (
+      this.watching.get(client) !== room.roomIndex ||
+      !room.spectators.includes(client)
+    ) {
+      this.leaveSpectator(client);
+      room.spectators.push(client);
+      this.watching.set(client, room.roomIndex);
+    }
+    return this.ready(room, client, 'spectator');
+  }
+
   async spectate(client: AuthSocket, data: unknown): Promise<void> {
     if (
       !this.current(client) ||
@@ -406,12 +642,8 @@ export class GameService implements OnModuleDestroy {
     try {
       const room = this.rooms.get(data.id);
       if (room && room.persistence === 'active') {
-        this.removeWaiting(client);
-        this.leaveSpectator(client);
-        room.spectators.push(client);
-        this.watching.set(client, room.roomIndex);
         client.emit('setData', {
-          ...this.ready(room, client, 'spectator'),
+          ...this.watchRoom(client, room),
           leftScore: room.runner.state.players.left.score,
           rightScore: room.runner.state.players.right.score,
         });
@@ -422,7 +654,23 @@ export class GameService implements OnModuleDestroy {
             graceMs: RECONNECT_GRACE_MS,
           });
       } else {
-        const match = await this.matchService.getOne(data.id);
+        if (!this.hasObserverGrant(client, data.id))
+          return this.error(
+            client,
+            '이전에 관전한 경기의 복구 기간이 끝났습니다. 목록에서 다시 선택해 주세요.',
+          );
+        const match = await this.lookupRecoveryResult(client, {
+          v: 1,
+          requestId: 'legacy-spectate',
+          matchId: data.id,
+          role: 'spectator',
+        });
+        if (
+          !this.current(client) ||
+          this.busy(client) ||
+          !this.hasObserverGrant(client, data.id)
+        )
+          return;
         if (!match?.winner || !match.loser)
           return this.error(client, '완료된 경기 정보를 찾을 수 없습니다.');
         client.emit('finish', {
@@ -431,7 +679,7 @@ export class GameService implements OnModuleDestroy {
           leftScore: match.winnerScore,
           rightScore: match.loserScore,
         });
-        client.emit('end', 'left');
+        client.emit('matchEnded', { v: 1, roomId: data.id, winner: 'left' });
       }
     } catch {
       this.error(client, '관전 정보를 가져올 수 없습니다.');
@@ -460,13 +708,15 @@ export class GameService implements OnModuleDestroy {
     );
     if (this.reservations.get(client.user.id) === client)
       this.reservations.delete(client.user.id);
-    if (disconnected) await this.deleteUser(client);
     const binding = this.bindings.get(client);
+    if (disconnected) {
+      this.bindings.delete(client);
+      await this.deleteUser(client);
+    }
     if (!owned || !binding) return;
     const room = this.rooms.get(binding.roomId);
     if (!room) return;
     if (disconnected && room.persistence === 'active') {
-      this.bindings.delete(client);
       room.offline.set(binding.side, {
         expiresAt: this.now() + RECONNECT_GRACE_MS,
         generation: room.runner.generations[binding.side],
@@ -505,6 +755,20 @@ export class GameService implements OnModuleDestroy {
   }
 
   private releaseRoom(room: Room): void {
+    if (
+      room.result &&
+      (room.persistence === 'saved' || room.persistence === 'failed')
+    ) {
+      this.recentResults.set(room.roomIndex, {
+        expiresAt: this.now() + 10 * 60 * 1000,
+        participants: room.players.map((player) => player.user.id),
+        status: room.persistence,
+        winnerId: room.players[room.result.winner === 'left' ? 0 : 1].user.id,
+        result: this.roomResult(room),
+      });
+      while (this.recentResults.size > 100)
+        this.recentResults.delete(this.recentResults.keys().next().value);
+    }
     this.rooms.delete(room.roomIndex);
     room.runner.dispose();
     for (const player of room.players) {
@@ -539,7 +803,11 @@ export class GameService implements OnModuleDestroy {
           reason,
           attempt: room.attempts,
         });
-        this.broadcast(room, 'end', winner);
+        this.broadcast(room, 'matchEnded', {
+          v: 1,
+          roomId: room.roomIndex,
+          winner,
+        });
         this.releaseRoom(room);
       } catch {
         room.persistence = 'failed';
@@ -571,7 +839,11 @@ export class GameService implements OnModuleDestroy {
             reason,
             attempt: room.attempts,
           });
-          this.broadcast(room, 'end', winner);
+          this.broadcast(room, 'matchEnded', {
+            v: 1,
+            roomId: room.roomIndex,
+            winner,
+          });
           this.releaseRoom(room);
         }
       }

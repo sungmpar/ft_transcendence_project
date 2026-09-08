@@ -1,0 +1,14 @@
+{
+  "case": "player",
+  "phase": "after",
+  "status": "FAIL",
+  "at": "2026-09-08T01:39:29.410534+00:00",
+  "base": "http://127.0.0.1:63106",
+  "authentication": "Actual guest full HTTP redirect; no JWT injection",
+  "fault": "Playwright context offline/online; server recognition observed on peer",
+  "clock": "Real browser/server time; no game-state or UI-state mutation",
+  "browser": "152.0.7977.77",
+  "started": true,
+  "lossInjectedAt": 1687375.201145083,
+  "failure": "TimeoutError: Locator.wait_for: Timeout 65000ms exceeded."
+}

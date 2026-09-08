@@ -1,0 +1,29 @@
+PASS src/game/login-intent.spec.ts
+  bounded online login intent across a full document redirect
+    ✓ only permits the exact online destination /game (1 ms)
+    ✓ only permits the exact online destination /invite
+    ✓ only permits the exact online destination /spectate (1 ms)
+    ✓ rejects invalid destinations ("https://example.com/game") (1 ms)
+    ✓ rejects invalid destinations ("//example.com/game")
+    ✓ rejects invalid destinations ("javascript:alert(1)") (2 ms)
+    ✓ rejects invalid destinations ("/login?token=check") (1 ms)
+    ✓ rejects invalid destinations ("/") (1 ms)
+    ✓ rejects invalid destinations ("/play") (3 ms)
+    ✓ rejects invalid destinations ("/game?next=https://example.com") (2 ms)
+    ✓ rejects invalid destinations ("/game#fragment") (3 ms)
+    ✓ rejects invalid destinations ("/game/") (4 ms)
+    ✓ rejects invalid destinations ("/%67ame") (2 ms)
+    ✓ rejects invalid destinations (["/game"])
+    ✓ rejects invalid destinations ({"path": "/game"}) (1 ms)
+    ✓ rejects invalid destinations (null) (3 ms)
+    ✓ rejects invalid destinations (" /game") (2 ms)
+    ✓ survives module reload, is single use, and stores no credentials (1 ms)
+    ✓ expires after ten minutes and rejects future/corrupt records (1 ms)
+    ✓ explicit cancellation removes a pending destination
+    ✓ unavailable storage cannot break login or public play
+
+Test Suites: 1 passed, 1 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        4.614 s, estimated 5 s
+Ran all test suites.

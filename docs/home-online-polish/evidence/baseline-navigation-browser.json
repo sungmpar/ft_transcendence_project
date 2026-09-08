@@ -1,0 +1,20 @@
+{
+  "status": "FAIL",
+  "phase": "baseline",
+  "base": "http://127.0.0.1:59707",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "authentication": "Actual guest HTTP full redirect and existing cookie/router flow",
+  "fixtureSetup": "Authenticated friendship HTTP only; no credentials or identities recorded",
+  "checks": [],
+  "limitations": [
+    "Synthetic browser input; loopback fixture, not deployed service"
+  ],
+  "browser": "152.0.7977.77",
+  "stage": "guest callback",
+  "failure": "Page.wait_for_function: Timeout 12000ms exceeded.",
+  "pageErrors": [],
+  "elapsedSeconds": 31.776
+}
