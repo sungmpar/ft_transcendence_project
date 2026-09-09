@@ -16,7 +16,7 @@
           {{ audioStatus === 'ready' && !soundMuted ? '소리 켬' : soundMuted ? '소리 끔' : '소리 활성화' }}
         </button>
         <router-link to="/" class="quiet-link" data-testid="online-menu"
-          >서비스 메뉴</router-link
+          >홈으로</router-link
         ><router-link to="/play" class="quiet-link">로컬 · AI</router-link>
       </div>
     </nav>
@@ -59,7 +59,7 @@
         role="application"
         :aria-label="
           spectator
-            ? 'Pong 관전 화면. 플레이어 입력은 보내지 않습니다.'
+            ? 'Pong 관전 화면. 관전 중에는 패들을 조작할 수 없습니다.'
             : '온라인 Pong. 클릭 후 키보드로 조작합니다.'
         "
         data-testid="online-court"
@@ -76,7 +76,7 @@
           <p v-else data-testid="recovered-score">승자 {{ recoveredResult.winnerName }} {{ recoveredResult.winnerScore }}점 · 패자 {{ recoveredResult.loserName }} {{ recoveredResult.loserScore }}점</p>
           <p>{{ status }}</p>
           <slot name="result-actions" /><router-link to="/" class="quiet-link"
-            >메뉴로 돌아가기</router-link
+            >홈으로</router-link
           >
         </div>
       </div>
@@ -85,7 +85,7 @@
           <p class="eyebrow">MATCH FINISHED</p>
           <h1>경기 종료</h1>
           <p>{{ status }}</p>
-          <router-link to="/" class="quiet-link">서비스 메뉴</router-link>
+          <router-link to="/" class="quiet-link">홈으로</router-link>
         </div>
       </div>
       <div v-else-if="!active" class="court-overlay">
@@ -169,56 +169,53 @@
       <slot name="actions" />
     </section>
     <p v-if="!spectator" class="power-note" data-testid="online-key-hint">
-      이동 {{ keyLabel(keys.up) }} / {{ keyLabel(keys.down) }} · Power 모드 {{ keyLabel(keys.action) }}
+      위로 {{ keyLabel(keys.up) }} · 아래로 {{ keyLabel(keys.down) }} · Power {{ keyLabel(keys.action) }}
     </p>
     <p class="power-note">
       {{
         spectator
-          ? "관전은 서버가 보낸 같은 경기 상태를 표시하며 조작 입력을 보내지 않습니다."
-          : "경기장을 클릭하면 키보드 입력이 활성화됩니다. 채팅·설정 입력 중에는 게임 키를 가로채지 않습니다."
+          ? "진행 중인 경기를 실시간으로 볼 수 있습니다. 관전 중에는 패들을 조작할 수 없습니다."
+          : "경기장을 클릭한 뒤 키보드로 조작하세요. 채팅을 입력하거나 설정을 바꿀 때는 패들이 움직이지 않습니다."
       }}
     </p>
     <p v-if="mode && !spectator" class="power-note">
-      유효 반사 5회 충전 → 능력 키로 확장 → 강화 반사마다 1칸 소모. 이동하면서
-      발동할 수 있습니다.
+      공을 패들(공을 받아치는 막대)로 다섯 번 받아치면 Power가 충전됩니다. Power 키를 누르면 패들이 길어집니다. 길어진 상태에서 공을 받아칠 때마다 충전량이 한 칸씩 줄어들고, 모두 소모하면 원래 길이로 돌아옵니다. 이동하면서 사용할 수 있습니다.
     </p>
     <details class="online-diagnostics">
-      <summary>실제 연결 진단값</summary>
+      <summary>연결 상태 자세히 보기</summary>
       <div class="debug-panel">
         <span
-          >RAF FPS <b>{{ onlineMetrics.fps.toFixed(1) }}</b></span
+          >화면 갱신 빈도(FPS) <b>{{ onlineMetrics.fps.toFixed(1) }}</b></span
         ><span
-          >snapshots <b>{{ onlineMetrics.snapshots }}</b></span
+          >받은 경기 상태 수 <b>{{ onlineMetrics.snapshots }}</b></span
         ><span
-          >input messages <b>{{ onlineMetrics.inputMessages }}</b></span
+          >보낸 입력 수 <b>{{ onlineMetrics.inputMessages }}</b></span
         ><span
-          >전송 RTT
+          >서버 응답 왕복 시간(RTT)
           <b>{{
             onlineMetrics.transportRoundTripMs === null
               ? "대기"
               : onlineMetrics.transportRoundTripMs.toFixed(1) + " ms"
           }}</b></span
         ><span
-          >ACK 관측 왕복
+          >입력 반영 확인 시간
           <b>{{
             onlineMetrics.ackRoundTripMs === null
               ? "대기"
               : onlineMetrics.ackRoundTripMs.toFixed(1) + " ms"
           }}</b></span
         ><span
-          >buffer <b>{{ onlineMetrics.bufferDepth }}</b></span
+          >보관 중인 경기 상태 수 <b>{{ onlineMetrics.bufferDepth }}</b></span
         ><span
-          >표시 지연
+          >추정 표시 지연
           <b>{{ onlineMetrics.displayDelayMs.toFixed(1) }} ms</b></span
         ><span
-          >buffer 고갈 <b>{{ onlineMetrics.underflows }}</b></span
+          >보간할 다음 상태가 없었던 횟수 <b>{{ onlineMetrics.underflows }}</b></span
         ><span>서버 이벤트 <b>{{ onlineMetrics.serverEventsReceived || 0 }}</b></span
         ><span>표시 시점 이벤트 <b>{{ onlineMetrics.effectsPresented || 0 }}</b></span
         ><span>건너뛴 효과 <b>{{ onlineMetrics.effectsSkipped || 0 }}</b></span
         ><small
-          >전송 RTT는 별도 응답의 왕복 시간이며 서버 처리·브라우저 대기를
-          포함합니다. ACK 관측값에는 서버 입력 적용 및 snapshot 수신까지가
-          포함됩니다. 두 값 모두 광학 입력 지연 측정은 아닙니다.</small
+          >서버 응답 왕복 시간은 요청을 보내고 답을 받기까지 걸린 시간이며, 서버 처리와 브라우저 대기를 포함합니다. 입력 반영 확인 시간은 서버가 입력을 적용한 경기 상태를 받을 때까지의 시간입니다. 모니터에 화면이 나타날 때까지의 시간을 뜻하지 않습니다. 추정 표시 지연은 현재 추정한 서버 시각과 화면에 표시하는 경기 상태 사이의 차이입니다. 다음 상태가 없었던 횟수는 상태가 부족해지기 시작한 구간을 세며, 매 프레임을 세지 않습니다.</small
         >
       </div>
     </details>

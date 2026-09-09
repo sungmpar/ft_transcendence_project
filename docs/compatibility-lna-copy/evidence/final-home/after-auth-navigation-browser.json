@@ -1,0 +1,122 @@
+{
+  "status": "PASS",
+  "base": "http://127.0.0.1:52957",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "authentication": "Actual guest cookie and full document redirect; no credential injection",
+  "disabledBase": null,
+  "selection": "all",
+  "checks": [
+    {
+      "name": "Real full guest redirect returns once to /game",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957",
+      "destination": "/game"
+    },
+    {
+      "name": "Real full guest redirect returns once to /invite",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957",
+      "destination": "/invite"
+    },
+    {
+      "name": "Real full guest redirect returns once to /spectate",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957",
+      "destination": "/spectate"
+    },
+    {
+      "name": "Rejected login destination https",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Rejected login destination //example.invalid",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Rejected login destination javascript",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Rejected login destination /login",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Rejected login destination /game",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Full redirect with missing stored intent safely reaches Home",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Full redirect with expired stored intent safely reaches Home",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Full redirect with malformed stored intent safely reaches Home",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Cancel clears login intent and keeps public AI entry usable",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Fresh context backend blocked /play",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957",
+      "backendRequests": 0,
+      "sockets": 0
+    },
+    {
+      "name": "Fresh context backend blocked /play/local",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957",
+      "backendRequests": 0,
+      "sockets": 0
+    },
+    {
+      "name": "Fresh context backend blocked /play/ai",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957",
+      "backendRequests": 0,
+      "sockets": 0
+    },
+    {
+      "name": "Required 2FA gate retains online intent without opening a game socket",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957",
+      "emailSent": false,
+      "destinationStillPending": true
+    },
+    {
+      "name": "Friend drawer distinguishes empty/error and restores keyboard focus",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    },
+    {
+      "name": "Failed server logout truthfully reports local cleanup and releases sockets",
+      "status": "PASS",
+      "origin": "http://127.0.0.1:52957"
+    }
+  ],
+  "limitations": [
+    "No real 42 OAuth or external 2FA email/code executed",
+    "Nickname-missing callback and truly expired signed JWT are not exercised by this browser fixture",
+    "Guest-disabled build not supplied to this invocation"
+  ],
+  "browser": "152.0.7977.77",
+  "elapsedSeconds": 160.299,
+  "executedAt": "2026-09-08T19:53:31.655363+00:00"
+}

@@ -1,0 +1,8 @@
+yarn run v1.22.22
+warning Skipping preferred cache folder "/Users/sm/Library/Caches/Yarn" because it is not writable.
+warning Selected the next writable cache folder in the list, will be "/var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T/.yarn-cache-501".
+$ rimraf dist
+warning Cannot find a suitable global folder. Tried these: "/usr/local, /Users/sm/.yarn"
+$ nest build
+warning Cannot find a suitable global folder. Tried these: "/usr/local, /Users/sm/.yarn"
+Done in 6.99s.

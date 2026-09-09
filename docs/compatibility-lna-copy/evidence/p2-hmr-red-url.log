@@ -1,0 +1,84 @@
+FAIL test/compat-hmr.spec.js
+  installed Vue CLI / WDS browser-facing HMR URL
+    ✕ uses public browser origin rather than the inferred private LAN when override is undefined (460 ms)
+    ✕ uses public browser origin rather than the inferred private LAN when override is  (5 ms)
+    ✕ uses a direct local browser port (5 ms)
+    ✕ uses a reverse proxy browser port and secure protocol, without exposing internal port3000 (4 ms)
+    ✓ retains an explicit public WSS override (3 ms)
+    ✓ retains a valid explicit local development override (2 ms)
+    ✓ rejects malformed override through the installed dev-server URL parser (5 ms)
+    ✓ documents the explicit-private-override limit without making a network request (3 ms)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › uses public browser origin rather than the inferred private LAN when override is undefined
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "wss://transcendence.koreacentral.cloudapp.azure.com/ws"
+    Received: "ws://172.18.0.3:3000/ws"
+
+       6 |     it(`uses public browser origin rather than the inferred private LAN when override is ${String(override)}`, async () => {
+       7 |       const result = await resolveInstalledHmr({ origin: publicOrigin, override });
+    >  8 |       expect(result.url).toBe('wss://transcendence.koreacentral.cloudapp.azure.com/ws');
+         |                          ^
+       9 |       expect(result.allowedHosts).toEqual(['transcendence.koreacentral.cloudapp.azure.com', '4.218.8.163']);
+      10 |     });
+      11 |   }
+
+      at Object.toBe (test/compat-hmr.spec.js:8:26)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › uses public browser origin rather than the inferred private LAN when override is 
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "wss://transcendence.koreacentral.cloudapp.azure.com/ws"
+    Received: "ws://172.18.0.3:3000/ws"
+
+       6 |     it(`uses public browser origin rather than the inferred private LAN when override is ${String(override)}`, async () => {
+       7 |       const result = await resolveInstalledHmr({ origin: publicOrigin, override });
+    >  8 |       expect(result.url).toBe('wss://transcendence.koreacentral.cloudapp.azure.com/ws');
+         |                          ^
+       9 |       expect(result.allowedHosts).toEqual(['transcendence.koreacentral.cloudapp.azure.com', '4.218.8.163']);
+      10 |     });
+      11 |   }
+
+      at Object.toBe (test/compat-hmr.spec.js:8:26)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › uses a direct local browser port
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "ws://127.0.0.1:41327/ws"
+    Received: "ws://172.18.0.3:3000/ws"
+
+      11 |   }
+      12 |   it('uses a direct local browser port', async () => {
+    > 13 |     expect((await resolveInstalledHmr({ origin: 'http://127.0.0.1:41327' })).url).toBe('ws://127.0.0.1:41327/ws');
+         |                                                                                   ^
+      14 |   });
+      15 |   it('uses a reverse proxy browser port and secure protocol, without exposing internal port3000', async () => {
+      16 |     expect((await resolveInstalledHmr({ origin: 'https://localhost:44431' })).url).toBe('wss://localhost:44431/ws');
+
+      at Object.toBe (test/compat-hmr.spec.js:13:83)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › uses a reverse proxy browser port and secure protocol, without exposing internal port3000
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "wss://localhost:44431/ws"
+    Received: "ws://172.18.0.3:3000/ws"
+
+      14 |   });
+      15 |   it('uses a reverse proxy browser port and secure protocol, without exposing internal port3000', async () => {
+    > 16 |     expect((await resolveInstalledHmr({ origin: 'https://localhost:44431' })).url).toBe('wss://localhost:44431/ws');
+         |                                                                                    ^
+      17 |   });
+      18 |   it('retains an explicit public WSS override', async () => {
+      19 |     const override = 'wss://hmr.example.com:444/ws';
+
+      at Object.toBe (test/compat-hmr.spec.js:16:84)
+
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 passed, 8 total
+Snapshots:   0 total
+Time:        1.036 s, estimated 2 s
+Ran all test suites.

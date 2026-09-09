@@ -6,7 +6,9 @@ describe('online result persistence notice', () => {
 
   it('never infers durable success from a match ending alone', () => {
     expect(result.status).toBe('pending');
-    expect(result.message).toContain('저장 여부는 확인되지');
+    expect(result.message).toBe(
+      '경기는 끝났지만 전적 저장 여부를 확인하지 못했습니다.',
+    );
   });
 
   it('retains a failed save when the outcome screen requests its status', () => {

@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-08T19:07:16.307965+00:00",
+  "assets": [
+    {
+      "url": "https://transcendence.koreacentral.cloudapp.azure.com/js/app.js",
+      "status": 200,
+      "bytes": 1216734,
+      "sha256": "4c68aa50033bda15bba7e028d70b8712336309b4a06d6b0aa309e469c453e465",
+      "containsObservedHmrQuery": true,
+      "readScope": "Previously observed public JS only; no guest endpoint and no source contents serialized"
+    },
+    {
+      "url": "https://transcendence.koreacentral.cloudapp.azure.com/js/chunk-vendors.js",
+      "status": 200,
+      "bytes": 7879118,
+      "sha256": "2d58ae62892a8a52491888da723ce3e05836192341f34363b941d12da0e92906",
+      "containsObservedHmrQuery": true,
+      "readScope": "Previously observed public JS only; no guest endpoint and no source contents serialized"
+    }
+  ]
+}

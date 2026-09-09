@@ -61,7 +61,7 @@ export class OnlineResultNotice {
       case "saving":
         return "경기 종료 · 결과를 저장하고 있습니다.";
       default:
-        return "경기는 종료됐지만 결과 저장 여부는 확인되지 않았습니다.";
+        return "경기는 끝났지만 전적 저장 여부를 확인하지 못했습니다.";
     }
   }
 }

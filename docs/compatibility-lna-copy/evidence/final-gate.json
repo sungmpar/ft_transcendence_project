@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "repository": "sungmpar/ft_transcendence_project",
+  "purpose": "Final bounded read-only freshness and ownership gate; not final product completion or deployment approval",
+  "remote_checks": [
+    {
+      "key": "repository",
+      "url": "https://api.github.com/repos/sungmpar/ft_transcendence_project",
+      "startedAt": "2026-09-08 19:43:39 UTC",
+      "finishedAt": "2026-09-08 19:43:42 UTC",
+      "isError": false,
+      "observed": {
+        "full_name": "sungmpar/ft_transcendence_project",
+        "default_branch": "main",
+        "archived": false,
+        "disabled": false,
+        "html_url": "https://github.com/sungmpar/ft_transcendence_project"
+      }
+    },
+    {
+      "key": "main",
+      "url": "https://api.github.com/repos/sungmpar/ft_transcendence_project/branches/main",
+      "startedAt": "2026-09-08 19:43:39 UTC",
+      "finishedAt": "2026-09-08 19:43:42 UTC",
+      "isError": false,
+      "observed": {
+        "name": "main",
+        "sha": "ecbb0ee30694f372b8e6e51c1642ef258681443d",
+        "protected": false
+      }
+    },
+    {
+      "key": "issues",
+      "url": "https://api.github.com/repos/sungmpar/ft_transcendence_project/issues?state=open&per_page=100&page=1",
+      "startedAt": "2026-09-08 19:43:39 UTC",
+      "finishedAt": "2026-09-08 19:43:42 UTC",
+      "isError": false,
+      "observed": {
+        "array": true,
+        "count": 0,
+        "numbers": [],
+        "items": []
+      }
+    },
+    {
+      "key": "pulls",
+      "url": "https://api.github.com/repos/sungmpar/ft_transcendence_project/pulls?state=open&per_page=100&page=1",
+      "startedAt": "2026-09-08 19:43:39 UTC",
+      "finishedAt": "2026-09-08 19:43:42 UTC",
+      "isError": false,
+      "observed": {
+        "array": true,
+        "count": 0,
+        "numbers": [],
+        "items": []
+      }
+    }
+  ],
+  "pagination": {
+    "issues": {
+      "page": 1,
+      "per_page": 100,
+      "count": 0,
+      "exhausted": true,
+      "basis": "Empty first page"
+    },
+    "pulls": {
+      "page": 1,
+      "per_page": 100,
+      "count": 0,
+      "exhausted": true,
+      "basis": "Empty first page"
+    }
+  },
+  "availability": {
+    "upstream_unchanged_from_baseline": true,
+    "open_issue_details_claimants_comments_timeline": "N/A: no open issues",
+    "plausibly_overlapping_PR_changed_files_and_diffs": "N/A: no open PRs",
+    "semantic_search": "Initial 14 semantic queries are recorded in BASELINE_AND_SCOPE.md; this bounded refresh enumerated all current open issue/PR pages. No newly open candidate exists.",
+    "unrelated_threads": "Not read in this refresh per scope"
+  },
+  "local": {
+    "observed_at": "2026-09-08T19:45:14.943091+00:00",
+    "head": "ecbb0ee30694f372b8e6e51c1642ef258681443d",
+    "branch": "main",
+    "origin_matches_exact_target": true,
+    "worktrees": [
+      {
+        "worktree": "/Users/sm/dev_park/ft_transcendence_project",
+        "HEAD": "ecbb0ee30694f372b8e6e51c1642ef258681443d",
+        "branch": "refs/heads/main"
+      }
+    ],
+    "worktree_count": 1,
+    "staged_count": 0,
+    "staged_paths": [],
+    "git_lock_count": 0,
+    "git_locks": [],
+    "diff_check_exit_code": 0,
+    "dirty_row_count_before_this_evidence_write": 196,
+    "tracked_modified_count": 21,
+    "untracked_count": 175,
+    "coordinated_source_and_test_changes": [
+      {
+        "status": " M",
+        "path": "README.md",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "backend/src/auth/auth.controller.ts",
+        "coordinated_scope": "P1_guest_navigation"
+      },
+      {
+        "status": " M",
+        "path": "backend/src/game/clock-recovery.spec.ts",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "backend/src/game/online-result.spec.ts",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "backend/test/home-auth-prerequisites.e2e-spec.ts",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "backend/test/home-guest-entry.e2e-spec.ts",
+        "coordinated_scope": "P1_guest_navigation"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/arcade/launch.css",
+        "coordinated_scope": "P3_copy_and_root_scoped_CSS_followup"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/arcade/online-result.ts",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/components/SideBar.vue",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/components/arcade/LaunchPanel.vue",
+        "coordinated_scope": "P3_copy_and_root_scoped_CSS_followup"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/components/game/OnlineGameShell.vue",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/views/GameView.vue",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/views/HomeView.vue",
+        "coordinated_scope": "P3_copy_and_root_scoped_CSS_followup"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/views/InviteGameView.vue",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/views/LocalPlayView.vue",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/views/LoginView.vue",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "frontend/src/views/PlayHubView.vue",
+        "coordinated_scope": "P3_copy_and_root_scoped_CSS_followup"
+      },
+      {
+        "status": " M",
+        "path": "frontend/vue.config.js",
+        "coordinated_scope": "P2_HMR"
+      },
+      {
+        "status": " M",
+        "path": "scripts/browser-home-auth.py",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "scripts/browser-local-modes.py",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": " M",
+        "path": "scripts/check-arcade.cjs",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": "??",
+        "path": "backend/src/game/guest-navigation-url.spec.ts",
+        "coordinated_scope": "P1_guest_navigation"
+      },
+      {
+        "status": "??",
+        "path": "backend/src/game/guest-redirect-controller.spec.ts",
+        "coordinated_scope": "P1_guest_navigation"
+      },
+      {
+        "status": "??",
+        "path": "backend/test/compat-hmr-jest.json",
+        "coordinated_scope": "P2_HMR"
+      },
+      {
+        "status": "??",
+        "path": "backend/test/compat-hmr.spec.js",
+        "coordinated_scope": "P2_HMR"
+      },
+      {
+        "status": "??",
+        "path": "backend/test/guest-navigation-jest.json",
+        "coordinated_scope": "P1_guest_navigation"
+      },
+      {
+        "status": "??",
+        "path": "frontend/src/arcade/guest-navigation-url.ts",
+        "coordinated_scope": "P1_guest_navigation"
+      },
+      {
+        "status": "??",
+        "path": "frontend/src/components/arcade/ProjectInfo.vue",
+        "coordinated_scope": "P3_copy_and_root_scoped_CSS_followup"
+      },
+      {
+        "status": "??",
+        "path": "scripts/browser-compat-copy.py",
+        "coordinated_scope": "root_P1_P4_and_verification"
+      },
+      {
+        "status": "??",
+        "path": "scripts/browser-compat-hmr.py",
+        "coordinated_scope": "P2_HMR"
+      },
+      {
+        "status": "??",
+        "path": "scripts/compat-hmr-config.cjs",
+        "coordinated_scope": "P2_HMR"
+      },
+      {
+        "status": "??",
+        "path": "scripts/compat-hmr-fixture.cjs",
+        "coordinated_scope": "P2_HMR"
+      },
+      {
+        "status": "??",
+        "path": "scripts/compat-hmr-server-trace.cjs",
+        "coordinated_scope": "P2_HMR"
+      }
+    ],
+    "new_goal_document_and_evidence_count": 162,
+    "new_goal_document_and_evidence_prefix": "docs/compatibility-lna-copy/",
+    "generated_runtime_artifacts_to_exclude_from_source_and_packet": [
+      {
+        "status": "??",
+        "path": "scripts/__pycache__/browser-online-final.cpython-312.pyc"
+      }
+    ],
+    "unclassified_paths": [],
+    "ownership_basis": "Root/sub-agent assignments in this task, initially clean baseline. Status alone does not prove authorship. P3 CSS followup is currently root-owned."
+  },
+  "executed_local_commands": [
+    "git rev-parse HEAD",
+    "git branch --show-current",
+    "git worktree list --porcelain",
+    "git status --porcelain=v1 --untracked-files=all",
+    "git diff --cached --name-only",
+    "git diff --check",
+    "git rev-parse --git-dir",
+    "git config --get remote.origin.url",
+    "Python pathlib recursive .git *.lock inventory"
+  ],
+  "conclusion": "GO_CONTINUE_ALREADY_AUTHORIZED_LOCAL_WORK",
+  "limits": [
+    "This is a point-in-time gate while root verification is ongoing. Final CSS build, Home/local and remaining browser results are not inferred complete.",
+    "No fetch, branch/config mutation, production source edit, process start, external comment, commit, push, PR, deployment or operational database action was performed by this refresh.",
+    "Only this sanitized evidence file is written. Other agents may add evidence after the local inventory.",
+    "Generated Python cache files were observed and left in place; they are not production source or intended review packet content.",
+    "Empty open lists establish no current open issue/PR overlap; they do not prove absence of unobservable external work."
+  ]
+}

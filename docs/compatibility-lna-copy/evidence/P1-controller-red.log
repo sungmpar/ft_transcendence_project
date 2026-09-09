@@ -1,0 +1,50 @@
+FAIL backend/src/game/guest-redirect-controller.spec.ts (6.299 s)
+  existing guest redirect controller contract
+    ✕ issues one existing cookie and callback without special credential CORS (5 ms)
+    ✕ the disabled flag still forbids account creation and cookie issuance (2 ms)
+
+  ● existing guest redirect controller contract › issues one existing cookie and callback without special credential CORS
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 2
+
+    1: "Access-Control-Allow-Origin", "https://game.example"
+    2: "Access-Control-Allow-Credentials", "true"
+
+      48 |     expect(res.cookie.mock.calls[0][2]).toEqual({ httpOnly: false });
+      49 |     expect(res.redirect).toHaveBeenCalledWith('https://game.example/login?token=check');
+    > 50 |     expect(res.header).not.toHaveBeenCalled();
+         |                            ^
+      51 |     expect(res.vary).not.toHaveBeenCalled();
+      52 |   });
+      53 |   test('the disabled flag still forbids account creation and cookie issuance', async () => {
+
+      at Object.<anonymous> (src/game/guest-redirect-controller.spec.ts:50:28)
+
+  ● existing guest redirect controller contract › the disabled flag still forbids account creation and cookie issuance
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 2
+
+    1: "Access-Control-Allow-Origin", "https://game.example"
+    2: "Access-Control-Allow-Credentials", "true"
+
+      59 |     expect(res.cookie).not.toHaveBeenCalled();
+      60 |     expect(res.redirect).not.toHaveBeenCalled();
+    > 61 |     expect(res.header).not.toHaveBeenCalled();
+         |                            ^
+      62 |   });
+      63 | });
+      64 |
+
+      at Object.<anonymous> (src/game/guest-redirect-controller.spec.ts:61:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        6.356 s
+Ran all test suites matching /guest-redirect-controller/i.

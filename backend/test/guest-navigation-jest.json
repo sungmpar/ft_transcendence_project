@@ -1,0 +1,11 @@
+{
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "watchman": false,
+  "moduleFileExtensions": ["ts", "js", "json"],
+  "testMatch": ["<rootDir>/src/game/guest-navigation-url.spec.ts", "<rootDir>/src/game/guest-redirect-controller.spec.ts"],
+  "moduleNameMapper": { "^src/(.*)$": "<rootDir>/src/$1" },
+  "transform": {
+    "^.+\\.ts$": ["ts-jest", { "tsconfig": { "target": "es2019", "module": "commonjs", "strict": false, "lib": ["es2020", "dom"] } }]
+  }
+}

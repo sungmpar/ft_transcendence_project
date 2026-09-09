@@ -1,0 +1,34 @@
+{
+  "scope": "Actual guest HTTP/cookie/JWT and browser UI on isolated PostgreSQL; no credential injection; two temporary frontend builds",
+  "splitOriginScope": "Same host, different ports; cross-site/subdomain cookie policies not covered",
+  "createdAt": "2026-09-08T19:09:12.883Z",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "rootDistWrittenByThisSuite": false,
+  "temporaryBuildRoot": "/private/tmp/ft-home-guest-entry-2910",
+  "browserVersion": "152.0.7977.77",
+  "frontendScripts": {
+    "same-origin": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.f9b85f4e.js"
+    ],
+    "split-origin": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.82947735.js"
+    ]
+  },
+  "results": [
+    {
+      "name": "same-origin-real-guest",
+      "status": "FAIL",
+      "stage": "real-guest-button"
+    },
+    {
+      "name": "guest-header-scope-and-disabled-flag",
+      "status": "FAIL",
+      "stage": "cors-header-contract"
+    }
+  ]
+}

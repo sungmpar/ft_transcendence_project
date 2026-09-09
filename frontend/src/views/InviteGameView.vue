@@ -32,6 +32,7 @@
       </button></template
     >
     <template #actions
+      ><p v-if="!active" class="power-note" data-testid="online-rule-help">친구 초대 경기는 초대를 보낸 사람이 선택한 규칙으로 진행합니다. 상대방도 온라인 게임에 연결되어 있어야 초대를 받을 수 있습니다.</p
       ><p v-if="connectionState.message" class="power-note" role="status" data-testid="online-connection-notice">{{ connectionState.message }}</p
       ><button v-if="connectionState.message" class="arcade-button" :disabled="connectionState.pending" @click="retryConnection" data-testid="online-reconnect">{{ connectionState.pending ? '연결 확인 중…' : '연결 다시 확인' }}</button
       ><button v-if="recoveryIssue" class="arcade-button" :disabled="!connected || syncing" @click="retryRecovery">경기 상태 다시 확인</button

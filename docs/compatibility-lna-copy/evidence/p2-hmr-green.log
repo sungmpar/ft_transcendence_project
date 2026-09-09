@@ -1,0 +1,16 @@
+PASS test/compat-hmr.spec.js
+  installed Vue CLI / WDS browser-facing HMR URL
+    ✓ uses public browser origin rather than the inferred private LAN when override is undefined (459 ms)
+    ✓ uses public browser origin rather than the inferred private LAN when override is  (3 ms)
+    ✓ uses a direct local browser port (2 ms)
+    ✓ uses a reverse proxy browser port and secure protocol, without exposing internal port3000 (2 ms)
+    ✓ retains an explicit public WSS override (4 ms)
+    ✓ retains a valid explicit local development override (2 ms)
+    ✓ rejects malformed override through the installed dev-server URL parser (10 ms)
+    ✓ documents the explicit-private-override limit without making a network request (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       8 passed, 8 total
+Snapshots:   0 total
+Time:        0.808 s, estimated 1 s
+Ran all test suites.

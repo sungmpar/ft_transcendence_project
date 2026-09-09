@@ -130,7 +130,7 @@ def main():
 
         def cancelled(page, _context, _result):
             page.goto(base + "/login?next=/game")
-            page.get_by_role("link", name="온라인 진입 취소 · 플레이 메뉴", exact=True).click()
+            page.get_by_role("link", name="플레이 방식 다시 선택", exact=True).click()
             page.wait_for_url("**/play")
             assert clean_intent(page)
             assert not page.evaluate("!!localStorage.getItem('token')")
@@ -200,7 +200,7 @@ def main():
             context.route("**/auth/logout", lambda route: route.fulfill(status=503, body="isolated test failure"))
             page.get_by_role("button", name="로그아웃", exact=True).click()
             page.wait_for_url("**/login?logout=unconfirmed")
-            page.get_by_text("이 기기에서 로그아웃했습니다. 서버 로그아웃은 확인하지 못했습니다.", exact=True).wait_for()
+            page.get_by_text("이 브라우저에서는 로그아웃했습니다. 서버의 로그아웃 처리는 확인하지 못했습니다.", exact=True).wait_for()
             assert not page.evaluate("!!localStorage.getItem('token')")
             assert clean_intent(page)
             page.wait_for_function("window.__NAV_OBSERVATION__().sockets === 0 && window.__NAV_OBSERVATION__().raf === 0")

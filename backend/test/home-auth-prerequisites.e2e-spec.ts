@@ -8,7 +8,9 @@ import { OnlineFixture, startOnlineFixture } from './online-fixture';
 
 const { chromium } = require(process.env.ARCADE_PLAYWRIGHT_MODULE ||
   '/opt/miniconda3/lib/python3.12/site-packages/playwright/driver/package');
-const evidence = resolve(__dirname, '../../docs/home-online-polish/evidence');
+const evidence = process.env.ARCADE_EVIDENCE_DIR
+  ? resolve(process.env.ARCADE_EVIDENCE_DIR)
+  : resolve(__dirname, '../../docs/home-online-polish/evidence');
 const intentKey = 'transcendence.online-intent.v1';
 
 /** Real browser + signed fixture credentials + production guards/endpoints.

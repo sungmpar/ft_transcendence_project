@@ -1,0 +1,174 @@
+{
+  "scope": "Actual guest document HTTP/cookie/JWT and browser UI on isolated PostgreSQL; no credential injection; temporary frontend builds",
+  "splitOriginScope": "Same host, different ports; cross-site/subdomain cookie policies not covered",
+  "createdAt": "2026-09-08T19:20:29.281Z",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "rootDistWrittenByThisSuite": false,
+  "temporaryBuildRoot": "/private/tmp/ft-home-guest-entry-4608",
+  "browserVersion": "152.0.7977.77",
+  "frontendScripts": {
+    "same-origin": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.e2aab0b1.js"
+    ],
+    "split-origin": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.b8c272af.js"
+    ],
+    "guest-disabled": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.fd2ed35a.js"
+    ]
+  },
+  "results": [
+    {
+      "name": "same-origin-real-guest-game",
+      "status": "PASS",
+      "guestAccountsAdded": 1,
+      "guestRequests": 1,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "fullCallbacks": 1,
+      "finalRoute": "/game"
+    },
+    {
+      "name": "same-origin-real-guest-invite",
+      "status": "PASS",
+      "guestAccountsAdded": 1,
+      "guestRequests": 1,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "fullCallbacks": 1,
+      "finalRoute": "/invite"
+    },
+    {
+      "name": "same-origin-real-guest-spectate",
+      "status": "PASS",
+      "guestAccountsAdded": 1,
+      "guestRequests": 1,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "fullCallbacks": 1,
+      "finalRoute": "/spectate"
+    },
+    {
+      "name": "same-origin-503-fallback",
+      "status": "PASS",
+      "http503InjectedAtRealService": true,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "browserBackRestoredButton": true,
+      "fullCallbacks": 0,
+      "accountsAdded": 0,
+      "finalRoute": "/play/ai",
+      "failureBoundary": "HTTP error is a separate document; the old SPA does not intercept it"
+    },
+    {
+      "name": "split-origin-real-guest-game",
+      "status": "PASS",
+      "guestAccountsAdded": 1,
+      "guestRequests": 1,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "fullCallbacks": 1,
+      "finalRoute": "/game"
+    },
+    {
+      "name": "split-origin-real-guest-invite",
+      "status": "PASS",
+      "guestAccountsAdded": 1,
+      "guestRequests": 1,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "fullCallbacks": 1,
+      "finalRoute": "/invite"
+    },
+    {
+      "name": "split-origin-real-guest-spectate",
+      "status": "PASS",
+      "guestAccountsAdded": 1,
+      "guestRequests": 1,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "fullCallbacks": 1,
+      "finalRoute": "/spectate"
+    },
+    {
+      "name": "split-origin-503-fallback",
+      "status": "PASS",
+      "http503InjectedAtRealService": true,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "browserBackRestoredButton": true,
+      "fullCallbacks": 0,
+      "accountsAdded": 0,
+      "finalRoute": "/play/ai",
+      "failureBoundary": "HTTP error is a separate document; the old SPA does not intercept it"
+    },
+    {
+      "name": "double-click-single-guest",
+      "status": "PASS",
+      "guestRequests": 1,
+      "accountsAdded": 1,
+      "fullCallbacks": 1
+    },
+    {
+      "name": "cancel-before-guest-document",
+      "status": "PASS",
+      "guestRequests": 0,
+      "fullCallbacks": 0,
+      "accountsAdded": 0,
+      "intentCleared": true,
+      "finalRoute": "/play/ai"
+    },
+    {
+      "name": "blocked-intent-storage-home-fallback",
+      "status": "PASS",
+      "sessionStorageDenied": true,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "accountsAdded": 1,
+      "finalRoute": "/"
+    },
+    {
+      "name": "login-reload-keeps-intent",
+      "status": "PASS",
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "fullCallbacks": 1,
+      "finalRoute": "/invite"
+    },
+    {
+      "name": "frontend-guest-flag-disabled",
+      "status": "PASS",
+      "guestButtonAbsent": true,
+      "publicLocalLink": true,
+      "publicAiReached": true,
+      "guestRequests": 0,
+      "sockets": 0
+    },
+    {
+      "name": "actual-bfcache-back-after-guest-failure",
+      "status": "FAIL",
+      "stage": "actual-pageshow-persisted",
+      "diagnostic": {}
+    },
+    {
+      "name": "new-tab-preserves-spectator-intent",
+      "status": "PASS",
+      "query": "next=/spectate",
+      "actualGuestCallbackFinalRoute": "/spectate"
+    },
+    {
+      "name": "guest-header-scope-and-disabled-flag",
+      "status": "PASS",
+      "endpointCredentialCorsAbsent": true,
+      "disabledStatus": 403,
+      "untrustedOriginCredentialsAbsent": true,
+      "missingConfigurationCredentialsAbsent": true
+    }
+  ]
+}

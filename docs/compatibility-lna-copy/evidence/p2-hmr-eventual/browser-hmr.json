@@ -1,0 +1,225 @@
+{
+  "status": "PASS",
+  "fixture": {
+    "startedAt": "2026-09-08T19:26:20.419Z",
+    "node": "v18.20.8",
+    "frontendCwd": "/var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T/ft-compat-hmr-source-ApV1Mz/frontend",
+    "command": [
+      "/private/tmp/ft-transcendence-runtime/node_modules/node/bin/node",
+      "--require",
+      "/Users/sm/dev_park/ft_transcendence_project/scripts/compat-hmr-server-trace.cjs",
+      "node_modules/@vue/cli-service/bin/vue-cli-service.js",
+      "serve",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "52340"
+    ],
+    "runtimeOverrides": {
+      "VUE_APP_DEV_WEBSOCKET_URL": "",
+      "VUE_APP_BACKEND_URL": "",
+      "VUE_APP_WS_URL": "",
+      "VUE_APP_ENABLE_GUEST_LOGIN": "false",
+      "VUE_APP_ARCADE_DEBUG": "false"
+    },
+    "directOrigin": "http://127.0.0.1:52340",
+    "proxyOrigin": "http://127.0.0.1:52351",
+    "proxy": "Owned HTTP /ws upgrade passthrough; unchanged Host; no TLS fixture or operational proxy",
+    "serverTrace": "Observe-only ws ping/pong/terminate/close; original methods and return values preserved",
+    "source": "Immutable temporary copy of current src/public/shared and listed build configs, dependency symlink; no env or dist copy",
+    "versions": {
+      "vueCli": "5.0.8",
+      "webpack": "5.74.0",
+      "webpackDevServer": "4.9.3"
+    }
+  },
+  "scope": "Owned HTTP loopback direct serve and reverse proxy, tokenless /login, no guest click, no permission grants",
+  "connectionPolicy": "eventual",
+  "cases": [
+    {
+      "label": "direct",
+      "origin": "http://127.0.0.1:52340",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:52340/login",
+          "type": "document"
+        },
+        {
+          "url": "http://127.0.0.1:52340/js/chunk-vendors.js",
+          "type": "script"
+        },
+        {
+          "url": "http://127.0.0.1:52340/js/app.js",
+          "type": "script"
+        }
+      ],
+      "webSockets": [
+        {
+          "url": "ws://127.0.0.1:52340/ws",
+          "messageTypes": [
+            "hot",
+            "liveReload",
+            "reconnect",
+            "overlay",
+            "hash",
+            "warnings"
+          ],
+          "errors": 0,
+          "closed": true
+        },
+        {
+          "url": "ws://127.0.0.1:52340/ws",
+          "messageTypes": [
+            "hot",
+            "liveReload",
+            "reconnect",
+            "overlay",
+            "hash",
+            "warnings"
+          ],
+          "errors": 0,
+          "closed": false
+        }
+      ],
+      "responseStatuses": [
+        101,
+        101
+      ],
+      "console": [],
+      "pageErrors": [],
+      "assetHashes": [
+        {
+          "url": "http://127.0.0.1:52340/js/app.js",
+          "status": 200,
+          "sha256": "0c2a835ff395dc3ea4840155bf582e9f98a1d51c7b13feebef2f74af86f6bc8c"
+        },
+        {
+          "url": "http://127.0.0.1:52340/js/chunk-vendors.js",
+          "status": 200,
+          "sha256": "4795548bc4c7f08f6385fcdb59870220bdc87baebf6d38779e0cc910c7971ad7"
+        }
+      ],
+      "status": "PASS",
+      "stableObservedSeconds": 3.07,
+      "initialConnectionSurvived": false,
+      "automaticRetryConnections": 1,
+      "expectedWebSocket": "ws://127.0.0.1:52340/ws",
+      "guestRequests": 0,
+      "beforeCleanup": {
+        "path": "/login",
+        "readyState": "complete",
+        "nativeSockets": [
+          {
+            "opened": true,
+            "closed": true,
+            "createdAt": 1788895760763,
+            "openedAt": 1788895766943,
+            "closeCode": 1006,
+            "wasClean": false,
+            "closedAt": 1788895767041
+          },
+          {
+            "opened": true,
+            "closed": false,
+            "createdAt": 1788895768054,
+            "openedAt": 1788895768058
+          }
+        ],
+        "loginHeading": true
+      }
+    },
+    {
+      "label": "proxy",
+      "origin": "http://127.0.0.1:52351",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:52351/login",
+          "type": "document"
+        },
+        {
+          "url": "http://127.0.0.1:52351/js/chunk-vendors.js",
+          "type": "script"
+        },
+        {
+          "url": "http://127.0.0.1:52351/js/app.js",
+          "type": "script"
+        }
+      ],
+      "webSockets": [
+        {
+          "url": "ws://127.0.0.1:52351/ws",
+          "messageTypes": [
+            "hot",
+            "liveReload",
+            "reconnect",
+            "overlay",
+            "hash",
+            "warnings"
+          ],
+          "errors": 0,
+          "closed": true
+        },
+        {
+          "url": "ws://127.0.0.1:52351/ws",
+          "messageTypes": [
+            "hot",
+            "liveReload",
+            "reconnect",
+            "overlay",
+            "hash",
+            "warnings"
+          ],
+          "errors": 0,
+          "closed": false
+        }
+      ],
+      "responseStatuses": [
+        101,
+        101
+      ],
+      "console": [],
+      "pageErrors": [],
+      "assetHashes": [
+        {
+          "url": "http://127.0.0.1:52351/js/app.js",
+          "status": 200,
+          "sha256": "0c2a835ff395dc3ea4840155bf582e9f98a1d51c7b13feebef2f74af86f6bc8c"
+        },
+        {
+          "url": "http://127.0.0.1:52351/js/chunk-vendors.js",
+          "status": 200,
+          "sha256": "4795548bc4c7f08f6385fcdb59870220bdc87baebf6d38779e0cc910c7971ad7"
+        }
+      ],
+      "status": "PASS",
+      "stableObservedSeconds": 3.048,
+      "initialConnectionSurvived": false,
+      "automaticRetryConnections": 1,
+      "expectedWebSocket": "ws://127.0.0.1:52351/ws",
+      "guestRequests": 0,
+      "beforeCleanup": {
+        "path": "/login",
+        "readyState": "complete",
+        "nativeSockets": [
+          {
+            "opened": true,
+            "closed": true,
+            "createdAt": 1788895773481,
+            "openedAt": 1788895779707,
+            "closeCode": 1006,
+            "wasClean": false,
+            "closedAt": 1788895779791
+          },
+          {
+            "opened": true,
+            "closed": false,
+            "createdAt": 1788895780892,
+            "openedAt": 1788895780896
+          }
+        ],
+        "loginHeading": true
+      }
+    }
+  ],
+  "browserVersion": "152.0.7977.77"
+}

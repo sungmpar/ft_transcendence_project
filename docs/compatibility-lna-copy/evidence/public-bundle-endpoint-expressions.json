@@ -1,0 +1,38 @@
+{
+  "scope": "Read-only inspection of the observed public app.js asset; no authenticated request, guest creation or deployed process-env access. Other lazy chunks not covered.",
+  "sourceUrl": "https://transcendence.koreacentral.cloudapp.azure.com/js/app.js",
+  "sha256": "4c68aa50033bda15bba7e028d70b8712336309b4a06d6b0aa309e469c453e465",
+  "expressions": [
+    {
+      "module": "./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[1]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/components/friends/FriendsSlider.vue?vue&type=script&setup=true&lang=ts",
+      "urlKey": "VUE_APP_BACKEND_URL",
+      "keyPresentInEmbeddedEnv": false,
+      "fallbackExpression": "window.location.origin"
+    },
+    {
+      "module": "./node_modules/babel-loader/lib/index.js!./node_modules/ts-loader/index.js??clonedRuleSet-41.use[1]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./src/views/LoginView.vue?vue&type=script&setup=true&lang=ts",
+      "urlKey": "VUE_APP_BACKEND_URL",
+      "keyPresentInEmbeddedEnv": false,
+      "fallbackExpression": "window.location.origin"
+    },
+    {
+      "module": "./src/arcade/route-game-socket.ts",
+      "urlKey": "VUE_APP_WS_URL",
+      "keyPresentInEmbeddedEnv": false,
+      "fallbackExpression": "window.location.origin.replace(/^http/, 'ws')"
+    },
+    {
+      "module": "./src/main.ts",
+      "urlKey": "VUE_APP_BACKEND_URL",
+      "keyPresentInEmbeddedEnv": false,
+      "fallbackExpression": "window.location.origin"
+    },
+    {
+      "module": "./src/router/index.ts",
+      "urlKey": "VUE_APP_WS_URL",
+      "keyPresentInEmbeddedEnv": false,
+      "fallbackExpression": "window.location.origin.replace(/^http/, 'ws')"
+    }
+  ],
+  "runtimeRequests": "NOT_RUN: /user/me, profile images, /game and /chat authenticated operations"
+}

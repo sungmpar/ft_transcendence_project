@@ -1,0 +1,3540 @@
+{
+  "status": "PASS",
+  "at": "2026-09-08T19:58:25.601396+00:00",
+  "viewport": [
+    1440,
+    900
+  ],
+  "authentication": "actual guest HTTP redirects",
+  "environment": "Owned loopback fixture; real headless Chrome, keyboard, Socket.IO and native Canvas/AudioContext",
+  "limits": "Automated keyboard, not physical play; native audio method observations, not human hearing; controlled observer WebSocket closure, not WAN",
+  "browser": "152.0.7977.77",
+  "cases": [
+    {
+      "case": "observer-alone-reconnect-with-players-live",
+      "status": "PASS",
+      "beforeFault": [
+        {
+          "timeOriginMs": 1788897518035,
+          "atMs": 44102,
+          "sameOwnedMatch": true,
+          "side": "right",
+          "generation": 1,
+          "tick": 1405,
+          "phase": "point",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": true,
+          "fps": 0.10084304788027919,
+          "inputMessages": 88,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 88,
+          "keyDowns": {
+            "ArrowUp": 13,
+            "ArrowDown": 14
+          },
+          "lastInput": {
+            "up": false,
+            "down": false,
+            "actionId": 0,
+            "keySequence": 14,
+            "heldKeys": []
+          },
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 1405,
+            "phase": "point",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1056,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1131,
+              "connection": 1
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "ready",
+              "atMs": 20809,
+              "matchAlias": 1,
+              "tick": 0,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0,
+              "generation": 1,
+              "side": "right"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 21355,
+              "matchAlias": 1,
+              "tick": 3,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 23052,
+              "matchAlias": 1,
+              "tick": 120,
+              "phase": "rally",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 25782,
+              "matchAlias": 1,
+              "tick": 290,
+              "phase": "point",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 26289,
+              "matchAlias": 1,
+              "tick": 350,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43844,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43848,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43939,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            }
+          ],
+          "resultVisible": false
+        },
+        {
+          "timeOriginMs": 1788897527647.5,
+          "atMs": 35003,
+          "sameOwnedMatch": true,
+          "side": "left",
+          "generation": 2,
+          "tick": 1420,
+          "phase": "rally",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": true,
+          "fps": 1.3636983499249913,
+          "inputMessages": 145,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 145,
+          "keyDowns": {
+            "ArrowUp": 46,
+            "ArrowDown": 47
+          },
+          "lastInput": {
+            "up": false,
+            "down": true,
+            "actionId": 0,
+            "keySequence": 47,
+            "heldKeys": [
+              "ArrowDown"
+            ]
+          },
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 1420,
+            "phase": "rally",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1088,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1154,
+              "connection": 1
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "ready",
+              "atMs": 11202,
+              "matchAlias": 1,
+              "tick": 0,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0,
+              "generation": 2,
+              "side": "left"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 12112,
+              "matchAlias": 1,
+              "tick": 3,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 13723,
+              "matchAlias": 1,
+              "tick": 120,
+              "phase": "rally",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 16524,
+              "matchAlias": 1,
+              "tick": 290,
+              "phase": "point",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 16694,
+              "matchAlias": 1,
+              "tick": 350,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 29539,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 29541,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 34468,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 34754,
+              "matchAlias": 1,
+              "tick": 1408,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            }
+          ],
+          "resultVisible": false
+        },
+        {
+          "timeOriginMs": 1788897536917.5,
+          "atMs": 26932,
+          "sameOwnedMatch": true,
+          "side": "spectator",
+          "generation": 3,
+          "tick": 1444,
+          "phase": "rally",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": false,
+          "fps": 60.00774293457237,
+          "inputMessages": 0,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 0,
+          "keyDowns": {},
+          "lastInput": null,
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 1444,
+            "phase": "rally",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": true,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1077,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1180,
+              "connection": 1
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "session-sync-request",
+              "atMs": 10390,
+              "matchAlias": 1,
+              "role": "spectator"
+            },
+            {
+              "type": "session-sync-response",
+              "atMs": 10819,
+              "status": "active",
+              "matchAlias": 1
+            },
+            {
+              "type": "session-sync-ready",
+              "atMs": 10823,
+              "matchAlias": 1,
+              "tick": 531,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0,
+              "generation": 3,
+              "side": "spectator"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 11239,
+              "matchAlias": 1,
+              "tick": 533,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 18780,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 19814,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 24099,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 25000,
+              "matchAlias": 1,
+              "tick": 1408,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            }
+          ],
+          "resultVisible": false
+        }
+      ],
+      "faultTiming": {
+        "offlineCommandCompletedAtMs": 31614,
+        "clientDisconnectedVisibleAtMs": 31752.200000047684,
+        "onlineCommandCompletedAtMs": 32581.5
+      },
+      "afterOnlineCommand": [
+        {
+          "timeOriginMs": 1788897518035,
+          "atMs": 51475,
+          "sameOwnedMatch": true,
+          "side": "right",
+          "generation": 1,
+          "tick": 1863,
+          "phase": "rally",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": true,
+          "fps": 60,
+          "inputMessages": 153,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 153,
+          "keyDowns": {
+            "ArrowUp": 36,
+            "ArrowDown": 37
+          },
+          "lastInput": {
+            "up": false,
+            "down": false,
+            "actionId": 0,
+            "keySequence": 37,
+            "heldKeys": []
+          },
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 1863,
+            "phase": "rally",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1056,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1131,
+              "connection": 1
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "ready",
+              "atMs": 20809,
+              "matchAlias": 1,
+              "tick": 0,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0,
+              "generation": 1,
+              "side": "right"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 21355,
+              "matchAlias": 1,
+              "tick": 3,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 23052,
+              "matchAlias": 1,
+              "tick": 120,
+              "phase": "rally",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 25782,
+              "matchAlias": 1,
+              "tick": 290,
+              "phase": "point",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 26289,
+              "matchAlias": 1,
+              "tick": 350,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43844,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43848,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43939,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 44168,
+              "matchAlias": 1,
+              "tick": 1408,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            }
+          ],
+          "resultVisible": false
+        },
+        {
+          "timeOriginMs": 1788897527647.5,
+          "atMs": 41870,
+          "sameOwnedMatch": true,
+          "side": "left",
+          "generation": 2,
+          "tick": 1863,
+          "phase": "rally",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": true,
+          "fps": 54,
+          "inputMessages": 207,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 207,
+          "keyDowns": {
+            "ArrowUp": 78,
+            "ArrowDown": 77
+          },
+          "lastInput": {
+            "up": false,
+            "down": false,
+            "actionId": 0,
+            "keySequence": 78,
+            "heldKeys": []
+          },
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 1863,
+            "phase": "rally",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1088,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1154,
+              "connection": 1
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "ready",
+              "atMs": 11202,
+              "matchAlias": 1,
+              "tick": 0,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0,
+              "generation": 2,
+              "side": "left"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 12112,
+              "matchAlias": 1,
+              "tick": 3,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 13723,
+              "matchAlias": 1,
+              "tick": 120,
+              "phase": "rally",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 16524,
+              "matchAlias": 1,
+              "tick": 290,
+              "phase": "point",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 16694,
+              "matchAlias": 1,
+              "tick": 350,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 29539,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 29541,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 34468,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 34754,
+              "matchAlias": 1,
+              "tick": 1408,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            }
+          ],
+          "resultVisible": false
+        },
+        {
+          "timeOriginMs": 1788897536917.5,
+          "atMs": 32651,
+          "sameOwnedMatch": true,
+          "side": "spectator",
+          "generation": 3,
+          "tick": 1516,
+          "phase": "rally",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": false,
+          "fps": 42.57789820011636,
+          "inputMessages": 0,
+          "socketsOpened": 2,
+          "openSockets": 0,
+          "inputPackets": 0,
+          "keyDowns": {},
+          "lastInput": null,
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 1516,
+            "phase": "rally",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1077,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1180,
+              "connection": 1
+            },
+            {
+              "type": "controlled-close-requested",
+              "atMs": 27048,
+              "connection": 1
+            },
+            {
+              "type": "transport-close",
+              "atMs": 31129,
+              "connection": 1,
+              "code": 1005,
+              "wasClean": true,
+              "category": "unclassified"
+            },
+            {
+              "type": "transport-created",
+              "atMs": 32285,
+              "connection": 2
+            },
+            {
+              "type": "transport-error",
+              "atMs": 32560,
+              "connection": 2
+            },
+            {
+              "type": "transport-close",
+              "atMs": 32569,
+              "connection": 2,
+              "code": 1006,
+              "wasClean": false,
+              "category": "unclassified"
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "session-sync-request",
+              "atMs": 10390,
+              "matchAlias": 1,
+              "role": "spectator"
+            },
+            {
+              "type": "session-sync-response",
+              "atMs": 10819,
+              "status": "active",
+              "matchAlias": 1
+            },
+            {
+              "type": "session-sync-ready",
+              "atMs": 10823,
+              "matchAlias": 1,
+              "tick": 531,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0,
+              "generation": 3,
+              "side": "spectator"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 11239,
+              "matchAlias": 1,
+              "tick": 533,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 18780,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 19814,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 24099,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 25000,
+              "matchAlias": 1,
+              "tick": 1408,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            }
+          ],
+          "resultVisible": false
+        }
+      ],
+      "observerTickAdvanced": true,
+      "observerInputMessages": 0,
+      "observerNewConnectionAndGeneration": true,
+      "playerConnectionsUnchanged": true,
+      "sameLiveMatch": true,
+      "observerInputZeroAfterScreenshots": true,
+      "observerTransportHistory": [
+        {
+          "type": "transport-created",
+          "atMs": 1077,
+          "connection": 1
+        },
+        {
+          "type": "transport-open",
+          "atMs": 1180,
+          "connection": 1
+        },
+        {
+          "type": "controlled-close-requested",
+          "atMs": 27048,
+          "connection": 1
+        },
+        {
+          "type": "transport-close",
+          "atMs": 31129,
+          "connection": 1,
+          "code": 1005,
+          "wasClean": true,
+          "category": "unclassified"
+        },
+        {
+          "type": "transport-created",
+          "atMs": 32285,
+          "connection": 2
+        },
+        {
+          "type": "transport-error",
+          "atMs": 32560,
+          "connection": 2
+        },
+        {
+          "type": "transport-close",
+          "atMs": 32569,
+          "connection": 2,
+          "code": 1006,
+          "wasClean": false,
+          "category": "unclassified"
+        },
+        {
+          "type": "transport-created",
+          "atMs": 33782,
+          "connection": 3
+        },
+        {
+          "type": "transport-open",
+          "atMs": 33865,
+          "connection": 3
+        }
+      ],
+      "recoveredObservation": [
+        {
+          "timeOriginMs": 1788897518035,
+          "atMs": 53966,
+          "sameOwnedMatch": true,
+          "side": "right",
+          "generation": 1,
+          "tick": 2009,
+          "phase": "rally",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": true,
+          "fps": 40,
+          "inputMessages": 177,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 177,
+          "keyDowns": {
+            "ArrowUp": 39,
+            "ArrowDown": 37
+          },
+          "lastInput": {
+            "up": false,
+            "down": false,
+            "actionId": 0,
+            "keySequence": 39,
+            "heldKeys": []
+          },
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 2009,
+            "phase": "rally",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1056,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1131,
+              "connection": 1
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "ready",
+              "atMs": 20809,
+              "matchAlias": 1,
+              "tick": 0,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0,
+              "generation": 1,
+              "side": "right"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 21355,
+              "matchAlias": 1,
+              "tick": 3,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 23052,
+              "matchAlias": 1,
+              "tick": 120,
+              "phase": "rally",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 25782,
+              "matchAlias": 1,
+              "tick": 290,
+              "phase": "point",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 26289,
+              "matchAlias": 1,
+              "tick": 350,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43844,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43848,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 43939,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 44168,
+              "matchAlias": 1,
+              "tick": 1408,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            }
+          ],
+          "resultVisible": false
+        },
+        {
+          "timeOriginMs": 1788897527647.5,
+          "atMs": 44366,
+          "sameOwnedMatch": true,
+          "side": "left",
+          "generation": 2,
+          "tick": 2012,
+          "phase": "rally",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": true,
+          "fps": 60.00774293457237,
+          "inputMessages": 237,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 237,
+          "keyDowns": {
+            "ArrowUp": 86,
+            "ArrowDown": 85
+          },
+          "lastInput": {
+            "up": false,
+            "down": false,
+            "actionId": 0,
+            "keySequence": 86,
+            "heldKeys": []
+          },
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 2012,
+            "phase": "rally",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1088,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1154,
+              "connection": 1
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "ready",
+              "atMs": 11202,
+              "matchAlias": 1,
+              "tick": 0,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0,
+              "generation": 2,
+              "side": "left"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 12112,
+              "matchAlias": 1,
+              "tick": 3,
+              "phase": "ready",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 13723,
+              "matchAlias": 1,
+              "tick": 120,
+              "phase": "rally",
+              "score": [
+                0,
+                0
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 16524,
+              "matchAlias": 1,
+              "tick": 290,
+              "phase": "point",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 16694,
+              "matchAlias": 1,
+              "tick": 350,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 29539,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 29541,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 34468,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 34754,
+              "matchAlias": 1,
+              "tick": 1408,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            }
+          ],
+          "resultVisible": false
+        },
+        {
+          "timeOriginMs": 1788897536917.5,
+          "atMs": 35099,
+          "sameOwnedMatch": true,
+          "side": "spectator",
+          "generation": 4,
+          "tick": 2012,
+          "phase": "rally",
+          "score": [
+            2,
+            1
+          ],
+          "hidden": false,
+          "documentFocused": true,
+          "courtFocused": false,
+          "fps": 60,
+          "inputMessages": 0,
+          "socketsOpened": 3,
+          "openSockets": 1,
+          "inputPackets": 0,
+          "keyDowns": {},
+          "lastInput": null,
+          "lastServerState": {
+            "matchAlias": 1,
+            "tick": 2012,
+            "phase": "rally",
+            "score": [
+              2,
+              1
+            ],
+            "clockEpoch": 0
+          },
+          "statusDisconnected": false,
+          "statusRecovered": true,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1077,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1180,
+              "connection": 1
+            },
+            {
+              "type": "controlled-close-requested",
+              "atMs": 27048,
+              "connection": 1
+            },
+            {
+              "type": "transport-close",
+              "atMs": 31129,
+              "connection": 1,
+              "code": 1005,
+              "wasClean": true,
+              "category": "unclassified"
+            },
+            {
+              "type": "transport-created",
+              "atMs": 32285,
+              "connection": 2
+            },
+            {
+              "type": "transport-error",
+              "atMs": 32560,
+              "connection": 2
+            },
+            {
+              "type": "transport-close",
+              "atMs": 32569,
+              "connection": 2,
+              "code": 1006,
+              "wasClean": false,
+              "category": "unclassified"
+            },
+            {
+              "type": "transport-created",
+              "atMs": 33782,
+              "connection": 3
+            },
+            {
+              "type": "transport-open",
+              "atMs": 33865,
+              "connection": 3
+            }
+          ],
+          "lifecycleHistory": [
+            {
+              "type": "session-sync-request",
+              "atMs": 10390,
+              "matchAlias": 1,
+              "role": "spectator"
+            },
+            {
+              "type": "session-sync-response",
+              "atMs": 10819,
+              "status": "active",
+              "matchAlias": 1
+            },
+            {
+              "type": "session-sync-ready",
+              "atMs": 10823,
+              "matchAlias": 1,
+              "tick": 531,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0,
+              "generation": 3,
+              "side": "spectator"
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 11239,
+              "matchAlias": 1,
+              "tick": 533,
+              "phase": "rally",
+              "score": [
+                0,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 18780,
+              "matchAlias": 1,
+              "tick": 1034,
+              "phase": "point",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 19814,
+              "matchAlias": 1,
+              "tick": 1094,
+              "phase": "rally",
+              "score": [
+                1,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 24099,
+              "matchAlias": 1,
+              "tick": 1348,
+              "phase": "point",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "snapshot-boundary",
+              "atMs": 25000,
+              "matchAlias": 1,
+              "tick": 1408,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0
+            },
+            {
+              "type": "session-sync-request",
+              "atMs": 33984,
+              "matchAlias": 1,
+              "role": "spectator"
+            },
+            {
+              "type": "session-sync-response",
+              "atMs": 34015,
+              "status": "active",
+              "matchAlias": 1
+            },
+            {
+              "type": "session-sync-ready",
+              "atMs": 34019,
+              "matchAlias": 1,
+              "tick": 1946,
+              "phase": "rally",
+              "score": [
+                2,
+                1
+              ],
+              "clockEpoch": 0,
+              "generation": 4,
+              "side": "spectator"
+            }
+          ],
+          "resultVisible": false
+        }
+      ],
+      "driverDiagnostics": [
+        {
+          "loops": 363,
+          "taskDone": false,
+          "errorType": null,
+          "heldKey": "ArrowDown",
+          "history": [
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753323145,
+              "side": "right",
+              "phase": "rally",
+              "tick": 362,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 26510,
+              "fps": 5.806077027288554,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753323779,
+              "side": "right",
+              "phase": "rally",
+              "tick": 389,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 27102,
+              "fps": 40.65040650406515,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753323966,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753324175,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753324294,
+              "side": "right",
+              "phase": "rally",
+              "tick": 433,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 27678,
+              "fps": 20,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753324329,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753324481,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753324624,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753324795,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753324828,
+              "side": "right",
+              "phase": "rally",
+              "tick": 466,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 28212,
+              "fps": 50.329074719318406,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753324924,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753325065,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753325202,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753325243,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753325246,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753325333,
+              "side": "right",
+              "phase": "rally",
+              "tick": 494,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 28705,
+              "fps": 56,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753325603,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753325639,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753325680,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753325747,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753325848,
+              "side": "right",
+              "phase": "rally",
+              "tick": 527,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 29233,
+              "fps": 48.002743013886565,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753326349,
+              "side": "right",
+              "phase": "rally",
+              "tick": 558,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 29733,
+              "fps": 52,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753326878,
+              "side": "right",
+              "phase": "rally",
+              "tick": 591,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 30263,
+              "fps": 56,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753327424,
+              "side": "right",
+              "phase": "rally",
+              "tick": 618,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 30809,
+              "fps": 56,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753327529,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753327563,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753327931,
+              "side": "right",
+              "phase": "rally",
+              "tick": 652,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 31315,
+              "fps": 52.25469324559698,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753328447,
+              "side": "right",
+              "phase": "rally",
+              "tick": 685,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 31831,
+              "fps": 60.00774293457237,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753328823,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753328858,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753328959,
+              "side": "right",
+              "phase": "rally",
+              "tick": 715,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 32344,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753329475,
+              "side": "right",
+              "phase": "rally",
+              "tick": 746,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 32860,
+              "fps": 60.00774293457237,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753330283,
+              "side": "right",
+              "phase": "rally",
+              "tick": 771,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 33619,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753340250,
+              "side": "right",
+              "phase": "rally",
+              "tick": 774,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 43590,
+              "fps": 34.74415666456072,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753340906,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1414,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 44242,
+              "fps": 0.10084304788027919,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753341099,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753341339,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753341374,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753341375,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753341412,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1462,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 44796,
+              "fps": 7.274049827241393,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753341526,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753341609,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753341947,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1492,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 45332,
+              "fps": 50,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753342472,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1526,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 45856,
+              "fps": 48,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753343014,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1557,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 46399,
+              "fps": 52,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753343572,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1573,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 46948,
+              "fps": 52,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753344094,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1622,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 47459,
+              "fps": 31.25,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753344298,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753344446,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753344611,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1643,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 47994,
+              "fps": 28,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753344614,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753344806,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753344970,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753345145,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753345249,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1683,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 48633,
+              "fps": 44.52187379016597,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753345345,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753345505,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753345665,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753345699,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753345700,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753345772,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1722,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 49156,
+              "fps": 22,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753345845,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346250,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753346424,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1737,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 49775,
+              "fps": 36.666666666666664,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346440,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753346475,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753346476,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346615,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346751,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753346818,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753346951,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1793,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 50336,
+              "fps": 42.58614014711588,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753347425,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753347459,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1825,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 50844,
+              "fps": 60.00774293457237,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753347529,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753347564,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753347635,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753347670,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753347740,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753347983,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1856,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 51368,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753348495,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1887,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 51880,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753348842,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753348942,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753349012,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1918,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 52396,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753349512,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1946,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 52896,
+              "fps": 60.00774293457237,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753350015,
+              "side": "right",
+              "phase": "rally",
+              "tick": 1979,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 53400,
+              "fps": 58,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753350395,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753350539,
+              "side": "right",
+              "phase": "rally",
+              "tick": 2009,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 53923,
+              "fps": 40,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753350580,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753350584,
+              "key": "ArrowDown"
+            }
+          ]
+        },
+        {
+          "loops": 485,
+          "taskDone": false,
+          "errorType": null,
+          "heldKey": null,
+          "history": [
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753329581,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753329651,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753329684,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753329754,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753329789,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753329859,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753329895,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753330026,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753330027,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753330095,
+              "side": "left",
+              "phase": "rally",
+              "tick": 784,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 23867,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753330096,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753330100,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753330170,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753330609,
+              "side": "left",
+              "phase": "rally",
+              "tick": 812,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 24381,
+              "fps": 48,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753331116,
+              "side": "left",
+              "phase": "rally",
+              "tick": 843,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 24888,
+              "fps": 56.13627564847053,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753331485,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753331621,
+              "side": "left",
+              "phase": "rally",
+              "tick": 873,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 25393,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753331623,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753332736,
+              "side": "left",
+              "phase": "rally",
+              "tick": 879,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 26498,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753332742,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753332783,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753332784,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753332920,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753333054,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753333122,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753333260,
+              "side": "left",
+              "phase": "rally",
+              "tick": 971,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 27032,
+              "fps": 58,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753333783,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1004,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 27556,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753335755,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1007,
+              "score": [
+                0,
+                1
+              ],
+              "atMs": 29527,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753336057,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753336192,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753336258,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1153,
+              "score": [
+                1,
+                1
+              ],
+              "atMs": 30030,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753336328,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753336465,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753336601,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753336738,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753336772,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1182,
+              "score": [
+                1,
+                1
+              ],
+              "atMs": 30544,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753337024,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753337162,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753337301,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1215,
+              "score": [
+                1,
+                1
+              ],
+              "atMs": 31073,
+              "fps": 34,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753337303,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753337438,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753337573,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753337608,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753337609,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753337750,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753337817,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1245,
+              "score": [
+                1,
+                1
+              ],
+              "atMs": 31589,
+              "fps": 60.00774293457237,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753337885,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753339996,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1254,
+              "score": [
+                1,
+                1
+              ],
+              "atMs": 33709,
+              "fps": 60.00774293457237,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753340532,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753340696,
+              "side": "left",
+              "phase": "point",
+              "tick": 1377,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 34469,
+              "fps": 5.077079294747534,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753340968,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753341345,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1435,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 35117,
+              "fps": 1.3636983499249913,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753341347,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753341478,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753341607,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753341688,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753341689,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753342001,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1486,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 35773,
+              "fps": 40,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753342012,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753342052,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753342053,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753342191,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753342354,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753342424,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753342426,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753342528,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1529,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 36300,
+              "fps": 33.993201359728154,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753342565,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753342599,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753343032,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1557,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 36804,
+              "fps": 44.53049370764763,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753343533,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1588,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 37305,
+              "fps": 43.9912017596482,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753344047,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1619,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 37819,
+              "fps": 48.393341076268044,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753344293,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753344491,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753344542,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753344543,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753344581,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1653,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 38353,
+              "fps": 43.49782510874428,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753344692,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753344900,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753344982,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753345038,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753345146,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1680,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 38918,
+              "fps": 36.77893921796371,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753345187,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753345188,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753345324,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753345360,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753345696,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1698,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 39468,
+              "fps": 36.77893921796371,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753345741,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753345904,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346214,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753346253,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1753,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 40023,
+              "fps": 28.126757922369993,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346407,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346621,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346751,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753346785,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1784,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 40557,
+              "fps": 40.65040650406515,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753346883,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753347019,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753347155,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753347285,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1812,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 41057,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753347287,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753347420,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753347427,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753347578,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down-repeat",
+              "atMonotonicMs": 1753347716,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753347784,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753347819,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1847,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 41592,
+              "fps": 54,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753347821,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753347888,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753348343,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1878,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 42115,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753348842,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753348876,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1909,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 42648,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753348942,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753348943,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753349013,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753349014,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753349115,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753349116,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753349181,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753349215,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753349282,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753349315,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753349381,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1940,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 43153,
+              "fps": 60.00774293457237,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753349382,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753349447,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753349481,
+              "key": "ArrowDown"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753349895,
+              "side": "left",
+              "phase": "rally",
+              "tick": 1970,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 43667,
+              "fps": 60,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            },
+            {
+              "event": "key-down",
+              "atMonotonicMs": 1753350179,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "key-up",
+              "atMonotonicMs": 1753350255,
+              "key": "ArrowUp"
+            },
+            {
+              "event": "state-sample",
+              "atMonotonicMs": 1753350438,
+              "side": "left",
+              "phase": "rally",
+              "tick": 2003,
+              "score": [
+                2,
+                1
+              ],
+              "atMs": 44210,
+              "fps": 60.00774293457237,
+              "hidden": false,
+              "documentFocused": true,
+              "courtFocused": true,
+              "focused": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "elapsedSeconds": 62.866
+}

@@ -5,7 +5,7 @@
       <section class="login-copy">
         <p class="login-eyebrow">서로 다른 화면, 같은 경기</p>
         <h1>온라인에서<br />함께 플레이하세요.</h1>
-        <p>로그인하면 온라인 대전, 친구 초대와 관전을 이용할 수 있어요. 로컬 2인과 AI 대전은 로그인 없이 바로 시작할 수 있습니다.</p>
+        <p>로그인하면 온라인 대전, 친구 초대와 관전을 이용할 수 있습니다. 로컬 2인과 AI 대전은 로그인 없이 바로 시작할 수 있습니다.</p>
         <nav aria-label="로그인 없는 플레이" class="login-local-links">
           <router-link to="/play/local">로컬 2인 시작 →</router-link>
           <router-link to="/play/ai">AI 대전 시작 →</router-link>
@@ -14,27 +14,30 @@
       <section class="login-panel" aria-labelledby="login-title">
         <p class="login-eyebrow">온라인 로그인</p>
         <h2 id="login-title">{{ destination ? destinationLabel + ' 계속하기' : '시작하기' }}</h2>
-        <p v-if="destination">로그인과 필요한 계정 확인이 끝나면 선택한 화면으로 이동합니다.</p>
-        <p v-else>로그인 후 Home에서 대전 방식을 선택하세요.</p>
-        <p v-if="route.query.logout === 'unconfirmed'" class="login-notice" role="status">이 기기에서 로그아웃했습니다. 서버 로그아웃은 확인하지 못했습니다.</p>
+        <p v-if="destination">로그인하면 선택한 화면으로 돌아갑니다. 닉네임 설정이나 2단계 인증이 필요한 계정은 해당 절차를 먼저 진행합니다.</p>
+        <p v-else>로그인하면 홈에서 온라인 대전, 친구 초대, 관전을 선택할 수 있습니다.</p>
+        <p v-if="route.query.logout === 'unconfirmed'" class="login-notice" role="status">이 브라우저에서는 로그아웃했습니다. 서버의 로그아웃 처리는 확인하지 못했습니다.</p>
         <p v-if="route.query.reason === 'unavailable'" class="login-notice" role="status">온라인 서버 상태를 확인하지 못했습니다. 잠시 후 다시 시도하거나 로컬 · AI로 플레이하세요.</p>
-        <button v-if="isGuestLoginEnabled" type="button" class="login-primary" :disabled="guestBusy" @click="signinGuest" data-testid="guest-login">{{ guestBusy ? '로그인 확인 중…' : '게스트로 체험하기' }}</button>
-        <p v-else class="login-notice" data-testid="guest-disabled">현재 게스트 로그인이 비활성화되어 있습니다. 로컬 · AI는 계속 플레이할 수 있어요.</p>
+        <button v-if="isGuestLoginEnabled" type="button" class="login-primary" :disabled="guestBusy" @click="signinGuest" data-testid="guest-login">{{ guestBusy ? '로그인 페이지로 이동 중…' : '게스트로 체험하기' }}</button>
+        <p v-else class="login-notice" data-testid="guest-disabled">현재 이 데모에서는 게스트 로그인을 사용할 수 없습니다. 로컬 2인과 AI 대전은 로그인 없이 이용할 수 있습니다.</p>
         <p v-if="guestError" class="login-notice" role="alert" data-testid="guest-login-error">{{ guestError }}</p>
-        <p class="login-small">게스트 버튼은 온라인 체험용 계정을 생성합니다.</p>
+        <p class="login-small">별도 가입 절차 없이 체험용 계정을 만들어 시작합니다. 로그인하면 온라인 대전과 채팅을 이용할 수 있습니다.</p>
         <button v-if="is42LoginEnabled" type="button" class="login-secondary" @click="signin42">42 로그인</button>
         <button v-else class="login-secondary" type="button" disabled>42 로그인 비활성화</button>
-        <router-link to="/play" class="login-cancel" @click="clearLoginIntent">온라인 진입 취소 · 플레이 메뉴</router-link>
-        <details><summary>로그인이 제한되는 화면이라면</summary><p>임베드 화면에서는 쿠키 정책으로 로그인이 제한될 수 있습니다. <a :href="currentUrl" target="_blank" rel="noopener noreferrer">새 탭에서 열기 ↗</a></p></details>
+        <router-link to="/play" class="login-cancel" @click="clearLoginIntent">플레이 방식 다시 선택</router-link>
+        <details data-testid="login-help"><summary>로그인이 잘되지 않나요?</summary><p>노션 등에 삽입된 화면에서는 브라우저의 쿠키 설정 때문에 로그인이 되지 않을 수 있습니다. 새 탭에서 다시 열어 주세요. <a :href="currentUrl" target="_blank" rel="noopener noreferrer">새 탭에서 열기 ↗</a></p></details>
       </section>
     </main>
+    <ProjectInfo class="login-project-info" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import ProjectInfo from '@/components/arcade/ProjectInfo.vue';
 import { clearLoginIntent, readLoginIntent } from '@/arcade/login-intent';
+import { resolveGuestLoginUrl } from '@/arcade/guest-navigation-url';
 const route = useRoute();
 const isGuestLoginEnabled = process.env.VUE_APP_ENABLE_GUEST_LOGIN === 'true';
 const is42LoginEnabled = false;
@@ -48,46 +51,41 @@ const currentUrl = computed(() => {
   return url.href;
 });
 const guestBusy = ref(false), guestError = ref('');
-let disposed = false;
-let guestRequest: AbortController | undefined;
 function signin42() { document.location.href = `${backendBaseUrl}/auth/42`; }
-async function signinGuest() {
+function resetGuestNavigation() { guestBusy.value = false; guestError.value = ''; }
+function signinGuest() {
   if (guestBusy.value) return;
+  const destination = resolveGuestLoginUrl(process.env.VUE_APP_BACKEND_URL, window.location.href);
+  if (!destination) {
+    guestError.value = '로그인 서버 주소 설정을 확인해야 합니다. 로컬 · AI로 플레이하거나 관리자에게 문의하세요.';
+    return;
+  }
   guestBusy.value = true;
   guestError.value = '';
-  const request = new AbortController();
-  guestRequest = request;
-  const timeout = setTimeout(() => request.abort(), 8000);
   try {
-    // One guest request sets the existing cookie. A manual redirect is opaque,
-    // so never read or follow its Location: use the existing fixed callback.
-    // The router still validates the cookie; errors retain public play links.
-    const response = await fetch(`${backendBaseUrl}/auth/guest`, {
-      credentials: 'include', redirect: 'manual', signal: request.signal,
-    });
-    if (disposed) return;
-    if (response.type !== 'opaqueredirect') {
-      throw new Error('Guest callback was not confirmed');
-    }
-    document.location.assign(new URL('/login?token=check', window.location.origin).href);
+    // The existing endpoint creates one account, sets its cookie and redirects.
+    // The callback router, not navigation itself, verifies the authenticated user.
+    document.location.assign(destination);
   } catch {
-    if (!disposed) guestError.value = '온라인 로그인을 확인하지 못했습니다. 잠시 후 다시 시도하거나 로컬 · AI로 플레이하세요.';
-  } finally {
-    clearTimeout(timeout);
-    if (!disposed) guestBusy.value = false;
+    guestBusy.value = false;
+    guestError.value = '로그인 페이지로 이동하지 못했습니다. 새 탭에서 다시 열거나 로컬 · AI로 플레이하세요.';
   }
 }
-onUnmounted(() => { disposed = true; guestRequest?.abort(); });
+// A restored document retains its Vue state; it must not retain a disabled button.
+onMounted(() => window.addEventListener('pageshow', resetGuestNavigation));
+onUnmounted(() => window.removeEventListener('pageshow', resetGuestNavigation));
 </script>
 
 <style scoped>
 .login-page { min-height:100vh; background:#0b101b; color:#eef2ff; padding:0 5vw 48px; font-family:Inter,"Avenir Next",Arial,sans-serif; }
 .login-page * { box-sizing:border-box; }
+.login-page p { word-break:keep-all; overflow-wrap:anywhere; }
 .login-page a:focus-visible,.login-page button:focus-visible,.login-page summary:focus-visible { outline:3px solid #92f0d1; outline-offset:4px; }
 .login-header { max-width:1200px; margin:auto; min-height:96px; display:flex; align-items:center; justify-content:space-between; gap:24px; border-bottom:1px solid #293347; }
 .login-header>a:first-child { font-size:14px; font-weight:850; letter-spacing:2px; }
 .login-header>a:last-child { color:#92f0d1; font-size:14px; }
 .login-main { max-width:1100px; margin:80px auto 0; display:grid; grid-template-columns:1.1fr 1fr; align-items:start; gap:70px; }
+.login-project-info { max-width:1100px; margin:40px auto 0; }
 .login-eyebrow { color:#af9bff; font-size:13px; font-weight:750; margin:0 0 18px; }
 .login-copy h1 { font-size:clamp(30px,4vw,52px); letter-spacing:-1.5px; line-height:1.22; font-weight:800; margin:0 0 26px; }
 .login-copy>p:not(.login-eyebrow),.login-panel>p:not(.login-eyebrow) { color:#9ca9c0; line-height:1.8; }

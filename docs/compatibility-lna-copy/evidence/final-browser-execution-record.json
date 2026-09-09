@@ -1,0 +1,37 @@
+{
+  "repository": "sungmpar/ft_transcendence_project",
+  "branch": "main",
+  "head": "ecbb0ee30694f372b8e6e51c1642ef258681443d",
+  "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+  "command": "env -u ARCADE_GUEST_REUSE_ROOT PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/compatibility-lna-copy/evidence/final-browser node scripts/check-arcade.cjs browser > docs/compatibility-lna-copy/evidence/final-browser-command.log 2>&1",
+  "startObservedUtc": "2026-09-08 19:33:52 UTC",
+  "completionObservedUtc": "2026-09-08 19:43:57 UTC",
+  "observationTimeNote": "UTC observations bracket the run; they are not an exact measured wrapper duration. Exact per-config Jest times are retained below and in the raw log.",
+  "execSession": 2171,
+  "exitCode": 1,
+  "status": "FAIL",
+  "defaultFrontendBuildReportedByRoot": "52546caae6f959a8",
+  "defaultFrontendIndexSha256Observed": "d274384d17c47c8ce6da5b3849dd96a5620f2633f2e7c3dd25b1bfb8915875f3",
+  "defaultFrontendScriptsObserved": ["js/chunk-vendors.7d3a6c92.js", "js/app.163fdb87.js"],
+  "guestBuildsReused": false,
+  "rootDistWrittenByGuestSuite": false,
+  "configs": [
+    {"name": "online-rejected-session-browser", "status": "PASS", "passedTests": 1, "failedTests": 0, "jestSeconds": 84.059, "browserSubcases": "Actual game/invite/spectate rejected-tab policy: 3/3 PASS"},
+    {"name": "home-guest-entry", "status": "PASS", "passedTests": 16, "failedTests": 0, "jestSeconds": 210.446, "actualBfcache": {"persisted": true, "sameDocument": true, "restoredButtonEnabled": true, "guestDocuments": 1, "guestFetches": 0, "accountsAdded": 0}},
+    {"name": "home-auth-prerequisites", "status": "PASS", "passedTests": 3, "failedTests": 0, "jestSeconds": 43.019},
+    {"name": "online-browser", "status": "PASS", "passedTests": 1, "failedTests": 0, "jestSeconds": 49.926},
+    {"name": "online-lifecycle-browser", "status": "PASS", "passedTests": 1, "failedTests": 0, "jestSeconds": 51.316},
+    {"name": "online-final-browser", "status": "FAIL", "passedTests": 0, "failedTests": 1, "jestSeconds": 130.209, "pythonSeconds": 120.019, "browserSubcases": [
+      {"case": "real-six-point-match-and-mouse-rematch", "status": "PASS", "visibleScore": [0, 6]},
+      {"case": "observer-alone-reconnect-with-players-live", "status": "FAIL", "failure": "scripts/browser-online-final.py:274 new spectator generation/live tick wait timed out after 20000ms; all three pages had resultVisible=true at failure; watcher had a newly opened WebSocket and zero input packets"},
+      {"case": "authoritative-feedback-audio-motion-and-online-keys", "status": "NOT RUN"}
+    ], "finalFixturePersistenceAssertions": "NOT RUN: Python exit assertion failed before the final Match repository query"}
+  ],
+  "aggregate": {"configsPassed": 5, "configsFailed": 1, "jestTestsPassed": 22, "jestTestsFailed": 1},
+  "rawLog": "final-browser-command.log",
+  "failureEvidence": ["final-browser/online-final-browser.json", "final-browser/online-final-python.log"],
+  "imagesActuallyOpenedByExecutor": ["final-browser/P1-bfcache-login-restored.png", "final-browser/online-browser-1-finished.png", "final-browser/online-reconnected.png"],
+  "scope": "Owned loopback fixtures with disposable PostgreSQL schemas and actual headless Chrome. No operational service, account or DB action.",
+  "cleanup": "The wrapper process completed with exit1 after test/browser/owned fixture finally cleanup. Chrome slot was returned to root. Existing unrelated root fixtures were not stopped.",
+  "followUp": "Read-only diagnosis requested. No assertion, production source or harness was modified to change this result; no retry is included in this record. Root's later CSS word-break change is outside the captured build used here."
+}

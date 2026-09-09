@@ -1,0 +1,32 @@
+{
+  "startedAt": "2026-09-08T19:24:51.229Z",
+  "node": "v18.20.8",
+  "frontendCwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+  "command": [
+    "/private/tmp/ft-transcendence-runtime/node_modules/node/bin/node",
+    "--require",
+    "/Users/sm/dev_park/ft_transcendence_project/scripts/compat-hmr-server-trace.cjs",
+    "node_modules/@vue/cli-service/bin/vue-cli-service.js",
+    "serve",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "52311"
+  ],
+  "runtimeOverrides": {
+    "VUE_APP_DEV_WEBSOCKET_URL": "",
+    "VUE_APP_BACKEND_URL": "",
+    "VUE_APP_WS_URL": "",
+    "VUE_APP_ENABLE_GUEST_LOGIN": "false",
+    "VUE_APP_ARCADE_DEBUG": "false"
+  },
+  "directOrigin": "http://127.0.0.1:52311",
+  "proxyOrigin": "http://127.0.0.1:52323",
+  "proxy": "Owned HTTP /ws upgrade passthrough; unchanged Host; no TLS fixture or operational proxy",
+  "serverTrace": "Observe-only ws ping/pong/terminate/close; original methods and return values preserved",
+  "versions": {
+    "vueCli": "5.0.8",
+    "webpack": "5.74.0",
+    "webpackDevServer": "4.9.3"
+  }
+}

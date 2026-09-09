@@ -1,0 +1,264 @@
+{
+  "status": "PASS",
+  "at": "2026-09-08T19:34:12.867957+00:00",
+  "viewport": [
+    1440,
+    900
+  ],
+  "authentication": "Actual guest HTTP redirect; duplicate tab shares its native browser context",
+  "limits": "Owned loopback fixture, automated browser input; aggregate read-only server session observation, no account or socket-state injection",
+  "browser": "152.0.7977.77",
+  "cases": [
+    {
+      "route": "/game",
+      "status": "PASS",
+      "activeOwnerProtected": true,
+      "conflictObservationSeconds": 6,
+      "additionalAutomaticConnectionsWhileOwnerActive": 0,
+      "conflictReasonRemainsVisible": true,
+      "rejectedNativeHistory": [
+        {
+          "type": "transport-created",
+          "atMs": 4351,
+          "connection": 1
+        },
+        {
+          "type": "transport-open",
+          "atMs": 4693,
+          "connection": 1
+        },
+        {
+          "type": "game-error",
+          "atMs": 5120,
+          "connection": 1,
+          "category": "active-session-conflict"
+        },
+        {
+          "type": "transport-close",
+          "atMs": 5223,
+          "connection": 1,
+          "code": 1005,
+          "wasClean": true,
+          "category": "unclassified"
+        }
+      ],
+      "activeOwnerStillProtectedAfterObservation": true,
+      "originalServerOwnerRemoved": true,
+      "serverSessionCountAfterOwnerClosed": 0,
+      "originalServerGenerationAbsent": true,
+      "noAutomaticAttemptBeforeExplicitClick": true,
+      "postOwnerCloseObservationSeconds": 0.75,
+      "automaticallyRecoveredAfterOwnerClosed": false,
+      "explicitReconnectActionPresent": true,
+      "samePageExplicitReconnect": true,
+      "exactlyOneNativeConnectionForClick": true,
+      "sameDocumentNoReload": true,
+      "authorizedServerSessionRestored": true,
+      "finalNativeHistory": [
+        {
+          "type": "transport-created",
+          "atMs": 4351,
+          "connection": 1
+        },
+        {
+          "type": "transport-open",
+          "atMs": 4693,
+          "connection": 1
+        },
+        {
+          "type": "game-error",
+          "atMs": 5120,
+          "connection": 1,
+          "category": "active-session-conflict"
+        },
+        {
+          "type": "transport-close",
+          "atMs": 5223,
+          "connection": 1,
+          "code": 1005,
+          "wasClean": true,
+          "category": "unclassified"
+        },
+        {
+          "type": "transport-created",
+          "atMs": 12871,
+          "connection": 2
+        },
+        {
+          "type": "transport-open",
+          "atMs": 13289,
+          "connection": 2
+        }
+      ],
+      "idleInputsZeroAfterScreenshot": true
+    },
+    {
+      "route": "/invite",
+      "status": "PASS",
+      "activeOwnerProtected": true,
+      "conflictObservationSeconds": 6,
+      "additionalAutomaticConnectionsWhileOwnerActive": 0,
+      "conflictReasonRemainsVisible": true,
+      "rejectedNativeHistory": [
+        {
+          "type": "transport-created",
+          "atMs": 4438,
+          "connection": 1
+        },
+        {
+          "type": "transport-open",
+          "atMs": 6017,
+          "connection": 1
+        },
+        {
+          "type": "game-error",
+          "atMs": 6420,
+          "connection": 1,
+          "category": "active-session-conflict"
+        },
+        {
+          "type": "transport-close",
+          "atMs": 6471,
+          "connection": 1,
+          "code": 1005,
+          "wasClean": true,
+          "category": "unclassified"
+        }
+      ],
+      "activeOwnerStillProtectedAfterObservation": true,
+      "originalServerOwnerRemoved": true,
+      "serverSessionCountAfterOwnerClosed": 0,
+      "originalServerGenerationAbsent": true,
+      "noAutomaticAttemptBeforeExplicitClick": true,
+      "postOwnerCloseObservationSeconds": 0.75,
+      "automaticallyRecoveredAfterOwnerClosed": false,
+      "explicitReconnectActionPresent": true,
+      "samePageExplicitReconnect": true,
+      "exactlyOneNativeConnectionForClick": true,
+      "sameDocumentNoReload": true,
+      "authorizedServerSessionRestored": true,
+      "finalNativeHistory": [
+        {
+          "type": "transport-created",
+          "atMs": 4438,
+          "connection": 1
+        },
+        {
+          "type": "transport-open",
+          "atMs": 6017,
+          "connection": 1
+        },
+        {
+          "type": "game-error",
+          "atMs": 6420,
+          "connection": 1,
+          "category": "active-session-conflict"
+        },
+        {
+          "type": "transport-close",
+          "atMs": 6471,
+          "connection": 1,
+          "code": 1005,
+          "wasClean": true,
+          "category": "unclassified"
+        },
+        {
+          "type": "transport-created",
+          "atMs": 14233,
+          "connection": 2
+        },
+        {
+          "type": "transport-open",
+          "atMs": 14469,
+          "connection": 2
+        }
+      ],
+      "idleInputsZeroAfterScreenshot": true
+    },
+    {
+      "route": "/spectate",
+      "status": "PASS",
+      "activeOwnerProtected": true,
+      "conflictObservationSeconds": 6,
+      "additionalAutomaticConnectionsWhileOwnerActive": 0,
+      "conflictReasonRemainsVisible": true,
+      "rejectedNativeHistory": [
+        {
+          "type": "transport-created",
+          "atMs": 4109,
+          "connection": 1
+        },
+        {
+          "type": "transport-open",
+          "atMs": 4505,
+          "connection": 1
+        },
+        {
+          "type": "game-error",
+          "atMs": 4809,
+          "connection": 1,
+          "category": "active-session-conflict"
+        },
+        {
+          "type": "transport-close",
+          "atMs": 4928,
+          "connection": 1,
+          "code": 1005,
+          "wasClean": true,
+          "category": "unclassified"
+        }
+      ],
+      "activeOwnerStillProtectedAfterObservation": true,
+      "originalServerOwnerRemoved": true,
+      "serverSessionCountAfterOwnerClosed": 0,
+      "originalServerGenerationAbsent": true,
+      "noAutomaticAttemptBeforeExplicitClick": true,
+      "postOwnerCloseObservationSeconds": 0.75,
+      "automaticallyRecoveredAfterOwnerClosed": false,
+      "explicitReconnectActionPresent": true,
+      "samePageExplicitReconnect": true,
+      "exactlyOneNativeConnectionForClick": true,
+      "sameDocumentNoReload": true,
+      "authorizedServerSessionRestored": true,
+      "finalNativeHistory": [
+        {
+          "type": "transport-created",
+          "atMs": 4109,
+          "connection": 1
+        },
+        {
+          "type": "transport-open",
+          "atMs": 4505,
+          "connection": 1
+        },
+        {
+          "type": "game-error",
+          "atMs": 4809,
+          "connection": 1,
+          "category": "active-session-conflict"
+        },
+        {
+          "type": "transport-close",
+          "atMs": 4928,
+          "connection": 1,
+          "code": 1005,
+          "wasClean": true,
+          "category": "unclassified"
+        },
+        {
+          "type": "transport-created",
+          "atMs": 12691,
+          "connection": 2
+        },
+        {
+          "type": "transport-open",
+          "atMs": 13060,
+          "connection": 2
+        }
+      ],
+      "idleInputsZeroAfterScreenshot": true
+    }
+  ],
+  "pageErrors": [],
+  "elapsedSeconds": 73.011
+}

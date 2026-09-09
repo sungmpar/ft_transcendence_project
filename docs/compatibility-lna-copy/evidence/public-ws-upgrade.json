@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-08T19:17:37.794Z",
+  "url": "wss://transcendence.koreacentral.cloudapp.azure.com/ws",
+  "method": "passive WebSocket upgrade; no application messages sent",
+  "tlsValidation": "default; no certificate bypass",
+  "events": [
+    {
+      "type": "upgrade",
+      "status": 101,
+      "remoteAddress": "20.194.105.25",
+      "remotePort": 443,
+      "authorized": true
+    },
+    {
+      "type": "open"
+    },
+    {
+      "type": "message",
+      "kind": "error",
+      "bytes": 52
+    },
+    {
+      "type": "close",
+      "code": 1005
+    }
+  ],
+  "status": "CLOSED_BEFORE_COMPLETION"
+}

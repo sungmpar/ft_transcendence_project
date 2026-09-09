@@ -22,6 +22,7 @@
       </button></template
     >
     <template #actions
+      ><p v-if="!active" class="power-note" data-testid="online-rule-help">랜덤 매칭에서는 두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.</p
       ><p v-if="connectionState.message" class="power-note" role="status" data-testid="online-connection-notice">{{ connectionState.message }}</p
       ><button v-if="connectionState.message" class="arcade-button" :disabled="connectionState.pending" @click="retryConnection" data-testid="online-reconnect">{{ connectionState.pending ? '연결 확인 중…' : '연결 다시 확인' }}</button
       ><button v-if="recoveryIssue" class="arcade-button" :disabled="!connected || syncing" @click="retryRecovery">경기 상태 다시 확인</button
@@ -206,7 +207,7 @@ function joinToGame() {
   result.value = "";
   waiting.value = true;
   status.value =
-    "상대를 기다립니다. 두 플레이어가 Power를 선택하면 Power 규칙으로 진행합니다.";
+    "상대를 기다립니다. 두 사람이 모두 Power를 선택하면 Power, 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.";
   socket.emit("matchmaking", {
     userId: store.getters.userid,
     mode: mode.value,

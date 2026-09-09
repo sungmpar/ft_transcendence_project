@@ -32,22 +32,7 @@ export class AuthController {
 
 	@ApiOperation({summary: '포트폴리오 데모용 게스트 계정 생성 후 로그인'})
 	@Get('guest')
-  async guestLogin(@Req() req: any, @Res() res: any) {
-    // Only this cookie-setting guest endpoint needs credentialed cross-origin
-    // access. Restrict it to the configured frontend, before error responses too.
-    try {
-      const frontendOrigin = new URL(process.env.FRONT_URL).origin;
-      if (
-        ['http:', 'https:'].includes(new URL(process.env.FRONT_URL).protocol) &&
-        req.headers.origin === frontendOrigin
-      ) {
-        res.header('Access-Control-Allow-Origin', frontendOrigin);
-        res.header('Access-Control-Allow-Credentials', 'true');
-        res.vary('Origin');
-      }
-    } catch {
-      /* Invalid/missing FRONT_URL never broadens credential access. */
-    }
+  async guestLogin(@Res() res: any) {
 		if (process.env.ENABLE_GUEST_LOGIN !== 'true')
 			throw new ForbiddenException('Guest login is disabled');
 

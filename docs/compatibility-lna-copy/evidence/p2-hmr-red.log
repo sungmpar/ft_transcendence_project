@@ -1,0 +1,156 @@
+FAIL test/compat-hmr.spec.js
+  installed Vue CLI / WDS browser-facing HMR URL
+    ✕ uses public browser origin rather than the inferred private LAN when override is undefined (482 ms)
+    ✕ uses public browser origin rather than the inferred private LAN when override is  (2 ms)
+    ✕ uses a direct local browser port (2 ms)
+    ✕ uses a reverse proxy browser port and secure protocol, without exposing internal port3000 (1 ms)
+    ✕ retains an explicit public WSS override (2 ms)
+    ✕ retains a valid explicit local development override (2 ms)
+    ✓ rejects malformed override through the installed dev-server URL parser (4 ms)
+    ✕ documents the explicit-private-override limit without making a network request (4 ms)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › uses public browser origin rather than the inferred private LAN when override is undefined
+
+    ValidationError: Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+     - options.setupMiddlewares should be an instance of function.
+       -> Provides the ability to execute a custom function and apply custom middleware(s).
+       -> Read more at https://webpack.js.org/configuration/dev-server/#devserversetupmiddlewares
+
+      52 |   if (!captured) throw new Error('Installed CLI did not construct dev-server options');
+      53 |   const Server = frontendRequire('webpack-dev-server');
+    > 54 |   const server = new Server(captured, compiler);
+         |                  ^
+      55 |   await server.normalizeOptions();
+      56 |   const file = frontendRequire.resolve('webpack-dev-server/client/utils/createSocketURL.js');
+      57 |   const source = fs.readFileSync(file, 'utf8').replace('export default createSocketURL;', 'globalThis.resolveSocket = createSocketURL;');
+
+      at validate (../frontend/node_modules/schema-utils/dist/validate.js:115:11)
+      at new Server (../frontend/node_modules/webpack-dev-server/lib/Server.js:231:5)
+      at resolveInstalledHmr (../scripts/compat-hmr-config.cjs:54:18)
+      at Object.<anonymous> (test/compat-hmr.spec.js:7:22)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › uses public browser origin rather than the inferred private LAN when override is 
+
+    ValidationError: Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+     - options.setupMiddlewares should be an instance of function.
+       -> Provides the ability to execute a custom function and apply custom middleware(s).
+       -> Read more at https://webpack.js.org/configuration/dev-server/#devserversetupmiddlewares
+
+      52 |   if (!captured) throw new Error('Installed CLI did not construct dev-server options');
+      53 |   const Server = frontendRequire('webpack-dev-server');
+    > 54 |   const server = new Server(captured, compiler);
+         |                  ^
+      55 |   await server.normalizeOptions();
+      56 |   const file = frontendRequire.resolve('webpack-dev-server/client/utils/createSocketURL.js');
+      57 |   const source = fs.readFileSync(file, 'utf8').replace('export default createSocketURL;', 'globalThis.resolveSocket = createSocketURL;');
+
+      at validate (../frontend/node_modules/schema-utils/dist/validate.js:115:11)
+      at new Server (../frontend/node_modules/webpack-dev-server/lib/Server.js:231:5)
+      at resolveInstalledHmr (../scripts/compat-hmr-config.cjs:54:18)
+      at Object.<anonymous> (test/compat-hmr.spec.js:7:22)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › uses a direct local browser port
+
+    ValidationError: Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+     - options.setupMiddlewares should be an instance of function.
+       -> Provides the ability to execute a custom function and apply custom middleware(s).
+       -> Read more at https://webpack.js.org/configuration/dev-server/#devserversetupmiddlewares
+
+      52 |   if (!captured) throw new Error('Installed CLI did not construct dev-server options');
+      53 |   const Server = frontendRequire('webpack-dev-server');
+    > 54 |   const server = new Server(captured, compiler);
+         |                  ^
+      55 |   await server.normalizeOptions();
+      56 |   const file = frontendRequire.resolve('webpack-dev-server/client/utils/createSocketURL.js');
+      57 |   const source = fs.readFileSync(file, 'utf8').replace('export default createSocketURL;', 'globalThis.resolveSocket = createSocketURL;');
+
+      at validate (../frontend/node_modules/schema-utils/dist/validate.js:115:11)
+      at new Server (../frontend/node_modules/webpack-dev-server/lib/Server.js:231:5)
+      at resolveInstalledHmr (../scripts/compat-hmr-config.cjs:54:18)
+      at Object.<anonymous> (test/compat-hmr.spec.js:13:13)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › uses a reverse proxy browser port and secure protocol, without exposing internal port3000
+
+    ValidationError: Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+     - options.setupMiddlewares should be an instance of function.
+       -> Provides the ability to execute a custom function and apply custom middleware(s).
+       -> Read more at https://webpack.js.org/configuration/dev-server/#devserversetupmiddlewares
+
+      52 |   if (!captured) throw new Error('Installed CLI did not construct dev-server options');
+      53 |   const Server = frontendRequire('webpack-dev-server');
+    > 54 |   const server = new Server(captured, compiler);
+         |                  ^
+      55 |   await server.normalizeOptions();
+      56 |   const file = frontendRequire.resolve('webpack-dev-server/client/utils/createSocketURL.js');
+      57 |   const source = fs.readFileSync(file, 'utf8').replace('export default createSocketURL;', 'globalThis.resolveSocket = createSocketURL;');
+
+      at validate (../frontend/node_modules/schema-utils/dist/validate.js:115:11)
+      at new Server (../frontend/node_modules/webpack-dev-server/lib/Server.js:231:5)
+      at resolveInstalledHmr (../scripts/compat-hmr-config.cjs:54:18)
+      at Object.<anonymous> (test/compat-hmr.spec.js:16:13)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › retains an explicit public WSS override
+
+    ValidationError: Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+     - options.setupMiddlewares should be an instance of function.
+       -> Provides the ability to execute a custom function and apply custom middleware(s).
+       -> Read more at https://webpack.js.org/configuration/dev-server/#devserversetupmiddlewares
+
+      52 |   if (!captured) throw new Error('Installed CLI did not construct dev-server options');
+      53 |   const Server = frontendRequire('webpack-dev-server');
+    > 54 |   const server = new Server(captured, compiler);
+         |                  ^
+      55 |   await server.normalizeOptions();
+      56 |   const file = frontendRequire.resolve('webpack-dev-server/client/utils/createSocketURL.js');
+      57 |   const source = fs.readFileSync(file, 'utf8').replace('export default createSocketURL;', 'globalThis.resolveSocket = createSocketURL;');
+
+      at validate (../frontend/node_modules/schema-utils/dist/validate.js:115:11)
+      at new Server (../frontend/node_modules/webpack-dev-server/lib/Server.js:231:5)
+      at resolveInstalledHmr (../scripts/compat-hmr-config.cjs:54:18)
+      at Object.<anonymous> (test/compat-hmr.spec.js:20:13)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › retains a valid explicit local development override
+
+    ValidationError: Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+     - options.setupMiddlewares should be an instance of function.
+       -> Provides the ability to execute a custom function and apply custom middleware(s).
+       -> Read more at https://webpack.js.org/configuration/dev-server/#devserversetupmiddlewares
+
+      52 |   if (!captured) throw new Error('Installed CLI did not construct dev-server options');
+      53 |   const Server = frontendRequire('webpack-dev-server');
+    > 54 |   const server = new Server(captured, compiler);
+         |                  ^
+      55 |   await server.normalizeOptions();
+      56 |   const file = frontendRequire.resolve('webpack-dev-server/client/utils/createSocketURL.js');
+      57 |   const source = fs.readFileSync(file, 'utf8').replace('export default createSocketURL;', 'globalThis.resolveSocket = createSocketURL;');
+
+      at validate (../frontend/node_modules/schema-utils/dist/validate.js:115:11)
+      at new Server (../frontend/node_modules/webpack-dev-server/lib/Server.js:231:5)
+      at resolveInstalledHmr (../scripts/compat-hmr-config.cjs:54:18)
+      at Object.<anonymous> (test/compat-hmr.spec.js:24:13)
+
+  ● installed Vue CLI / WDS browser-facing HMR URL › documents the explicit-private-override limit without making a network request
+
+    ValidationError: Invalid options object. Dev Server has been initialized using an options object that does not match the API schema.
+     - options.setupMiddlewares should be an instance of function.
+       -> Provides the ability to execute a custom function and apply custom middleware(s).
+       -> Read more at https://webpack.js.org/configuration/dev-server/#devserversetupmiddlewares
+
+      52 |   if (!captured) throw new Error('Installed CLI did not construct dev-server options');
+      53 |   const Server = frontendRequire('webpack-dev-server');
+    > 54 |   const server = new Server(captured, compiler);
+         |                  ^
+      55 |   await server.normalizeOptions();
+      56 |   const file = frontendRequire.resolve('webpack-dev-server/client/utils/createSocketURL.js');
+      57 |   const source = fs.readFileSync(file, 'utf8').replace('export default createSocketURL;', 'globalThis.resolveSocket = createSocketURL;');
+
+      at validate (../frontend/node_modules/schema-utils/dist/validate.js:115:11)
+      at new Server (../frontend/node_modules/webpack-dev-server/lib/Server.js:231:5)
+      at resolveInstalledHmr (../scripts/compat-hmr-config.cjs:54:18)
+      at Object.<anonymous> (test/compat-hmr.spec.js:31:20)
+
+Test Suites: 1 failed, 1 total
+Tests:       7 failed, 1 passed, 8 total
+Snapshots:   0 total
+Time:        1.038 s
+Ran all test suites.

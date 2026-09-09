@@ -1,0 +1,13 @@
+FAIL backend/src/game/guest-navigation-url.spec.ts
+  ● Test suite failed to run
+
+    [96mbackend/src/game/guest-navigation-url.spec.ts[0m:[93m1[0m:[93m38[0m - [91merror[0m[90m TS2307: [0mCannot find module '../../../frontend/src/arcade/guest-navigation-url' or its corresponding type declarations.
+
+    [7m1[0m import { resolveGuestLoginUrl } from '../../../frontend/src/arcade/guest-navigation-url';
+    [7m [0m [91m                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        4.298 s
+Ran all test suites.

@@ -1,0 +1,55 @@
+{
+  "at": "2026-09-08T19:18:24.359Z",
+  "url": "wss://transcendence.koreacentral.cloudapp.azure.com/ws",
+  "origin": "https://transcendence.koreacentral.cloudapp.azure.com",
+  "method": "passive WebSocket upgrade with normal browser Origin; no application messages sent",
+  "tlsValidation": "default; no certificate bypass",
+  "events": [
+    {
+      "type": "upgrade",
+      "status": 101,
+      "remoteAddress": "20.194.105.25",
+      "remotePort": 443,
+      "authorized": true
+    },
+    {
+      "type": "open"
+    },
+    {
+      "type": "message",
+      "kind": "hot",
+      "bytes": 14
+    },
+    {
+      "type": "message",
+      "kind": "liveReload",
+      "bytes": 21
+    },
+    {
+      "type": "message",
+      "kind": "progress",
+      "bytes": 31
+    },
+    {
+      "type": "message",
+      "kind": "reconnect",
+      "bytes": 30
+    },
+    {
+      "type": "message",
+      "kind": "overlay",
+      "bytes": 58
+    },
+    {
+      "type": "message",
+      "kind": "hash",
+      "bytes": 41
+    },
+    {
+      "type": "message",
+      "kind": "warnings",
+      "bytes": 5851
+    }
+  ],
+  "status": "PASSIVE_UPGRADE_OBSERVED"
+}

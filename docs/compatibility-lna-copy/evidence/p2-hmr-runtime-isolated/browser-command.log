@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-compat-hmr.py", line 136, in <module>
+    asyncio.run(main())
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/base_events.py", line 685, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-compat-hmr.py", line 125, in main
+    raise AssertionError("At least one independent direct/proxy case failed; see per-case evidence")
+AssertionError: At least one independent direct/proxy case failed; see per-case evidence

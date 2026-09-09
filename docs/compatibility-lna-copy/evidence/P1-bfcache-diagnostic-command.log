@@ -1,0 +1,25 @@
+{"name":"actual-bfcache-back-after-guest-failure","status":"PASS"}
+PASS backend/test/home-guest-entry.e2e-spec.ts (21.708 s)
+  Guest document entry preserves one request, browser return and login intent
+    ✓ actual bfcache restoration clears the pending button after a failed document (11461 ms)
+    ○ skipped same-origin: real guest document returns to /game
+    ○ skipped same-origin: real guest document returns to /invite
+    ○ skipped same-origin: real guest document returns to /spectate
+    ○ skipped same-origin: a failed guest document permits browser Back and public AI without automatic retries
+    ○ skipped split-origin: real guest document returns to /game
+    ○ skipped split-origin: real guest document returns to /invite
+    ○ skipped split-origin: real guest document returns to /spectate
+    ○ skipped split-origin: a failed guest document permits browser Back and public AI without automatic retries
+    ○ skipped a fast double click issues one real guest request and one account
+    ○ skipped cancelling before guest navigation clears intent and never creates an account
+    ○ skipped blocked intent storage falls back to Home after the real document callback
+    ○ skipped reloading Login preserves the intended document-return destination
+    ○ skipped the disabled frontend flag keeps both public modes available without a guest request
+    ○ skipped the visible new-tab fallback preserves an allowlisted direct-entry intent
+    ○ skipped document navigation needs no endpoint credential CORS and the guest flag still rejects creation
+
+Test Suites: 1 passed, 1 total
+Tests:       15 skipped, 1 passed, 16 total
+Snapshots:   0 total
+Time:        21.767 s, estimated 234 s
+Ran all test suites with tests matching "actual bfcache".

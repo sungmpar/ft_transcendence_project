@@ -130,7 +130,9 @@ function assertRecovery(name: string, fixture: CoupledClockFixture, resumedAt: n
 
 describe('real runner and buffer recover interpolation after scheduler time loss', () => {
   afterAll(() => {
-    const evidence = resolve(__dirname, '../../../docs/home-online-polish/evidence');
+    const evidence = process.env.ARCADE_EVIDENCE_DIR
+      ? resolve(process.env.ARCADE_EVIDENCE_DIR)
+      : resolve(__dirname, '../../../docs/home-online-polish/evidence');
     mkdirSync(evidence, { recursive: true });
     const name = process.env.ARCADE_CLOCK_REPORT || 'clock-recovery';
     if (!/^[a-zA-Z0-9_-]{1,80}$/.test(name)) throw new Error('Invalid clock evidence filename');

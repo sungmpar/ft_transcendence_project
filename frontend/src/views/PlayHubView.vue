@@ -5,7 +5,7 @@
         <router-link class="arcade-brand" to="/play"><span class="brand-mark" aria-hidden="true">Ⅱ</span> TRANSCENDENCE</router-link>
         <router-link class="quiet-link" to="/login">온라인 로그인 ↗</router-link>
       </header>
-      <section class="launch-intro"><p class="eyebrow">바로 플레이</p><h1>지금, 한 판 시작할까요?</h1><p>옆자리 친구와, 컴퓨터와, 온라인 상대와.</p></section>
+      <section class="launch-intro"><p class="eyebrow">바로 플레이</p><h1>지금, 한 판 시작할까요?</h1><p>한 키보드로 친구와 대결하거나, AI와 연습하거나, 온라인에서 다른 플레이어와 겨뤄보세요.</p></section>
       <LaunchPanel>
       <template #community><nav class="launch-community" aria-label="온라인 서비스">
         <span>함께 즐기기</span>

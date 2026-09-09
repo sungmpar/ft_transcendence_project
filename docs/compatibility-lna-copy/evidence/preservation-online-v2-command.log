@@ -1,0 +1,46 @@
+
+[online] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/online-jest.json --runInBand --watchman=false (backend cwd)
+PASS test/online-integration.e2e-spec.ts (19.688 s)
+  real isolated online game service
+    ✓ rejects missing, malformed, and signed-but-unknown-user authentication (51 ms)
+    ✓ matches two authenticated clients, advances a full score-ended game, and stores that result (12457 ms)
+    ✓ preserves friend invitation/refusal, accepted matches, and spectator updates (134 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        19.74 s
+Ran all test suites.
+
+[lifecycle] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/lifecycle-jest.json --runInBand --watchman=false (backend cwd)
+PASS test/online-lifecycle.e2e-spec.ts (15.45 s)
+  real PostgreSQL result transactions and Socket.IO lifecycle
+    ✓ uses unique real IDs for concurrent creation and after deletion (66 ms)
+    ✓ commits concurrent wins and duplicate requests once with atomic nonduplicate achievements (241 ms)
+    ✓ pauses short disconnects, resynchronizes new generations, rejects another active tab, and preserves spectators (484 ms)
+    ✓ expires the real five-second grace and stores one disconnect result (5037 ms)
+    ✓ rolls back a real database failure then retries the same result without duplicate achievements (320 ms)
+    ✓ resolves an injected lost post-commit response by reading the real committed result on retry (305 ms)
+    ✓ reports terminal storage failure after three real rollbacks and permits a fresh match (1357 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        15.501 s
+Ran all test suites.
+
+[service] node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/service-jest.json --runInBand --watchman=false (backend cwd)
+PASS test/service-preservation.e2e-spec.ts (8.411 s)
+  preserved services against disposable PostgreSQL and real HTTP/Socket.IO
+    ✓ keeps protected profile and friends endpoints unauthorized without JWT (29 ms)
+    ✓ preserves guest flag off/on, issued cookie, profile, profile image and friends (70 ms)
+    ✓ preserves profile edits, friend persistence and the unmet-2FA HTTP guard (89 ms)
+    ✓ authenticates two real chat clients and persists channel join, messages and leave (238 ms)
+    ✓ keeps match history available while an unfinalized match exists (72 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        8.464 s
+Ran all test suites.
+All 3 online suites completed successfully.

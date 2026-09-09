@@ -54,10 +54,10 @@
         <span class="player-avatar">P1</span>
         <div>
           <p>{{ leftName }}</p>
-          <small
-            >{{ leftKeys.up }} / {{ leftKeys.down
+          <small data-testid="local-left-key-hint"
+            >위로 {{ leftKeys.up }} · 아래로 {{ leftKeys.down
             }}<template v-if="preferences.rule === 'power'">
-              · {{ leftKeys.action }} POWER</template
+              · Power {{ leftKeys.action }}</template
             ></small
           >
         </div>
@@ -75,14 +75,14 @@
       <div class="player-label player-right">
         <div>
           <p>{{ rightName }}</p>
-          <small>{{
+          <small data-testid="local-right-key-hint">{{
             isAi
-              ? preferences.difficulty.toUpperCase() + " · RULE BASED"
-              : rightKeys.up +
-                " / " +
+              ? { easy: "쉬움", normal: "보통", hard: "어려움" }[preferences.difficulty] + " · 컴퓨터가 오른쪽 패들을 조작합니다."
+              : "위로 " + rightKeys.up +
+                " · 아래로 " +
                 rightKeys.down +
                 (preferences.rule === "power"
-                  ? " · " + rightKeys.action + " POWER"
+                  ? " · Power " + rightKeys.action
                   : "")
           }}</small>
         </div>
@@ -118,8 +118,8 @@
           </p>
           <h1>{{ isAi ? "준비됐나요?" : "두 사람, 한 키보드." }}</h1>
           <p>
-            패들을 움직여 공을 받아치세요.<br />상대 골에 공을 넣으면 1점. 먼저
-            6점을 얻으면 승리!
+            패들을 움직여 공을 받아치세요.<br />상대 골에 공을 넣으면 1점입니다. 먼저
+            6점을 얻으면 승리합니다.
           </p>
           <button
             class="arcade-button primary mint-button"
@@ -142,7 +142,7 @@
             {{ state.players.left.score }} <span>:</span>
             {{ state.players.right.score }}
           </p>
-          <p>좋은 경기였습니다. 한 판 더?</p>
+          <p>다시 대결하려면 아래 버튼을 누르세요.</p>
           <button
             class="arcade-button primary mint-button"
             @click="restartMatch"
@@ -237,8 +237,7 @@
       >
     </section>
     <p class="power-note" v-if="preferences.rule === 'power'">
-      유효 반사 5회로 충전 → 능력 키로 확장 → 강화 중 반사마다 1칸 소모 →
-      0칸이면 해제. 이동 중에도 발동할 수 있습니다.
+      공을 패들(공을 받아치는 막대)로 다섯 번 받아치면 Power가 충전됩니다. Power 키를 누르면 패들이 길어집니다. 길어진 상태에서 공을 받아칠 때마다 충전량이 한 칸씩 줄어들고, 모두 소모하면 원래 길이로 돌아옵니다. 이동하면서 사용할 수 있습니다.
     </p>
 
     <section

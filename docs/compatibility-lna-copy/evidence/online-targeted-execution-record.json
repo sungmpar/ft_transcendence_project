@@ -1,0 +1,49 @@
+{
+  "repository": "sungmpar/ft_transcendence_project",
+  "branch": "main",
+  "head": "ecbb0ee30694f372b8e6e51c1642ef258681443d",
+  "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+  "frontendIndexSha256Observed": "f168717e4c47034a74243bbd68e38467112c107f5ff64b6af358904eb197e570",
+  "frontendScriptsObserved": ["js/chunk-vendors.7d3a6c92.js", "js/app.d972f9c7.js"],
+  "harnessSha256Observed": "9b0433c58221933165921234ebd0944d62960adfc79d23d734dacad761b48305",
+  "sourceScope": "Root's final Korean word-break CSS build. The diagnostic harness adds bounded observations only; existing input algorithm, fault, gameplay and recovery/effect assertions remain unchanged.",
+  "commands": [
+    {
+      "case": "observer",
+      "command": "env -u ARCADE_GUEST_REUSE_ROOT -u ARCADE_FINAL_FRONTEND_DIST PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_FINAL_CASE=observer ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/compatibility-lna-copy/evidence/observer-diagnostic node --no-experimental-fetch backend/node_modules/jest/bin/jest.js --config backend/test/online-final-browser-jest.json --runInBand --watchman=false > docs/compatibility-lna-copy/evidence/observer-diagnostic-command.log 2>&1",
+      "startObservedUtc": "2026-09-08 19:58:14 UTC",
+      "execSession": 8376,
+      "exitCode": 0,
+      "jestTestsPassed": 1,
+      "jestTestsFailed": 0,
+      "jestSeconds": 74.304,
+      "pythonSeconds": 62.866,
+      "result": "PASS",
+      "evidence": "observer-diagnostic/online-final-browser.json",
+      "facts": {"spectatorGenerationBefore": 3, "spectatorGenerationAfter": 4, "newActiveReadyTick": 1946, "recoveredTick": 2012, "scoreBeforeAndAfter": [2, 1], "sameLiveMatch": true, "playerConnectionsUnchanged": true, "observerInputZeroAfterScreenshots": true, "pageErrors": 0, "driverErrors": [null, null]},
+      "fixtureMatchRowsRead": {"completedRows": 0, "sixPointRows": 0},
+      "imagesOpened": ["observer-diagnostic/final-observer-reconnected.png", "observer-diagnostic/final-observer-peer-still-playing.png"]
+    },
+    {
+      "case": "effects",
+      "command": "env -u ARCADE_GUEST_REUSE_ROOT -u ARCADE_FINAL_FRONTEND_DIST PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH ARCADE_PYTHON=/opt/miniconda3/bin/python ARCADE_FINAL_CASE=effects ARCADE_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/compatibility-lna-copy/evidence/effects-targeted node --no-experimental-fetch backend/node_modules/jest/bin/jest.js --config backend/test/online-final-browser-jest.json --runInBand --watchman=false > docs/compatibility-lna-copy/evidence/effects-targeted-command.log 2>&1",
+      "startObservedUtc": "2026-09-08 20:00:01 UTC",
+      "completionObservedUtc": "2026-09-08 20:01:57 UTC",
+      "execSession": 70525,
+      "exitCode": 0,
+      "jestTestsPassed": 1,
+      "jestTestsFailed": 0,
+      "jestSeconds": 56.869,
+      "pythonSeconds": 47.373,
+      "result": "PASS",
+      "evidence": "effects-targeted/online-final-browser.json",
+      "facts": {"wasdHudAndOutgoingDirection": true, "inactiveArrowsDoNotMove": true, "defaultMuteAndActualServerHitFlash": true, "nativeGestureAudioContextAndOscillator": true, "muteWhileServerHitsContinue": true, "systemReducedMotion": true, "explicitReducedMotion": true, "routeDisposesAudio": true, "storedOnlineKeyPreset": true, "restoredSoundDoesNotAutoplay": true, "pageErrors": 0},
+      "fixtureMatchRowsRead": {"completedRows": 1, "sixPointRows": 1, "scores": [[6, 0]], "note": "Read after the effects scenario and route disposal; not an additional natural six-point-match assertion."},
+      "imagesOpened": ["effects-targeted/final-online-effects-and-key-hint.png", "effects-targeted/final-online-reduced-motion.png"]
+    }
+  ],
+  "timingNote": "UTC values are executor observations, not exact process durations. Jest and Python measured durations are listed separately.",
+  "cleanup": "Both processes exited0 after browser/context and owned fixture cleanup. Chrome slot returned to root; unrelated root services were not stopped.",
+  "remainingUncertainty": "The earlier all-cases wrapper's observer timeout remains preserved and its precise causal order is unresolved. A passing instrumented targeted observer run does not turn that wrapper into PASS or prove why it failed. Human audio listening, physical play, WAN and operational LNA/TLS were not tested.",
+  "aggregation": "Earlier final-browser wrapper: 22 Jest PASS / 1 FAIL. These later two targeted commands: 1 PASS + 1 PASS. Do not combine them into a successful rerun of the original six-config wrapper."
+}

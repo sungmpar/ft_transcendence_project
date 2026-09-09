@@ -53,7 +53,7 @@ with sync_playwright() as p:
         page.evaluate("localStorage.setItem('transcendence.arcade.preferences.v1', '{broken')")
         page.goto(BASE + '/play/ai?debug=1')
         page.wait_for_function('!!window.__ARCADE_DEBUG__')
-        check('Corrupted preferences fall back to Classic/Normal', state(page)['config']['mode'] == 'classic' and 'NORMAL' in page.locator('.player-right').inner_text())
+        check('Corrupted preferences fall back to Classic/Normal', state(page)['config']['mode'] == 'classic' and '보통' in page.get_by_test_id('local-right-key-hint').inner_text())
         tick = state(page)['tick']; advance(page, 1500)
         check('Entering a mode does not start its simulation', state(page)['tick'] == tick and page.get_by_test_id('start-match').is_visible())
 

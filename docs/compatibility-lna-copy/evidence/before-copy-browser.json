@@ -1,0 +1,408 @@
+{
+  "at": "2026-09-08T19:06:35.796055+00:00",
+  "phase": "before",
+  "status": "CAPTURED",
+  "base": "http://127.0.0.1:51658",
+  "fixture": "Actual guest account in a disposable PostgreSQL schema; fixed review nickname",
+  "limits": "Automated Chrome application test; no native browser permission UI or public-to-private LNA verification",
+  "screens": [
+    {
+      "file": "before-login-1440x900.png",
+      "viewport": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "text": "TRANSCENDENCE\n로컬 · AI 플레이 ↗\n\n서로 다른 화면, 같은 경기\n\n온라인에서\n함께 플레이하세요.\n\n로그인하면 온라인 대전, 친구 초대와 관전을 이용할 수 있어요. 로컬 2인과 AI 대전은 로그인 없이 바로 시작할 수 있습니다.\n\n로컬 2인 시작 →\nAI 대전 시작 →\n\n온라인 로그인\n\n시작하기\n\n로그인 후 Home에서 대전 방식을 선택하세요.\n\n게스트로 체험하기\n\n게스트 버튼은 온라인 체험용 계정을 생성합니다.\n\n42 로그인 비활성화\n온라인 진입 취소 · 플레이 메뉴\n로그인이 제한되는 화면이라면"
+    },
+    {
+      "file": "before-login-1366x768.png",
+      "viewport": [
+        1366,
+        768
+      ],
+      "documentWidth": 1366,
+      "text": "TRANSCENDENCE\n로컬 · AI 플레이 ↗\n\n서로 다른 화면, 같은 경기\n\n온라인에서\n함께 플레이하세요.\n\n로그인하면 온라인 대전, 친구 초대와 관전을 이용할 수 있어요. 로컬 2인과 AI 대전은 로그인 없이 바로 시작할 수 있습니다.\n\n로컬 2인 시작 →\nAI 대전 시작 →\n\n온라인 로그인\n\n시작하기\n\n로그인 후 Home에서 대전 방식을 선택하세요.\n\n게스트로 체험하기\n\n게스트 버튼은 온라인 체험용 계정을 생성합니다.\n\n42 로그인 비활성화\n온라인 진입 취소 · 플레이 메뉴\n로그인이 제한되는 화면이라면"
+    },
+    {
+      "file": "before-login-390x844.png",
+      "viewport": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "text": "TRANSCENDENCE\n로컬 · AI 플레이 ↗\n\n서로 다른 화면, 같은 경기\n\n온라인에서\n함께 플레이하세요.\n\n로그인하면 온라인 대전, 친구 초대와 관전을 이용할 수 있어요. 로컬 2인과 AI 대전은 로그인 없이 바로 시작할 수 있습니다.\n\n로컬 2인 시작 →\nAI 대전 시작 →\n\n온라인 로그인\n\n시작하기\n\n로그인 후 Home에서 대전 방식을 선택하세요.\n\n게스트로 체험하기\n\n게스트 버튼은 온라인 체험용 계정을 생성합니다.\n\n42 로그인 비활성화\n온라인 진입 취소 · 플레이 메뉴\n로그인이 제한되는 화면이라면"
+    },
+    {
+      "file": "before-play-hub-1440x900.png",
+      "viewport": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "text": "Ⅱ\nTRANSCENDENCE\n온라인 로그인 ↗\n\n바로 플레이\n\n지금, 한 판 시작할까요?\n\n옆자리 친구와, 컴퓨터와, 온라인 상대와.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n공을 받아치고, 먼저 6점을 얻으세요.\n\n01 / 함께\n로컬 2인\n\n한 화면 · 한 키보드\n로그인 없이 플레이\n\n플레이어 1\nW\nS\n플레이어 2\n↑\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n내 속도에 맞는 연습 상대\n로그인 없이 플레이\n\n쉬움\n보통\n어려움\n내 조작 키\nW / S\n↑ / ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결\n온라인 로그인 필요\n\n상대 찾기는 로비에서 시작합니다.\n\n서버가 경기 규칙을 확정합니다.\n두 사람이 Power를 선택하면 Power 경기.\n로그인하고 대전\n→\n\n이동 키가 먼저, Power 키는 마지막입니다. 경기 화면에서 키를 변경할 수 있습니다.\n\n함께 즐기기\n친구 초대\n로그인 후 친구 선택\n경기 관전\n진행 중인 경기 보기\n처음 오셨나요? 규칙과 프로젝트 안내\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다."
+    },
+    {
+      "file": "before-play-hub-1366x768.png",
+      "viewport": [
+        1366,
+        768
+      ],
+      "documentWidth": 1366,
+      "text": "Ⅱ\nTRANSCENDENCE\n온라인 로그인 ↗\n\n바로 플레이\n\n지금, 한 판 시작할까요?\n\n옆자리 친구와, 컴퓨터와, 온라인 상대와.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n공을 받아치고, 먼저 6점을 얻으세요.\n\n01 / 함께\n로컬 2인\n\n한 화면 · 한 키보드\n로그인 없이 플레이\n\n플레이어 1\nW\nS\n플레이어 2\n↑\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n내 속도에 맞는 연습 상대\n로그인 없이 플레이\n\n쉬움\n보통\n어려움\n내 조작 키\nW / S\n↑ / ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결\n온라인 로그인 필요\n\n상대 찾기는 로비에서 시작합니다.\n\n서버가 경기 규칙을 확정합니다.\n두 사람이 Power를 선택하면 Power 경기.\n로그인하고 대전\n→\n\n이동 키가 먼저, Power 키는 마지막입니다. 경기 화면에서 키를 변경할 수 있습니다.\n\n함께 즐기기\n친구 초대\n로그인 후 친구 선택\n경기 관전\n진행 중인 경기 보기\n처음 오셨나요? 규칙과 프로젝트 안내\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다."
+    },
+    {
+      "file": "before-play-hub-390x844.png",
+      "viewport": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "text": "Ⅱ\nTRANSCENDENCE\n온라인 로그인 ↗\n\n바로 플레이\n\n지금, 한 판 시작할까요?\n\n옆자리 친구와, 컴퓨터와, 온라인 상대와.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n공을 받아치고, 먼저 6점을 얻으세요.\n\n01 / 함께\n로컬 2인\n\n한 화면 · 한 키보드\n로그인 없이 플레이\n\n플레이어 1\nW\nS\n플레이어 2\n↑\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n내 속도에 맞는 연습 상대\n로그인 없이 플레이\n\n쉬움\n보통\n어려움\n내 조작 키\nW / S\n↑ / ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결\n온라인 로그인 필요\n\n상대 찾기는 로비에서 시작합니다.\n\n서버가 경기 규칙을 확정합니다.\n두 사람이 Power를 선택하면 Power 경기.\n로그인하고 대전\n→\n\n이동 키가 먼저, Power 키는 마지막입니다. 경기 화면에서 키를 변경할 수 있습니다.\n\n함께 즐기기\n친구 초대\n로그인 후 친구 선택\n경기 관전\n진행 중인 경기 보기\n처음 오셨나요? 규칙과 프로젝트 안내\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다."
+    },
+    {
+      "file": "before-home-1440x900.png",
+      "viewport": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "text": "Home\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nTRANSCENDENCE\n검토플레이어\n계정\n⌄\n\n플레이할 시간\n\n지금, 한 판 시작할까요?\n\n옆자리 친구와, 컴퓨터와, 온라인 상대와.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n공을 받아치고, 먼저 6점을 얻으세요.\n\n01 / 함께\n로컬 2인\n\n한 화면 · 한 키보드\n로그인 없이 플레이\n\n플레이어 1\nW\nS\n플레이어 2\n↑\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n내 속도에 맞는 연습 상대\n로그인 없이 플레이\n\n쉬움\n보통\n어려움\n내 조작 키\nW / S\n↑ / ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결\n온라인 로그인 필요\n\n상대 찾기는 로비에서 시작합니다.\n\n서버가 경기 규칙을 확정합니다.\n두 사람이 Power를 선택하면 Power 경기.\n온라인 로비로\n→\n\n이동 키가 먼저, Power 키는 마지막입니다. 경기 화면에서 키를 변경할 수 있습니다.\n\n함께 즐기기\n친구 초대\n친구를 먼저 선택하세요\n경기 관전\n진행 중인 경기 보기\n채팅\n채널 · 1:1 대화\n내 전적\n온라인 경기 기록\n처음 오셨나요? 규칙과 프로젝트 안내\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다."
+    },
+    {
+      "file": "before-home-1366x768.png",
+      "viewport": [
+        1366,
+        768
+      ],
+      "documentWidth": 1366,
+      "text": "Home\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nTRANSCENDENCE\n검토플레이어\n계정\n⌄\n\n플레이할 시간\n\n지금, 한 판 시작할까요?\n\n옆자리 친구와, 컴퓨터와, 온라인 상대와.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n공을 받아치고, 먼저 6점을 얻으세요.\n\n01 / 함께\n로컬 2인\n\n한 화면 · 한 키보드\n로그인 없이 플레이\n\n플레이어 1\nW\nS\n플레이어 2\n↑\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n내 속도에 맞는 연습 상대\n로그인 없이 플레이\n\n쉬움\n보통\n어려움\n내 조작 키\nW / S\n↑ / ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결\n온라인 로그인 필요\n\n상대 찾기는 로비에서 시작합니다.\n\n서버가 경기 규칙을 확정합니다.\n두 사람이 Power를 선택하면 Power 경기.\n온라인 로비로\n→\n\n이동 키가 먼저, Power 키는 마지막입니다. 경기 화면에서 키를 변경할 수 있습니다.\n\n함께 즐기기\n친구 초대\n친구를 먼저 선택하세요\n경기 관전\n진행 중인 경기 보기\n채팅\n채널 · 1:1 대화\n내 전적\n온라인 경기 기록\n처음 오셨나요? 규칙과 프로젝트 안내\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다."
+    },
+    {
+      "file": "before-home-390x844.png",
+      "viewport": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "text": "Home\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nTRANSCENDENCE\n검토플레이어\n계정\n⌄\n\n플레이할 시간\n\n지금, 한 판 시작할까요?\n\n옆자리 친구와, 컴퓨터와, 온라인 상대와.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n공을 받아치고, 먼저 6점을 얻으세요.\n\n01 / 함께\n로컬 2인\n\n한 화면 · 한 키보드\n로그인 없이 플레이\n\n플레이어 1\nW\nS\n플레이어 2\n↑\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n내 속도에 맞는 연습 상대\n로그인 없이 플레이\n\n쉬움\n보통\n어려움\n내 조작 키\nW / S\n↑ / ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결\n온라인 로그인 필요\n\n상대 찾기는 로비에서 시작합니다.\n\n서버가 경기 규칙을 확정합니다.\n두 사람이 Power를 선택하면 Power 경기.\n온라인 로비로\n→\n\n이동 키가 먼저, Power 키는 마지막입니다. 경기 화면에서 키를 변경할 수 있습니다.\n\n함께 즐기기\n친구 초대\n친구를 먼저 선택하세요\n경기 관전\n진행 중인 경기 보기\n채팅\n채널 · 1:1 대화\n내 전적\n온라인 경기 기록\n처음 오셨나요? 규칙과 프로젝트 안내\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다."
+    },
+    {
+      "file": "before-online-lobby-1440x900.png",
+      "viewport": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "text": "Home\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nONLINE\n/ 랜덤 매칭\n소리 끔\n서비스 메뉴\n로컬 · AI\n\n소리가 꺼져 있습니다.\n\nP1\n\nPLAYER 1\n\nPOWER\n0\nONLINE\nFIRST TO 6\n0\n\nPLAYER 2\n\nONLINE OPPONENT\nP2\n\nPLAY TOGETHER\n\n랜덤 매칭\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n상대 찾기\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n규칙\nClassic\nPower\n코트\nWinter\nNight\nSpace\n조작\n↑ / ↓ · Space\nW / S · D\n모션\n시스템 설정\n줄이기\n상대 찾기\n\n이동 ↑ / ↓ · Power 모드 Space\n\n경기장을 클릭하면 키보드 입력이 활성화됩니다. 채팅·설정 입력 중에는 게임 키를 가로채지 않습니다.\n\n유효 반사 5회 충전 → 능력 키로 확장 → 강화 반사마다 1칸 소모. 이동하면서 발동할 수 있습니다.\n\n실제 연결 진단값"
+    },
+    {
+      "file": "before-online-lobby-1366x768.png",
+      "viewport": [
+        1366,
+        768
+      ],
+      "documentWidth": 1366,
+      "text": "Home\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nONLINE\n/ 랜덤 매칭\n소리 끔\n서비스 메뉴\n로컬 · AI\n\n소리가 꺼져 있습니다.\n\nP1\n\nPLAYER 1\n\nPOWER\n0\nONLINE\nFIRST TO 6\n0\n\nPLAYER 2\n\nONLINE OPPONENT\nP2\n\nPLAY TOGETHER\n\n랜덤 매칭\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n상대 찾기\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n규칙\nClassic\nPower\n코트\nWinter\nNight\nSpace\n조작\n↑ / ↓ · Space\nW / S · D\n모션\n시스템 설정\n줄이기\n상대 찾기\n\n이동 ↑ / ↓ · Power 모드 Space\n\n경기장을 클릭하면 키보드 입력이 활성화됩니다. 채팅·설정 입력 중에는 게임 키를 가로채지 않습니다.\n\n유효 반사 5회 충전 → 능력 키로 확장 → 강화 반사마다 1칸 소모. 이동하면서 발동할 수 있습니다.\n\n실제 연결 진단값"
+    },
+    {
+      "file": "before-online-lobby-390x844.png",
+      "viewport": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "text": "Home\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nONLINE\n/ 랜덤 매칭\n소리 끔\n서비스 메뉴\n로컬 · AI\n\n소리가 꺼져 있습니다.\n\nP1\n\nPLAYER 1\n\nPOWER\n0\nONLINE\nFIRST TO 6\n0\n\nPLAYER 2\n\nONLINE OPPONENT\n\nPLAY TOGETHER\n\n랜덤 매칭\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n상대 찾기\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n규칙\nClassic\nPower\n코트\nWinter\nNight\nSpace\n조작\n↑ / ↓ · Space\nW / S · D\n모션\n시스템 설정\n줄이기\n상대 찾기\n\n이동 ↑ / ↓ · Power 모드 Space\n\n경기장을 클릭하면 키보드 입력이 활성화됩니다. 채팅·설정 입력 중에는 게임 키를 가로채지 않습니다.\n\n유효 반사 5회 충전 → 능력 키로 확장 → 강화 반사마다 1칸 소모. 이동하면서 발동할 수 있습니다.\n\n실제 연결 진단값"
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:51658/login",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/app.f9b85f4e.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/css/app.13a4c55d.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/play",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/app.f9b85f4e.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/css/app.13a4c55d.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/css/378.9ec6bcc7.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/378.daefac18.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/auth/guest",
+      "kind": "fetch",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/login?token=check",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/app.f9b85f4e.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/css/app.13a4c55d.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/77.ab9d7a2d.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/app.f9b85f4e.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/css/app.13a4c55d.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/css/633.9ec6bcc7.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/633.f70ceb1d.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/image/[fixture-user]",
+      "kind": "image",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/nickname",
+      "kind": "fetch",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/app.f9b85f4e.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/css/app.13a4c55d.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/css/633.9ec6bcc7.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/633.f70ceb1d.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/image/[fixture-user]",
+      "kind": "image",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:51658/js/77.ab9d7a2d.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    }
+  ],
+  "webSockets": [
+    "ws://127.0.0.1:51658/socket.io/?EIO=4&transport=websocket",
+    "ws://127.0.0.1:51658/socket.io/?EIO=4&transport=websocket"
+  ],
+  "checks": [
+    {
+      "name": "One actual guest request",
+      "pass": true,
+      "detail": [
+        {
+          "url": "http://127.0.0.1:51658/auth/guest",
+          "kind": "fetch",
+          "method": "GET",
+          "navigation": false
+        }
+      ]
+    },
+    {
+      "name": "Actual guest cookie callback reaches intended game lobby",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Fixture nickname prepared through actual existing API",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "No automatic matching from navigation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "No page errors",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "pageErrors": [],
+  "indexSha256": "e60b86fcc3aa8596dd33c3250bfbc7c7d171ceeade93b6bc2c256b93189a735a",
+  "browser": "152.0.7977.77",
+  "guestTransport": "fetch"
+}

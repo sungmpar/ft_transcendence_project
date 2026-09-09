@@ -20,9 +20,38 @@ AUDIT = r"""(() => {
   const counters = {serverEvents: 0, serverPaddles: 0, whitePaddles: 0,
     trailDraws: 0, audioCreated: 0, audioClosed: 0, oscillatorsStarted: 0,
     activeOscillators: 0, inputPackets: 0, lastInput: null, socketsOpened: 0,
-    lastServerPaddleTick: null, lastServerPaddleEpoch: null};
+    lastServerPaddleTick: null, lastServerPaddleEpoch: null, lastServerState: null};
   const contexts = [], activeByContext = new WeakMap(), sockets = new Set(), events = new Set();
   const socketNumbers = new WeakMap(), transportHistory = [], keyDowns = {}, heldKeys = new Set();
+  const lifecycleHistory = [], syncAcks = new Set(), matchAliases = new Map();
+  let matchNumber = 0, previousStateBoundary = '';
+  function alias(value) {
+    if (typeof value !== 'string' || !value) return null;
+    if (!matchAliases.has(value)) {
+      matchAliases.set(value, ++matchNumber);
+      if (matchAliases.size > 16) matchAliases.delete(matchAliases.keys().next().value);
+    }
+    return matchAliases.get(value);
+  }
+  function lifecycle(type, detail = {}) {
+    lifecycleHistory.push({type, atMs: Math.round(performance.now()), ...detail});
+    if (lifecycleHistory.length > 128) lifecycleHistory.shift();
+  }
+  const integer = value => Number.isSafeInteger(value) && value >= 0 ? value : null;
+  function stateSummary(snapshot) {
+    const state = snapshot?.state;
+    if (!state || !['ready', 'rally', 'point', 'finished'].includes(state.phase)) return null;
+    return {matchAlias: alias(snapshot.matchId), tick: integer(state.tick), phase: state.phase,
+      score: [integer(state.players?.left?.score), integer(state.players?.right?.score)],
+      clockEpoch: integer(snapshot.clockEpoch)};
+  }
+  function observeReady(type, value) {
+    const state = stateSummary(value?.snapshot);
+    if (!state) return;
+    counters.lastServerState = state;
+    lifecycle(type, {...state, generation: integer(value.generation),
+      side: ['left', 'right', 'spectator'].includes(value.side) ? value.side : null});
+  }
   let keySequence = 0;
   const allowedKeys = ['ArrowUp', 'ArrowDown', 'KeyW', 'KeyS', 'KeyD', 'Space'];
   window.addEventListener('keydown', event => {
@@ -52,9 +81,33 @@ AUDIT = r"""(() => {
       try { record('namespace-connect-error', {connection, category: category(JSON.parse(data.slice(data.indexOf(',') + 1)))}); }
       catch { record('namespace-connect-error', {connection, category: 'unclassified'}); }
     }
+    // Observe only ACKs belonging to actual sessionSync requests; never expose
+    // a request/match/account ID, token, result name or arbitrary response body.
+    const acknowledgement = !outbound && data.match(/^43\/game,(\d+)\[/);
+    if (acknowledgement && syncAcks.delete(connection + ':' + acknowledgement[1])) {
+      try {
+        const value = JSON.parse(data.slice(data.indexOf('[')))[0];
+        const status = ['active', 'waiting', 'saving', 'retrying', 'saved', 'failed', 'unavailable', 'error'].includes(value?.status) ? value.status : 'unclassified';
+        lifecycle('session-sync-response', {status, matchAlias: alias(value?.matchId)});
+        if (value?.ready) observeReady('session-sync-ready', value.ready);
+      } catch { lifecycle('session-sync-response-unparsed'); }
+      return;
+    }
     if (!data.startsWith('42/game,')) return;
     try {
       const [name, value] = JSON.parse(data.slice(data.indexOf('[')));
+      if (outbound && name === 'sessionSync') {
+        const acknowledgement = data.match(/^42\/game,(\d+)\[/);
+        if (acknowledgement) syncAcks.add(connection + ':' + acknowledgement[1]);
+        while (syncAcks.size > 32) syncAcks.delete(syncAcks.values().next().value);
+        lifecycle('session-sync-request', {matchAlias: alias(value?.matchId),
+          role: ['player', 'spectator'].includes(value?.role) ? value.role : null});
+      }
+      if (!outbound && name === 'ready') observeReady('ready', value);
+      if (!outbound && ['sessionStatus', 'resultStatus', 'matchEnded'].includes(name)) {
+        lifecycle(name, {matchAlias: alias(value?.roomId),
+          status: ['active', 'waiting', 'saving', 'retrying', 'saved', 'failed', 'aborted'].includes(value?.status) ? value.status : null});
+      }
       if (outbound && name === 'keyboardEvent') {
         counters.inputPackets++;
         counters.lastInput = {up: value.up, down: value.down, actionId: value.actionId,
@@ -63,6 +116,13 @@ AUDIT = r"""(() => {
       if (!outbound && ['error', 'exception'].includes(name))
         record('game-error', {connection, category: category(value)});
       if (outbound || name !== 'snapshot' || !Array.isArray(value.events)) return;
+      const state = stateSummary(value);
+      if (state) {
+        counters.lastServerState = state;
+        const boundary = [state.matchAlias, state.phase, ...state.score].join(':');
+        if (boundary !== previousStateBoundary) lifecycle('snapshot-boundary', state);
+        previousStateBoundary = boundary;
+      }
       for (const item of value.events) {
         const key = [value.matchId, value.instanceId, value.clockEpoch, item.id].join(':');
         if (events.has(key)) continue;
@@ -116,7 +176,10 @@ AUDIT = r"""(() => {
     return fill.apply(this, args);
   };
   Object.defineProperty(window, '__FINAL_ONLINE_AUDIT__', {value: Object.freeze({
-    read: () => ({...counters, keyDowns: {...keyDowns}, transportHistory: transportHistory.map(entry => ({...entry})), audioStates: contexts.map(context => context.state), openSockets: sockets.size,
+    read: () => ({...counters, keyDowns: {...keyDowns}, transportHistory: transportHistory.map(entry => ({...entry})),
+      lifecycleHistory: lifecycleHistory.map(entry => ({...entry, ...(entry.score ? {score: [...entry.score]} : {})})),
+      lastServerState: counters.lastServerState ? {...counters.lastServerState, score: [...counters.lastServerState.score]} : null,
+      audioStates: contexts.map(context => context.state), openSockets: sockets.size,
       activeOscillators: contexts.reduce((sum, context) => sum + (context.state === 'closed' ? 0 : activeByContext.get(context).size), 0)}),
     closeTransport: () => { for (const socket of sockets) {
       record('controlled-close-requested', {connection: socketNumbers.get(socket)}); socket.close();
@@ -168,6 +231,28 @@ class BrowserChecks:
 
     async def screenshot(self, page, name):
         await page.screenshot(path=str(self.output / name), full_page=True, timeout=45000)
+
+    async def observer_state(self, page, room):
+        return await page.evaluate('''owned => {
+          const d = window.__ONLINE_DEBUG__, a = window.__FINAL_ONLINE_AUDIT__.read();
+          const state = d?.latest(), identity = d?.identity(), metrics = d?.metrics();
+          const status = document.querySelector('[data-testid=online-status]')?.textContent || '';
+          return {timeOriginMs: performance.timeOrigin, atMs: Math.round(performance.now()), sameOwnedMatch: identity?.matchId === owned,
+            side: identity?.side || null, generation: identity?.generation || null,
+            tick: state?.tick ?? null, phase: state?.phase || null,
+            score: state ? [state.players.left.score, state.players.right.score] : null,
+            hidden: document.hidden, documentFocused: document.hasFocus(),
+            courtFocused: document.activeElement?.dataset.testid === 'online-court',
+            fps: metrics?.fps ?? null, inputMessages: metrics?.inputMessages ?? null,
+            socketsOpened: a.socketsOpened, openSockets: a.openSockets, inputPackets: a.inputPackets,
+            keyDowns: a.keyDowns, lastInput: a.lastInput, lastServerState: a.lastServerState,
+            statusDisconnected: status.includes('연결이 끊'), statusRecovered: status.includes('복구'),
+            statusWatching: status.includes('관전 중'), statusLookupFailure: status.includes('조회에 실패'),
+            statusUnavailable: status.includes('복구할 수 없습니다'), statusSaved: status.includes('저장되었습니다'),
+            statusActiveSessionConflict: status.includes('이미 연결된 게임 세션'),
+            transportHistory: a.transportHistory, lifecycleHistory: a.lifecycleHistory,
+            resultVisible: !!document.querySelector('[data-testid=online-result]')};
+        }''', room)
 
     async def wait_presented_hit(self, page, before):
         """Require an actually presented new hit in a bounded stable window.
@@ -260,6 +345,7 @@ class BrowserChecks:
             watcher_before = await watcher.evaluate('({identity: window.__ONLINE_DEBUG__.identity(), tick: window.__ONLINE_DEBUG__.latest().tick})')
             watcher_sockets_before = (await self.audit(watcher))['socketsOpened']
             sockets_before = [(await self.audit(p))['socketsOpened'] for p in pages]
+            row['beforeFault'] = [await self.observer_state(page, room) for page in [*pages, watcher]]
             await watcher.evaluate('window.__FINAL_ONLINE_AUDIT__.closeTransport()')
             await watcher.wait_for_timeout(50)
             await watcher.context.set_offline(True)
@@ -269,6 +355,7 @@ class BrowserChecks:
             await asyncio.sleep(0.8)
             await watcher.context.set_offline(False)
             row['faultTiming']['onlineCommandCompletedAtMs'] = await watcher.evaluate('performance.now()')
+            row['afterOnlineCommand'] = [await self.observer_state(page, room) for page in [*pages, watcher]]
             # Recovery status is transient: full ready replaces the old owner.
             # Require the actual new connection and generation before live ticks.
             await watcher.wait_for_function('''old => {
@@ -299,30 +386,19 @@ class BrowserChecks:
             assert (await self.audit(watcher))['inputPackets'] == 0
             row['observerInputZeroAfterScreenshots'] = True
             row['observerTransportHistory'] = (await self.audit(watcher))['transportHistory']
+            row['recoveredObservation'] = [await self.observer_state(page, room) for page in [*pages, watcher]]
             row['status'] = 'PASS'
         except Exception:
             row['failureState'] = []
             for diagnostic_page in [*pages, watcher]:
                 try:
-                    state = await diagnostic_page.evaluate('''owned => {
-                      const d = window.__ONLINE_DEBUG__, a = window.__FINAL_ONLINE_AUDIT__.read();
-                      const status = document.querySelector('[data-testid=online-status]')?.textContent || '';
-                      return {sameOwnedMatch: d?.identity().matchId === owned, side: d?.identity().side || null,
-                        generation: d?.identity().generation || null, tick: d?.latest().tick || null,
-                        phase: d?.latest().phase || null, inputMessages: d?.metrics().inputMessages ?? null,
-                        socketsOpened: a.socketsOpened, openSockets: a.openSockets, inputPackets: a.inputPackets,
-                        statusDisconnected: status.includes('연결이 끊'), statusRecovered: status.includes('복구'),
-                        statusWatching: status.includes('관전 중'), statusLookupFailure: status.includes('조회에 실패'),
-                        statusUnavailable: status.includes('복구할 수 없습니다'), statusSaved: status.includes('저장되었습니다'),
-                        statusActiveSessionConflict: status.includes('이미 연결된 게임 세션'),
-                        transportHistory: a.transportHistory,
-                        resultVisible: !!document.querySelector('[data-testid=online-result]')};
-                    }''', room)
+                    state = await self.observer_state(diagnostic_page, room)
                     row['failureState'].append(state)
                 except Exception as error:
                     row['failureState'].append({'diagnosticError': type(error).__name__})
             raise
         finally:
+            row['driverDiagnostics'] = [driver.diagnostic() for driver in drivers]
             for driver in drivers:
                 await driver.stop()
 
@@ -461,12 +537,35 @@ class PaddleDriver:
         self.held = None
         self.layout = 'arrows'
         self.last_key_down = 0.0
+        self.history = []
+        self.last_sample = 0.0
+        self.error = None
+        self.loops = 0
+
+    def record(self, event, **detail):
+        self.history.append({'event': event, 'atMonotonicMs': round(time.monotonic() * 1000), **detail})
+        self.history = self.history[-128:]
+
+    def diagnostic(self):
+        return {'loops': self.loops, 'taskDone': self.task.done() if self.task else None,
+                'errorType': self.error, 'heldKey': self.held, 'history': list(self.history)}
 
     def start(self):
         self.task = asyncio.create_task(self.run())
 
     async def run(self):
+        try:
+            await self.drive()
+        except asyncio.CancelledError:
+            raise
+        except Exception as error:
+            self.error = type(error).__name__
+            self.record('driver-error', errorType=self.error)
+            raise
+
+    async def drive(self):
         while True:
+            self.loops += 1
             value = await self.page.evaluate('''() => {
               const debug = window.__ONLINE_DEBUG__; if (!debug) return null;
               const state = debug.latest(), side = debug.identity().side;
@@ -480,9 +579,17 @@ class PaddleDriver:
                 const folded = ((future - ball.radius) % (2 * span) + 2 * span) % (2 * span);
                 target = ball.radius + (folded <= span ? folded : 2 * span - folded);
               }
-              return {side, ball: target, player, phase: state.phase,
+              return {side, ball: target, player, phase: state.phase, tick: state.tick,
+                score: [state.players.left.score, state.players.right.score],
+                atMs: Math.round(performance.now()), fps: debug.metrics().fps,
+                hidden: document.hidden, documentFocused: document.hasFocus(),
+                courtFocused: document.activeElement?.dataset.testid === 'online-court',
                 focused: document.activeElement?.dataset.testid === 'online-court' && !document.hidden};
             }''')
+            if time.monotonic() - self.last_sample >= 0.5:
+                self.last_sample = time.monotonic()
+                fields = ['side', 'phase', 'tick', 'score', 'atMs', 'fps', 'hidden', 'documentFocused', 'courtFocused', 'focused']
+                self.record('state-sample', **({key: value[key] for key in fields} if value else {'noActiveSession': True}))
             wanted = None
             if value and value['focused'] and value['phase'] in ['ready', 'rally', 'point']:
                 delta = value['ball'] - (value['player']['y'] + value['player']['height'] / 2)
@@ -491,14 +598,17 @@ class PaddleDriver:
             if wanted != self.held:
                 if self.held:
                     await self.page.keyboard.up(self.held)
+                    self.record('key-up', key=self.held)
                 self.held = wanted
                 if wanted:
                     await self.page.keyboard.down(wanted)
+                    self.record('key-down', key=wanted)
                     self.last_key_down = time.monotonic()
             elif wanted and time.monotonic() - self.last_key_down >= 0.12:
                 # Native focus/blur clears held input; repeat the real key while
                 # the court is focused, never while a settings control owns it.
                 await self.page.keyboard.down(wanted)
+                self.record('key-down-repeat', key=wanted)
                 self.last_key_down = time.monotonic()
             await asyncio.sleep(0.03)
 

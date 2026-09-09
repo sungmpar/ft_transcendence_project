@@ -1,0 +1,856 @@
+{
+  "at": "2026-09-08T19:48:37.448514+00:00",
+  "phase": "after",
+  "status": "CAPTURED",
+  "base": "http://127.0.0.1:52957",
+  "fixture": "Actual guest account in a disposable PostgreSQL schema; fixed review nickname",
+  "limits": "Automated Chrome application test; no native browser permission UI or public-to-private LNA verification",
+  "screens": [
+    {
+      "file": "after-login-1440x900.png",
+      "viewport": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "text": "TRANSCENDENCE\n로컬 · AI 플레이 ↗\n\n서로 다른 화면, 같은 경기\n\n온라인에서\n함께 플레이하세요.\n\n로그인하면 온라인 대전, 친구 초대와 관전을 이용할 수 있습니다. 로컬 2인과 AI 대전은 로그인 없이 바로 시작할 수 있습니다.\n\n로컬 2인 시작 →\nAI 대전 시작 →\n\n온라인 로그인\n\n시작하기\n\n로그인하면 홈에서 온라인 대전, 친구 초대, 관전을 선택할 수 있습니다.\n\n게스트로 체험하기\n\n별도 가입 절차 없이 체험용 계정을 만들어 시작합니다. 로그인하면 온라인 대전과 채팅을 이용할 수 있습니다.\n\n42 로그인 비활성화\n플레이 방식 다시 선택\n로그인이 잘되지 않나요?\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-login-1366x768.png",
+      "viewport": [
+        1366,
+        768
+      ],
+      "documentWidth": 1366,
+      "text": "TRANSCENDENCE\n로컬 · AI 플레이 ↗\n\n서로 다른 화면, 같은 경기\n\n온라인에서\n함께 플레이하세요.\n\n로그인하면 온라인 대전, 친구 초대와 관전을 이용할 수 있습니다. 로컬 2인과 AI 대전은 로그인 없이 바로 시작할 수 있습니다.\n\n로컬 2인 시작 →\nAI 대전 시작 →\n\n온라인 로그인\n\n시작하기\n\n로그인하면 홈에서 온라인 대전, 친구 초대, 관전을 선택할 수 있습니다.\n\n게스트로 체험하기\n\n별도 가입 절차 없이 체험용 계정을 만들어 시작합니다. 로그인하면 온라인 대전과 채팅을 이용할 수 있습니다.\n\n42 로그인 비활성화\n플레이 방식 다시 선택\n로그인이 잘되지 않나요?\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-login-390x844.png",
+      "viewport": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "text": "TRANSCENDENCE\n로컬 · AI 플레이 ↗\n\n서로 다른 화면, 같은 경기\n\n온라인에서\n함께 플레이하세요.\n\n로그인하면 온라인 대전, 친구 초대와 관전을 이용할 수 있습니다. 로컬 2인과 AI 대전은 로그인 없이 바로 시작할 수 있습니다.\n\n로컬 2인 시작 →\nAI 대전 시작 →\n\n온라인 로그인\n\n시작하기\n\n로그인하면 홈에서 온라인 대전, 친구 초대, 관전을 선택할 수 있습니다.\n\n게스트로 체험하기\n\n별도 가입 절차 없이 체험용 계정을 만들어 시작합니다. 로그인하면 온라인 대전과 채팅을 이용할 수 있습니다.\n\n42 로그인 비활성화\n플레이 방식 다시 선택\n로그인이 잘되지 않나요?\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-play-hub-1440x900.png",
+      "viewport": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "text": "Ⅱ\nTRANSCENDENCE\n온라인 로그인 ↗\n\n바로 플레이\n\n지금, 한 판 시작할까요?\n\n한 키보드로 친구와 대결하거나, AI와 연습하거나, 온라인에서 다른 플레이어와 겨뤄보세요.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n기본 규칙(Classic)은 먼저 6점을 얻으면 승리합니다.\n\n01 / 함께\n로컬 2인\n\n한 컴퓨터에서 키보드를 나눠 쓰며 대결합니다.\n로그인 없이 시작할 수 있습니다.\n\n플레이어 1 · 왼쪽\n위로\nW\n아래로\nS\n플레이어 2 · 오른쪽\n위로\n↑\n아래로\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n혼자 연습할 수 있는 컴퓨터 상대입니다.\n로그인 없이 시작할 수 있습니다.\n\n쉬움·보통·어려움 중에서 난이도를 선택하세요.\n\n쉬움\n보통\n어려움\n내 조작 키\n위로 W · 아래로 S\n위로 ↑ · 아래로 ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결합니다.\n온라인 로그인이 필요합니다.\n\n온라인 로비에서 ‘상대 찾기’를 누르세요.\n\n두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n로그인하고 대전\n→\n\n표시된 키는 위로 이동, 아래로 이동 순서입니다. 경기 화면에서 키를 바꿀 수 있습니다.\n\n함께 즐기기\n친구 초대\n로그인 후 친구 선택\n경기 관전\n진행 중인 경기 보기\n처음 오셨나요? 모드별 플레이 방법\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다.\n\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-play-hub-1366x768.png",
+      "viewport": [
+        1366,
+        768
+      ],
+      "documentWidth": 1366,
+      "text": "Ⅱ\nTRANSCENDENCE\n온라인 로그인 ↗\n\n바로 플레이\n\n지금, 한 판 시작할까요?\n\n한 키보드로 친구와 대결하거나, AI와 연습하거나, 온라인에서 다른 플레이어와 겨뤄보세요.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n기본 규칙(Classic)은 먼저 6점을 얻으면 승리합니다.\n\n01 / 함께\n로컬 2인\n\n한 컴퓨터에서 키보드를 나눠 쓰며 대결합니다.\n로그인 없이 시작할 수 있습니다.\n\n플레이어 1 · 왼쪽\n위로\nW\n아래로\nS\n플레이어 2 · 오른쪽\n위로\n↑\n아래로\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n혼자 연습할 수 있는 컴퓨터 상대입니다.\n로그인 없이 시작할 수 있습니다.\n\n쉬움·보통·어려움 중에서 난이도를 선택하세요.\n\n쉬움\n보통\n어려움\n내 조작 키\n위로 W · 아래로 S\n위로 ↑ · 아래로 ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결합니다.\n온라인 로그인이 필요합니다.\n\n온라인 로비에서 ‘상대 찾기’를 누르세요.\n\n두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n로그인하고 대전\n→\n\n표시된 키는 위로 이동, 아래로 이동 순서입니다. 경기 화면에서 키를 바꿀 수 있습니다.\n\n함께 즐기기\n친구 초대\n로그인 후 친구 선택\n경기 관전\n진행 중인 경기 보기\n처음 오셨나요? 모드별 플레이 방법\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다.\n\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-play-hub-390x844.png",
+      "viewport": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "text": "Ⅱ\nTRANSCENDENCE\n온라인 로그인 ↗\n\n바로 플레이\n\n지금, 한 판 시작할까요?\n\n한 키보드로 친구와 대결하거나, AI와 연습하거나, 온라인에서 다른 플레이어와 겨뤄보세요.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n기본 규칙(Classic)은 먼저 6점을 얻으면 승리합니다.\n\n01 / 함께\n로컬 2인\n\n한 컴퓨터에서 키보드를 나눠 쓰며 대결합니다.\n로그인 없이 시작할 수 있습니다.\n\n플레이어 1 · 왼쪽\n위로\nW\n아래로\nS\n플레이어 2 · 오른쪽\n위로\n↑\n아래로\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n혼자 연습할 수 있는 컴퓨터 상대입니다.\n로그인 없이 시작할 수 있습니다.\n\n쉬움·보통·어려움 중에서 난이도를 선택하세요.\n\n쉬움\n보통\n어려움\n내 조작 키\n위로 W · 아래로 S\n위로 ↑ · 아래로 ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결합니다.\n온라인 로그인이 필요합니다.\n\n온라인 로비에서 ‘상대 찾기’를 누르세요.\n\n두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n로그인하고 대전\n→\n\n표시된 키는 위로 이동, 아래로 이동 순서입니다. 경기 화면에서 키를 바꿀 수 있습니다.\n\n함께 즐기기\n친구 초대\n로그인 후 친구 선택\n경기 관전\n진행 중인 경기 보기\n처음 오셨나요? 모드별 플레이 방법\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다.\n\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-home-1440x900.png",
+      "viewport": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "text": "홈\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nTRANSCENDENCE\n검토플레이어\n계정\n⌄\n\n플레이할 시간\n\n지금, 한 판 시작할까요?\n\n한 키보드로 친구와 대결하거나, AI와 연습하거나, 온라인에서 다른 플레이어와 겨뤄보세요.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n기본 규칙(Classic)은 먼저 6점을 얻으면 승리합니다.\n\n01 / 함께\n로컬 2인\n\n한 컴퓨터에서 키보드를 나눠 쓰며 대결합니다.\n로그인 없이 시작할 수 있습니다.\n\n플레이어 1 · 왼쪽\n위로\nW\n아래로\nS\n플레이어 2 · 오른쪽\n위로\n↑\n아래로\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n혼자 연습할 수 있는 컴퓨터 상대입니다.\n로그인 없이 시작할 수 있습니다.\n\n쉬움·보통·어려움 중에서 난이도를 선택하세요.\n\n쉬움\n보통\n어려움\n내 조작 키\n위로 W · 아래로 S\n위로 ↑ · 아래로 ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결합니다.\n온라인 로그인이 필요합니다.\n\n온라인 로비에서 ‘상대 찾기’를 누르세요.\n\n두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n온라인 로비로\n→\n\n표시된 키는 위로 이동, 아래로 이동 순서입니다. 경기 화면에서 키를 바꿀 수 있습니다.\n\n함께 즐기기\n친구 초대\n친구를 먼저 선택하세요\n경기 관전\n진행 중인 경기 보기\n채팅\n채널 · 1:1 대화\n내 전적\n온라인 경기 기록\n처음 오셨나요? 모드별 플레이 방법\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다.\n\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-home-1366x768.png",
+      "viewport": [
+        1366,
+        768
+      ],
+      "documentWidth": 1366,
+      "text": "홈\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nTRANSCENDENCE\n검토플레이어\n계정\n⌄\n\n플레이할 시간\n\n지금, 한 판 시작할까요?\n\n한 키보드로 친구와 대결하거나, AI와 연습하거나, 온라인에서 다른 플레이어와 겨뤄보세요.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n기본 규칙(Classic)은 먼저 6점을 얻으면 승리합니다.\n\n01 / 함께\n로컬 2인\n\n한 컴퓨터에서 키보드를 나눠 쓰며 대결합니다.\n로그인 없이 시작할 수 있습니다.\n\n플레이어 1 · 왼쪽\n위로\nW\n아래로\nS\n플레이어 2 · 오른쪽\n위로\n↑\n아래로\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n혼자 연습할 수 있는 컴퓨터 상대입니다.\n로그인 없이 시작할 수 있습니다.\n\n쉬움·보통·어려움 중에서 난이도를 선택하세요.\n\n쉬움\n보통\n어려움\n내 조작 키\n위로 W · 아래로 S\n위로 ↑ · 아래로 ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결합니다.\n온라인 로그인이 필요합니다.\n\n온라인 로비에서 ‘상대 찾기’를 누르세요.\n\n두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n온라인 로비로\n→\n\n표시된 키는 위로 이동, 아래로 이동 순서입니다. 경기 화면에서 키를 바꿀 수 있습니다.\n\n함께 즐기기\n친구 초대\n친구를 먼저 선택하세요\n경기 관전\n진행 중인 경기 보기\n채팅\n채널 · 1:1 대화\n내 전적\n온라인 경기 기록\n처음 오셨나요? 모드별 플레이 방법\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다.\n\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-home-390x844.png",
+      "viewport": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "text": "홈\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nTRANSCENDENCE\n검토플레이어\n계정\n⌄\n\n플레이할 시간\n\n지금, 한 판 시작할까요?\n\n한 키보드로 친구와 대결하거나, AI와 연습하거나, 온라인에서 다른 플레이어와 겨뤄보세요.\n\n경기 규칙\n로컬 · AI에 적용\nClassic\nPower\n\n기본 규칙(Classic)은 먼저 6점을 얻으면 승리합니다.\n\n01 / 함께\n로컬 2인\n\n한 컴퓨터에서 키보드를 나눠 쓰며 대결합니다.\n로그인 없이 시작할 수 있습니다.\n\n플레이어 1 · 왼쪽\n위로\nW\n아래로\nS\n플레이어 2 · 오른쪽\n위로\n↑\n아래로\n↓\n로컬 2인 시작\n→\n02 / 혼자 바로 플레이\nAI 대전\n\n혼자 연습할 수 있는 컴퓨터 상대입니다.\n로그인 없이 시작할 수 있습니다.\n\n쉬움·보통·어려움 중에서 난이도를 선택하세요.\n\n쉬움\n보통\n어려움\n내 조작 키\n위로 W · 아래로 S\n위로 ↑ · 아래로 ↓\nAI와 대전\n→\n03 / 온라인에서 만나기\n온라인 대전\n\n서로 다른 화면에서 대결합니다.\n온라인 로그인이 필요합니다.\n\n온라인 로비에서 ‘상대 찾기’를 누르세요.\n\n두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n온라인 로비로\n→\n\n표시된 키는 위로 이동, 아래로 이동 순서입니다. 경기 화면에서 키를 바꿀 수 있습니다.\n\n함께 즐기기\n친구 초대\n친구를 먼저 선택하세요\n경기 관전\n진행 중인 경기 보기\n채팅\n채널 · 1:1 대화\n내 전적\n온라인 경기 기록\n처음 오셨나요? 모드별 플레이 방법\n\n물리 키보드로 플레이하세요. 모바일에서는 메뉴를 이용할 수 있으며, 터치 플레이는 지원하지 않습니다.\n\n프로젝트 소개\n\n두 사람이 공을 주고받으며 먼저 6점을 얻으면 승리하는 Pong 게임입니다. 한 컴퓨터에서 키보드를 나눠 쓰거나, AI와 연습하거나, 온라인으로 대결할 수 있습니다.\n\nVue 3\nTypeScript\nCanvas 2D\nNestJS\nNode.js\nSocket.IO(WebSocket 전송)\nPostgreSQL\nTypeORM\n사용한 기술과 경기 방식 알아보기"
+    },
+    {
+      "file": "after-online-lobby-1440x900.png",
+      "viewport": [
+        1440,
+        900
+      ],
+      "documentWidth": 1440,
+      "text": "홈\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nONLINE\n/ 랜덤 매칭\n소리 끔\n홈으로\n로컬 · AI\n\n소리가 꺼져 있습니다.\n\nP1\n\nPLAYER 1\n\nPOWER\n0\nONLINE\nFIRST TO 6\n0\n\nPLAYER 2\n\nONLINE OPPONENT\nP2\n\nPLAY TOGETHER\n\n랜덤 매칭\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n상대 찾기\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n규칙\nClassic\nPower\n코트\nWinter\nNight\nSpace\n조작\n↑ / ↓ · Space\nW / S · D\n모션\n시스템 설정\n줄이기\n\n랜덤 매칭에서는 두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n\n상대 찾기\n\n위로 ↑ · 아래로 ↓ · Power Space\n\n경기장을 클릭한 뒤 키보드로 조작하세요. 채팅을 입력하거나 설정을 바꿀 때는 패들이 움직이지 않습니다.\n\n공을 패들(공을 받아치는 막대)로 다섯 번 받아치면 Power가 충전됩니다. Power 키를 누르면 패들이 길어집니다. 길어진 상태에서 공을 받아칠 때마다 충전량이 한 칸씩 줄어들고, 모두 소모하면 원래 길이로 돌아옵니다. 이동하면서 사용할 수 있습니다.\n\n연결 상태 자세히 보기"
+    },
+    {
+      "file": "after-online-lobby-1366x768.png",
+      "viewport": [
+        1366,
+        768
+      ],
+      "documentWidth": 1366,
+      "text": "홈\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nONLINE\n/ 랜덤 매칭\n소리 끔\n홈으로\n로컬 · AI\n\n소리가 꺼져 있습니다.\n\nP1\n\nPLAYER 1\n\nPOWER\n0\nONLINE\nFIRST TO 6\n0\n\nPLAYER 2\n\nONLINE OPPONENT\nP2\n\nPLAY TOGETHER\n\n랜덤 매칭\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n상대 찾기\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n규칙\nClassic\nPower\n코트\nWinter\nNight\nSpace\n조작\n↑ / ↓ · Space\nW / S · D\n모션\n시스템 설정\n줄이기\n\n랜덤 매칭에서는 두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n\n상대 찾기\n\n위로 ↑ · 아래로 ↓ · Power Space\n\n경기장을 클릭한 뒤 키보드로 조작하세요. 채팅을 입력하거나 설정을 바꿀 때는 패들이 움직이지 않습니다.\n\n공을 패들(공을 받아치는 막대)로 다섯 번 받아치면 Power가 충전됩니다. Power 키를 누르면 패들이 길어집니다. 길어진 상태에서 공을 받아칠 때마다 충전량이 한 칸씩 줄어들고, 모두 소모하면 원래 길이로 돌아옵니다. 이동하면서 사용할 수 있습니다.\n\n연결 상태 자세히 보기"
+    },
+    {
+      "file": "after-online-lobby-390x844.png",
+      "viewport": [
+        390,
+        844
+      ],
+      "documentWidth": 390,
+      "text": "홈\n2P\n로컬 · AI\n대전\n친구\n초대\n관전\n채팅\n전적\n프로필\n2FA\n로그아웃\nⅡ\nONLINE\n/ 랜덤 매칭\n소리 끔\n홈으로\n로컬 · AI\n\n소리가 꺼져 있습니다.\n\nP1\n\nPLAYER 1\n\nPOWER\n0\nONLINE\nFIRST TO 6\n0\n\nPLAYER 2\n\nONLINE OPPONENT\n\nPLAY TOGETHER\n\n랜덤 매칭\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n상대 찾기\n\n연결됐습니다. 상대를 찾을 수 있습니다.\n\n규칙\nClassic\nPower\n코트\nWinter\nNight\nSpace\n조작\n↑ / ↓ · Space\nW / S · D\n모션\n시스템 설정\n줄이기\n\n랜덤 매칭에서는 두 사람이 모두 Power를 선택하면 Power 규칙으로 진행합니다. 한 사람이라도 Classic을 선택하면 Classic 규칙으로 진행합니다.\n\n상대 찾기\n\n위로 ↑ · 아래로 ↓ · Power Space\n\n경기장을 클릭한 뒤 키보드로 조작하세요. 채팅을 입력하거나 설정을 바꿀 때는 패들이 움직이지 않습니다.\n\n공을 패들(공을 받아치는 막대)로 다섯 번 받아치면 Power가 충전됩니다. Power 키를 누르면 패들이 길어집니다. 길어진 상태에서 공을 받아칠 때마다 충전량이 한 칸씩 줄어들고, 모두 소모하면 원래 길이로 돌아옵니다. 이동하면서 사용할 수 있습니다.\n\n연결 상태 자세히 보기"
+    }
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:52957/login",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/app.d972f9c7.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/app.8ae4faf4.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/play",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/app.d972f9c7.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/app.8ae4faf4.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/378.e0fb068c.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/378.f92597b6.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/auth/guest",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/login?token=check",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/app.d972f9c7.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/app.8ae4faf4.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/77.ee2108d3.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/app.d972f9c7.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/app.8ae4faf4.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/633.e0fb068c.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/633.df2d3705.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/image/[fixture-user]",
+      "kind": "image",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/nickname",
+      "kind": "fetch",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/app.d972f9c7.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/app.8ae4faf4.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/633.e0fb068c.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/633.df2d3705.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/image/[fixture-user]",
+      "kind": "image",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/77.ee2108d3.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/play/local?rule=%5Bredacted%5D",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/app.d972f9c7.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/app.8ae4faf4.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/702.627cc7fc.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/play",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/app.d972f9c7.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/app.8ae4faf4.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/378.e0fb068c.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/378.f92597b6.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/",
+      "kind": "document",
+      "method": "GET",
+      "navigation": true
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/chunk-vendors.7d3a6c92.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/app.d972f9c7.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/app.8ae4faf4.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/me",
+      "kind": "xhr",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/status",
+      "kind": "xhr",
+      "method": "PATCH",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/css/633.e0fb068c.css",
+      "kind": "stylesheet",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/633.df2d3705.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/user/image/[fixture-user]",
+      "kind": "image",
+      "method": "GET",
+      "navigation": false
+    },
+    {
+      "url": "http://127.0.0.1:52957/js/702.627cc7fc.js",
+      "kind": "script",
+      "method": "GET",
+      "navigation": false
+    }
+  ],
+  "webSockets": [
+    "ws://127.0.0.1:52957/socket.io/?EIO=4&transport=websocket",
+    "ws://127.0.0.1:52957/socket.io/?EIO=4&transport=websocket"
+  ],
+  "checks": [
+    {
+      "name": "login 1440 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login 1366 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login 390 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login has one shared project introduction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login starts with collapsed details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login key technologies visible outside collapsed details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login Tab reaches introduction with visible focus",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login Enter opens native details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login expanded introduction 1440 fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login expanded introduction 390 fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login expanded introduction at CSS 200% fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login Space closes native details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "login introduction adds no HTTP or WebSocket requests",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 1440 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 1440 local start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 1440 ai start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 1440 online start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 1366 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 1366 local start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 1366 ai start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 1366 online start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub 390 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub has one shared project introduction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub starts with collapsed details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub key technologies visible outside collapsed details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub Tab reaches introduction with visible focus",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub Enter opens native details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub expanded introduction 1440 fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub expanded introduction 390 fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub expanded introduction at CSS 200% fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub Space closes native details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "play-hub introduction adds no HTTP or WebSocket requests",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "One actual guest request",
+      "pass": true,
+      "detail": [
+        {
+          "url": "http://127.0.0.1:52957/auth/guest",
+          "kind": "document",
+          "method": "GET",
+          "navigation": true
+        }
+      ]
+    },
+    {
+      "name": "Guest request is a document navigation, never fetch",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Actual guest cookie callback reaches intended game lobby",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Fixture nickname prepared through actual existing API",
+      "pass": true,
+      "detail": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "name": "home 1440 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home 1440 local start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home 1440 ai start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home 1440 online start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home 1366 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home 1366 local start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home 1366 ai start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home 1366 online start button stays in first viewport",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home 390 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home has one shared project introduction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home starts with collapsed details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home key technologies visible outside collapsed details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home Tab reaches introduction with visible focus",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home Enter opens native details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home expanded introduction 1440 fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home expanded introduction 390 fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home expanded introduction at CSS 200% fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home Space closes native details",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home introduction adds no HTTP or WebSocket requests",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online-lobby 1440 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online-lobby 1366 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online-lobby 390 has no horizontal overflow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Online details explain occurrence counts and input confirmation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Online selected keys have explicit roles",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Static build makes no HMR connection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "No automatic matching from navigation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Local copy follows remapped keys",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Public hub shows saved key roles",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Public hub shows matching local paddle bindings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Home shows saved key roles",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Home shows matching local paddle bindings",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "AI chosen keys control the described human left paddle",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "No page errors",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "pageErrors": [],
+  "indexSha256": "f168717e4c47034a74243bbd68e38467112c107f5ff64b6af358904eb197e570",
+  "browser": "152.0.7977.77",
+  "guestTransport": "document"
+}

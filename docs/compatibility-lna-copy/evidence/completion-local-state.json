@@ -1,0 +1,216 @@
+{
+  "at": "2026-09-08T20:03:58.762584+00:00",
+  "repository": "sungmpar/ft_transcendence_project",
+  "branch": "main",
+  "head": "ecbb0ee30694f372b8e6e51c1642ef258681443d",
+  "stagedPaths": [],
+  "sourceChanges": [
+    {
+      "status": " M",
+      "path": "README.md",
+      "category": "documentation",
+      "sha256": "e3bfb05f1d2b47f9caebafcdc80db978e4aeec4803e7f5b38c9fcb1d0e4e5565"
+    },
+    {
+      "status": " M",
+      "path": "backend/src/auth/auth.controller.ts",
+      "category": "product",
+      "sha256": "3bc5dfcc35e0afa9caca3ce71fdb3c7619c4d6959e9674ab925c29f1eeee2c2c"
+    },
+    {
+      "status": " M",
+      "path": "backend/src/game/clock-recovery.spec.ts",
+      "category": "verification",
+      "sha256": "e0bc3f49f5233e70f9c149a1a4fa76503b14338a1a68bfb2da6d8029dfe67bd7"
+    },
+    {
+      "status": " M",
+      "path": "backend/src/game/online-result.spec.ts",
+      "category": "verification",
+      "sha256": "fb5de073c0eaf0ac0ea722d6f3080cbbc7aa78ee597e07177c0067f377864f14"
+    },
+    {
+      "status": " M",
+      "path": "backend/test/home-auth-prerequisites.e2e-spec.ts",
+      "category": "verification",
+      "sha256": "a4428d5a8b322805fa96492876c81aa8e6a3af3df9c9c1be650cc29a4628413d"
+    },
+    {
+      "status": " M",
+      "path": "backend/test/home-guest-entry.e2e-spec.ts",
+      "category": "verification",
+      "sha256": "446ae353697585801e025c2c637949e9545061f726025d581a9298521eb1c0ae"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/arcade/launch.css",
+      "category": "product",
+      "sha256": "d35318b993ff5d531cfdcc7324ebcb59a2ce946262b41faacffb5300d574b0c6"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/arcade/online-result.ts",
+      "category": "product",
+      "sha256": "8bcc6b3991ad969ca7a7f881aac9658871ade3593d5208a20d15b4fc7dd0f385"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/SideBar.vue",
+      "category": "product",
+      "sha256": "6c9b93eff1155ed8d5de9149373bb07d944236e44dc3d956ab930cd84d1657ec"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/arcade/LaunchPanel.vue",
+      "category": "product",
+      "sha256": "bdb1861a4674a1d31605e0f15f3658fd569d17529e4496ba2b357237abbb4e87"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/game/OnlineGameShell.vue",
+      "category": "product",
+      "sha256": "954ed90cf0b1a3f3c4abf294587e95b31eb46933ecdf7a157a4add9113847c4c"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/views/GameView.vue",
+      "category": "product",
+      "sha256": "62f782871342c7888a45403ea404b07bf32debec92bb7141245475d53dc84e47"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/views/HomeView.vue",
+      "category": "product",
+      "sha256": "a926a3f68ad7885f5e6284ff91aa0e8b76d8b9d97aa8f5de124f677ecb9655e2"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/views/InviteGameView.vue",
+      "category": "product",
+      "sha256": "ff6abed906eece31576de154cb7b5ef15ae4772d84cd1c1c2dda5e93c610fc75"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/views/LocalPlayView.vue",
+      "category": "product",
+      "sha256": "66d489787968d0f4976e6d0af1079b35200c7cfcf623aff913d4e596f2b9aa5e"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/views/LoginView.vue",
+      "category": "product",
+      "sha256": "15daf615bfa4833858819cc5d52e0c4dcc46fb0749e2db503a8b1757dc3f1f91"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/views/PlayHubView.vue",
+      "category": "product",
+      "sha256": "aabf395e5fdf11b662492078a9d83de8a1af83404432d65715afa370d50f7add"
+    },
+    {
+      "status": " M",
+      "path": "frontend/vue.config.js",
+      "category": "product",
+      "sha256": "6a79e25e23719d41fbcc494c3741db8f69a41df640888a65122fc45ab0039df9"
+    },
+    {
+      "status": " M",
+      "path": "scripts/browser-home-auth.py",
+      "category": "verification",
+      "sha256": "570ebd5450fe832ceb477d1988fd204fc0c828d577a402b0f8ba55c978efaf11"
+    },
+    {
+      "status": " M",
+      "path": "scripts/browser-local-modes.py",
+      "category": "verification",
+      "sha256": "69de9bd8013929f7b34e4e148d17532b09ede1f071af4339646c561dfb008ee8"
+    },
+    {
+      "status": " M",
+      "path": "scripts/browser-online-final.py",
+      "category": "verification",
+      "sha256": "9b0433c58221933165921234ebd0944d62960adfc79d23d734dacad761b48305"
+    },
+    {
+      "status": " M",
+      "path": "scripts/check-arcade.cjs",
+      "category": "verification",
+      "sha256": "734a0eec0a9aac2c6949af5591735d91fe1372b134c38a2021e248205cb45089"
+    },
+    {
+      "status": "??",
+      "path": "backend/src/game/guest-navigation-url.spec.ts",
+      "category": "verification",
+      "sha256": "a16392847103f7371841ecebcbd228c1ce7e446b24ba0eac51694455c2667178"
+    },
+    {
+      "status": "??",
+      "path": "backend/src/game/guest-redirect-controller.spec.ts",
+      "category": "verification",
+      "sha256": "e60cb1a12c821e70b3650538fc17c78f3e6a59c5b60d8b716c83e76f585ca1e6"
+    },
+    {
+      "status": "??",
+      "path": "backend/test/compat-hmr-jest.json",
+      "category": "verification",
+      "sha256": "9ecb398681804afc6d38540071447229d9722b348a075d63c2fb2131b03a3896"
+    },
+    {
+      "status": "??",
+      "path": "backend/test/compat-hmr.spec.js",
+      "category": "verification",
+      "sha256": "aaac962bf4325597f7e2b395893ffc7ae94874bab0ab8e3d193102f42058c090"
+    },
+    {
+      "status": "??",
+      "path": "backend/test/guest-navigation-jest.json",
+      "category": "verification",
+      "sha256": "7c4c9c7295dec1669b4fb10e2c601df50b2e5d37540b740c83e90ffb0a0e06f2"
+    },
+    {
+      "status": "??",
+      "path": "frontend/src/arcade/guest-navigation-url.ts",
+      "category": "product",
+      "sha256": "b220156b2c9294c83a41793cba7e5641f6311a7739f15759bb82e7a3a7a4512a"
+    },
+    {
+      "status": "??",
+      "path": "frontend/src/components/arcade/ProjectInfo.vue",
+      "category": "product",
+      "sha256": "24c90e1e5b6a49f4af5eb5e044fb1a04946866bda7f1b035ba09528975083518"
+    },
+    {
+      "status": "??",
+      "path": "scripts/browser-compat-copy.py",
+      "category": "verification",
+      "sha256": "f627db63df88b46e3e231a3b712e6430f060ef39f0da0ab13ee7ebd6b351500d"
+    },
+    {
+      "status": "??",
+      "path": "scripts/browser-compat-hmr.py",
+      "category": "verification",
+      "sha256": "6cd0426715662ca656ac1f8a0c3729336a81429936f03f62c272955f3a325e98"
+    },
+    {
+      "status": "??",
+      "path": "scripts/compat-hmr-config.cjs",
+      "category": "verification",
+      "sha256": "38701c52c7b4ca56a899449c02a6f69e942cdd86324cc3bfe21380b0bb2110b6"
+    },
+    {
+      "status": "??",
+      "path": "scripts/compat-hmr-fixture.cjs",
+      "category": "verification",
+      "sha256": "bc34afb33d2b3c80ff0f0ec9983bdfe6b94bf02e600b13f9e17be2f2fe3862d3"
+    },
+    {
+      "status": "??",
+      "path": "scripts/compat-hmr-server-trace.cjs",
+      "category": "verification",
+      "sha256": "94aed50cb7b91a4f708444fe29bb9e67b8be076a4880b706447bf33aed3ea36b"
+    }
+  ],
+  "evidenceDirectory": "docs/compatibility-lna-copy",
+  "historicalDocsDiff": [],
+  "diffCheckExit": 0
+}

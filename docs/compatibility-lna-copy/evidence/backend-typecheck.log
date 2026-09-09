@@ -1,0 +1,3 @@
+src/game/online-session.spec.ts(320,24): error TS2345: Argument of type '{ doNotFake: string[]; }' is not assignable to parameter of type '"modern" | "legacy"'.
+../frontend/src/plugins/gamePlayService.ts(1,19): error TS2307: Cannot find module '@/store' or its corresponding type declarations.
+../frontend/src/store/index.ts(2,18): error TS2307: Cannot find module '@/interfaces/User' or its corresponding type declarations.

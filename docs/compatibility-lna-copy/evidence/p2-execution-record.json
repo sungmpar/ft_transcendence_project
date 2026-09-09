@@ -1,0 +1,112 @@
+{
+  "source": "Executor tool completion records; null exit means still running, never success inferred",
+  "records": [
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/compat-hmr-jest.json --runInBand --watchman=false > ../docs/compatibility-lna-copy/evidence/p2-hmr-red.log 2>&1",
+      "exit": 1,
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-red.log",
+      "result": "Harness error: 7 FAIL / 1 PASS; VM middleware function rejected by schema-utils, not behavioral RED"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/compat-hmr-jest.json --runInBand --watchman=false > ../docs/compatibility-lna-copy/evidence/p2-hmr-red-url.log 2>&1",
+      "exit": 1,
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-red-url.log",
+      "result": "Behavioral RED: 4 FAIL / 4 PASS; wrong ws://172.18.0.3:3000/ws for undefined/empty override, direct and proxy browser origins"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/backend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node --no-experimental-fetch node_modules/jest/bin/jest.js --config test/compat-hmr-jest.json --runInBand --watchman=false > ../docs/compatibility-lna-copy/evidence/p2-hmr-green.log 2>&1",
+      "exit": 0,
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-green.log",
+      "result": "GREEN: 8 PASS"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "COMPAT_HMR_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/compatibility-lna-copy/evidence/p2-hmr-runtime /private/tmp/ft-transcendence-runtime/node_modules/.bin/node scripts/compat-hmr-fixture.cjs",
+      "exit": 1,
+      "result": "sandbox EPERM before a server started",
+      "log": "Tool output: listen EPERM"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "COMPAT_HMR_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/compatibility-lna-copy/evidence/p2-hmr-runtime /private/tmp/ft-transcendence-runtime/node_modules/.bin/node scripts/compat-hmr-fixture.cjs",
+      "exit": 0,
+      "result": "Escalated authorized fixture compiled; preparation loop lacked Accept:text/html and received404 for /login. Explicit stop, exit0; no Chrome executed on this instance",
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-runtime/dev-server.log"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "COMPAT_HMR_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/compatibility-lna-copy/evidence/p2-hmr-runtime-v2 /private/tmp/ft-transcendence-runtime/node_modules/.bin/node scripts/compat-hmr-fixture.cjs",
+      "exit": 0,
+      "result": "READY owned dev51925/proxy51935; later explicit stop completed0 after both browser attempts and Node probe",
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-runtime-v2/dev-server.log"
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-compat-hmr.py docs/compatibility-lna-copy/evidence/p2-hmr-runtime-v2 > docs/compatibility-lna-copy/evidence/p2-hmr-runtime-v2/browser-command.log 2>&1",
+      "exit": 1,
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-runtime-v2/browser-command.log",
+      "result": "Direct HMR correct URL,101/hash/warnings observed; close-state assertion failed; proxy not reached. Preserved, cause not yet classified. All browser contexts closed."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python -m py_compile scripts/browser-compat-hmr.py && /private/tmp/ft-transcendence-runtime/node_modules/.bin/node --check scripts/compat-hmr-fixture.cjs && /private/tmp/ft-transcendence-runtime/node_modules/.bin/node --check scripts/compat-hmr-config.cjs",
+      "exit": 0,
+      "result": "Syntax checks only, no browser/server run."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-compat-hmr.py docs/compatibility-lna-copy/evidence/p2-hmr-runtime-v2 --output docs/compatibility-lna-copy/evidence/p2-hmr-runtime-diagnostic > docs/compatibility-lna-copy/evidence/p2-hmr-runtime-diagnostic/browser-command.log 2>&1",
+      "exit": 1,
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-runtime-diagnostic/browser-command.log",
+      "result": "Actual direct101/hash/warnings then native1006; assertion-time state confirmed. Proxy not reached. All Chrome contexts closed."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/opt/miniconda3/bin/python scripts/browser-compat-hmr.py docs/compatibility-lna-copy/evidence/p2-hmr-runtime-isolated > docs/compatibility-lna-copy/evidence/p2-hmr-runtime-isolated/browser-command.log 2>&1",
+      "exit": 1,
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-runtime-isolated/browser-command.log",
+      "result": "Both direct/proxy independently101/hash/warnings then1006. Installed WDS trace confirms ping,no pong,terminate isAlivefalse. First-connection-survival FAIL preserved."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "COMPAT_HMR_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/compatibility-lna-copy/evidence/p2-hmr-runtime-traced /private/tmp/ft-transcendence-runtime/node_modules/.bin/node scripts/compat-hmr-fixture.cjs",
+      "exit": 0,
+      "result": "Owneddev52311/proxy52323 READY thenexplicitstop0 before Chrome: static module resolution showed tracer targeted parent ws, while WDS loads nested ws. Corrected tracer before next isolated run."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "COMPAT_HMR_EVIDENCE_DIR=/Users/sm/dev_park/ft_transcendence_project/docs/compatibility-lna-copy/evidence/p2-hmr-runtime-isolated /private/tmp/ft-transcendence-runtime/node_modules/.bin/node scripts/compat-hmr-fixture.cjs",
+      "exit": 0,
+      "result": "Owned immutable-source dev52340/proxy52351 READY; two browser policies executed; explicit stop completed0 after all Chrome contexts closed."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+      "command": "PATH=/private/tmp/ft-transcendence-runtime/node_modules/.bin:$PATH node node_modules/eslint/bin/eslint.js vue.config.js > ../docs/compatibility-lna-copy/evidence/p2-config-eslint.log 2>&1",
+      "exit": 0,
+      "result": "Scoped nonfix config ESLint0. The same shell first issued a harmless wrong-relative-path git diff check; correct root diff check separately below."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "git diff --check -- frontend/vue.config.js",
+      "exit": 0,
+      "result": "Correct repository-relative config diff check0."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "mkdir -p docs/compatibility-lna-copy/evidence/p2-hmr-eventual\n/opt/miniconda3/bin/python scripts/browser-compat-hmr.py docs/compatibility-lna-copy/evidence/p2-hmr-runtime-isolated --output docs/compatibility-lna-copy/evidence/p2-hmr-eventual --connection-policy eventual > docs/compatibility-lna-copy/evidence/p2-hmr-eventual/browser-command.log 2>&1",
+      "exit": 0,
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-eventual/browser-command.log",
+      "result": "Both eventual automatic-recovery cases PASS. Initial connection survival false, one actual retry each,101/hash,3.070/3.048sec stable and PNG-after open. No production heartbeat/security changes. PNGs opened; all Chrome closed."
+    },
+    {
+      "cwd": "/Users/sm/dev_park/ft_transcendence_project",
+      "command": "/private/tmp/ft-transcendence-runtime/node_modules/.bin/node - <<'JS' > docs/compatibility-lna-copy/evidence/p2-hmr-runtime-diagnostic/node-ws.log 2>&1\nconst WS = require('./frontend/node_modules/ws');\n(async()=>{\nfor (const port of [51925,51935]) await new Promise(resolve=>{\n const start=Date.now(), row={port,events:[]};\n const socket=new WS(`ws://127.0.0.1:${port}/ws`,{origin:`http://127.0.0.1:${port}`});\n const timer=setTimeout(()=>{row.readyStateAt3000=socket.readyState; socket.close(1000);},3000);\n socket.on('open',()=>row.events.push({kind:'open',at:Date.now()-start}));\n socket.on('message',data=>{try{const m=JSON.parse(data);row.events.push({kind:'message',type:m.type,at:Date.now()-start});}catch{}});\n socket.on('error',error=>row.events.push({kind:'error',code:error.code,at:Date.now()-start}));\n socket.on('close',code=>{clearTimeout(timer);row.events.push({kind:'close',code,at:Date.now()-start});console.log(JSON.stringify(row));resolve();});\n});\n})();\nJS",
+      "exit": 0,
+      "log": "docs/compatibility-lna-copy/evidence/p2-hmr-runtime-diagnostic/node-ws.log",
+      "result": "Auxiliary transport observation: direct and proxy native NodeWS open/hash; bothreadyState1at3000ms; deliberate clientclose1000. Not Chrome or LNA evidence."
+    }
+  ]
+}

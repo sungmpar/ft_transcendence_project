@@ -1,0 +1,154 @@
+{
+  "status": "FAIL",
+  "at": "2026-09-08T19:41:34.551387+00:00",
+  "viewport": [
+    1440,
+    900
+  ],
+  "authentication": "actual guest HTTP redirects",
+  "environment": "Owned loopback fixture; real headless Chrome, keyboard, Socket.IO and native Canvas/AudioContext",
+  "limits": "Automated keyboard, not physical play; native audio method observations, not human hearing; controlled observer WebSocket closure, not WAN",
+  "browser": "152.0.7977.77",
+  "failure": "TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.",
+  "cases": [
+    {
+      "case": "real-six-point-match-and-mouse-rematch",
+      "status": "PASS",
+      "confirmedVisibleScores": [
+        0,
+        6
+      ],
+      "mouseRematchSameNewMatch": true,
+      "menuDisposed": true
+    },
+    {
+      "case": "observer-alone-reconnect-with-players-live",
+      "status": "FAIL",
+      "faultTiming": {
+        "offlineCommandCompletedAtMs": 26620.5,
+        "clientDisconnectedVisibleAtMs": 26723.799999952316,
+        "onlineCommandCompletedAtMs": 27528.299999952316
+      },
+      "failureState": [
+        {
+          "sameOwnedMatch": false,
+          "side": null,
+          "generation": null,
+          "tick": null,
+          "phase": null,
+          "inputMessages": null,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 57,
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": true,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1016,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1078,
+              "connection": 1
+            }
+          ],
+          "resultVisible": true
+        },
+        {
+          "sameOwnedMatch": false,
+          "side": null,
+          "generation": null,
+          "tick": null,
+          "phase": null,
+          "inputMessages": null,
+          "socketsOpened": 1,
+          "openSockets": 1,
+          "inputPackets": 54,
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": true,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1115,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1176,
+              "connection": 1
+            }
+          ],
+          "resultVisible": true
+        },
+        {
+          "sameOwnedMatch": false,
+          "side": null,
+          "generation": null,
+          "tick": null,
+          "phase": null,
+          "inputMessages": null,
+          "socketsOpened": 2,
+          "openSockets": 1,
+          "inputPackets": 0,
+          "statusDisconnected": false,
+          "statusRecovered": false,
+          "statusWatching": false,
+          "statusLookupFailure": false,
+          "statusUnavailable": false,
+          "statusSaved": false,
+          "statusActiveSessionConflict": false,
+          "transportHistory": [
+            {
+              "type": "transport-created",
+              "atMs": 1064,
+              "connection": 1
+            },
+            {
+              "type": "transport-open",
+              "atMs": 1171,
+              "connection": 1
+            },
+            {
+              "type": "controlled-close-requested",
+              "atMs": 25997,
+              "connection": 1
+            },
+            {
+              "type": "transport-close",
+              "atMs": 26549,
+              "connection": 1,
+              "code": 1005,
+              "wasClean": true,
+              "category": "unclassified"
+            },
+            {
+              "type": "transport-created",
+              "atMs": 27761,
+              "connection": 2
+            },
+            {
+              "type": "transport-open",
+              "atMs": 27777,
+              "connection": 2
+            }
+          ],
+          "resultVisible": true
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "elapsedSeconds": 120.019
+}

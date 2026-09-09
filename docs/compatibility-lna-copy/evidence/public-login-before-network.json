@@ -1,0 +1,155 @@
+{
+  "at": "2026-09-08T18:32:24.460242+00:00",
+  "case": "A public login first load; no token; no click",
+  "url": "https://transcendence.koreacentral.cloudapp.azure.com/login",
+  "freshProfile": true,
+  "headful": true,
+  "securityFlagsDisabled": false,
+  "permissionsGrantedByTest": false,
+  "launchArgs": [
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "--user-data-dir=[new task-private profile]",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "about:blank"
+  ],
+  "requests": [
+    {
+      "id": "99AA88D05822A750C0538B0964D96A97",
+      "at": 1788892351.240242,
+      "url": "https://transcendence.koreacentral.cloudapp.azure.com/login",
+      "method": "GET",
+      "kind": "Document",
+      "initiator": {
+        "type": "other",
+        "url": "",
+        "stack": []
+      },
+      "status": 200,
+      "remoteAddress": "20.194.105.25",
+      "remotePort": 443,
+      "protocol": "h2",
+      "securityState": "secure"
+    },
+    {
+      "id": "93416.2",
+      "at": 1788892351.409558,
+      "url": "https://transcendence.koreacentral.cloudapp.azure.com/js/chunk-vendors.js",
+      "method": "GET",
+      "kind": "Script",
+      "initiator": {
+        "type": "parser",
+        "url": "https://transcendence.koreacentral.cloudapp.azure.com/login",
+        "stack": []
+      },
+      "status": 200,
+      "remoteAddress": "20.194.105.25",
+      "remotePort": 443,
+      "protocol": "h2",
+      "securityState": "secure"
+    },
+    {
+      "id": "93416.3",
+      "at": 1788892351.421712,
+      "url": "https://transcendence.koreacentral.cloudapp.azure.com/js/app.js",
+      "method": "GET",
+      "kind": "Script",
+      "initiator": {
+        "type": "parser",
+        "url": "https://transcendence.koreacentral.cloudapp.azure.com/login",
+        "stack": []
+      },
+      "status": 200,
+      "remoteAddress": "20.194.105.25",
+      "remotePort": 443,
+      "protocol": "h2",
+      "securityState": "secure"
+    },
+    {
+      "id": "93416.7",
+      "at": 1788892357.914849,
+      "url": "https://transcendence.koreacentral.cloudapp.azure.com/favicon.ico",
+      "method": "GET",
+      "kind": "Other",
+      "initiator": {
+        "type": "other",
+        "url": "",
+        "stack": []
+      }
+    }
+  ],
+  "webSockets": [
+    {
+      "requestId": "93416.6",
+      "url": "ws://172.18.0.3:3000/ws",
+      "initiator": {
+        "type": "script",
+        "stack": [
+          {
+            "function": "WebSocketClient",
+            "url": "webpack-internal:/./node_modules/webpack-dev-server/client/clients/WebSocketClient.js",
+            "line": 43
+          },
+          {
+            "function": "initSocket",
+            "url": "webpack-internal:/./node_modules/webpack-dev-server/client/socket.js",
+            "line": 30
+          },
+          {
+            "function": "eval",
+            "url": "webpack-internal:/./node_modules/webpack-dev-server/client/index.js?protocol=%5Bredacted%5D&hostname=%5Bredacted%5D&port=%5Bredacted%5D&pathname=%5Bredacted%5D&logging=%5Bredacted%5D&reconnect=%5Bredacted%5D",
+            "line": 286
+          },
+          {
+            "function": "./node_modules/webpack-dev-server/client/index.js?protocol=ws&hostname=172.18.0.3&port=3000&pathname=%2Fws&logging=none&reconnect=10",
+            "url": "https://transcendence.koreacentral.cloudapp.azure.com/js/chunk-vendors.js",
+            "line": 685
+          },
+          {
+            "function": "__webpack_require__",
+            "url": "https://transcendence.koreacentral.cloudapp.azure.com/js/app.js",
+            "line": 1427
+          },
+          {
+            "function": "",
+            "url": "https://transcendence.koreacentral.cloudapp.azure.com/js/app.js",
+            "line": 2606
+          }
+        ]
+      }
+    }
+  ],
+  "failures": [
+    {
+      "requestId": "93416.7",
+      "error": "net::ERR_ABORTED",
+      "blockedReason": null,
+      "corsStatus": null
+    }
+  ],
+  "extra": [
+    {
+      "requestId": "99AA88D05822A750C0538B0964D96A97",
+      "resourceIPAddressSpace": "Public",
+      "statusCode": 200
+    },
+    {
+      "requestId": "93416.3",
+      "resourceIPAddressSpace": "Public",
+      "statusCode": 200
+    },
+    {
+      "requestId": "93416.2",
+      "resourceIPAddressSpace": "Public",
+      "statusCode": 200
+    }
+  ],
+  "browser": "152.0.7977.77",
+  "topLevel": true,
+  "permissionQuery": "prompt",
+  "pageTitle": "frontend",
+  "tokenExists": false,
+  "visibleGuestButtonCount": 1
+}

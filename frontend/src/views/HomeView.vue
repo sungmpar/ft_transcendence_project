@@ -13,7 +13,7 @@
           </nav>
         </div>
       </header>
-      <section class="launch-intro"><p class="eyebrow">플레이할 시간</p><h1>지금, 한 판 시작할까요?</h1><p>옆자리 친구와, 컴퓨터와, 온라인 상대와.</p></section>
+      <section class="launch-intro"><p class="eyebrow">플레이할 시간</p><h1>지금, 한 판 시작할까요?</h1><p>한 키보드로 친구와 대결하거나, AI와 연습하거나, 온라인에서 다른 플레이어와 겨뤄보세요.</p></section>
       <LaunchPanel authenticated>
       <template #community><nav class="launch-community" aria-label="친구와 서비스">
         <span>함께 즐기기</span>

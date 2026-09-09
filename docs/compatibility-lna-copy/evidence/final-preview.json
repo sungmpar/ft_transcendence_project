@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-08T20:05:48.463243+00:00",
+  "url": "http://127.0.0.1:52431/play",
+  "httpStatus": 200,
+  "responseSha256": "f168717e4c47034a74243bbd68e38467112c107f5ff64b6af358904eb197e570",
+  "builtIndexSha256": "f168717e4c47034a74243bbd68e38467112c107f5ff64b6af358904eb197e570",
+  "matchesFinalBuild": true,
+  "backendRequired": false,
+  "scope": "HTTP static artifact check only; actual browser tests are separately recorded",
+  "ownedFixtureCleanup": {
+    "baseline51658": "exit0",
+    "firstAfter52435": "exit0",
+    "final52957": "exit0"
+  },
+  "remainingServer": "Owned static preview only; prior unrelated/user services and PostgreSQL lifecycle unchanged"
+}

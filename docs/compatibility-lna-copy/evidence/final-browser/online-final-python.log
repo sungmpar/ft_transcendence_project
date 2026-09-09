@@ -1,0 +1,30 @@
+{"status": "FAIL", "at": "2026-09-08T19:41:34.551387+00:00", "viewport": [1440, 900], "authentication": "actual guest HTTP redirects", "environment": "Owned loopback fixture; real headless Chrome, keyboard, Socket.IO and native Canvas/AudioContext", "limits": "Automated keyboard, not physical play; native audio method observations, not human hearing; controlled observer WebSocket closure, not WAN", "browser": "152.0.7977.77", "failure": "TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.", "cases": [{"case": "real-six-point-match-and-mouse-rematch", "status": "PASS", "confirmedVisibleScores": [0, 6], "mouseRematchSameNewMatch": true, "menuDisposed": true}, {"case": "observer-alone-reconnect-with-players-live", "status": "FAIL", "faultTiming": {"offlineCommandCompletedAtMs": 26620.5, "clientDisconnectedVisibleAtMs": 26723.799999952316, "onlineCommandCompletedAtMs": 27528.299999952316}, "failureState": [{"sameOwnedMatch": false, "side": null, "generation": null, "tick": null, "phase": null, "inputMessages": null, "socketsOpened": 1, "openSockets": 1, "inputPackets": 57, "statusDisconnected": false, "statusRecovered": false, "statusWatching": false, "statusLookupFailure": false, "statusUnavailable": false, "statusSaved": true, "statusActiveSessionConflict": false, "transportHistory": [{"type": "transport-created", "atMs": 1016, "connection": 1}, {"type": "transport-open", "atMs": 1078, "connection": 1}], "resultVisible": true}, {"sameOwnedMatch": false, "side": null, "generation": null, "tick": null, "phase": null, "inputMessages": null, "socketsOpened": 1, "openSockets": 1, "inputPackets": 54, "statusDisconnected": false, "statusRecovered": false, "statusWatching": false, "statusLookupFailure": false, "statusUnavailable": false, "statusSaved": true, "statusActiveSessionConflict": false, "transportHistory": [{"type": "transport-created", "atMs": 1115, "connection": 1}, {"type": "transport-open", "atMs": 1176, "connection": 1}], "resultVisible": true}, {"sameOwnedMatch": false, "side": null, "generation": null, "tick": null, "phase": null, "inputMessages": null, "socketsOpened": 2, "openSockets": 1, "inputPackets": 0, "statusDisconnected": false, "statusRecovered": false, "statusWatching": false, "statusLookupFailure": false, "statusUnavailable": false, "statusSaved": false, "statusActiveSessionConflict": false, "transportHistory": [{"type": "transport-created", "atMs": 1064, "connection": 1}, {"type": "transport-open", "atMs": 1171, "connection": 1}, {"type": "controlled-close-requested", "atMs": 25997, "connection": 1}, {"type": "transport-close", "atMs": 26549, "connection": 1, "code": 1005, "wasClean": true, "category": "unclassified"}, {"type": "transport-created", "atMs": 27761, "connection": 2}, {"type": "transport-open", "atMs": 27777, "connection": 2}], "resultVisible": true}]}], "pageErrors": [], "elapsedSeconds": 120.019}
+Traceback (most recent call last):
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 559, in <module>
+    asyncio.run(main())
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/asyncio/base_events.py", line 685, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 540, in main
+    await getattr(checks, case)()
+  File "/Users/sm/dev_park/ft_transcendence_project/scripts/browser-online-final.py", line 274, in observer
+    await watcher.wait_for_function('''old => {
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 11479, in wait_for_function
+    await self._impl_obj.wait_for_function(
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_page.py", line 1113, in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 860, in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 558, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 20000ms exceeded.

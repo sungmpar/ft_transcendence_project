@@ -1,0 +1,43 @@
+{
+  "scope": "Actual guest document HTTP/cookie/JWT and browser UI on isolated PostgreSQL; no credential injection; temporary frontend builds",
+  "splitOriginScope": "Same host, different ports; cross-site/subdomain cookie policies not covered",
+  "createdAt": "2026-09-08T19:23:45.414Z",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "rootDistWrittenByThisSuite": false,
+  "temporaryBuildRoot": "/private/tmp/ft-home-guest-entry-4608",
+  "reusedBuilds": true,
+  "browserVersion": "152.0.7977.77",
+  "frontendScripts": {
+    "same-origin": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.e2aab0b1.js"
+    ],
+    "split-origin": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.b8c272af.js"
+    ],
+    "guest-disabled": [
+      "js/chunk-vendors.7d3a6c92.js",
+      "js/app.fd2ed35a.js"
+    ]
+  },
+  "results": [
+    {
+      "name": "actual-bfcache-back-after-guest-failure",
+      "status": "PASS",
+      "persisted": true,
+      "sameDocument": true,
+      "restoredButtonEnabled": true,
+      "guestDocuments": 1,
+      "guestFetches": 0,
+      "callbacks": 0,
+      "notRestored": [],
+      "accountsAdded": 0,
+      "pageErrors": 0,
+      "browserSecurity": "Default security; only Playwright bfcache-disable switch omitted"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+FAIL backend/src/game/guest-navigation-url.spec.ts
+  ● guest document destination respects the existing deployment boundary › does not downgrade a public HTTPS login to a public HTTP backend
+
+    expect(received).toBeNull()
+
+    Received: "http://api.example/auth/guest"
+
+      33 |   });
+      34 |   test('does not downgrade a public HTTPS login to a public HTTP backend', () => {
+    > 35 |     expect(resolveGuestLoginUrl('http://api.example', publicPage)).toBeNull();
+         |                                                                    ^
+      36 |     expect(resolveGuestLoginUrl('http://127.0.0.1:5000', 'http://127.0.0.1:3000/login'))
+      37 |       .toBe('http://127.0.0.1:5000/auth/guest');
+      38 |     expect(resolveGuestLoginUrl('https://api.example', publicPage)).toBe('https://api.example/auth/guest');
+
+      at Object.<anonymous> (src/game/guest-navigation-url.spec.ts:35:68)
+
+Test Suites: 1 failed, 1 skipped, 1 of 2 total
+Tests:       1 failed, 39 skipped, 40 total
+Snapshots:   0 total
+Time:        6.47 s, estimated 7 s
+Ran all test suites with tests matching "does not downgrade".

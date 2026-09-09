@@ -1,0 +1,8 @@
+PASS src/game/guest-navigation-url.spec.ts
+PASS src/game/guest-redirect-controller.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       40 passed, 40 total
+Snapshots:   0 total
+Time:        6.37 s
+Ran all test suites.

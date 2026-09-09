@@ -1,0 +1,5 @@
+yarn run v1.22.22
+warning Skipping preferred cache folder "/Users/sm/Library/Caches/Yarn" because it is not writable.
+warning Selected the next writable cache folder in the list, will be "/var/folders/hw/4ppkscb93dlb3h3jmsxt93qr0000gn/T/.yarn-cache-501".
+error Command "typecheck" not found.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

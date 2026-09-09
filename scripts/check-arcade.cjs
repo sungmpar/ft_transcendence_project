@@ -2,7 +2,7 @@
 const { spawnSync } = require('node:child_process');
 const path = require('node:path');
 const groups = {
-  unit: ['navigation', 'clock-recovery', 'feedback', 'core', 'local', 'snapshot', 'frontend-contract', 'online-session', 'online-result', 'arcade', 'server'],
+  unit: ['guest-navigation', 'compat-hmr', 'navigation', 'clock-recovery', 'feedback', 'core', 'local', 'snapshot', 'frontend-contract', 'online-session', 'online-result', 'arcade', 'server'],
   online: ['online', 'lifecycle', 'service'],
   browser: ['online-rejected-session-browser', 'home-guest-entry', 'home-auth-prerequisites', 'online-browser', 'online-lifecycle-browser', 'online-final-browser'],
 };

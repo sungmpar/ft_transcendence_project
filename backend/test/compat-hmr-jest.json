@@ -1,0 +1,7 @@
+{
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "watchman": false,
+  "testMatch": ["<rootDir>/test/compat-hmr.spec.js"],
+  "maxWorkers": 1
+}

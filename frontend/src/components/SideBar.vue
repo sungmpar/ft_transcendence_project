@@ -1,7 +1,7 @@
 <template>
   <nav class="service-rail" aria-label="서비스 메뉴">
     <div class="rail-scroll">
-      <router-link to="/" class="rail-link" :aria-current="route.name === 'home' ? 'page' : undefined" aria-label="Home" title="Home"><font-awesome-icon icon="fa-solid fa-home" /><span>Home</span></router-link>
+      <router-link to="/" class="rail-link" :aria-current="route.name === 'home' ? 'page' : undefined" aria-label="홈" title="홈"><font-awesome-icon icon="fa-solid fa-home" /><span>홈</span></router-link>
       <router-link to="/play" class="rail-link" aria-label="로컬 및 AI 플레이" title="로컬 · AI"><strong>2P</strong><span>로컬 · AI</span></router-link>
       <router-link to="/game" class="rail-link" :aria-current="route.name === 'game' ? 'page' : undefined" aria-label="온라인 대전" title="온라인 대전"><font-awesome-icon icon="fa-solid fa-table-tennis-paddle-ball" /><span>대전</span></router-link>
       <div class="rail-divider" />

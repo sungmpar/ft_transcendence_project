@@ -1,0 +1,121 @@
+{
+  "status": "FAIL",
+  "fixture": {
+    "startedAt": "2026-09-08T19:15:07.674Z",
+    "node": "v18.20.8",
+    "frontendCwd": "/Users/sm/dev_park/ft_transcendence_project/frontend",
+    "command": [
+      "/private/tmp/ft-transcendence-runtime/node_modules/node/bin/node",
+      "node_modules/@vue/cli-service/bin/vue-cli-service.js",
+      "serve",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "51925"
+    ],
+    "runtimeOverrides": {
+      "VUE_APP_DEV_WEBSOCKET_URL": "",
+      "VUE_APP_BACKEND_URL": "",
+      "VUE_APP_WS_URL": "",
+      "VUE_APP_ENABLE_GUEST_LOGIN": "false",
+      "VUE_APP_ARCADE_DEBUG": "false"
+    },
+    "directOrigin": "http://127.0.0.1:51925",
+    "proxyOrigin": "http://127.0.0.1:51935",
+    "proxy": "Owned HTTP /ws upgrade passthrough; unchanged Host; no TLS fixture or operational proxy",
+    "versions": {
+      "vueCli": "5.0.8",
+      "webpack": "5.74.0",
+      "webpackDevServer": "4.9.3"
+    }
+  },
+  "scope": "Owned HTTP loopback direct serve and reverse proxy, tokenless /login, no guest click, no permission grants",
+  "cases": [
+    {
+      "label": "direct",
+      "origin": "http://127.0.0.1:51925",
+      "requests": [
+        {
+          "url": "http://127.0.0.1:51925/login",
+          "type": "document"
+        },
+        {
+          "url": "http://127.0.0.1:51925/js/chunk-vendors.js",
+          "type": "script"
+        },
+        {
+          "url": "http://127.0.0.1:51925/js/app.js",
+          "type": "script"
+        }
+      ],
+      "webSockets": [
+        {
+          "url": "ws://127.0.0.1:51925/ws",
+          "messageTypes": [
+            "hot",
+            "liveReload",
+            "reconnect",
+            "overlay",
+            "hash",
+            "warnings"
+          ],
+          "errors": 0,
+          "closed": true
+        }
+      ],
+      "responseStatuses": [
+        101
+      ],
+      "console": [],
+      "pageErrors": [],
+      "assetHashes": [
+        {
+          "url": "http://127.0.0.1:51925/js/app.js",
+          "status": 200,
+          "sha256": "89c98f4f58d172dbef57f6661b41d9bc42db7ea91073399fe1b3fb28dcca2a3b"
+        },
+        {
+          "url": "http://127.0.0.1:51925/js/chunk-vendors.js",
+          "status": 200,
+          "sha256": "3ce727feeec968ff0c4741e421217af9a0ec9788432b416008d36179c20204e8"
+        }
+      ],
+      "status": "FAIL",
+      "atFailure": {
+        "webSockets": [
+          {
+            "url": "ws://127.0.0.1:51925/ws",
+            "messageTypes": [
+              "hot",
+              "liveReload",
+              "reconnect",
+              "overlay",
+              "hash",
+              "warnings"
+            ],
+            "errors": 0,
+            "closed": true
+          }
+        ],
+        "responseStatuses": [
+          101
+        ]
+      },
+      "beforeCleanup": {
+        "path": "/login",
+        "readyState": "complete",
+        "nativeSockets": [
+          {
+            "opened": true,
+            "closed": true,
+            "closeCode": 1006,
+            "wasClean": false
+          }
+        ],
+        "loginHeading": true
+      }
+    }
+  ],
+  "browserVersion": "152.0.7977.77",
+  "errorType": "AssertionError"
+}
