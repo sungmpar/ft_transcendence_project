@@ -31,14 +31,8 @@
 <script setup lang="ts">
 import store from "@/store";
 import { ref } from "vue";
-import { onUnmounted } from "vue";
 
 const expanded = ref(false);
-
-store.getters.socket.on("leave", (data: any) => {
-	alert(data);
-	store.commit("setChannel", null);
-});
 
 store.getters.socket.on("all-message", (data: any) => {
 	console.log("all message: ", data);

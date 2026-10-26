@@ -1,0 +1,14 @@
+node_modules/
+**/dist/
+**/.env
+**/.env.*
+!**/.env.example
+.vercel/
+**/profiles/*
+!**/profiles/.gitkeep
+**/coverage/
+**/*.tsbuildinfo
+recovery/
+private/
+playwright-report/
+test-results/

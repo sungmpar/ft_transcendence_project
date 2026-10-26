@@ -49,6 +49,21 @@ export class ServerMatchRunner {
     };
   }
 
+  /** Resume a saved authoritative frame under a NEW input/clock epoch. */
+  restore(snapshot: Snapshot, nowMs: number): void {
+    if (snapshot.matchId !== this.matchId)
+      throw new Error('Cannot restore a snapshot from another match');
+    this.state = JSON.parse(JSON.stringify(snapshot.state)) as GameState;
+    this.lastNowMs = nowMs;
+    this.lastSnapshotTick = snapshot.tick;
+    this.snapshotSeq = snapshot.seq;
+    this.clockEpoch = snapshot.clockEpoch + 1;
+    this.eventCursor = snapshot.eventCursor;
+    this.events = [];
+    this.clock = createClock();
+    this.active = true;
+  }
+
   start(nowMs = this.lastNowMs): void {
     if (this.disposed || this.active) return;
     this.active = true;
@@ -93,11 +108,12 @@ export class ServerMatchRunner {
     this.inputs[side] = new InputInbox(this.matchId, generation);
   }
 
-  snapshot(): Snapshot {
+  snapshot(advanceSequence = true): Snapshot {
+    if (advanceSequence) this.snapshotSeq++;
     return captureSnapshot(
       this.state,
       this.matchId,
-      ++this.snapshotSeq,
+      this.snapshotSeq,
       {
         left: this.inputs.left.ack,
         right: this.inputs.right.ack,

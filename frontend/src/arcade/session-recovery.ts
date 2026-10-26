@@ -1,4 +1,4 @@
-import { isReadyMessage, isSessionSyncResponse, ReadyMessage, SessionSyncRequest, SessionSyncResponse } from '../../../shared/protocol';
+import { isReadyMessage, isSessionSyncResponse, ReadyMessage, SESSION_RECOVERY_TIMEOUT_MS, SessionSyncRequest, SessionSyncResponse } from '../../../shared/protocol';
 export interface RecoveryTransport {
   connected: boolean;
   timeout(milliseconds: number): {
@@ -12,7 +12,8 @@ export class SessionRecovery {
   private request: SessionSyncRequest | null = null;
   private timer: ReturnType<typeof setTimeout> | undefined;
   private disposed = false;
-  private current: (Pick<ReadyMessage, 'roomId' | 'generation'> & { instanceId: string }) | null = null;
+  private current: (Pick<ReadyMessage, 'roomId' | 'generation' | 'side'> & { instanceId: string }) | null = null;
+  private verifiedReady: ReadyMessage | null = null;
   private expected = '';
   private retired = new Set<string>();
 
@@ -24,22 +25,35 @@ export class SessionRecovery {
     this.expected = matchId;
     if (this.role === 'spectator') this.retired.delete(matchId);
   }
-  private canAcceptReady(value: unknown): value is ReadyMessage {
+  private canAcceptReady(value: unknown, verifiedAuthority = false): value is ReadyMessage {
     if (this.disposed || !isReadyMessage(value) || this.retired.has(value.roomId) ||
       (this.role === 'spectator') !== (value.side === 'spectator') ||
       (this.expected && value.roomId !== this.expected) ||
       (this.current?.roomId === value.roomId &&
-        (value.snapshot.instanceId !== this.current.instanceId || value.generation <= this.current.generation))) return false;
+        (value.side !== this.current.side || value.generation <= this.current.generation ||
+          (!verifiedAuthority && value.snapshot.instanceId !== this.current.instanceId)))) return false;
     return true;
   }
   acceptReady(value: unknown): value is ReadyMessage {
-    if (!this.canAcceptReady(value)) return false;
+    if (!this.canAcceptReady(value, value === this.verifiedReady)) {
+      // An authority can move while this player's own transport stays open.
+      // Treat its announcement as a hint, never as permission to replace the
+      // active runner. Verify over this authenticated socket's correlated ACK.
+      if (!this.request && this.canAcceptReady(value, true) &&
+        this.current?.roomId === value.roomId && value.snapshot.instanceId !== this.current.instanceId)
+        this.requestRecovery(value.roomId, true);
+      return false;
+    }
     this.cancel();
     this.expected = value.roomId;
-    this.current = { roomId: value.roomId, generation: value.generation, instanceId: value.snapshot.instanceId };
+    this.current = { roomId: value.roomId, generation: value.generation, side: value.side,
+      instanceId: value.snapshot.instanceId };
     return true;
   }
   resume(matchId = this.expected): void {
+    this.requestRecovery(matchId, false);
+  }
+  private requestRecovery(matchId: string, authorityProbe: boolean): void {
     if (this.disposed || !this.socket.connected || !matchId) return;
     this.cancel();
     this.expected = matchId;
@@ -47,19 +61,33 @@ export class SessionRecovery {
     this.request = request;
     this.timer = setTimeout(() => {
       if (this.disposed || this.request !== request) return;
-      this.cancel(); this.onResponse(null);
-    }, 5000);
+      this.cancel();
+      // A stale announcement must not turn a still-healthy match into an error.
+      // Explicit reconnect/user recovery reports failure after the server's
+      // command deadline and delivery allowance have both elapsed.
+      if (!authorityProbe) this.onResponse(null);
+    }, SESSION_RECOVERY_TIMEOUT_MS);
     // Socket.IO's own timeout also removes its ACK registry and buffered packet.
     // The owner timer below is separate: cancel/dispose must ignore late ACKs.
-    this.socket.timeout(5000).emit('sessionSync', request, (error, value) => {
+    this.socket.timeout(SESSION_RECOVERY_TIMEOUT_MS).emit('sessionSync', request, (error, value) => {
       if (error) {
-        if (!this.disposed && this.request === request) { this.cancel(); this.onResponse(null); }
+        if (!this.disposed && this.request === request) {
+          this.cancel(); if (!authorityProbe) this.onResponse(null);
+        }
         return;
       }
       if (this.disposed || this.request !== request || !isSessionSyncResponse(value) ||
-        value.requestId !== request.requestId || value.matchId !== request.matchId ||
-        ('ready' in value && !this.canAcceptReady(value.ready))) return;
-      this.cancel(); this.onResponse(value);
+        value.requestId !== request.requestId || value.matchId !== request.matchId) return;
+      if ('ready' in value && !this.canAcceptReady(value.ready, true)) {
+        if (authorityProbe) this.cancel();
+        return;
+      }
+      if (authorityProbe && !('ready' in value)) { this.cancel(); return; }
+      this.cancel();
+      // The route calls acceptReady with this exact object. Only this response
+      // may cross the instance boundary, once; cancellation/new requests revoke it.
+      if ('ready' in value) this.verifiedReady = value.ready;
+      this.onResponse(value);
     });
   }
   finish(matchId: string): boolean {
@@ -80,6 +108,7 @@ export class SessionRecovery {
     if (this.timer !== undefined) clearTimeout(this.timer);
     this.timer = undefined;
     this.request = null;
+    this.verifiedReady = null;
   }
   dispose(): void { this.cancel(); this.disposed = true; }
 }

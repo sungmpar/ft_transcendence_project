@@ -165,7 +165,7 @@ function onEnd(value: unknown) {
   waiting.value = false;
   result.value = ownSide === value.winner ? "승리했습니다!" : "패배했습니다.";
   status.value = persistence.message;
-  GameplayService.stop(value.winner);
+  GameplayService.stop(value);
 }
 function onError(value: unknown) {
   if (disposed) return;

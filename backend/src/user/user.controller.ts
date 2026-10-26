@@ -1,13 +1,15 @@
-import { Controller,UseGuards, Query, Req, Res, Post, Get, Patch, UseInterceptors, Bind, UploadedFile, HttpException } from '@nestjs/common';
+import { Controller,UseGuards, Query, Param, Req, Res, Post, Get, Patch, UseInterceptors, UploadedFile, HttpException, ServiceUnavailableException } from '@nestjs/common';
 import { UserGuard } from './user.guard';
 import { UserService } from './user.service';
 import { User } from './entity/user.entity';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { multerDiskOptions } from './multer.options'
 import { ProfileService } from './profile.service';
 import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
 import { UserStatus } from './interface/user.status';
+import { emailConfigured } from '../auth/auth-configuration';
+import { publicUserId, publicUserProfile } from './public-profile';
 
 @ApiTags('user management')
 @Controller('user')
@@ -20,8 +22,8 @@ export class UserController {
 	@ApiOperation({summary: 'id로 user profile 조회'})
 	@Get('/')
 	@UseGuards(JwtAuthGuard, UserGuard)
-	async getUser(@Query('id') id?: number) {
-		return await this.userService.getOne(id);
+	async getUser(@Query('id') id: unknown) {
+		return publicUserProfile(await this.userService.getOne(publicUserId(id)));
 	}
 
 	@Patch('/status')
@@ -45,13 +47,10 @@ export class UserController {
 
 	@Post('/upload')
 	@UseGuards(JwtAuthGuard, UserGuard)
-	@UseInterceptors(FilesInterceptor('file', null, multerDiskOptions))
-	@Bind(UploadedFile())
-	async uploadedFile(files: File[], @Req() req: any, @Res() res: any){
-		const name: string = req.user.name;
-		const ext: string = req.files[0].mimetype.split('/')[1];
-		const path: string = `./profiles/${name}.${ext}`
-		this.profileService.updateProfileUrl(name, path);
+	@UseInterceptors(FileInterceptor('file', multerDiskOptions))
+	async uploadedFile(@UploadedFile() file: any, @Req() req: any, @Res() res: any){
+		if (!file) throw new HttpException('이미지 파일이 필요합니다.', 400);
+		await this.profileService.saveProfileImage(req.user, file);
 		res.send('uploaded');
 	};
 
@@ -60,6 +59,7 @@ export class UserController {
 	async setNickname(@Req() req: any, @Res() res: any){
 		const user: User = req.user;
 		const nickname: string = req.body.nickname;
+		if (typeof nickname !== 'string') throw new HttpException('닉네임을 입력해 주세요.', 400);
 		if (nickname.length > 10)
 			throw new HttpException('닉네임은 10글자를 초과할수 없습니다.', 400);
 		else if (await this.userService.IsInvalidNicknameLength(nickname))
@@ -71,17 +71,21 @@ export class UserController {
 		else if (await this.userService.IsInvalidNicknameChars(nickname))
 			throw new HttpException('닉네임은 특수문자를 포함할수 없습니다.', 400);
 		user.nickname = nickname;
-		await this.userService.update(user.id, user);
+		await this.userService.update(user.id, { nickname });
 		res.send('updated');
 	}
 
 	@Patch('/need2fa')
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(JwtAuthGuard, UserGuard)
 	async setNeed2fa(@Req() req: any, @Res() res: any){
 		const user: User = req.user;
 		const value: boolean = req.body.value;
+		if (typeof value !== 'boolean') throw new HttpException('value must be a boolean', 400);
+		if (value && !emailConfigured()) throw new ServiceUnavailableException('Email delivery is not configured for this deployment');
+		if (value && user.email.endsWith('@guest.local')) throw new HttpException('Guest accounts do not have a deliverable email address for 2FA', 400);
 		user.need2fa = value;
-		await this.userService.update(user.id, user);
+		user.is2fa = false;
+		await this.userService.update(user.id, { need2fa: value, is2fa: false });
 		res.send('updated');
 	}
 
@@ -96,12 +100,7 @@ export class UserController {
 	@UseGuards(JwtAuthGuard, UserGuard)
 	async addFriend(@Req() req: any, @Res() res: any){
 		const user: User = req.user;
-		if (user.id === req.body.id)
-			throw new HttpException('cannot add self', 403);
-		else if (user.friends.includes(req.body.id))
-			throw new HttpException('already friends', 409);
-		user.friends.push(req.body.id);
-		await this.userService.update(user.id, user);
+		await this.userService.addFriend(user.id, req.body.id);
 		res.send('updated');
 	}
 
@@ -117,12 +116,7 @@ export class UserController {
 	@UseGuards(JwtAuthGuard, UserGuard)
 	async addBlock(@Req() req: any, @Res() res: any){
 		const user: User = req.user;
-		if (user.id === req.body.id)
-			throw new HttpException('cannot block self', 403);
-		else if (user.blocks.includes(req.body.id))
-			throw new HttpException('already blocks', 409);
-		user.blocks.push(req.body.id);
-		await this.userService.update(user.id, user);
+		await this.userService.addBlock(user.id, req.body.id);
 		res.send('updated');
 	}
 
@@ -141,16 +135,7 @@ export class UserController {
 	@UseGuards(JwtAuthGuard, UserGuard)
 	async downloadUserImage(@Req() req: any, @Res() res: any) {
 		const user: User = req.user;
-		const profileUrl = user.profileUrl;
-		const ext = profileUrl.split('.')[2];
-		const filename = user.name;
-		var fs = require('fs');
-		var stream = fs.createReadStream(profileUrl);
-		res.set({
-			'Content-Type': `image/${ext}`,
-			'Content-Disposition': `attachment; filename=${filename}`
-		})
-		stream.pipe(res);
+		this.profileService.sendProfileImage(user, res);
 	}
 
 	@Get('/image/:id')
@@ -159,29 +144,12 @@ export class UserController {
 		const user: User = await this.userService.getOne(id);
 		if (!user)
 			throw new HttpException('not found', 404);
-		const profileUrl = user.profileUrl;
-		const ext = profileUrl.split('.')[2];
-		const filename = user.name;
-		var fs = require('fs');
-		var stream = fs.createReadStream(profileUrl);
-		res.set({
-			'Content-Type': `image/${ext}`,
-			'Content-Disposition': `filename=${filename}`
-		})
-		stream.pipe(res);
+		this.profileService.sendProfileImage(user, res);
 	}
 
 	@Get('/:id')
 	@UseGuards(JwtAuthGuard, UserGuard)
-	async getUserProfile(@Req() req: any, @Res() res: any) {
-		const id: number = req.params.id;
-		const user: User = await this.userService.getOne(id);
-		const info = {
-			id: user.id,
-			nickname: user.nickname,
-			profileUrl: user.profileUrl,
-			status: user.status
-		}
-		res.send(info);
+	async getUserProfile(@Param('id') id: unknown) {
+		return publicUserProfile(await this.userService.getOne(publicUserId(id)));
 	}
 }

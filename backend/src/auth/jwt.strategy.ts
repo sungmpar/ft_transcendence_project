@@ -3,6 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, ForbiddenException } from '@nestjs/common';
 import { User } from '../user/entity/user.entity';
 import { UserService } from '../user/user.service';
+import { jwtSecret } from './auth-configuration';
 
 export interface JwtPayload {
 	username: string;
@@ -15,7 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 		private userService: UserService,
 	) {
     super({
-      secretOrKey: process.env.SECRET,
+      secretOrKey: jwtSecret(),
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 			ignoreExpiration: false,
     });

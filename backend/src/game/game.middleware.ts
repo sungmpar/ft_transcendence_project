@@ -18,6 +18,8 @@ export const WSAuthMiddleware = (jwtService: JwtService, userService: UserServic
 			const user = await userService.getOneByName(payload.username);
 			if (!user)
 				throw new Error("User not found");
+			if (user.isBanned || (user.need2fa && !user.is2fa))
+				throw new Error("User is not authorized to play");
 			socket.user = user;
 			next();
 		}

@@ -1,6 +1,6 @@
 import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Channel } from './entity/channel.entity';
 import { DMChannel } from './entity/dm-channel.entity';
 import { UserService } from 'src/user/user.service';
@@ -27,95 +27,71 @@ export class ChatService {
 	/********************  Channel  ********************/
 
 	async createChannel(channel: ChannelI, userId: number) {
+		if (typeof channel?.name !== 'string' || typeof channel.password !== 'string' || typeof channel.isPrivate !== 'boolean')
+			return { status: false, message: '채널 설정이 잘못되었습니다.' };
+		const name = channel.name.replace(/\s+/g, '');
+		const invalidName = /[~`@^!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
+		if (name.length < 1 || name.length > 12)
+			return { status: false, message: '채널 이름은 1글자 이상, 12글자 이하입니다.' };
+		if (invalidName.test(name)) return { status: false, message: '채널 이름은 특수문자를 포함할수 없습니다.' };
+		if (channel.isPrivate && !channel.password) return { status: false, message: '비밀번호를 입력해 주세요.' };
 		const user = await this.userService.getOne(userId);
-		var pattern = new RegExp(/[~`@^!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/);
-		channel.name = channel.name.replace(/\s+/g, '');
-		if (channel.name.length < 1 || channel.name.length > 12)
-			return { status: false, message: "채널 이름은 1글자 이상, 12글자 이하입니다."};
-		if (await this.channelRepository.findOne({ where: { name: channel.name }}))
-			return { status: false, message: "이미 존재하는 채널 이름입니다."};
-		if (pattern.test(channel.name))
-			return { status: false, message: "채널 이름은 특수문자를 포함할수 없습니다."};
-		if (channel.password.length > 0 && channel.isPrivate)
-		{
-			try {
-				const hashedPassword = bcrypt.hashSync(channel.password, 10);
-				channel.password = hashedPassword;
-			}
-			catch (e) {
-				return { status: false, message: "비밀번호가 잘못되었습니다."};
-			}
-		}
-		channel.owner = user.id;
-		channel.users = [user];
-		await this.channelRepository.save(channel);
-		return { status: true, message: "채널이 생성되었습니다." };
+		if (!user) throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+		const password = channel.isPrivate ? await bcrypt.hash(channel.password, 10) : '';
+		return this.channelRepository.manager.transaction(async (manager) => {
+			await manager.query('SELECT pg_advisory_xact_lock(hashtext($1), hashtext($2))', ['ft:channel', name]);
+			const repository = manager.getRepository(Channel);
+			if (await repository.findOne({ where: { name } }))
+				return { status: false, message: '이미 존재하는 채널 이름입니다.' };
+			await repository.save(repository.create({ name, password, isPrivate: channel.isPrivate, owner: userId, users: [user] }));
+			return { status: true, message: '채널이 생성되었습니다.' };
+		});
 	}
 
 	async createDMChannel(userId: number, otherUserId: number) {
-		const user = await this.userService.getOne(userId);
-		const otherUser = await this.userService.getOne(otherUserId);
-		const channel = this.DMChannelRepository.create({
-			users: [user, otherUser],
-		});
-		return this.DMChannelRepository.save(channel);
+		return this.joinDMChannel(userId, otherUserId);
 	}
 
-	async changeChannelPassword(channelId: number, isPrivate: boolean, password: string) {
-		const channel = await this.getChannel(channelId);
-		if (!channel)
-			return ;
-		if (password.length > 0 && isPrivate)
-		{
-			try {
-				const hashedPassword = bcrypt.hashSync(password, 10);
-				channel.password = hashedPassword;
-				channel.isPrivate = true;
-			}
-			catch (e) {
-				return { status: false, message: "비밀번호가 잘못되었습니다."};
-			}
-		}
-		else if (!isPrivate)
-		{
-			channel.password = '';
-			channel.isPrivate = false;
-		}
-			await this.channelRepository.save(channel);
-			return { status: true, message: "비밀번호가 변경되었습니다."};
-		}
+	async changeChannelPassword(channelId: number, isPrivate: boolean, password: string, actorId: number) {
+		if (isPrivate && !password) return { status: false, message: '비밀번호를 입력해 주세요.' };
+		const hashed = isPrivate ? await bcrypt.hash(password, 10) : '';
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!this.canModerate(channel, actorId)) return { status: false, message: '관리자 권한이 없습니다.' };
+			if (!channel) return { status: false, message: '채널이 존재하지 않습니다.' };
+			await repository.update(channelId, { password: hashed, isPrivate });
+			return { status: true, message: '비밀번호가 변경되었습니다.' };
+		});
+	}
 
 	async joinChannel(channelId: number, userId: number, password: string) {
-		const channel = await this.getChannel(channelId);
-
-		if (channel.bans.includes(userId)){
-			return { status: false, message: "채널에서 ban되었습니다."};
-		}
-		if (channel.isPrivate && !bcrypt.compareSync(password, channel.password)) {
-			return { status: false, message: "비밀번호가 틀렸습니다."};
-		}
-		if (await this.addUser(userId, channelId) === false) {
-			return { status: false, message: "이미 채널에 참여중입니다."};
-		}
-
-		return { status: true, message: "성공적으로 가입했습니다."};
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!channel) return { status: false, message: '채널이 존재하지 않습니다.' };
+			if (channel.bans.includes(userId)) return { status: false, message: '채널에서 ban되었습니다.' };
+			if (channel.isPrivate && !await bcrypt.compare(password || '', channel.password))
+				return { status: false, message: '비밀번호가 틀렸습니다.' };
+			if (channel.users.some((user) => user.id === userId)) return { status: false, message: '이미 채널에 참여중입니다.' };
+			await repository.createQueryBuilder().relation(Channel, 'users').of(channelId).add(userId);
+			return { status: true, message: '성공적으로 가입했습니다.' };
+		});
 	}
 
 	async joinDMChannel(userId: number, otherUserId: number) {
-
-		const channel = await this.getDMChannel(userId, otherUserId);
-		if (channel)
-			return ;
-		const user = await this.userService.getOne(userId);
-		if (!user)
-			return;
-		const otherUser = await this.userService.getOne(otherUserId);
-		if (!otherUser)
-			return;
-		const newChannel = this.DMChannelRepository.create({
-			users: [user, otherUser],
+		if (!Number.isSafeInteger(userId) || !Number.isSafeInteger(otherUserId) || userId === otherUserId)
+			throw new HttpException('Invalid direct message participant', HttpStatus.BAD_REQUEST);
+		const [user, otherUser] = await Promise.all([
+			this.userService.getOne(userId), this.userService.getOne(otherUserId),
+		]);
+		if (!user || !otherUser) throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+		// The same conversation can be opened on independent Vercel instances.
+		// Serialize only this pair, using the shared database transaction boundary.
+		return this.DMChannelRepository.manager.transaction(async (manager) => {
+			const pair = [userId, otherUserId].sort((a, b) => a - b).join(':');
+			await manager.query('SELECT pg_advisory_xact_lock(hashtext($1), hashtext($2))', ['ft:dm', pair]);
+			const repository = manager.getRepository(DMChannel);
+			const existing = await this.findDMChannel(repository, userId, otherUserId);
+			if (existing) return existing;
+			return repository.save(repository.create({ users: [user, otherUser] }));
 		});
-		await this.DMChannelRepository.save(newChannel);
 	}
 
 	async deleteChannel(channelId: number) {
@@ -151,8 +127,11 @@ export class ChatService {
 	async getDMChannelsForUser(userId: number) {
 		const channels = await this.DMChannelRepository
 		.createQueryBuilder('channel')
+		.innerJoin('channel.users', 'membership', 'membership.id = :userId', { userId })
 		.leftJoinAndSelect('channel.users', 'users')
-		.where('users.id = :userId', { userId })
+		.leftJoinAndSelect('channel.messages', 'messages')
+		.leftJoinAndSelect('messages.user', 'author')
+		.orderBy('messages.id', 'ASC')
 		.getMany();
 		return channels;
 	}
@@ -160,18 +139,28 @@ export class ChatService {
 	/********************  User  ********************/
 
 
+	private async withLockedChannel<T>(channelId: number, action: (channel: Channel, repository: Repository<Channel>) => Promise<T>): Promise<T> {
+		return this.channelRepository.manager.transaction(async (manager) => {
+			const repository = manager.getRepository(Channel);
+			const channel = await repository.createQueryBuilder('channel')
+				.setLock('pessimistic_write').where('channel.id = :channelId', { channelId }).getOne();
+			if (channel) channel.users = await repository.createQueryBuilder().relation(Channel, 'users').of(channelId).loadMany();
+			return action(channel, repository);
+		});
+	}
+
+	private canModerate(channel: Channel, actorId: number, targetId?: number): boolean {
+		if (!channel || !channel.users.some((user) => user.id === actorId)) return false;
+		if (channel.owner === actorId) return true;
+		return channel.admins.includes(actorId) && channel.owner !== targetId && !channel.admins.includes(targetId);
+	}
+
 	async addUser(userId: number, channelId: number) {
-		const user = await this.userService.getOne(userId);
-		const channel = await this.getChannel(channelId);
-		if (!channel)
-			return false;
-		if (channel.bans.includes(userId))
-			return false;
-		if (channel.users.find((u) => u.id === userId))
-			return false;
-		channel.users.push(user);
-		await this.channelRepository.save(channel);
-		return true;
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!channel || channel.bans.includes(userId) || channel.users.some((user) => user.id === userId)) return false;
+			await repository.createQueryBuilder().relation(Channel, 'users').of(channelId).add(userId);
+			return true;
+		});
 	}
 
 	async getChannel(channelId: number) {
@@ -187,76 +176,53 @@ export class ChatService {
 		}
 	}
 
+	async getChannelMembership(channelId: number) {
+		if (!Number.isSafeInteger(channelId) || channelId <= 0) return null;
+		return this.channelRepository.findOne({ where: { id: channelId }, relations: ['users'] });
+	}
+
 	async getDMChannel(userId: number, otherUserId: number) {
-		const user = await this.userService.getOne(userId);
-		const otherUser = await this.userService.getOne(otherUserId);
-		const userList = [user, otherUser];
-		const channels = await this.DMChannelRepository.find({
-			where: { users: In([ user ]) },
-			relations: ['users', 'messages'],
-		});
-		const channel = channels.find((c) => {
-			const users = c.users.map((u) => u.id);
-			return users.includes(userId) && users.includes(otherUserId);
-		});
-		if (!channel)
-			return null;
-		return channel;
+		return this.findDMChannel(this.DMChannelRepository, userId, otherUserId);
+	}
+
+	private findDMChannel(repository: Repository<DMChannel>, userId: number, otherUserId: number) {
+		return repository.createQueryBuilder('conversation')
+			.innerJoin('conversation.users', 'first', 'first.id = :userId', { userId })
+			.innerJoin('conversation.users', 'second', 'second.id = :otherUserId', { otherUserId })
+			.leftJoinAndSelect('conversation.users', 'users')
+			.leftJoinAndSelect('conversation.messages', 'messages')
+			.leftJoinAndSelect('messages.user', 'author')
+			.orderBy('conversation.id', 'ASC').addOrderBy('messages.id', 'ASC')
+			.getOne();
 	}
 
 
 	async removeUser(userId: number, channelId: number) {
-		try
-		{
-			const channel = await this.getChannel(channelId);
-			if (!channel)
-				return false;
-			if (channel.users.find((u) => u.id === userId) === undefined)
-				return false;
-			if (channel.admins.includes(userId)) {
-				const adminIndex = channel.admins.indexOf(userId);
-				channel.admins.splice(adminIndex, 1);
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!channel || !channel.users.some((user) => user.id === userId)) return false;
+			const remaining = channel.users.filter((user) => user.id !== userId);
+			if (!remaining.length) {
+				await repository.delete(channelId);
+				return true;
 			}
-			if (channel.bans.includes(userId)) {
-				const banIndex = channel.bans.indexOf(userId);
-				channel.bans.splice(banIndex, 1);
-			}
-			if (channel.mutes.includes(userId)) {
-				const muteIndex = channel.mutes.indexOf(userId);
-				channel.mutes.splice(muteIndex, 1);
-			}
-			if (channel.owner === userId && channel.users.length > 1) {
-				channel.owner = channel.admins.length === 0 ? channel.users.find((u) => u.id !== userId).id : channel.admins[0];
-			}
-			channel.users = channel.users.filter((u) => u.id !== userId);
-			if (channel.users.length === 0)
-				await this.deleteChannel(channelId);
-			else
-				await this.channelRepository.save(channel);
+			const admins = channel.admins.filter((id) => id !== userId);
+			const owner = channel.owner === userId ? (admins.find((id) => remaining.some((user) => user.id === id)) || remaining[0].id) : channel.owner;
+			await repository.createQueryBuilder().relation(Channel, 'users').of(channelId).remove(userId);
+			await repository.update(channelId, { owner, admins, mutes: channel.mutes.filter((id) => id !== userId) });
 			return true;
-		} catch {}
+		});
 	}
 
 	async getAllUsers(userId: number) {
-		const users = (await this.userService.fetchUsers()).filter((u) => u.id !== userId);
-		const userList = await Promise.all(users.map(async (u) => {
-			const messages = await this.getAllDirectMessages(userId, u.id)
-			if (messages) {
-				const message_list = messages.map(({ message, user }) => ({ message, userId: user.id, userName: user.nickname }))
-				return {
-					id: u.id,
-					name: u.name,
-					status: u.status,
-					messages: message_list
-				}
-			}
-			return {
-				id: u.id,
-				name: u.name,
-				status: u.status,
-			}
-		}, []));
-		return userList;
+		const [users, channels, blocks] = await Promise.all([
+			this.userService.fetchUsers(), this.getDMChannelsForUser(userId), this.userService.fetchBlocks(userId),
+		]);
+		return users.filter((user) => user.id !== userId).map((user) => {
+			const channel = channels.find((channel) => channel.users.some((member) => member.id === user.id));
+			const messages = (channel?.messages || []).filter((message) => !blocks.includes(message.user.id))
+				.map(({ message, user: author }) => ({ message, userId: author.id, userName: author.nickname }));
+			return { id: user.id, name: user.name, status: user.status, messages };
+		});
 	}
 
 	async checkAdmin(userId: number,otherUserId: number, channelId: number) {
@@ -277,144 +243,88 @@ export class ChatService {
 
 	/********************  Ban  ********************/
 
-	async banUser(userId: number, channelId: number) {
-		try
-		{
-			const channel = await this.getChannel(channelId);
-			if (!channel)
-				return { status: false, message: "해당 채널이 존재하지 않습니다."};
-			if (channel.users.find((u) => u.id === userId) === undefined)
-				return { status: false, message: "해당 채널에 존재하지 않는 유저입니다."};
-			if (channel.bans.includes(userId))
-				return { status: false, message: "이미 차단된 유저입니다." };
-			channel.bans.push(userId);
-			channel.users = channel.users.filter((u) => u.id !== userId);
-			await this.channelRepository.save(channel);
-			return { status: true, message: "해당 유저를 차단하였습니다." };
-		} catch {}
+	async banUser(userId: number, channelId: number, actorId: number) {
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!this.canModerate(channel, actorId, userId)) return { status: false, message: '관리자 권한이 없습니다.' };
+			if (!channel || !channel.users.some((user) => user.id === userId)) return { status: false, message: '해당 채널에 참여하지 않았습니다.' };
+			if (channel.owner === userId) return { status: false, message: '방장은 차단할 수 없습니다.' };
+			await repository.createQueryBuilder().relation(Channel, 'users').of(channelId).remove(userId);
+			await repository.update(channelId, { bans: [...new Set([...channel.bans, userId])], admins: channel.admins.filter((id) => id !== userId), mutes: channel.mutes.filter((id) => id !== userId) });
+			return { status: true, message: '해당 유저를 차단하였습니다.' };
+		});
 	}
 
-	/********************  Mute  ********************/
-
-	async muteUser(userId: number, channelId: number) {
-		try
-		{
-			const channel = await this.getChannel(channelId);
-		if (!channel)
-			return { status: false, message: "해당 채널이 존재하지 않습니다."};
-		if (channel.users.find((u) => u.id === userId) === undefined)
-			return { status: false, message: "해당 채널에 참여하지 않았습니다."};
-		if (channel.mutes.includes(userId))
-			return { status: false, message: "이미 뮤트된 유저입니다."};
-		channel.mutes.push(userId);
-		await this.channelRepository.save(channel);
-		return { status: true, message: "해당 유저를 뮤트하였습니다."};
-		} catch {}
+	async muteUser(userId: number, channelId: number, actorId: number) {
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!this.canModerate(channel, actorId, userId)) return { status: false, message: '관리자 권한이 없습니다.' };
+			if (!channel || !channel.users.some((user) => user.id === userId)) return { status: false, message: '해당 채널에 참여하지 않았습니다.' };
+			await repository.update(channelId, { mutes: [...new Set([...channel.mutes, userId])] });
+			return { status: true, message: '해당 유저를 뮤트하였습니다.' };
+		});
 	}
 
-	async unmuteUser(userId: number, channelId: number) {
-		try
-		{
-			const user = await this.userService.getOne(userId);
-			const channel = await this.getChannel(channelId);
-			if (!channel)
-				return { status: false, message: "해당 채널이 존재하지 않습니다."};
-			if (channel.users.find((u) => u.id === userId) === undefined)
-				return { status: false, message: "해당 채널에 참여하지 않았습니다."};
-			if (!channel.mutes.includes(userId))
-				return { status: false, message: "이미 뮤트가 해제된 유저입니다."};
-			const muteIndex = channel.mutes.indexOf(userId);
-			channel.mutes.splice(muteIndex, 1);
-			await this.channelRepository.save(channel);
-			return { status: true, message: "해당 유저의 뮤트를 해제하였습니다."};
-		} catch {}
+	async unmuteUser(userId: number, channelId: number, actorId: number) {
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!this.canModerate(channel, actorId, userId)) return { status: false, message: '관리자 권한이 없습니다.' };
+			if (!channel || !channel.users.some((user) => user.id === userId)) return { status: false, message: '해당 채널에 참여하지 않았습니다.' };
+			await repository.update(channelId, { mutes: channel.mutes.filter((id) => id !== userId) });
+			return { status: true, message: '해당 유저의 뮤트를 해제하였습니다.' };
+		});
 	}
 
-	/********************  Admin  ********************/
-
-	async addAdmin(userId: number, channelId: number) {
-		try
-		{
-			const user = await this.userService.getOne(userId);
-			const channel = await this.getChannel(channelId);
-		if (!channel)
-			return { status: false, message: "해당 채널이 존재하지 않습니다."};
-		if (channel.users.find((u) => u.id === userId) === undefined)
-			return { status: false, message: "해당 채널에 참여하지 않았습니다."};
-		channel.admins.push(userId);
-		await this.channelRepository.save(channel);
-		return { status: true, message: "해당 유저를 관리자로 추가하였습니다."};
-		}
-		catch {}
+	async addAdmin(userId: number, channelId: number, actorId: number) {
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!this.canModerate(channel, actorId, userId)) return { status: false, message: '관리자 권한이 없습니다.' };
+			if (!channel || !channel.users.some((user) => user.id === userId)) return { status: false, message: '해당 채널에 참여하지 않았습니다.' };
+			await repository.update(channelId, { admins: [...new Set([...channel.admins, userId])] });
+			return { status: true, message: '해당 유저를 관리자로 추가하였습니다.' };
+		});
 	}
 
-	async removeAdmin(userId: number, channelId: number) {
-		try
-		{
-			const user = await this.userService.getOne(userId);
-			const channel = await this.getChannel(channelId);
-		if (!channel)
-			return { status: false, message: "해당 채널이 존재하지 않습니다."};
-		if (channel.users.find((u) => u.id === userId) === undefined)
-			return { status: false, message: "해당 채널에 참여하지 않았습니다."};
-		const adminIndex = channel.admins.indexOf(userId);
-		channel.admins.splice(adminIndex, 1);
-		await this.channelRepository.save(channel);
-		return { status: true, message: "해당 유저를 관리자에서 제거하였습니다."};
-		}
-		catch {}
+	async removeAdmin(userId: number, channelId: number, actorId: number) {
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!this.canModerate(channel, actorId, userId)) return { status: false, message: '관리자 권한이 없습니다.' };
+			if (!channel || !channel.users.some((user) => user.id === userId)) return { status: false, message: '해당 채널에 참여하지 않았습니다.' };
+			await repository.update(channelId, { admins: channel.admins.filter((id) => id !== userId) });
+			return { status: true, message: '해당 유저를 관리자에서 제거하였습니다.' };
+		});
 	}
 
 	async getChannelUsers(channelId: number, userId: number) {
-		try
-		{
-			const channel = await this.getChannel(channelId);
-			if (!channel)
-				return;
-			const userList = channel.users.filter((u) => u.id !== userId)
-			.map((u) => ({
-				id: u.id,
-				name: u.nickname,
-				isOwner: u.id === channel.owner,
-				isAdmin: channel.admins.includes(u.id),
-				isMuted: channel.mutes.includes(u.id),
-				isBanned: channel.bans.includes(u.id),
-			}));
-			return {
-				channelId: channel.id,
-				channelOwner: channel.owner,
-				channelUsers: userList,
-			};
-		}
-		catch {}
+		const channel = await this.getChannelMembership(channelId);
+		if (!channel || !channel.users.some((user) => user.id === userId))
+			throw new HttpException('Channel membership required', HttpStatus.FORBIDDEN);
+		return {
+			channelId: channel.id,
+			channelOwner: channel.owner,
+			channelUsers: channel.users.filter((user) => user.id !== userId).map((user) => ({
+				id: user.id, name: user.nickname,
+				isOwner: user.id === channel.owner,
+				isAdmin: channel.admins.includes(user.id),
+				isMuted: channel.mutes.includes(user.id),
+				isBanned: channel.bans.includes(user.id),
+			})),
+		};
 	}
 
 	/********************  Kick  ********************/
 
-	async kickUser(userId: number, channelId: number) {
-		try
-		{
-			const user = await this.userService.getOne(userId);
-			const channel = await this.getChannel(channelId);
-		if (!channel)
-			return { status: false, message: "해당 채널이 존재하지 않습니다."};
-		if (channel.users.find((u) => u.id === userId) === undefined)
-			return { status: false, message: "해당 채널에 참여하지 않았습니다."};
-
-		channel.users = channel.users.filter((u) => u.id !== userId);
-		await this.channelRepository.save(channel);
-		return { status: true, message: "유저를 강퇴하였습니다."};
-		}
-		catch {}
+	async kickUser(userId: number, channelId: number, actorId: number) {
+		return this.withLockedChannel(channelId, async (channel, repository) => {
+			if (!this.canModerate(channel, actorId, userId)) return { status: false, message: '관리자 권한이 없습니다.' };
+			if (!channel || !channel.users.some((user) => user.id === userId)) return { status: false, message: '해당 채널에 참여하지 않았습니다.' };
+			if (channel.owner === userId) return { status: false, message: '방장은 강퇴할 수 없습니다.' };
+			await repository.createQueryBuilder().relation(Channel, 'users').of(channelId).remove(userId);
+			await repository.update(channelId, { admins: channel.admins.filter((id) => id !== userId), mutes: channel.mutes.filter((id) => id !== userId) });
+			return { status: true, message: '유저를 강퇴하였습니다.' };
+		});
 	}
-
-	/********************  Message  ********************/
 
 	async getAllMessages(channelId: number) {
 		const channel = await this.getChannel(channelId);
 		if (!channel)
 			return null;
-		return channel.messages;
+		return channel.messages.sort((first, second) => first.id - second.id);
 	}
 
 	async getAllDirectMessages(userId: number, otherUserId: number) {
@@ -425,29 +335,25 @@ export class ChatService {
 	}
 
 	async addChannelMessage(message: MessageI, channel: Channel) {
-		if (!channel)
-			return;
-		const new_message = new Message();
-		new_message.message = message.message;
-		new_message.user = message.user;
-		await this.messageRepository.save(new_message);
-		await this.channelRepository.createQueryBuilder()
-		.relation(Channel, "messages")
-		.of(channel)
-		.add(new_message);
+		if (!channel) return { status: false, message: '채널이 존재하지 않습니다.' };
+		return this.withLockedChannel(channel.id, async (current, repository) => {
+			if (!current?.users.some((user) => user.id === message.user.id))
+				return { status: false, message: '채널에 참여중이지 않습니다.' };
+			if (current.mutes.includes(message.user.id)) return { status: false, message: '채널에서 mute되었습니다.' };
+			const messages = repository.manager.getRepository(Message);
+			const saved = await messages.save(messages.create({ message: message.message, user: message.user }));
+			await repository.createQueryBuilder().relation(Channel, 'messages').of(channel.id).add(saved);
+			return { status: true, message: '' };
+		});
 	}
 
 	async addDirectMessage(message: MessageI, userId: number, otherUserId: number) {
-		const channel = await this.getDMChannel(userId, otherUserId);
-		if (!channel)
-			return;
-		const new_message = new Message();
-		new_message.message = message.message;
-		new_message.user = message.user;
-		await this.messageRepository.save(new_message);
-		await this.DMChannelRepository.createQueryBuilder()
-		.relation(DMChannel, "messages")
-		.of(channel)
-		.add(new_message);
+		const channel = await this.joinDMChannel(userId, otherUserId);
+		await this.DMChannelRepository.manager.transaction(async (manager) => {
+			const messages = manager.getRepository(Message);
+			const saved = await messages.save(messages.create({ message: message.message, user: message.user }));
+			await manager.getRepository(DMChannel).createQueryBuilder()
+				.relation(DMChannel, 'messages').of(channel.id).add(saved);
+		});
 	}
 }

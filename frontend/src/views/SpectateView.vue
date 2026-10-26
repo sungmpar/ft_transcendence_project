@@ -17,10 +17,10 @@
       ><button
         class="arcade-button primary mint-button"
         :disabled="waiting || !connected"
-        @click="store.getters.room.roomId ? spectateGame() : findRoomList()"
+        @click="store.getters.room.roomId || desiredRoom ? spectateGame() : findRoomList()"
         data-testid="online-play"
       >
-        {{ store.getters.room.roomId ? "선택한 경기 관전" : "경기 찾기" }}
+        {{ store.getters.room.roomId || desiredRoom ? "선택한 경기 관전" : "경기 찾기" }}
       </button></template
     >
     <template #actions
@@ -55,9 +55,10 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { createRouteGameSocket } from "@/arcade/route-game-socket";
 import { ConnectionRetry } from "@/arcade/connection-retry";
-import { isMatchEnded, ReadyMessage, RecoveredResult, SessionSyncResponse } from "../../../shared/protocol";
+import { isMatchEnded, isSessionSyncRequest, ReadyMessage, RecoveredResult, SessionSyncResponse } from "../../../shared/protocol";
 import { GameplayService } from "@/plugins/gamePlayService";
 import OnlineGameShell from "@/components/game/OnlineGameShell.vue";
 import SpectateSlider from "@/components/game/SpectateSlider.vue";
@@ -65,6 +66,9 @@ import store from "@/store";
 import { OnlineResultNotice } from "@/arcade/online-result";
 import { SessionRecovery, recoveryMessage } from "@/arcade/session-recovery";
 
+const route = useRoute(), router = useRouter();
+const spectatePath = route.path;
+const restoredRoom = route.query.matchId;
 const socket = createRouteGameSocket();
 const connectionState = ref({ pending: false, message: '' });
 const connectionRetry = new ConnectionRetry(socket, (state) => { connectionState.value = state; });
@@ -79,25 +83,48 @@ let context: CanvasRenderingContext2D | undefined;
 let pendingReady: ReadyMessage | undefined;
 const persistence = new OnlineResultNotice();
 let disposed = false;
-let desiredRoom = '';
+const desiredRoom = ref('');
 let retryDesiredRoom = false;
+let restoringSelection = false;
 const recoveredResult = ref<RecoveredResult | null>(null);
 const recovery = new SessionRecovery(socket, 'spectator', onRecovery);
+let queryRevision = 0, queryPending = false;
+function rememberRoom(roomId = '') {
+  if (disposed || route.path !== spectatePath ||
+    (!queryPending && route.query.matchId === (roomId || undefined))) return;
+  const revision = ++queryRevision;
+  queryPending = true;
+  const query = { ...route.query };
+  if (roomId) query.matchId = roomId;
+  else delete query.matchId;
+  // Persist only the selection. Names, scores, authority and permissions must
+  // come from this user's authenticated sessionSync after a new page loads.
+  void router.replace({ path: spectatePath, query, hash: route.hash }).catch(() => {
+    if (!disposed && revision === queryRevision) status.value = '관전 주소를 갱신하지 못했습니다. 다시 경기를 선택해 주세요.';
+  }).finally(() => {
+    if (revision === queryRevision) queryPending = false;
+  });
+}
 function retryConnection() {
   if (disposed || socket.connected || connectionState.value.pending) return;
-  retryDesiredRoom = Boolean(desiredRoom);
+  retryDesiredRoom = Boolean(desiredRoom.value);
   connectionRetry.retry();
 }
 function onRecovery(value: SessionSyncResponse | null) {
   if (disposed) return;
   waiting.value = false;
   if (value && 'ready' in value) {
+    restoringSelection = false;
     onReady(value.ready); status.value = recoveryMessage(value); return;
   }
   pendingReady = undefined;
   GameplayService.disposeFor(context?.canvas);
   store.commit('setOnlineState', null);
   active.value = false;
+  if (value?.status === 'unavailable') {
+    clearDisplay();
+    rememberRoom();
+  }
   status.value = recoveryMessage(value);
   if (value && 'result' in value) {
     recoveredResult.value = value.result;
@@ -138,9 +165,10 @@ function startGame(data: ReadyMessage) {
   GameplayService.start(context, map.value, data, setStatus);
 }
 function onReady(value: unknown) {
-  if (disposed) return;
+  if (disposed || restoringSelection || !desiredRoom.value) return;
   if (!recovery.acceptReady(value)) return;
-  desiredRoom = value.roomId;
+  desiredRoom.value = value.roomId;
+  rememberRoom(value.roomId);
   recoveredResult.value = null;
   persistence.reset(value.roomId);
   store.commit("setRoom", value);
@@ -162,7 +190,7 @@ function onEnd(value: unknown) {
   active.value = false;
   waiting.value = false;
   status.value = persistence.message;
-  GameplayService.stop(value.winner);
+  GameplayService.stop(value);
 }
 function onRooms(value: unknown) {
   if (disposed || !roomsLoading.value) return;
@@ -192,9 +220,9 @@ function onConnect() {
   if (disposed) return;
   if (!connectionRetry.connected()) return;
   connected.value = true;
-  if (desiredRoom && (active.value || waiting.value || retryDesiredRoom)) {
+  if (desiredRoom.value && (active.value || waiting.value || retryDesiredRoom)) {
     retryDesiredRoom = false;
-    waiting.value = true; recovery.resume(desiredRoom); return;
+    waiting.value = true; recovery.resume(desiredRoom.value); return;
   }
   status.value = active.value
     ? "다시 연결됐습니다. 관전 상태를 확인합니다."
@@ -223,6 +251,7 @@ function findRoomList() {
   pendingReady = undefined;
   store.commit("setOnlineState", null);
   clearDisplay();
+  rememberRoom();
   roomsLoading.value = true;
   roomsTimeout = setTimeout(() => {
     if (!disposed) failRoomRequest();
@@ -231,14 +260,14 @@ function findRoomList() {
 }
 function spectateGame() {
   if (!socket?.connected || waiting.value) return;
-  const roomId = store.getters.room.roomId;
+  const roomId = store.getters.room.roomId || desiredRoom.value;
   if (!roomId) {
     status.value = "먼저 경기 목록에서 관전할 방을 선택해 주세요.";
     return;
   }
   result.value = "";
   waiting.value = true;
-  desiredRoom = roomId;
+  desiredRoom.value = roomId;
   recovery.expect(roomId);
   persistence.reset(roomId);
   status.value = "서버의 현재 경기 상태를 기다립니다.";
@@ -259,8 +288,9 @@ function onResultStatus(value: unknown) {
 }
 function clearDisplay() {
   recoveredResult.value = null;
-  desiredRoom = "";
+  desiredRoom.value = "";
   retryDesiredRoom = false;
+  restoringSelection = false;
   recovery.clear();
   persistence.reset();
   store.commit("setOnlineMetrics", {
@@ -300,12 +330,22 @@ socket?.on("disconnect", onDisconnect);
 clearDisplay();
 store.commit("setOnlineState", null);
 store.commit("setIsSearching", false);
+if (typeof restoredRoom === 'string' && isSessionSyncRequest({
+  v: 1, requestId: 'restore-selection', matchId: restoredRoom, role: 'spectator',
+})) {
+  desiredRoom.value = restoredRoom;
+  retryDesiredRoom = true;
+  restoringSelection = true;
+  waiting.value = true;
+  recovery.expect(restoredRoom);
+  status.value = '서버에서 이전 관전 경기의 현재 상태를 확인하고 있습니다.';
+} else if (restoredRoom !== undefined) rememberRoom();
 watch(() => store.getters.isSearching, (open) => {
   if (!open) cancelRoomRequest();
 });
 watch(() => store.getters.room.roomId, (roomId) => {
-  if (roomId && roomId !== desiredRoom) {
-    desiredRoom = roomId;
+  if (roomId && roomId !== desiredRoom.value) {
+    desiredRoom.value = roomId;
     pendingReady = undefined;
     recovery.expect(roomId);
   }

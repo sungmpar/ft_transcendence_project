@@ -1,4 +1,4 @@
-import { GameService } from './game.service';
+import { GameService, RECONNECT_GRACE_MS } from './game.service';
 import { isReadyMessage } from '../../../shared/protocol';
 
 function socket(id: number): any {
@@ -225,11 +225,11 @@ describe('authenticated server ownership and match publication', () => {
     const room = internals.rooms.get('41');
     await game.dropUser(players[0], true);
     expect(matches.update).not.toHaveBeenCalled();
-    advance(5001);
+    advance(RECONNECT_GRACE_MS + 1);
     await room.completion;
     expect(matches.update).toHaveBeenCalledTimes(1);
     expect(players[1].emit).toHaveBeenCalledWith('matchEnded', { v: 1, roomId: '41', winner: 'right' });
-    advance(10001);
+    advance(RECONNECT_GRACE_MS + 5001);
     expect(matches.update).toHaveBeenCalledTimes(1);
   });
 

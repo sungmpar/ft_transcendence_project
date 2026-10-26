@@ -16,7 +16,8 @@ export class User {
 	@Column({ length: 60 })
 	email: string;
 
-	@Column({ length: 80, default: process.env.DEFAULT_IMG })
+	// Managed object storage URLs exceed the old 80-character path limit.
+	@Column({ type: 'text', default: process.env.DEFAULT_IMG || './profiles/default.jpeg' })
 	profileUrl: string;
 
 	@Column({ unique: true, length: 10, nullable: true })

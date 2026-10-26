@@ -160,6 +160,8 @@ async function match_check()
 function connectSocket(toName: any) {
   if (store.getters.socket == null && (toName == 'chat' || toName == 'tempchat')) {
     store.commit("setSocket", io(`${socketBaseUrl}/chat`, {
+    // Chat owns its connection lifecycle independently of deferred game routes.
+    forceNew: true,
     transports: ['websocket'],
     auth:
     {

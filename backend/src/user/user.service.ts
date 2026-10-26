@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import { UserDto } from './dto/user.dto';
@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { UserStatus } from './interface/user.status';
 import { MatchService } from './match.service';
 import { UserLadder } from './interface/user.ladder';
+import { randomBytes } from 'crypto';
 
 @Injectable()
 export class UserService {
@@ -57,7 +58,7 @@ export class UserService {
 	}
 
 	private generateGuestId() {
-		return `g${Date.now().toString(36).slice(-7)}`;
+		return `g${randomBytes(4).toString('hex')}`;
 	}
 
 	private isUniqueConstraintError(error: any) {
@@ -83,7 +84,7 @@ export class UserService {
 		return users;
 	}
 
-	async update(id: number, user: UserDto) {
+	async update(id: number, user: Partial<User>) {
 		if (await this.userRepository.update(id, user))
 			return await this.getOne(id);
 		throw new NotFoundException();
@@ -144,10 +145,25 @@ export class UserService {
 	}
 
 	async updateStatus(user: User, status: UserStatus) {
-		user.status = status;
-		await this.userRepository.save(user);
+		await this.userRepository.update(user.id, { status });
 		return true;
 	}
+
+	private async addSocialLink(userId: number, targetId: number, field: 'friends' | 'blocks') {
+		if (!Number.isSafeInteger(targetId) || targetId <= 0 || userId === targetId)
+			throw new BadRequestException('Invalid user');
+		if (!await this.getOne(targetId)) throw new NotFoundException('User not found');
+		const result = await this.userRepository.createQueryBuilder().update(User)
+			.set({ [field]: () => `array_append("${field}", :targetId)` })
+			.where('id = :userId', { userId })
+			.andWhere(`NOT (:targetId = ANY("${field}"))`, { targetId })
+			.execute();
+		if (!result.affected) throw new ConflictException(`Already in ${field}`);
+		return this.getOne(userId);
+	}
+
+	async addFriend(userId: number, targetId: number) { return this.addSocialLink(userId, targetId, 'friends'); }
+	async addBlock(userId: number, targetId: number) { return this.addSocialLink(userId, targetId, 'blocks'); }
 
 	async updateAchievement(id: number, achievement: string) {
 		const user = await this.getOne(id);

@@ -17,8 +17,10 @@ export const WSAuthMiddleware = (jwtService: JwtService, userService: UserServic
 			const payload: JwtPayload = await jwtService.verify(token, {secret: process.env.SECRET});
 			const user = await userService.getOneByName(payload.username);
 			// console.log(console.log("connecting . . . . . .", user))
-			if (user === undefined)
+			if (!user)
 				throw new Error("User not found");
+			if (user.isBanned || (user.need2fa && !user.is2fa))
+				throw new Error('User authentication is incomplete');
 			socket.user = user;
 			next();
 		}
