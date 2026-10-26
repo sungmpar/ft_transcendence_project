@@ -45,5 +45,5 @@ jobs:
           git rm -- .github/workflows/restore-vercel-migration.yml
           git diff --cached --quiet FETCH_HEAD --
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m "chore: preserve Vercel deployed migration code and original commits"
-          test "$(git rev-parse "$DEPLOYED_SHA^{tree}")" = "$(git rev-parse HEAD^{tree}")"
+          test "$(git rev-parse "${DEPLOYED_SHA}^{tree}")" = "$(git rev-parse 'HEAD^{tree}')"
           git push origin HEAD:refs/heads/feat/vercel-managed-runtime
