@@ -39,6 +39,8 @@ jobs:
           git bundle verify /tmp/ft-vercel-source.bundle
           git fetch /tmp/ft-vercel-source.bundle refs/heads/feat/vercel-managed-runtime
           test "$(git rev-parse FETCH_HEAD)" = "$DEPLOYED_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git merge --no-ff --no-commit FETCH_HEAD
           git rm -- .github/workflows/restore-vercel-migration.yml
           git diff --cached --quiet FETCH_HEAD --
