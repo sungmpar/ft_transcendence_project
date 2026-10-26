@@ -12,7 +12,7 @@ interface EmailOptions {
 
 @Injectable()
 export class EmailService {
-	private transporter: Mail;
+	private transporter: ReturnType<typeof nodemailer.createTransport>;
 
 	constructor() {
     this.transporter = nodemailer.createTransport({

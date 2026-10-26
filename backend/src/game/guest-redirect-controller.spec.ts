@@ -4,6 +4,7 @@ import { ROUTE_ARGS_METADATA } from '@nestjs/common/constants';
 import { AuthController } from '../auth/auth.controller';
 import { AuthService } from '../auth/auth.service';
 import { UserService } from '../user/user.service';
+import { GuestAdmissionService } from '../auth/guest-admission.service';
 
 describe('existing guest redirect controller contract', () => {
   const original = {
@@ -12,9 +13,11 @@ describe('existing guest redirect controller contract', () => {
   };
   const createGuest = jest.fn();
   const issueJwtToken = jest.fn();
+  const reserve = jest.fn().mockResolvedValue(undefined);
   const controller = new AuthController(
     { issueJwtToken } as unknown as AuthService,
     { createGuest } as unknown as UserService,
+    { reserve } as unknown as GuestAdmissionService,
   );
   function response() {
     return {
@@ -59,7 +62,8 @@ describe('existing guest redirect controller contract', () => {
     expect(issueJwtToken).toHaveBeenCalledTimes(1);
     expect(res.cookie).toHaveBeenCalledTimes(1);
     expect(res.cookie.mock.calls[0][0]).toBe('token');
-    expect(res.cookie.mock.calls[0][2]).toEqual({ httpOnly: false });
+    expect(res.cookie.mock.calls[0][2]).toEqual({ httpOnly: false, secure: true, sameSite: 'lax', path: '/', maxAge: 180000 });
+    expect(reserve).toHaveBeenCalledTimes(1);
     expect(res.redirect).toHaveBeenCalledWith(
       'https://game.example/login?token=check',
     );

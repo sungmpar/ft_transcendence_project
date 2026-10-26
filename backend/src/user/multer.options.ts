@@ -1,47 +1,13 @@
-import { HttpException, HttpStatus } from "@nestjs/common";
-import { existsSync, mkdirSync } from "fs";
-import { diskStorage, memoryStorage } from 'multer';
+import { BadRequestException } from '@nestjs/common';
+import { memoryStorage } from 'multer';
+import { MAX_AVATAR_BYTES } from './avatar-normalization';
 
+// Decode/validate in ProfileService before any Blob or local filesystem write.
 export const multerDiskOptions = {
-	fileFilter: (req: any, file: any, cb: any) => {
-		if (file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
-			cb(null, true);
-		} else {
-			cb(
-				new HttpException(
-					{
-						message: 1,
-						error: '지원하지 않는 이미지 형식입니다.',
-					},
-					HttpStatus.BAD_REQUEST,
-				),
-				false,
-			)
-		}
-	},
-
-	storage: process.env.VERCEL ? memoryStorage() : diskStorage({
-		destination: (req: any, file: any, callback: any) => {
-			const uploadPath = './profiles';
-			if (!existsSync(uploadPath)){
-				mkdirSync(uploadPath);
-			}
-			callback(null, uploadPath);
-		},
-		filename: (req: any, file: any, callback: any) => {
-			const name: string = req.user.name;
-			const filename: string = name;
-			const ext: string = file.mimetype.split('/')[1];
-			console.log(ext);
-			callback(null, `${filename}.${ext}`)
-		}
-	}),
-
-	limits: {
-		fieldNameSize: 20,
-		fieldSize: 1024*1024,
-		fields: 1,
-		fileSize: 2097152,
-		files: 1,
-		}
-}
+  storage: memoryStorage(),
+  fileFilter: (_req: unknown, file: { mimetype: string }, cb: (error: Error | null, accept: boolean) => void) => {
+    const allowed = ['image/jpeg', 'image/jpg', 'image/png'].includes(file.mimetype);
+    cb(allowed ? null : new BadRequestException('Unsupported avatar format'), allowed);
+  },
+  limits: { fieldNameSize: 20, fieldSize: 1024, fields: 1, fileSize: MAX_AVATAR_BYTES, files: 1, parts: 2 },
+};

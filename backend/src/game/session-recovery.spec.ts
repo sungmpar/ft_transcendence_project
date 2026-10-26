@@ -1,4 +1,4 @@
-import { GameService } from './game.service';
+import { GameService, RECONNECT_GRACE_MS } from './game.service';
 
 function socket(id: number): any {
   return {
@@ -251,7 +251,7 @@ describe('N1 authenticated same-page match recovery', () => {
     await match(game, players);
     const room = internals.rooms.get('41');
     await game.dropUser(players[0], true);
-    advance(5001);
+    advance(RECONNECT_GRACE_MS + 1);
     await room.completion;
     expect(internals.rooms.size).toBe(0);
     const returning = socket(1);
@@ -276,7 +276,7 @@ describe('N1 authenticated same-page match recovery', () => {
     });
     await match(game, players);
     await game.dropUser(players[0], true);
-    advance(5001);
+    advance(RECONNECT_GRACE_MS + 1);
     const returning = socket(1);
     await game.addUser(returning);
     expect(await sync(game, returning)).toMatchObject({
@@ -299,15 +299,15 @@ describe('N1 authenticated same-page match recovery', () => {
     });
     await match(game, players);
     await game.dropUser(players[0], true);
-    advance(5001);
+    advance(RECONNECT_GRACE_MS + 1);
     const room = internals.rooms.get('41');
     await room.completion;
     const returning = socket(1);
     await game.addUser(returning);
     expect(await sync(game, returning)).toMatchObject({ status: 'retrying' });
-    advance(6001);
+    advance(RECONNECT_GRACE_MS + 1001);
     await room.completion;
-    advance(8001);
+    advance(RECONNECT_GRACE_MS + 3001);
     await room.completion;
     expect(await sync(game, returning, request('request-2'))).toMatchObject({
       status: 'failed',
@@ -339,7 +339,7 @@ describe('N1 authenticated same-page match recovery', () => {
     await match(game, players);
     const room = internals.rooms.get('41');
     await game.dropUser(players[0], true);
-    advance(5001);
+    advance(RECONNECT_GRACE_MS + 1);
     await room.completion;
     expect(await sync(game, players[2])).toMatchObject({
       status: 'unavailable',

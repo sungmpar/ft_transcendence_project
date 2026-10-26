@@ -8,6 +8,8 @@ import { randomUUID } from 'crypto';
 import { basename, resolve, sep } from 'path';
 import { createReadStream, existsSync } from 'fs';
 import { Response } from 'express';
+import { normalizeAvatar } from './avatar-normalization';
+import { mkdir, writeFile } from 'fs/promises';
 
 const DEFAULT_AVATAR = './profiles/default.jpeg';
 const EXTENSIONS: Record<string, string> = {
@@ -28,21 +30,27 @@ export class ProfileService {
 	}
 
 	async saveProfileImage(user: User, file: { buffer?: Buffer; mimetype: string }): Promise<void> {
-		const ext = EXTENSIONS[file.mimetype];
-		if (!ext) throw new Error('Unsupported avatar format');
-		if (process.env.VERCEL) {
-			if (!file.buffer) throw new Error('Avatar upload buffer is missing');
-			const blob = await put(`profiles/${user.id}/${randomUUID()}.${ext}`, file.buffer, {
-				access: 'public',
-				contentType: file.mimetype,
-				addRandomSuffix: false,
-			});
-			await this.updateProfileUrl(user.name, blob.url);
-		} else {
-			// Local Docker keeps its existing disk-backed upload behavior.
-			await this.updateProfileUrl(user.name, `./profiles/${user.name}.${ext}`);
-		}
-	}
+    const buffer = await normalizeAvatar(file);
+    const filename = `${user.id}-${randomUUID()}.png`;
+    if (process.env.VERCEL) {
+      const blob = await put(`profiles/${user.id}/${filename}`, buffer, {
+        access: 'public', contentType: 'image/png', addRandomSuffix: false,
+      });
+      try {
+        await this.updateProfileUrl(user.name, blob.url);
+      } catch (error) {
+        // Roll back only the object just created by this request, never another avatar.
+        await del(blob.url).catch(() => undefined);
+        throw error;
+      }
+    } else {
+      const root = resolve(process.cwd(), 'profiles');
+      await mkdir(root, { recursive: true });
+      await writeFile(resolve(root, filename), buffer, { flag: 'wx' });
+      try { await this.updateProfileUrl(user.name, `./profiles/${filename}`); }
+      catch (error) { await this.deleteImage(filename); throw error; }
+    }
+  }
 
 	/** Image APIs keep their old routes; hosted avatars redirect to the Blob CDN. */
 	sendProfileImage(user: User, res: Response): void {

@@ -13,6 +13,7 @@
       </section>
       <section class="login-panel" aria-labelledby="login-title">
         <p class="login-eyebrow">온라인 로그인</p>
+        <p v-if="isEmbedded" class="login-notice" data-testid="embedded-login-help">삽입 화면에서는 로그인 쿠키가 제한될 수 있습니다. <a :href="currentUrl" target="_blank" rel="noopener noreferrer">새 창에서 안전하게 로그인하기 ↗</a></p>
         <h2 id="login-title">{{ destination ? destinationLabel + ' 계속하기' : '시작하기' }}</h2>
         <p v-if="destination">로그인하면 선택한 화면으로 돌아갑니다. 닉네임 설정이나 2단계 인증이 필요한 계정은 해당 절차를 먼저 진행합니다.</p>
         <p v-else>로그인하면 홈에서 온라인 대전, 친구 초대, 관전을 선택할 수 있습니다.</p>
@@ -41,6 +42,7 @@ import { clearLoginIntent, readLoginIntent } from '@/arcade/login-intent';
 import { resolveGuestLoginUrl } from '@/arcade/guest-navigation-url';
 import axios from 'axios';
 const route = useRoute();
+const isEmbedded = window.top !== window.self;
 const isGuestLoginEnabled = ref(false);
 const is42LoginEnabled = ref(false);
 const authConfigLoaded = ref(false);

@@ -109,7 +109,7 @@ export class RedisGameCoordinator implements OnModuleInit, OnModuleDestroy {
     const statuses = await pipeline.exec();
     if (!Array.isArray(statuses) || statuses.length !== ids.length ||
       statuses.some((status) => !Array.isArray(status) || status[0] ||
-        !Number.isInteger(status[1]) ||
+        typeof status[1] !== 'number' || !Number.isInteger(status[1]) ||
         (status[1] !== -2 && (status[1] < 0 || status[1] > PRESENCE_MS))))
       throw new Error('Could not verify restored socket presence');
     // Anchor remaining TTLs at request start, not response receipt. A slow
