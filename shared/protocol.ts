@@ -1,6 +1,11 @@
 import { createGame, GameEvent, GameState, PlayerInput } from './game-core';
 
 export const PROTOCOL_VERSION = 1;
+// A recovery ACK may wait for an expired authority lease and a retried command.
+// Keep the browser owner timer and Socket.IO ACK registry alive until the server
+// command deadline plus a bounded allowance for request/response delivery.
+export const GAME_COMMAND_TIMEOUT_MS = 12000;
+export const SESSION_RECOVERY_TIMEOUT_MS = GAME_COMMAND_TIMEOUT_MS + 2000;
 export const EVENT_HISTORY_TICKS = 120;
 export const MAX_SNAPSHOT_EVENTS = 64;
 export interface ServerEvent { id: number; event: GameEvent }

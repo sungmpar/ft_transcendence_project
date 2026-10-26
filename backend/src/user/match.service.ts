@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Match } from './entity/match.entity';
 import { User } from './entity/user.entity';
 import { UserLadder } from './interface/user.ladder';
@@ -36,14 +36,17 @@ export class MatchService {
   }
 
 	async getAll(user: User) {
-		const matchs = await this.matchRepository.find({
-			where: { players: In([ user ]) },
-			relations: ['players'],
-		});
-		// Published-but-unfinished and storage-failed rows are not match history.
-		const matchlist = matchs.filter(match => match.winner && match.loser &&
-			match.players.find(player => player.id == user.id))
-		return matchlist;
+		// A many-to-many participant is a relation, not a scalar IN parameter.
+		// Filter through a separate membership join and load both participants,
+		// plus both result relations (QueryBuilder does not load eager relations).
+		return this.matchRepository.createQueryBuilder('match')
+			.innerJoin('match.players', 'membership', 'membership.id = :userId', { userId: user.id })
+			.leftJoinAndSelect('match.players', 'players')
+			.leftJoinAndSelect('match.winner', 'winner')
+			.leftJoinAndSelect('match.loser', 'loser')
+			.where('match.winnerId IS NOT NULL AND match.loserId IS NOT NULL')
+			.orderBy('match.id', 'ASC')
+			.getMany();
 	}
 
 	async update(id: string, matchResult: {

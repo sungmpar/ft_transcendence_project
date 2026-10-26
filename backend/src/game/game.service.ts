@@ -14,16 +14,20 @@ import {
   RecoveredResult,
   SessionSyncRequest,
   SessionSyncResponse,
+  isSnapshot,
 } from '../../../shared/protocol';
 import { ServerMatchRunner } from './server-match-runner';
+import { GameRuntimeState } from './distributed-state';
+import { GAME_RECONNECT_GRACE_MS } from '../../../shared/realtime-policy';
 
 export const GAME_CLOCK = Symbol('GAME_CLOCK');
-export const RECONNECT_GRACE_MS = 5000;
+export const RECONNECT_GRACE_MS = GAME_RECONNECT_GRACE_MS;
 const MAX_SAVE_ATTEMPTS = 3;
 const OBSERVER_GRANT_MS = 10 * 60 * 1000;
 const MAX_OBSERVER_GRANTS = 1000;
 type Session = { socket: AuthSocket; generation: number };
 type Binding = { roomId: string; side: Side };
+type DisconnectCause = 'transport_close' | 'presence_expired';
 const object = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 const userId = (value: unknown): value is number =>
@@ -31,6 +35,9 @@ const userId = (value: unknown): value is number =>
 
 @Injectable()
 export class GameService implements OnModuleDestroy {
+  private runtimeActive = true;
+  private runtimeGuard: () => boolean = () => true;
+  private durabilityGate?: () => Promise<boolean>;
   private rooms = new Map<string, Room>();
   private waitList: SpecData[] = [];
   private inviteList: { from: AuthSocket; to: number; mode: boolean }[] = [];
@@ -42,6 +49,7 @@ export class GameService implements OnModuleDestroy {
   private observerGrants = new Map<string, number>();
   private reservations = new Map<number, AuthSocket>();
   private generation = 0;
+  private lifecycleLogCounts = new WeakMap<Room, number>();
   private syncRequests = new WeakMap<AuthSocket, SessionSyncRequest>();
   private recoveryLookups = new Map<
     number,
@@ -75,8 +83,205 @@ export class GameService implements OnModuleDestroy {
     private readonly now: () => number = () => performance.now(),
   ) {}
 
+  /** Followers must never advance physics; only the Redis lease owner may run it. */
+  setRuntimeActive(value: boolean): void {
+    this.runtimeActive = value;
+  }
+
+  setRuntimeGuard(guard: () => boolean): void { this.runtimeGuard = guard; }
+
+  setDurabilityGate(gate: () => Promise<boolean>): void { this.durabilityGate = gate; }
+
+  private canRun(): boolean { return this.runtimeActive && this.runtimeGuard(); }
+
+  sessionForUser(id: number): AuthSocket | undefined {
+    return this.sessions.get(id)?.socket;
+  }
+
+  activeSessions(): AuthSocket[] {
+    return Array.from(this.sessions.values()).map(({ socket }) => socket);
+  }
+
+  hasRuntimeRooms(): boolean { return this.rooms.size > 0; }
+
+  /** Durable checkpoint without raw Socket.IO objects, circular references or timers. */
+  checkpoint(): GameRuntimeState {
+    const nowMs = this.now();
+    const sockets = new Map<string, AuthSocket>();
+    const include = (socket: AuthSocket) => sockets.set(socket.id, socket);
+    for (const session of this.sessions.values()) include(session.socket);
+    for (const room of this.rooms.values()) {
+      room.players.forEach(include);
+      room.spectators.forEach(include);
+    }
+    for (const waiting of this.waitList) include(waiting.socket);
+    for (const invite of this.inviteList) include(invite.from);
+    return {
+      v: 1,
+      savedAt: Date.now(),
+      generation: this.generation,
+      sockets: Array.from(sockets.values()).map((socket) => ({
+        socketId: socket.id,
+        user: { id: socket.user.id, name: socket.user.name, nickname: socket.user.nickname },
+      })),
+      sessions: Array.from(this.sessions, ([userId, session]) => ({
+        userId, socketId: session.socket.id, generation: session.generation,
+      })),
+      waitList: this.waitList.map(({ socket, mode }) => ({ socketId: socket.id, mode })),
+      inviteList: this.inviteList.map(({ from, to, mode }) => ({ socketId: from.id, to, mode })),
+      watching: Array.from(this.watching, ([socket, roomId]) => ({ socketId: socket.id, roomId })),
+      observerGrants: Array.from(this.observerGrants, ([key, expiresAt]) => ({
+        key, remainingMs: Math.max(0, expiresAt - nowMs),
+      })),
+      recentResults: Array.from(this.recentResults, ([roomId, result]) => ({
+        roomId, remainingMs: Math.max(0, result.expiresAt - nowMs),
+        participants: result.participants, status: result.status,
+        winnerId: result.winnerId, result: result.result,
+      })),
+      rooms: Array.from(this.rooms.values()).map((room) => ({
+        id: room.roomIndex,
+        mode: room.gameMode,
+        playerSocketIds: room.players.map((player) => player.id) as [string, string],
+        spectatorSocketIds: room.spectators.map((spectator) => spectator.id),
+        // Persistence is not a network frame; do not create artificial gaps in
+        // the sequence numbers observed by players and spectators.
+        snapshot: room.runner.snapshot(false),
+        persistence: room.persistence,
+        result: room.result,
+        offline: Array.from(room.offline, ([side, entry]) => ({
+          side, remainingMs: Math.max(0, entry.expiresAt - nowMs), generation: entry.generation,
+        })),
+        attempts: room.attempts,
+        retryRemainingMs: Number.isFinite(room.retryAt) ? Math.max(0, room.retryAt - nowMs) : null,
+      })),
+    };
+  }
+
+  /** Adopt a prior leader's checkpoint, forcing a fresh protocol ownership epoch. */
+  restoreCheckpoint(state: GameRuntimeState, socketForId: (id: string) => AuthSocket,
+    liveSocketIds?: ReadonlySet<string>): void {
+    if (state?.v !== 1 || !Array.isArray(state.rooms))
+      throw new Error('Unsupported game checkpoint');
+    const nowMs = this.now();
+    const elapsed = Math.max(0, Date.now() - state.savedAt);
+    const live = (remaining: number) => nowMs + Math.max(0, remaining - elapsed);
+    for (const room of this.rooms.values()) room.runner.dispose();
+    this.rooms.clear();
+    this.sessions.clear();
+    this.bindings.clear();
+    this.matchByUser.clear();
+    this.watching.clear();
+    this.observerGrants.clear();
+    this.recentResults.clear();
+    this.waitList.length = 0;
+    this.inviteList.length = 0;
+    this.reservations.clear();
+    this.generation = state.generation;
+    const liveSessions = state.sessions.filter((session) => !liveSocketIds || liveSocketIds.has(session.socketId));
+    const restoredSocketIds = new Set(liveSessions.map((session) => session.socketId));
+    const absentUsers = new Set(state.sessions.filter((session) => !restoredSocketIds.has(session.socketId))
+      .map((session) => session.userId));
+    for (const session of liveSessions) {
+      this.sessions.set(session.userId, {
+        socket: socketForId(session.socketId),
+        generation: session.generation,
+      });
+    }
+    this.userList = Array.from(this.sessions.values()).map(({ socket }) => socket);
+    for (const entry of state.waitList)
+      if (restoredSocketIds.has(entry.socketId))
+        this.waitList.push({ socket: socketForId(entry.socketId), mode: entry.mode });
+    for (const entry of state.inviteList)
+      if (restoredSocketIds.has(entry.socketId) && !absentUsers.has(entry.to))
+        this.inviteList.push({ from: socketForId(entry.socketId), to: entry.to, mode: entry.mode });
+    for (const entry of state.watching)
+      if (restoredSocketIds.has(entry.socketId)) this.watching.set(socketForId(entry.socketId), entry.roomId);
+    for (const entry of state.observerGrants)
+      if (entry.remainingMs > elapsed) this.observerGrants.set(entry.key, live(entry.remainingMs));
+    for (const entry of state.recentResults)
+      if (entry.remainingMs > elapsed) this.recentResults.set(entry.roomId, {
+        expiresAt: live(entry.remainingMs), participants: entry.participants,
+        status: entry.status, winnerId: entry.winnerId, result: entry.result,
+      });
+
+    for (const entry of state.rooms) {
+      if (!isSnapshot(entry.snapshot) || entry.snapshot.matchId !== entry.id)
+        throw new Error('Corrupted authoritative game checkpoint');
+      const players: [AuthSocket, AuthSocket] = entry.playerSocketIds.map(socketForId) as [AuthSocket, AuthSocket];
+      // Seed RNG is consumed once per serve; rallyId counts completed serves.
+      const rng = createSeededRng(Number(entry.id));
+      for (let i = 0; i < entry.snapshot.state.rallyId; i++) rng();
+      const runner = new ServerMatchRunner(entry.id, entry.mode, {
+        left: ++this.generation, right: ++this.generation,
+      }, nowMs, rng);
+      runner.restore(entry.snapshot, nowMs);
+      const room = new Room(entry.id, entry.mode, players, runner);
+      room.spectators = entry.spectatorSocketIds.filter((id) => restoredSocketIds.has(id)).map(socketForId);
+      room.persistence = entry.persistence === 'saving' ? 'failed' : entry.persistence;
+      room.result = entry.result;
+      room.offline = new Map(entry.offline.map(({ side, remainingMs, generation }) => [side, {
+        expiresAt: live(remainingMs), generation,
+      }]));
+      // A checkpoint predates a crashed transport's presence expiry. Reconcile
+      // it before the new authority can tick or announce a ready state. Existing
+      // disconnect deadlines retain elapsed time; only newly absent players get
+      // a fresh grace. Their paddle reservation and observer grants survive.
+      if (liveSocketIds && room.persistence === 'active') {
+        for (const [index, player] of players.entries()) {
+          const side: Side = index === 0 ? 'left' : 'right';
+          if (!restoredSocketIds.has(player.id) && !room.offline.has(side))
+            room.offline.set(side, { expiresAt: nowMs + RECONNECT_GRACE_MS,
+              generation: runner.generations[side] });
+        }
+      }
+      // A process can disappear during its last in-flight save. Replaying that
+      // same idempotent attempt must remain possible after recovery.
+      room.attempts = entry.persistence === 'saving' ? Math.max(0, entry.attempts - 1) : entry.attempts;
+      room.retryAt = entry.persistence === 'saving' ? nowMs :
+        entry.retryRemainingMs === null ? Infinity : live(entry.retryRemainingMs);
+      if (room.offline.size || room.persistence !== 'active') runner.stop();
+      this.rooms.set(room.roomIndex, room);
+      for (const [index, player] of players.entries()) {
+        const side: Side = index === 0 ? 'left' : 'right';
+        const binding = { roomId: room.roomIndex, side };
+        this.matchByUser.set(player.user.id, binding);
+        if (this.sessions.get(player.user.id)?.socket === player) this.bindings.set(player, binding);
+        const session = this.sessions.get(player.user.id);
+        if (session) session.generation = runner.generations[side];
+      }
+      for (const spectator of room.spectators) {
+        const session = this.sessions.get(spectator.user.id);
+        if (session?.socket !== spectator) continue;
+        session.generation = ++this.generation;
+      }
+    }
+  }
+
+  /** Re-announce authoritative state after ownership moves between instances. */
+  announceRecovery(): void {
+    for (const room of this.rooms.values()) {
+      this.logLifecycle(room, 'authority_recovered');
+      for (const [index, player] of room.players.entries()) {
+        if (this.sessions.get(player.user.id)?.socket !== player) continue;
+        const side: Side = index === 0 ? 'left' : 'right';
+        player.emit('ready', this.ready(room, player, side));
+        if (room.offline.size) player.emit('sessionStatus', {
+          roomId: room.roomIndex, status: 'waiting', graceMs: RECONNECT_GRACE_MS,
+        });
+      }
+      for (const spectator of room.spectators) {
+        if (this.sessions.get(spectator.user.id)?.socket !== spectator) continue;
+        spectator.emit('setData', {
+          ...this.ready(room, spectator, 'spectator'),
+          leftScore: room.runner.state.players.left.score,
+          rightScore: room.runner.state.players.right.score,
+        });
+      }
+    }
+  }
+
   private current(socket: AuthSocket): boolean {
-    return this.sessions.get(socket.user.id)?.socket === socket;
+    return this.canRun() && this.sessions.get(socket.user.id)?.socket === socket;
   }
 
   private busy(socket: AuthSocket): boolean {
@@ -91,6 +296,7 @@ export class GameService implements OnModuleDestroy {
   }
 
   async addUser(socket: AuthSocket): Promise<void> {
+    if (!this.canRun()) return;
     const previous = this.sessions.get(socket.user.id);
     if (previous?.socket === socket) return;
     // An active authenticated connection keeps control; only a disconnected
@@ -138,6 +344,7 @@ export class GameService implements OnModuleDestroy {
         room.runner.replaceInput(side, session.generation);
       }
       room.runner.start(this.now());
+      this.logLifecycle(room, 'resumed');
       const snapshot = room.runner.snapshot();
       room.players.forEach((player, index) =>
         player.emit(
@@ -517,6 +724,10 @@ export class GameService implements OnModuleDestroy {
               invitation.from === player || invitation.to === player.user.id,
           ),
       );
+      // A player must not see a match that exists only in a disappearing
+      // Function. Publish ready only after the room has a fenced checkpoint.
+      if (this.durabilityGate && !(await this.durabilityGate())) return;
+      if (!this.canRun() || this.rooms.get(id) !== room) return;
       const snapshot = room.runner.snapshot();
       other.socket.emit(
         'ready',
@@ -697,7 +908,23 @@ export class GameService implements OnModuleDestroy {
       socket.emit(event, payload);
   }
 
-  async dropUser(client: AuthSocket, disconnected = false): Promise<void> {
+  /** Bounded lifecycle evidence; never include identities, auth or socket data. */
+  private logLifecycle(room: Room,
+    transition: 'paused' | 'resumed' | 'authority_recovered' | 'result_saved' | 'result_failed',
+    detail: { cause?: DisconnectCause; side?: Side; reason?: 'score' | 'forfeit' | 'disconnect' } = {}): void {
+    const count = this.lifecycleLogCounts.get(room) || 0;
+    const terminal = transition === 'result_saved' || transition === 'result_failed';
+    if (!terminal && count >= 12) return;
+    this.lifecycleLogCounts.set(room, count + 1);
+    console.info(JSON.stringify({ event: 'game.lifecycle', transition,
+      at: new Date().toISOString(), matchId: room.roomIndex,
+      runnerId: room.runner.instanceId, tick: room.runner.state.tick,
+      score: { left: room.runner.state.players.left.score, right: room.runner.state.players.right.score },
+      ...(transition === 'paused' ? { graceMs: RECONNECT_GRACE_MS } : {}), ...detail }));
+  }
+
+  async dropUser(client: AuthSocket, disconnected = false,
+    cause: DisconnectCause = 'transport_close'): Promise<void> {
     const owned = this.current(client);
     this.removeWaiting(client);
     this.leaveSpectator(client);
@@ -722,6 +949,7 @@ export class GameService implements OnModuleDestroy {
         generation: room.runner.generations[binding.side],
       });
       room.runner.stop();
+      this.logLifecycle(room, 'paused', { cause, side: binding.side });
       this.broadcast(room, 'snapshot', room.runner.snapshot());
       this.broadcast(room, 'sessionStatus', {
         roomId: room.roomIndex,
@@ -755,6 +983,9 @@ export class GameService implements OnModuleDestroy {
   }
 
   private releaseRoom(room: Room): void {
+    // A save started by a former authority may finish after this process has
+    // adopted a newer checkpoint. It must not delete the restored room.
+    if (this.rooms.get(room.roomIndex) !== room) return;
     if (
       room.result &&
       (room.persistence === 'saved' || room.persistence === 'failed')
@@ -789,13 +1020,20 @@ export class GameService implements OnModuleDestroy {
     const loser = winner === 'left' ? 'right' : 'left';
     room.completion = (async () => {
       try {
+        // Persist the chosen terminal outcome under the current authority
+        // before writing PostgreSQL. A successor will then replay the same
+        // result rather than simulate a potentially different final outcome.
+        if (this.durabilityGate && !(await this.durabilityGate())) return;
+        if (!this.canRun() || this.rooms.get(room.roomIndex) !== room) return;
         await this.matchService.update(room.roomIndex, {
           winner: room.players[winnerIndex].user,
           loser: room.players[1 - winnerIndex].user,
           winnerScore: room.runner.state.players[winner].score,
           loserScore: room.runner.state.players[loser].score,
         });
+        if (!this.canRun() || this.rooms.get(room.roomIndex) !== room) return;
         room.persistence = 'saved';
+        this.logLifecycle(room, 'result_saved', { reason });
         this.broadcast(room, 'resultStatus', {
           roomId: room.roomIndex,
           status: 'saved',
@@ -810,6 +1048,7 @@ export class GameService implements OnModuleDestroy {
         });
         this.releaseRoom(room);
       } catch {
+        if (!this.canRun() || this.rooms.get(room.roomIndex) !== room) return;
         room.persistence = 'failed';
         if (room.attempts < MAX_SAVE_ATTEMPTS) {
           const retryInMs = room.attempts === 1 ? 250 : 1000;
@@ -823,6 +1062,7 @@ export class GameService implements OnModuleDestroy {
             retryInMs,
           });
         } else {
+          this.logLifecycle(room, 'result_failed', { reason });
           this.failedResults.push({
             roomId: room.roomIndex,
             winner,
@@ -853,6 +1093,7 @@ export class GameService implements OnModuleDestroy {
 
   @Interval(1000 / 60)
   loop(): void {
+    if (!this.canRun()) return;
     const nowMs = this.now();
     for (const room of this.rooms.values()) {
       if (

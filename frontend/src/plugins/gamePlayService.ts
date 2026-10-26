@@ -1,6 +1,6 @@
 import store from '@/store';
-import { isReadyMessage } from '../../../shared/protocol';
-import { OnlineFeedback, OnlineKeyLayout, OnlineSession } from '../arcade/online-session';
+import { isMatchEnded, isReadyMessage } from '../../../shared/protocol';
+import { emptyOnlineMetrics, GameTransport, OnlineFeedback, OnlineKeyLayout, OnlineSession } from '../arcade/online-session';
 
 /** Compatibility entry point for the three existing online routes. */
 export class GameplayService {
@@ -9,7 +9,9 @@ export class GameplayService {
   private static debugApi: object | null = null;
   private static activeRoom: string | null = null;
   private static activeGeneration = 0;
+  private static activeSocket: GameTransport | null = null;
   private static canvas: HTMLCanvasElement | null = null;
+  private static terminalCanvas: HTMLCanvasElement | null = null;
   private static feedback = new WeakMap<HTMLCanvasElement, OnlineFeedback>();
 
   static bindFeedback(canvas: HTMLCanvasElement, feedback: OnlineFeedback): () => void {
@@ -34,11 +36,18 @@ export class GameplayService {
     }
     if (this.session && this.activeRoom === ready.roomId &&
       this.activeGeneration === ready.generation && this.canvas === ctx.canvas) return true;
+    // Carry reconnect history only across recovery of this exact route/session.
+    // New matches, new sockets and route disposal start with empty diagnostics.
+    const previous = this.activeRoom === ready.roomId && this.canvas === ctx.canvas &&
+      this.activeSocket === store.getters.gameSocket ? this.session?.measurement : undefined;
     this.dispose();
     const session = new OnlineSession({
       canvas: ctx.canvas, background: backgroundImage, ready,
       socket: store.getters.gameSocket, keyLayout: this.layout,
       feedback: this.feedback.get(ctx.canvas),
+      connectionHistory: previous && {
+        disconnectCount: previous.disconnectCount, lastReconnectAt: previous.lastReconnectAt,
+      },
       displayMode: new URLSearchParams(window.location.search).get('display') === 'latest' ? 'latest' : 'interpolate',
       onStatus,
       onState: (state, metrics) => {
@@ -55,7 +64,9 @@ export class GameplayService {
     this.session = session;
     this.activeRoom = ready.roomId;
     this.activeGeneration = ready.generation;
+    this.activeSocket = store.getters.gameSocket;
     this.canvas = ctx.canvas;
+    store.commit('setOnlineMetrics', session.measurement);
     if ((process.env.NODE_ENV !== 'production' || process.env.VUE_APP_ARCADE_DEBUG === 'true') &&
       new URLSearchParams(window.location.search).get('debug') === '1') {
       this.debugApi = Object.freeze({ snapshot: () => session.state, latest: () => session.latest,
@@ -71,17 +82,33 @@ export class GameplayService {
     this.layout = layout;
     this.session?.useKeyLayout(layout);
   }
-  static stop(_winner?: unknown): void { void _winner; this.session?.complete(); this.dispose(); }
+  static stop(result?: unknown): void {
+    const terminal = isMatchEnded(result);
+    if (terminal && (!this.session || result.roomId !== this.activeRoom)) return;
+    // Legacy winner-only callers still tear down, but cannot claim a verified
+    // terminal result or preserve stale diagnostics for an unrelated match.
+    if (!terminal && result !== undefined && result !== 'left' && result !== 'right') return;
+    const canvas = this.canvas;
+    const finalMetrics = this.session?.complete(terminal ? result : undefined);
+    this.dispose();
+    if (terminal && canvas && finalMetrics) {
+      this.terminalCanvas = canvas;
+      store.commit('setOnlineMetrics', finalMetrics);
+    }
+  }
   static stopSpectate(winner?: unknown): void { this.stop(winner); }
   static disposeFor(canvas?: HTMLCanvasElement): void {
-    if (canvas && this.canvas === canvas) this.dispose();
+    if (canvas && (this.canvas === canvas || this.terminalCanvas === canvas)) this.dispose();
   }
   static dispose(): void {
     this.session?.dispose();
     this.session = null;
     this.activeRoom = null;
     this.activeGeneration = 0;
+    this.activeSocket = null;
     this.canvas = null;
+    this.terminalCanvas = null;
+    store.commit('setOnlineMetrics', emptyOnlineMetrics());
     if (this.debugApi && Object.getOwnPropertyDescriptor(window, '__ONLINE_DEBUG__')?.value === this.debugApi) {
       Reflect.deleteProperty(window, '__ONLINE_DEBUG__');
     }

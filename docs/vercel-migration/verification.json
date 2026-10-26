@@ -1,0 +1,86 @@
+{
+  "status": "protected-preview-update-pending",
+  "unitTests": {
+    "passed": 298,
+    "suites": 22,
+    "source": "executed on restored working tree"
+  },
+  "localIntegration": {
+    "startedAt": "2026-10-26T07:23:12.596Z",
+    "environment": "isolated-local-two-instances",
+    "checks": [
+      {
+        "name": "two isolated compiled NestJS instances start against real PostgreSQL and Redis",
+        "passed": true
+      },
+      {
+        "name": "guest cookie issuance, authenticated profile and unauthenticated API rejection",
+        "passed": true
+      },
+      {
+        "name": "public profile field allowlist and unavailable email 2FA fails closed",
+        "passed": true
+      },
+      {
+        "name": "friend persistence across server instances",
+        "passed": true
+      },
+      {
+        "name": "real image upload, decoded re-encoding, retrieval and malformed image rejection",
+        "passed": true
+      },
+      {
+        "name": "cross-instance channel creation, joining, messaging and PostgreSQL history",
+        "passed": true
+      },
+      {
+        "name": "non-member cannot send channel messages",
+        "passed": true
+      },
+      {
+        "name": "cross-instance direct messages and sender-spoofing rejection",
+        "passed": true
+      },
+      {
+        "name": "kicked member does not receive later cross-instance channel traffic",
+        "passed": true
+      },
+      {
+        "name": "cross-instance matchmaking, spectating and authoritative keyboard input",
+        "passed": true
+      },
+      {
+        "name": "transport disconnect reconnect restores same match",
+        "passed": true
+      },
+      {
+        "name": "authority process SIGKILL failover preserves match and accepts reconnect",
+        "passed": true,
+        "killedInstance": 0
+      },
+      {
+        "name": "completed match persists once and duplicate terminal client events do not double-award",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "matchId": "1",
+    "result": {
+      "id": 1,
+      "winnerId": 2,
+      "loserId": 1,
+      "winnerScore": 6,
+      "loserScore": 3
+    },
+    "finishedAt": "2026-10-26T07:23:58.054Z"
+  },
+  "unverified": [
+    "new protected deployment",
+    "original Preview 6-4 database corroboration",
+    "42 OAuth",
+    "email 2FA",
+    "public-domain anonymous access",
+    "real Notion iframe after public release",
+    "external Azure branch-trigger configuration"
+  ]
+}

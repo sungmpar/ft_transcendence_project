@@ -36,39 +36,36 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 		private readonly jwtService: JwtService,
 	) { }
 	@WebSocketServer() server: Server;
-	private sockets = new Map< number, { socket: AuthSocket; channels: number[] } >();
+	private channelRoom(id: number): string { return `channel:${id}`; }
+	private userRoom(id: number): string { return `user:${id}`; }
+
+	/** Invalidate channel lists on all connected nodes after a DB mutation. */
+	private notifyChannelChanges(): void {
+		this.server.emit('channel-lists-stale');
+	}
 
 	async broadcast(userId: number, userName: string, channelId: number, message: string) {
-		try{
-			const sockets = this.sockets.values();
-			const users = Array.from(sockets)
-			.filter(({ channels }) => channels.includes(channelId));
-			users.map((u) => console.log(u.socket.user.nickname));
-			const nonBlockUsers = users.filter(({ socket }) => socket.user.blocks.includes(userId) == false);
-			nonBlockUsers.map(({ socket }) => socket.emit('message', { channel: channelId, message: message, userId: userId, userName: userName }))
-		}
-		catch {}
+		const channel = await this.chatService.getChannelMembership(channelId);
+		if (!channel) return;
+		// Authorize recipients from the database, never a possibly stale channel
+		// room. A union of authenticated user rooms reaches every device on every
+		// node without a fetchSockets RPC (which can time out after a DB save).
+		const recipients = [...new Set(channel.users
+			.filter((member) => !member.blocks.includes(userId))
+			.map((member) => this.userRoom(member.id)))];
+		if (recipients.length === 0) return;
+		this.server.to(recipients).emit('message', {
+			channel: channelId, message, userId, userName,
+		});
 	}
 
 	async dm(userId: number, userName: string, otherUserId: number, message: string) {
-		try{
-			const sockets = this.sockets.values();
-			console.log("message : ", message);
-			const users = Array.from(sockets)
-			.filter(({ socket }) => socket.user.id == userId || socket.user.id == otherUserId)
-			console.log("userId : ", userId);
-			console.log("otherUserId : ", otherUserId);
-			users.map(({ socket }) => {
-				console.log("socket : ", socket.user.id);
-				if (socket.user.id == userId) {
-					socket.emit('direct-message', { channel: otherUserId, message: message, userId: userId, userName: userName })
-				}
-				else if (socket.user.id == otherUserId) {
-					socket.emit('direct-message', { channel: userId, message: message, userId: userId, userName: userName })
-				}
-			})
-		}
-		catch {}
+		this.server.to(this.userRoom(userId)).emit('direct-message', {
+			channel: otherUserId, message, userId, userName,
+		});
+		this.server.to(this.userRoom(otherUserId)).emit('direct-message', {
+			channel: userId, message, userId, userName,
+		});
 	}
 
 	/********************  HANDLE CHANNEL  ********************/
@@ -84,7 +81,11 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 		const channels = await this.chatService.getChannelsForUser(socket.user.id);
 		const channel_list = channels.map(({ id, name, admins, owner }) => ({ id, name, admins, owner }));
 		const ids = channels.map(({ id }) => id);
-		this.sockets.set(socket.user.id, { socket, channels: ids });
+		const previous = (socket.data.channels as number[] || []);
+		await Promise.all(previous.filter((id) => !ids.includes(id))
+			.map((id) => socket.leave(this.channelRoom(id))));
+		await Promise.all(ids.map((id) => socket.join(this.channelRoom(id))));
+		socket.data.channels = ids;
 		socket.emit('channel-list', channel_list);
 	}
 
@@ -97,21 +98,27 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
 	@SubscribeMessage('all-message')
 	async allMessage(@ConnectedSocket() socket: AuthSocket, @MessageBody() data: number) {
+		const channel = await this.chatService.getChannelMembership(data);
+		if (!channel?.users.some((user) => user.id === socket.user.id)) {
+			socket.emit('error', '채널에 참여중이지 않습니다.');
+			return;
+		}
+		const blocks = await this.userService.fetchBlocks(socket.user.id);
 		const messages = await this.chatService.getAllMessages(data);
 		if (messages){
 			const message_list = messages.map(({ message, user }) => ({ message, userId: user.id, userName: user.nickname }))
-			.filter(({ userId }) => socket.user.blocks.includes(userId) == false);
+			.filter(({ userId }) => !blocks.includes(userId));
 			socket.emit('all-message', { channel: data, messages: message_list });
 		}
 	}
 
 	@SubscribeMessage('all-direct-message')
 	async allDirectMessage(@ConnectedSocket() socket: AuthSocket, @MessageBody() data: { userId: number, otherUserId: number },) {
-		const messages = await this.chatService.getAllDirectMessages(data.userId, data.otherUserId);
-		console.log("메세지 :", messages);
+		const messages = await this.chatService.getAllDirectMessages(socket.user.id, data.otherUserId);
+		const blocks = await this.userService.fetchBlocks(socket.user.id);
 		if (messages){
 			const message_list = messages.map(({ message, user }) => ({ message, userId: user.id, userName: user.nickname }))
-			.filter(({ userId }) => socket.user.blocks.includes(userId) == false);
+			.filter(({ userId }) => !blocks.includes(userId));
 			socket.emit('all-direct-message', { channel: data.otherUserId, messages: message_list });
 		}
 	}
@@ -129,21 +136,20 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 			}
 			socket.emit('notify', response.message);
 			await this.channelList(socket);
-			const sockets = this.sockets.values();
-			const users = Array.from(sockets)
-			users.forEach(async ({ socket }) => await this.allChannelList(socket));
+			this.notifyChannelChanges();
 		}
-		catch {}
+		catch { socket.emit('error', '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
 	}
 
 	@SubscribeMessage('join-dm')
 	async handleCreateDM(
 		@MessageBody() data: { userId: number, otherUserId: number },
+		@ConnectedSocket() socket: AuthSocket,
 	){
 		try {
-			await this.chatService.joinDMChannel(data.userId, data.otherUserId);
+			await this.chatService.joinDMChannel(socket.user.id, data.otherUserId);
 		}
-		catch {}
+		catch { socket.emit('error', '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
 	}
 
 	@SubscribeMessage('join')
@@ -157,8 +163,10 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 				return;
 			}
 			await this.channelList(socket);
+			this.server.in(this.userRoom(socket.user.id)).socketsJoin(this.channelRoom(data.id));
 			socket.emit('notify', response.message);
 			await this.broadcast(socket.user.id, socket.user.nickname, data.id, `${socket.user.nickname} joined the channel`);
+			this.notifyChannelChanges();
 	}
 
 	@SubscribeMessage('leave')
@@ -172,16 +180,13 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 					return;
 				}
 				await this.broadcast(socket.user.id, socket.user.nickname, data, `${socket.user.id} left the channel`);
+				this.server.in(this.userRoom(socket.user.id)).socketsLeave(this.channelRoom(data));
+				await this.channelList(socket);
 				socket.emit('leave', "성공적으로 채널을 나갔습니다.");
 
-				const sockets = this.sockets.values();
-				const users = Array.from(sockets)
-				users.forEach(async ({ socket }) => {
-					await this.allChannelList(socket);
-					await this.channelList(socket);
-				});
+				this.notifyChannelChanges();
 			}
-			catch {}
+			catch { socket.emit('error', '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
 	}
 
 	/********************  HANDLE MESSAGE  ********************/
@@ -193,7 +198,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 		){
 			try {
 				const channel = await this.chatService.getChannel(data.channel);
-				if ((channel.users.find((u) => u.id === socket.user.id)) === undefined){
+				if (!channel?.users.some((u) => u.id === socket.user.id)){
 					socket.emit('error', "채널에 참여중이지 않습니다.");
 					return;
 				}
@@ -201,13 +206,14 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 					socket.emit('error', "채널에서 mute되었습니다.");
 					return;
 				}
-				await this.chatService.addChannelMessage({
+				const saved = await this.chatService.addChannelMessage({
 					message: data.message,
 					user: socket.user,
 				}, channel);
+				if (!saved.status) { socket.emit('error', saved.message); return; }
 				await this.broadcast(socket.user.id, socket.user.nickname, data.channel, data.message);
 			}
-			catch {}
+			catch { socket.emit('error', '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
 	}
 
 	/********************  HANDLE MESSAGE  ********************/
@@ -218,12 +224,16 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 		@ConnectedSocket() socket: AuthSocket,
 		){
 			try {
+				if (data.userId !== socket.user.id) {
+					socket.emit('error', '보낸 사람의 인증 정보가 일치하지 않습니다.');
+					return;
+				}
 				const otherUser = await this.userService.getOne(data.otherUserId);
+				if (!otherUser) return;
 				if (otherUser.blocks.includes(socket.user.id)){
 					socket.emit('error', "상대방이 당신을 차단했습니다.");
 					return;
 				}
-				console.log("메세지 전송 받음 :", data.message);
 				await this.chatService.addDirectMessage({
 					message: data.message,
 					user: socket.user,
@@ -231,7 +241,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
 				await this.dm(data.userId, socket.user.nickname ,data.otherUserId, data.message);
 			}
-			catch {}
+			catch { socket.emit('error', '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
 	}
 
 	/********************  HANDLE ADMIN  ********************/
@@ -248,17 +258,18 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 					return;
 				}
 				if (data.type === 'kick') {
-					const response = await this.chatService.kickUser(data.user, data.channel);
+					const response = await this.chatService.kickUser(data.user, data.channel, socket.user.id);
 					if (response.status === false) {
 						socket.emit('error', response.message);
 						return;
 					}
+					this.server.in(this.userRoom(data.user)).socketsLeave(this.channelRoom(data.channel));
 					socket.emit('notify', response.message);
 					await this.broadcast(socket.user.id, socket.user.nickname, data.channel, `${socket.user.nickname} kicked ${data.user}`);
-					await this.channelList(this.sockets.get(data.user).socket);
+					this.notifyChannelChanges();
 				}
 				else if (data.type === 'mute') {
-					const response = await this.chatService.muteUser(data.user, data.channel);
+					const response = await this.chatService.muteUser(data.user, data.channel, socket.user.id);
 					if (response.status === false) {
 						socket.emit('error', response.message);
 						return;
@@ -267,7 +278,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 					await this.broadcast(socket.user.id, socket.user.nickname, data.channel, `${socket.user.nickname} muted ${data.user}`);
 				}
 				else if (data.type === 'unmute') {
-					const response = await this.chatService.unmuteUser(data.user, data.channel);
+					const response = await this.chatService.unmuteUser(data.user, data.channel, socket.user.id);
 					if (response.status === false) {
 						socket.emit('error', response.message);
 						return;
@@ -276,17 +287,18 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 					await this.broadcast(socket.user.id, socket.user.nickname, data.channel, `${socket.user.nickname} unmuted ${data.user}`);
 				}
 				else if (data.type === 'ban') {
-					const response = await this.chatService.banUser(data.user, data.channel);
+					const response = await this.chatService.banUser(data.user, data.channel, socket.user.id);
 					if (response.status === false) {
 						socket.emit('error', response.message);
 						return;
 					}
+					this.server.in(this.userRoom(data.user)).socketsLeave(this.channelRoom(data.channel));
 					socket.emit('notify', response.message);
 					await this.broadcast(socket.user.id, socket.user.nickname, data.channel, `${socket.user.nickname} banned ${data.user}`);
-					await this.channelList(this.sockets.get(data.user).socket);
+					this.notifyChannelChanges();
 				}
 				else if (data.type === 'add-admin') {
-					const response = await this.chatService.addAdmin(data.user, data.channel);
+					const response = await this.chatService.addAdmin(data.user, data.channel, socket.user.id);
 					if (response.status === false) {
 						socket.emit('error', response.message);
 						return;
@@ -295,7 +307,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 					await this.broadcast(socket.user.id, socket.user.nickname, data.channel, `${socket.user.nickname} added ${data.user} as admin`);
 				}
 				else if (data.type === 'remove-admin') {
-					const response = await this.chatService.removeAdmin(data.user, data.channel);
+					const response = await this.chatService.removeAdmin(data.user, data.channel, socket.user.id);
 					if (response.status === false) {
 						socket.emit('error', response.message);
 						return;
@@ -304,7 +316,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 					await this.broadcast(socket.user.id, socket.user.nickname, data.channel, `${socket.user.nickname} removed ${data.user} as admin`);
 				}
 				else if (data.type === 'change-password') {
-					const response = await this.chatService.changeChannelPassword(data.channel, data.isPrivate, data.password);
+					const response = await this.chatService.changeChannelPassword(data.channel, data.isPrivate, data.password, socket.user.id);
 					if (response.status === false) {
 						socket.emit('error', response.message);
 						return;
@@ -312,15 +324,11 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 					socket.emit('notify', response.message);
 					await this.broadcast(socket.user.id, socket.user.nickname, data.channel, `${socket.user.nickname} changed password`);
 				}
-				Array.from(this.sockets.values()).map((u) => {
-					if (u.channels.includes(data.channel))
-						this.allChannelList(u.socket);
-						this.channelList(u.socket);
-				});
+				this.notifyChannelChanges();
 
 				this.handleChannelUserList(data.channel, socket);
 			}
-			catch {}
+			catch { socket.emit('error', '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
 		}
 
 	@SubscribeMessage('channelUserList')
@@ -332,7 +340,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 				const users = await this.chatService.getChannelUsers(data, socket.user.id);
 				socket.emit('channelUserList', users);
 			}
-			catch {}
+			catch { socket.emit('error', '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
 		}
 
 	@SubscribeMessage('reset')
@@ -344,7 +352,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 			await this.channelList(socket);
 			await this.userList(socket);
 		}
-		catch {}
+		catch { socket.emit('error', '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.'); }
 	}
 
 	@SubscribeMessage('blocks')
@@ -352,13 +360,14 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 		@MessageBody() data: number,
 		@ConnectedSocket() socket: AuthSocket,
 	){
-		if (socket.user.id === data)
-			socket.emit('error', "자신은 block할 수 없습니다.");
-		else if (socket.user.blocks.includes(data))
-			socket.emit('error', "이미 block되었습니다.");
-		socket.user.blocks.push(data);
-		await this.userService.update(socket.user.id, socket.user);
-		socket.emit('notify', "해당 유저를 block했습니다.");
+		try {
+			const user = await this.userService.addBlock(socket.user.id, data);
+			socket.user.blocks = user.blocks;
+			socket.data.blocks = [...user.blocks];
+			socket.emit('notify', "해당 유저를 block했습니다.");
+		} catch (error) {
+			socket.emit('error', error.message || '차단 요청을 처리할 수 없습니다.');
+		}
 	}
 
 	/********************  HANDLE CONNECTION  ********************/
@@ -371,11 +380,16 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
 	async handleConnection(@ConnectedSocket() socket: AuthSocket, ...args: any[]) {
 		if (!socket.user) return;
+		socket.data.userId = socket.user.id;
+		socket.data.blocks = [...socket.user.blocks];
+		await socket.join(this.userRoom(socket.user.id));
 		await this.channelList(socket);
 		await this.userList(socket);
+		this.server.emit('users-list-stale');
 	}
 
 	async handleDisconnect(@ConnectedSocket() diconnSocket: AuthSocket) {
 		if (!diconnSocket.user) return;
+		this.server.emit('users-list-stale');
 	}
 }

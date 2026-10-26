@@ -1,7 +1,8 @@
 import * as nodemailer from 'nodemailer';
 import Mail = require('nodemailer/lib/mailer');
 
-import { Injectable } from "@nestjs/common";
+import { Injectable, ServiceUnavailableException } from "@nestjs/common";
+import { emailConfigured } from './auth-configuration';
 
 interface EmailOptions {
   to: string;
@@ -11,7 +12,7 @@ interface EmailOptions {
 
 @Injectable()
 export class EmailService {
-	private transporter: Mail;
+	private transporter: ReturnType<typeof nodemailer.createTransport>;
 
 	constructor() {
     this.transporter = nodemailer.createTransport({
@@ -26,6 +27,7 @@ export class EmailService {
 
 	async sendJoinMail(email: string, token: string)
 	{
+		if (!emailConfigured()) throw new ServiceUnavailableException('Email delivery is not configured for this deployment');
 		const mailOptions: EmailOptions = {
 			to: email,
 			subject: '가입 인증 메일',

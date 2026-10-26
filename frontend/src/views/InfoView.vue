@@ -1,5 +1,6 @@
 <template>
   <div class="profile-page bg-gray-800">
+  <p v-if="uploadNotice" role="status" class="m-4 rounded-lg bg-slate-700 p-4 text-white">{{ uploadNotice }}</p>
   <div>
 
 <template v-if="this.$store.getters.usernickname">
@@ -144,31 +145,29 @@ export default defineComponent({
     },
 
     async uploadImg() {
-      const formData = new FormData();
-      var imgFile = this.$refs.image as HTMLInputElement;
-
-      if(imgFile.files !== null)
-      {
-
-        if (imgFile.files[0].type !== "image/jpg" && imgFile.files[0].type !== "image/png" && imgFile.files[0].type !== "image/jpeg")
-        {
-          alert('choose another image type');
-        }
-        else if (imgFile.files[0].size > 1024 * 1024 * 2)
-        {
-          alert('choose another image less than 2MB');
-        }
-        else
-        {
-          var image = imgFile.files[0];
-          const url = URL.createObjectURL(image)
-          this.image = url
-          formData.append('file', imgFile.files[0]);
-
-          await axios.post('/user/upload', formData)
-          .then(res => { console.log(res); })
-          .catch(error => { console.log(error); });
-        }
+      const input = this.$refs.image as HTMLInputElement;
+      const file = input.files?.[0];
+      if (!file) return;
+      this.uploadNotice = '';
+      if (!['image/jpg', 'image/jpeg', 'image/png'].includes(file.type)) {
+        this.uploadNotice = 'JPG 또는 PNG 이미지를 선택해 주세요.';
+        return;
+      }
+      if (file.size > 2 * 1024 * 1024) {
+        this.uploadNotice = '2MB 이하의 이미지를 선택해 주세요.';
+        return;
+      }
+      const form = new FormData();
+      form.append('file', file);
+      try {
+        await axios.post('/user/upload', form);
+        if (this.image) URL.revokeObjectURL(this.image);
+        this.image = URL.createObjectURL(file);
+        const profile = await axios.get('/user/me');
+        store.commit('setUser', profile.data);
+        this.uploadNotice = '프로필 이미지를 저장했습니다.';
+      } catch (error: any) {
+        this.uploadNotice = error.response?.data?.message || '프로필 이미지를 저장하지 못했습니다. 다시 시도해 주세요.';
       }
     },
     async logout() {
@@ -189,10 +188,12 @@ export default defineComponent({
     },
   },
 
+  beforeUnmount() { if (this.image) URL.revokeObjectURL(this.image); },
   data() {
     return {
       input_text: '',
       image : '',
+      uploadNotice: '',
       file : '',
     }
   },

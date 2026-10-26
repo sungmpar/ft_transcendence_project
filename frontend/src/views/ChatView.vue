@@ -1,4 +1,13 @@
 <template>
+	<p v-if="connectionNotice" role="status" class="bg-slate-700 p-3 text-white">{{ connectionNotice }}</p>
+	<section v-if="notifications.length" aria-label="채팅 알림" class="chat-notifications">
+		<div v-for="notice in notifications" :key="notice.id"
+			:role="notice.kind === 'error' ? 'alert' : 'status'"
+			:class="['chat-notice', { 'chat-notice-error': notice.kind === 'error' }]">
+			<p>{{ notice.message }}</p>
+			<button type="button" aria-label="알림 닫기" @click="dismissNotification(notice.id)">닫기</button>
+		</div>
+	</section>
 	<div class="chat-layout w-full flex">
 		<div class="chat-channels flex">
 		<ChannelBar />
@@ -25,10 +34,34 @@ import store from "@/store"
 import JoinChannelModal from '@/components/chat/JoinChannelModal.vue';
 
 import { useRoute } from 'vue-router';
-import { onMounted, onUnmounted, watch } from 'vue';
-import axios from 'axios';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 
 const route = useRoute();
+const connectionNotice = ref('');
+const notifications = ref<Array<{ id: number; kind: 'error' | 'notify' | 'leave'; message: string }>>([]);
+let nextNotificationId = 0;
+const notificationSocket = store.getters.socket;
+
+function showNotification(kind: 'error' | 'notify' | 'leave', message: string) {
+	notifications.value.push({ id: ++nextNotificationId, kind, message });
+}
+
+function dismissNotification(id: number) {
+	notifications.value = notifications.value.filter((notice) => notice.id !== id);
+}
+
+const onChatError = (message: string) => showNotification('error', message);
+const onChatNotify = (message: string) => showNotification('notify', message);
+const onChatLeave = (message: string) => {
+	store.commit('setChannel', null);
+	showNotification('leave', message);
+};
+
+// Native alerts pause the event loop and can interrupt Socket.IO heartbeats.
+notificationSocket.on('error', onChatError);
+notificationSocket.on('notify', onChatNotify);
+notificationSocket.on('leave', onChatLeave);
+
 watch(() => route, () => {
 	chatFriend();
 }, {
@@ -59,7 +92,7 @@ function chatFriend(){
 }
 
 
-if (store.getters.channel.id !== null) {
+if (store.getters.channel?.id != null) {
 	console.log("channel id: ", store.getters.channel.id);
 
 }
@@ -67,12 +100,33 @@ if (store.getters.channel.id !== null) {
 store.getters.socket.on("user-list", (data: any) => {
 	console.log("user list: ", data);
 	store.commit("setUsers", data)
+	chatFriend();
 	console.log("set users: " + store.getters.users)
 });
 
 store.getters.socket.on("channel-list", (data: any) => {
 	store.commit("setChannels", data)
+	const selected = store.getters.channel;
+	if (!store.getters.isDM && selected?.id) store.getters.socket.emit('all-message', selected.id);
 	console.log("set channels: " + store.getters.channels)
+});
+
+// Channel membership may be changed by someone connected to another server.
+store.getters.socket.on('channel-lists-stale', () => {
+	store.getters.socket.emit('channel-list');
+	store.getters.socket.emit('all-channel-list');
+});
+
+store.getters.socket.on('users-list-stale', () => store.getters.socket.emit('user-list'));
+store.getters.socket.on('connect', () => {
+	connectionNotice.value = '';
+	store.getters.socket.emit('reset');
+});
+store.getters.socket.on('disconnect', () => {
+	connectionNotice.value = '연결이 끊겨 다시 연결하고 있습니다. 작성 중인 메시지는 유지됩니다.';
+});
+store.getters.socket.on('connect_error', () => {
+	connectionNotice.value = '채팅 서버에 연결하지 못했습니다. 연결이 복구되지 않으면 다시 로그인해 주세요.';
 });
 
 store.getters.socket.on("message", (data: any) => {
@@ -95,21 +149,15 @@ store.getters.socket.on("direct-message", (data: any) => {
         }}, 100);
 });
 
-store.getters.socket.on("error", (data: any) => {
-	alert(data);
-	return;
-});
-
-store.getters.socket.on("notify", (data: any) => {
-	alert(data);
-	return;
-});
-
 onMounted(() => {
+	store.getters.socket.emit('reset');
 	chatFriend();
 });
 
 onUnmounted(() => {
+	notificationSocket.off('error', onChatError);
+	notificationSocket.off('notify', onChatNotify);
+	notificationSocket.off('leave', onChatLeave);
 	if (store.getters.socket != null){
 		store.getters.socket.close();
 		store.commit("setSocket", null);
@@ -120,6 +168,11 @@ onUnmounted(() => {
 
 <style scoped>
 /* Keep the existing chat handlers; each pane owns its width and scrolling. */
+.chat-notifications { max-height: 16rem; overflow-y: auto; }
+.chat-notice { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 1rem; background: #334155; color: white; }
+.chat-notice-error { background: #7f1d1d; }
+.chat-notice p { margin: 0; overflow-wrap: anywhere; }
+.chat-notice button { flex-shrink: 0; padding: 0.25rem 0.5rem; border: 1px solid currentColor; border-radius: 0.25rem; }
 .chat-layout { min-width: 0; }
 .chat-channels { flex: 0 0 320px; min-width: 0; }
 .chat-messages { flex: 1; min-width: 0; }

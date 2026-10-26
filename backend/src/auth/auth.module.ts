@@ -7,13 +7,17 @@ import { forwardRef } from '@nestjs/common';
 import { EmailService } from './email.service';
 import { UserModule } from '../user/user.module';
 import { JwtStrategy } from 'src/auth/jwt.strategy';
+import { UserService } from '../user/user.service';
+import { ProfileService } from '../user/profile.service';
+import { jwtSecret, oauth42Configured } from './auth-configuration';
+import { GuestAdmissionService } from './guest-admission.service';
 
 
 @Module({
 	imports: [
 		forwardRef(() => UserModule),
-		JwtModule.register({
-			secret: "" + process.env.SECRET,
+		JwtModule.registerAsync({
+			useFactory: () => ({ secret: jwtSecret() }),
 		}),
   ],
 	controllers: [
@@ -21,7 +25,13 @@ import { JwtStrategy } from 'src/auth/jwt.strategy';
 	],
 	providers: [
 		AuthService,
-		FtStrategy,
+		GuestAdmissionService,
+		{
+			provide: FtStrategy,
+			inject: [AuthService, UserService, ProfileService],
+			useFactory: (auth: AuthService, users: UserService, profiles: ProfileService) =>
+				oauth42Configured() ? new FtStrategy(auth, users, profiles) : null,
+		},
 		JwtStrategy,
 		EmailService,
 		JwtModule,

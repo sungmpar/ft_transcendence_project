@@ -1,5 +1,6 @@
 <template>
   <div class="security-page bg-gray-800">
+    <p v-if="notice" role="status" class="m-4 rounded-lg bg-slate-700 p-4 text-white">{{ notice }}</p>
     <div class=" rounded-lg bg-gradient-to-r from-blue-400 via-amber-200  to-sky-400 animate-gradient-x px-2 pt-2 pb-2 mb-2" v-if="this.$store.getters.userneed2fa == true || this.$store.getters.userid == 0 || this.$store.getters.userneed2fa == undefined">
 
       <div class="flex justify-center text-2xl" v-show="this.$store.getters.useris2fa == true">
@@ -111,12 +112,13 @@ import { readLoginIntent } from '@/arcade/login-intent';
       },
 
       async send_code() {
+        this.notice = '';
         await axios.get('/auth/email')
         .then((response) => {
-          console.log(response);
+          this.notice = '이메일로 인증번호를 보냈습니다.';
         })
         .catch((error) => {
-          console.log(error);
+          this.notice = error.response?.data?.message || '인증번호를 보내지 못했습니다. 잠시 후 다시 시도해 주세요.';
         });
         await axios.get('/user/me')
         .then(res => { store.commit('setUser', res.data);})
@@ -125,18 +127,26 @@ import { readLoginIntent } from '@/arcade/login-intent';
         });
       },
       async is_tfa() {
-        await axios.get('/auth/email/verify', { params: {email : this.input_id, code: this.input_code }} )
-        .then(res => { store.commit('setUser', res.data);})
-        .catch(error => {console.log(error);});
+        this.notice = '';
+        try {
+          const result = await axios.get('/auth/email/verify', { params: { email: this.input_id, code: this.input_code } });
+          if (result.data !== 'verified') {
+            this.notice = '이메일과 인증번호를 확인해 주세요.';
+            return;
+          }
+        } catch (error: any) {
+          this.notice = error.response?.data?.message || '인증을 완료하지 못했습니다.';
+          return;
+        }
 
         await axios.get('/user/me')
         .then(res => { store.commit('setUser', res.data); if (readLoginIntent()) this.$router.replace('/'); })
         .catch(error => {
-        if(error.response.status == 401)
+        if(error.response?.status == 401)
         {
           this.$router.push('/login');
         }
-        else if(error.response.status == 403)
+        else if(error.response?.status == 403)
         {
           store.commit('setUser', {id: 0, need2fa: true, is2fa: false});
           alert('wrong email or code');
@@ -145,22 +155,23 @@ import { readLoginIntent } from '@/arcade/login-intent';
       },
 
       async need_tfa_true() {
+        this.notice = '';
         await axios.patch('user/need2fa', { value: true })
         .then((response) => {
           console.log(response);
         })
         .catch((error) => {
-          console.log(error);
+          this.notice = error.response?.data?.message || '2단계 인증을 활성화하지 못했습니다.';
         });
 
         await axios.get('/user/me')
         .then(res => { store.commit('setUser', res.data);})
         .catch(error => {
-        if(error.response.status == 401)
+        if(error.response?.status == 401)
         {
           this.$router.push('/login');
         }
-        else if(error.response.status == 403)
+        else if(error.response?.status == 403)
         {
           store.commit('setUser', {id: 0, need2fa: true, is2fa: false});
           console.log(error);
@@ -169,12 +180,13 @@ import { readLoginIntent } from '@/arcade/login-intent';
       },
 
       async need_tfa_false() {
+        this.notice = '';
         await axios.patch('user/need2fa', { value: false })
         .then((response) => {
           console.log(response);
         })
         .catch((error) => {
-          console.log(error);
+          this.notice = error.response?.data?.message || '2단계 인증을 해제하지 못했습니다.';
         });
         await axios.get('/user/me')
         .then(res => { store.commit('setUser', res.data);})
@@ -191,6 +203,7 @@ import { readLoginIntent } from '@/arcade/login-intent';
         return {
           input_id: "",
           input_code: "",
+          notice: "",
         }
       },
     })

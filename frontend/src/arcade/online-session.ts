@@ -1,5 +1,5 @@
 import { cloneGameState, GameEvent, GameState, PlayerInput } from '../../../shared/game-core';
-import { captureSnapshot, isSnapshot, MatchInput, ReadyMessage, Snapshot } from '../../../shared/protocol';
+import { captureSnapshot, isSnapshot, MatchEnded, MatchInput, ReadyMessage, Snapshot } from '../../../shared/protocol';
 import { CourtRenderer } from './court-renderer';
 import { KeyboardController } from './keyboard-controller';
 import { SnapshotBuffer } from './snapshot-buffer';
@@ -19,6 +19,15 @@ export interface GameTransport {
   emit(event: string, value: unknown, ack?: (value: unknown) => void): unknown;
 }
 export interface OnlineMetrics {
+  matchId: string | null;
+  runnerId: string | null;
+  inputGeneration: number | null;
+  serverTick: number | null;
+  inputAck: number | null;
+  disconnectCount: number;
+  lastReconnectAt: number | null;
+  terminalReason: 'score' | 'forfeit' | 'disconnect' | null;
+  terminalReceivedAt: number | null;
   fps: number;
   snapshots: number;
   inputMessages: number;
@@ -36,6 +45,14 @@ export interface OnlineMetrics {
   effectQueueDepth: number;
   audioTones: number;
 }
+export function emptyOnlineMetrics(): OnlineMetrics {
+  return { matchId: null, runnerId: null, inputGeneration: null, serverTick: null, inputAck: null,
+    disconnectCount: 0, lastReconnectAt: null, terminalReason: null, terminalReceivedAt: null,
+    fps: 0, snapshots: 0, inputMessages: 0,
+    ackRoundTripMs: null, transportRoundTripMs: null, bufferDepth: 0, displayDelayMs: 0, underflows: 0,
+    presentationTick: null, clockEpoch: 0, clockResyncs: 0, serverEventsReceived: 0,
+    effectsPresented: 0, effectsSkipped: 0, effectQueueDepth: 0, audioTones: 0 };
+}
 export interface OnlineOptions {
   canvas: HTMLCanvasElement;
   socket: GameTransport;
@@ -44,6 +61,7 @@ export interface OnlineOptions {
   keyLayout?: OnlineKeyLayout;
   displayMode?: 'interpolate' | 'latest';
   feedback?: OnlineFeedback;
+  connectionHistory?: Pick<OnlineMetrics, 'disconnectCount' | 'lastReconnectAt'>;
   onState(state: GameState, metrics: OnlineMetrics): void;
   onStatus(message: string): void;
 }
@@ -73,13 +91,15 @@ export class OnlineSession {
   private lastFrameTime: number | null = null;
   private fpsFrames = 0;
   private fpsElapsed = 0;
+  private connectionLost = false;
   private motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  private metrics: OnlineMetrics = { fps: 0, snapshots: 0, inputMessages: 0,
-    ackRoundTripMs: null, transportRoundTripMs: null, bufferDepth: 0, displayDelayMs: 0, underflows: 0,
-    presentationTick: null, clockEpoch: 0, clockResyncs: 0, serverEventsReceived: 0,
-    effectsPresented: 0, effectsSkipped: 0, effectQueueDepth: 0, audioTones: 0 };
+  private metrics: OnlineMetrics = emptyOnlineMetrics();
 
   constructor(private options: OnlineOptions) {
+    if (options.connectionHistory) {
+      this.metrics.disconnectCount = options.connectionHistory.disconnectCount;
+      this.metrics.lastReconnectAt = options.connectionHistory.lastReconnectAt;
+    }
     this.layout = options.keyLayout || 'arrows';
     this.buffer = new SnapshotBuffer(options.displayMode || 'interpolate');
     const initial = options.ready.snapshot;
@@ -119,7 +139,10 @@ export class OnlineSession {
   get latest(): GameState { return cloneGameState(this.networkSnapshot.state); }
   get measurement(): OnlineMetrics {
     const events = this.presentation.metrics, buffer = this.buffer.metrics;
-    return { ...this.metrics, presentationTick: buffer.presentationTick, clockEpoch: this.networkSnapshot.clockEpoch,
+    return { ...this.metrics, matchId: this.networkSnapshot.matchId, runnerId: this.instanceId,
+      inputGeneration: this.options.ready.generation, serverTick: this.networkSnapshot.tick,
+      inputAck: this.options.ready.side === 'spectator' ? null : this.networkSnapshot.ack[this.options.ready.side],
+      presentationTick: buffer.presentationTick, clockEpoch: this.networkSnapshot.clockEpoch,
       clockResyncs: buffer.resyncCount, serverEventsReceived: events.received, effectsPresented: events.presented,
       effectsSkipped: events.skipped, effectQueueDepth: events.queued,
       audioTones: this.options.feedback?.audio.measurement.tones || 0 };
@@ -133,13 +156,16 @@ export class OnlineSession {
   }
   useReducedMotion(value: boolean): void { this.reducedMotion = value; this.motionChanged(); }
 
-  complete(): void {
-    if (this.disposed) return;
+  complete(ended?: MatchEnded): OnlineMetrics | undefined {
+    if (this.disposed || (ended && ended.roomId !== this.options.ready.roomId)) return;
+    if (ended) this.metrics.terminalReceivedAt = Date.now();
     this.snapshot = cloneGameState(this.networkSnapshot.state);
     this.present(this.presentation.terminal(this.networkSnapshot), true);
     this.renderer.draw(this.snapshot);
-    this.options.onState(this.state, this.measurement);
+    const metrics = this.measurement;
+    this.options.onState(this.state, metrics);
     this.dispose(true);
+    return metrics;
   }
 
   dispose(preserveTerminalTone = false): void {
@@ -207,21 +233,33 @@ export class OnlineSession {
   };
   private disconnected = (): void => {
     if (this.disposed) return;
+    if (!this.connectionLost) this.metrics.disconnectCount++;
+    this.connectionLost = true;
     this.keyboard.clear();
     this.pending.clear();
     this.presentation.discardPending(); this.renderer.reset(); this.options.feedback?.audio.silence();
     this.options.onStatus('연결이 끊겼습니다 · 재연결 상태를 확인하고 있습니다');
+    this.options.onState(this.state, this.measurement);
   };
   private connected = (): void => {
     if (this.disposed) return;
+    if (this.connectionLost) this.metrics.lastReconnectAt = Date.now();
+    this.connectionLost = false;
     // A reconnect must receive a new generation and full ready state before input.
     this.keyboard.setEnabled(false);
     this.awaitingResync = true;
     this.options.onStatus('연결 복구 · 서버의 전체 경기 상태를 기다립니다');
+    this.options.onState(this.state, this.measurement);
   };
   private resultStatus = (value: unknown): void => {
     if (this.disposed || (value as { roomId?: unknown } | null)?.roomId !== this.options.ready.roomId) return;
     const status = (value as { status?: unknown } | null)?.status;
+    // The separate matchEnded packet contains no reason. Retain only the
+    // server's recognized reason for this room; never infer it from the score.
+    const reason = (value as { reason?: unknown } | null)?.reason;
+    if (['saving', 'retrying', 'saved', 'failed'].includes(status as string) &&
+      (reason === 'score' || reason === 'forfeit' || reason === 'disconnect'))
+      this.metrics.terminalReason = reason;
     if (status === 'failed') this.options.onStatus('경기는 종료됐지만 결과 저장 확인에 실패했습니다 · 전적 반영 여부를 확인할 수 없습니다');
     else if (status === 'retrying') this.options.onStatus('경기 종료 · 결과 저장을 재시도하고 있습니다');
     else if (status === 'saved') this.options.onStatus('경기 결과가 저장되었습니다');

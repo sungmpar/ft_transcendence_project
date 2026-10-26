@@ -1,6 +1,6 @@
 import { OnlineFeedback, OnlineSession } from '../../../frontend/src/arcade/online-session';
 import { canonicalReady, nextSnapshot, OnlineBrowserFixture } from '../../test/online-browser-unit-fixture';
-import { isMatchInput, ReadyMessage } from '../../../shared/protocol';
+import { isMatchInput, ReadyMessage, SESSION_RECOVERY_TIMEOUT_MS } from '../../../shared/protocol';
 import { SessionRecovery } from '../../../frontend/src/arcade/session-recovery';
 import { io as socketClient } from '../../../frontend/node_modules/socket.io-client';
 
@@ -327,7 +327,7 @@ describe('identified recovery request lifecycle', () => {
   it('requests last match identity and times out once without declaring an outcome', () => {
     recovery.resume('41');
     expect(fixture.socket.emit.mock.calls[0].slice(0, 2)).toEqual(['sessionSync', { v: 1, requestId: 'sync-1', matchId: '41', role: 'player' }]);
-    jest.advanceTimersByTime(4999); expect(receive).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(SESSION_RECOVERY_TIMEOUT_MS - 1); expect(receive).not.toHaveBeenCalled();
     jest.advanceTimersByTime(1); expect(receive).toHaveBeenCalledWith(null);
     jest.advanceTimersByTime(30000); expect(receive).toHaveBeenCalledTimes(1);
     fixture.socket.emit.mock.calls[0][2](response('sync-1'));
@@ -372,19 +372,35 @@ describe('identified recovery request lifecycle', () => {
     expect(recovery.acceptReady(newMatch)).toBe(true);
   });
 
-  it('keeps the owner timeout when a matching recovery ACK contains an inadmissible server instance', () => {
+  it('admits an authority handoff only through the current correlated authenticated ACK', () => {
     const first = canonicalReady(); first.roomId = first.snapshot.matchId = '41';
     expect(recovery.acceptReady(first)).toBe(true);
     recovery.resume('41');
     const acknowledge = fixture.socket.emit.mock.calls[0][2];
-    acknowledge({ v: 1, requestId: 'sync-1', matchId: '41', status: 'active', ready: {
-      ...first, generation: 99, snapshot: { ...first.snapshot, instanceId: 'different-server' },
-    } });
+    const changed = { ...first, generation: 99, snapshot: { ...first.snapshot, instanceId: 'different-server' } };
+    // An unsolicited hint or an ACK for another request cannot change the active authority.
+    expect(recovery.acceptReady(changed)).toBe(false);
+    acknowledge({ v: 1, requestId: 'wrong-request', matchId: '41', status: 'active', ready: changed });
     expect(receive).not.toHaveBeenCalled();
-    jest.advanceTimersByTime(5000);
+    const reply = { v: 1, requestId: 'sync-1', matchId: '41', status: 'active', ready: changed };
+    acknowledge(reply);
     expect(receive).toHaveBeenCalledTimes(1);
-    expect(receive).toHaveBeenCalledWith(null);
-    expect(recovery.acceptReady({ ...first, generation: 2 })).toBe(true);
+    expect(receive).toHaveBeenCalledWith(reply);
+    expect(recovery.acceptReady(changed)).toBe(true);
+    expect(recovery.acceptReady({ ...changed })).toBe(false); // cloned replay cannot reuse the grant
+    expect(recovery.acceptReady(changed)).toBe(false); // consumed once
+    expect(recovery.acceptReady({ ...first, generation: 100 })).toBe(false); // old authority not trusted
+  });
+
+  it('keeps the timeout for a correlated ACK that changes player side or rolls back generation', () => {
+    const first = canonicalReady(); first.roomId = first.snapshot.matchId = '41';
+    expect(recovery.acceptReady(first)).toBe(true); recovery.resume('41');
+    const acknowledge = fixture.socket.emit.mock.calls[0][2];
+    acknowledge({ v: 1, requestId: 'sync-1', matchId: '41', status: 'active', ready: { ...first, generation: 99, side: 'right' } });
+    acknowledge({ v: 1, requestId: 'sync-1', matchId: '41', status: 'active', ready: first });
+    expect(receive).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(SESSION_RECOVERY_TIMEOUT_MS);
+    expect(receive).toHaveBeenCalledTimes(1); expect(receive).toHaveBeenCalledWith(null);
   });
 
   it('ignores an old ready or end after a different match and blocks duplicate ends', () => {
@@ -429,7 +445,7 @@ describe('identified recovery request lifecycle', () => {
     const internals = client as any;
     expect(Object.keys(internals.acks).length).toBe(8);
     expect(internals.sendBuffer.length).toBe(8);
-    recovery.dispose(); jest.advanceTimersByTime(5001);
+    recovery.dispose(); jest.advanceTimersByTime(SESSION_RECOVERY_TIMEOUT_MS + 1);
     expect(Object.keys(internals.acks)).toEqual([]);
     expect(internals.sendBuffer).toEqual([]);
     expect(receive).not.toHaveBeenCalled();

@@ -52,11 +52,10 @@ import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle, } fr
 
 function closeModal() {
 	store.commit('setIsJoining', false)
-	console.log("join? "+ store.getters.isJoining)
+	password.value = '';
 }
 
 async function joinChannel() {
-	console.log("join channel " + store.getters.joinChannel.name + " " + password.value);
 	await store.getters.socket.emit('join', {
 			id: store.getters.joinChannel.id,
 			isPrivate: store.getters.joinChannel.isPrivate,
