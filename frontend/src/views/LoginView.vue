@@ -19,11 +19,12 @@
         <p v-if="route.query.logout === 'unconfirmed'" class="login-notice" role="status">이 브라우저에서는 로그아웃했습니다. 서버의 로그아웃 처리는 확인하지 못했습니다.</p>
         <p v-if="route.query.reason === 'unavailable'" class="login-notice" role="status">온라인 서버 상태를 확인하지 못했습니다. 잠시 후 다시 시도하거나 로컬 · AI로 플레이하세요.</p>
         <button v-if="isGuestLoginEnabled" type="button" class="login-primary" :disabled="guestBusy" @click="signinGuest" data-testid="guest-login">{{ guestBusy ? '로그인 페이지로 이동 중…' : '게스트로 체험하기' }}</button>
-        <p v-else class="login-notice" data-testid="guest-disabled">현재 이 데모에서는 게스트 로그인을 사용할 수 없습니다. 로컬 2인과 AI 대전은 로그인 없이 이용할 수 있습니다.</p>
+        <p v-else class="login-notice" data-testid="guest-disabled">{{ authConfigLoaded ? '현재 이 데모에서는 게스트 로그인을 사용할 수 없습니다. 로컬 2인과 AI 대전은 로그인 없이 이용할 수 있습니다.' : '온라인 로그인 상태를 확인하고 있습니다.' }}</p>
+        <p v-if="authConfigError" class="login-notice" role="alert">{{ authConfigError }}</p>
         <p v-if="guestError" class="login-notice" role="alert" data-testid="guest-login-error">{{ guestError }}</p>
         <p class="login-small">별도 가입 절차 없이 체험용 계정을 만들어 시작합니다. 로그인하면 온라인 대전과 채팅을 이용할 수 있습니다.</p>
         <button v-if="is42LoginEnabled" type="button" class="login-secondary" @click="signin42">42 로그인</button>
-        <button v-else class="login-secondary" type="button" disabled>42 로그인 비활성화</button>
+        <button v-else class="login-secondary" type="button" disabled>42 로그인 현재 이용 불가</button>
         <router-link to="/play" class="login-cancel" @click="clearLoginIntent">플레이 방식 다시 선택</router-link>
         <details data-testid="login-help"><summary>로그인이 잘되지 않나요?</summary><p>노션 등에 삽입된 화면에서는 브라우저의 쿠키 설정 때문에 로그인이 되지 않을 수 있습니다. 새 탭에서 다시 열어 주세요. <a :href="currentUrl" target="_blank" rel="noopener noreferrer">새 탭에서 열기 ↗</a></p></details>
       </section>
@@ -38,9 +39,12 @@ import { useRoute } from 'vue-router';
 import ProjectInfo from '@/components/arcade/ProjectInfo.vue';
 import { clearLoginIntent, readLoginIntent } from '@/arcade/login-intent';
 import { resolveGuestLoginUrl } from '@/arcade/guest-navigation-url';
+import axios from 'axios';
 const route = useRoute();
-const isGuestLoginEnabled = process.env.VUE_APP_ENABLE_GUEST_LOGIN === 'true';
-const is42LoginEnabled = false;
+const isGuestLoginEnabled = ref(false);
+const is42LoginEnabled = ref(false);
+const authConfigLoaded = ref(false);
+const authConfigError = ref('');
 const backendBaseUrl = process.env.VUE_APP_BACKEND_URL || window.location.origin;
 
 const destination = computed(() => { void route.fullPath; return readLoginIntent(); });
@@ -72,7 +76,18 @@ function signinGuest() {
   }
 }
 // A restored document retains its Vue state; it must not retain a disabled button.
-onMounted(() => window.addEventListener('pageshow', resetGuestNavigation));
+onMounted(async () => {
+  window.addEventListener('pageshow', resetGuestNavigation);
+  try {
+    const { data } = await axios.get('/auth/config', { timeout: 10000 });
+    isGuestLoginEnabled.value = data.guest === true;
+    is42LoginEnabled.value = data.oauth42 === true;
+  } catch {
+    authConfigError.value = '온라인 로그인 상태를 확인하지 못했습니다. 잠시 후 새로고침해 주세요.';
+  } finally {
+    authConfigLoaded.value = true;
+  }
+});
 onUnmounted(() => window.removeEventListener('pageshow', resetGuestNavigation));
 </script>
 

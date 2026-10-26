@@ -184,6 +184,15 @@
     <details class="online-diagnostics">
       <summary>연결 상태 자세히 보기</summary>
       <div class="debug-panel">
+        <span>경기 ID <b data-testid="online-match-id">{{ onlineMetrics.matchId ?? '없음' }}</b></span>
+        <span>경기 실행 식별자 (runner UUID) <b data-testid="online-runner-id">{{ onlineMetrics.runnerId ?? '없음' }}</b></span>
+        <span>입력 세대 <b data-testid="online-input-generation">{{ onlineMetrics.inputGeneration ?? '없음' }}</b></span>
+        <span>최신 서버 tick <b data-testid="online-server-tick">{{ onlineMetrics.serverTick ?? '없음' }}</b></span>
+        <span>내 입력 확인 순번 (ACK) <b data-testid="online-input-ack">{{ onlineMetrics.inputAck ?? '해당 없음' }}</b></span>
+        <span>이 경기의 연결 끊김 횟수 <b data-testid="online-disconnect-count">{{ onlineMetrics.disconnectCount }}</b></span>
+        <span>최근 재연결 시각 (UTC) <b data-testid="online-last-reconnect">{{ onlineMetrics.lastReconnectAt == null ? '아직 없음' : new Date(onlineMetrics.lastReconnectAt).toISOString() }}</b></span>
+        <span>서버가 알린 종료 사유 <b data-testid="online-end-reason">{{ onlineMetrics.terminalReason ?? '미수신' }}</b></span>
+        <span>종료 알림 수신 시각 (UTC) <b data-testid="online-end-received-at">{{ onlineMetrics.terminalReceivedAt == null ? '아직 없음' : new Date(onlineMetrics.terminalReceivedAt).toISOString() }}</b></span>
         <span
           >화면 갱신 빈도(FPS) <b>{{ onlineMetrics.fps.toFixed(1) }}</b></span
         ><span
@@ -215,7 +224,7 @@
         ><span>표시 시점 이벤트 <b>{{ onlineMetrics.effectsPresented || 0 }}</b></span
         ><span>건너뛴 효과 <b>{{ onlineMetrics.effectsSkipped || 0 }}</b></span
         ><small
-          >서버 응답 왕복 시간은 요청을 보내고 답을 받기까지 걸린 시간이며, 서버 처리와 브라우저 대기를 포함합니다. 입력 반영 확인 시간은 서버가 입력을 적용한 경기 상태를 받을 때까지의 시간입니다. 모니터에 화면이 나타날 때까지의 시간을 뜻하지 않습니다. 추정 표시 지연은 현재 추정한 서버 시각과 화면에 표시하는 경기 상태 사이의 차이입니다. 다음 상태가 없었던 횟수는 상태가 부족해지기 시작한 구간을 세며, 매 프레임을 세지 않습니다.</small
+          >경기 실행 식별자는 서버의 해당 경기 실행을 구별하는 UUID이며 Vercel 플랫폼 인스턴스 ID가 아닙니다. 입력 세대와 ACK는 재연결 후 입력 반영을 확인하는 값입니다. 종료 사유는 서버 응답값이며 score는 점수 승리, forfeit는 포기, disconnect는 연결 복구 기한 초과를 뜻합니다. 종료 알림 수신 시각은 이 브라우저의 시계 기준이며 서버의 실제 종료 시각과 다를 수 있습니다. 종료 후 수치는 새 경기나 화면 이동 전까지 보존합니다. 서버 응답 왕복 시간은 요청을 보내고 답을 받기까지 걸린 시간이며, 서버 처리와 브라우저 대기를 포함합니다. 입력 반영 확인 시간은 서버가 입력을 적용한 경기 상태를 받을 때까지의 시간입니다. 모니터에 화면이 나타날 때까지의 시간을 뜻하지 않습니다. 추정 표시 지연은 현재 추정한 서버 시각과 화면에 표시하는 경기 상태 사이의 차이입니다. 다음 상태가 없었던 횟수는 상태가 부족해지기 시작한 구간을 세며, 매 프레임을 세지 않습니다.</small
         >
       </div>
     </details>
@@ -405,6 +414,10 @@ onUnmounted(() => {
 }
 .online-diagnostics .debug-panel {
   margin-top: 10px;
+}
+.online-diagnostics .debug-panel span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .online-game .court-shell {
   width: min(100%, max(440px, calc((100svh - 350px) * 1.5)));

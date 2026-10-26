@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
 import { existsSync, mkdirSync } from "fs";
-import { diskStorage } from 'multer';
+import { diskStorage, memoryStorage } from 'multer';
 
 export const multerDiskOptions = {
 	fileFilter: (req: any, file: any, cb: any) => {
@@ -20,7 +20,7 @@ export const multerDiskOptions = {
 		}
 	},
 
-	storage: diskStorage({
+	storage: process.env.VERCEL ? memoryStorage() : diskStorage({
 		destination: (req: any, file: any, callback: any) => {
 			const uploadPath = './profiles';
 			if (!existsSync(uploadPath)){

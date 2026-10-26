@@ -67,20 +67,14 @@ async function goPong(userId: number, userName: string) {
 	router.push({ name: "tempinvitepage", params: { friendId: userId, friendName: userName }, force: true});
 }
 
-function addBlocks() {
-	store.getters.socket.emit("blocks", store.getters.profileUser.id);
-	// axios.patch("/user/blocks", {
-	// 	id: store.getters.profileUser.id
-	// }).then((response) => {
-	// 	alert("해당 유저를 block했습니다.");
-	// 	store.getters.socket.emit('reset');
-	// }).catch((error) => {
-	// 	if (error.response.status === 409) {
-	// 		alert("이미 block되었습니다.");
-	// 	} else if (error.response.status === 403) {
-	// 		alert("자신은 block할 수 없습니다.");
-	// 	}
-	// });
+async function addBlocks() {
+	try {
+		await axios.patch('/user/blocks', { id: store.getters.profileUser.id });
+		alert('해당 유저를 block했습니다.');
+		if (store.getters.socket?.connected) store.getters.socket.emit('reset');
+	} catch (error: any) {
+		alert(error.response?.status === 409 ? '이미 block되었습니다.' : '차단 요청을 처리하지 못했습니다.');
+	}
 }
 
 function addFriends() {
@@ -90,9 +84,9 @@ function addFriends() {
 			alert("해당 유저를 친구로 추가했습니다.");
 	}).catch((error) => {
 		console.log(error);
-		if (error.response.status === 409) {
+		if (error.response?.status === 409) {
 			alert("이미 친구입니다.");
-		} else if (error.response.status === 403) {
+		} else if (error.response?.status === 403 || error.response?.status === 400) {
 			alert("자신은 친구로 추가할 수 없습니다.");
 		}
 	});

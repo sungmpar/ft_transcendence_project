@@ -1,0 +1,25 @@
+# Deploy source and public application assets; do not transfer local state,
+# credentials, historical profile uploads, or Azure/Docker artifacts.
+.git
+.env
+.env.*
+**/.env
+**/.env.*
+**/node_modules
+**/dist
+**/coverage
+**/*.log
+**/*.tsbuildinfo
+backend/profiles
+backend/test
+backend/src/**/*.spec.ts
+backend/scripts
+docs
+scripts
+docker-compose.yml
+docker-cleaner.sh
+Makefile
+**/Dockerfile
+**/.dockerignore
+**/*.zip
+frontend/package-lock.json

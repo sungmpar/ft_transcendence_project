@@ -9,6 +9,7 @@ import { AuthSocket, WSAuthMiddleware } from './game.middleware';
 import { GameService } from './game.service';
 import { UserStatus } from 'src/user/interface/user.status';
 import { performance } from 'perf_hooks';
+import { RedisGameCoordinator } from './redis-game-coordinator';
 
 @WebSocketGateway({
 	cors: {
@@ -24,6 +25,7 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 		@Inject(JwtService)
 		private readonly jwtService: JwtService,
 		private readonly gameService: GameService,
+		private readonly coordinator: RedisGameCoordinator,
 	) { }
 
 	@WebSocketServer() server: Server;
@@ -44,6 +46,7 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
 	@SubscribeMessage('keyboardEvent')
 	keyboardEvent(@ConnectedSocket() socket: AuthSocket, @MessageBody() data: unknown) {
+		if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'keyboardEvent', data);
 		this.gameService.listenKeyEvent(socket, data);
 	}
 
@@ -52,6 +55,7 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
     @ConnectedSocket() socket: AuthSocket,
     @MessageBody() data: unknown,
   ) {
+    if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'sessionSync', data);
     return this.gameService.syncSession(socket, data);
   }
 
@@ -59,14 +63,16 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 	async joinMatch(
 		@ConnectedSocket() socket: AuthSocket,
 		@MessageBody() data: JoinGameDto): Promise<void> {
-			this.gameService.joinMatch(socket, data);
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'matchmaking', data);
+			await this.gameService.joinMatch(socket, data);
 	}
 
 	@SubscribeMessage('invitelist')
 	async inviteList(
 		@ConnectedSocket() socket: AuthSocket,
 		@MessageBody() data: JoinGameDto): Promise<void> {
-			this.gameService.userInviteList(socket);
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'invitelist');
+			await this.gameService.userInviteList(socket);
 	}
 
 
@@ -74,39 +80,45 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 	async invite(
 		@ConnectedSocket() socket: AuthSocket,
 		@MessageBody() data: JoinGameDto): Promise<void> {
-			this.gameService.invite(socket, data);
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'invite', data);
+			await this.gameService.invite(socket, data);
 	}
 
 	@SubscribeMessage('joinFriend')
 	async joinToFriend(
 		@ConnectedSocket() socket: AuthSocket,
 		@MessageBody() data: number): Promise<void> {
-			this.gameService.joinToFriend(socket, data);
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'joinFriend', data);
+			await this.gameService.joinToFriend(socket, data);
 	}
 
 	@SubscribeMessage('refuse')
 	async refuse(
 		@ConnectedSocket() socket: AuthSocket,
 		@MessageBody() data: unknown): Promise<void> {
-			this.gameService.refuse(socket, data);
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'refuse', data);
+			await this.gameService.refuse(socket, data);
 	}
 
 	@SubscribeMessage('spectate')
 	async spectate(
 		@ConnectedSocket() socket: AuthSocket,
 		@MessageBody() data: SpecDto): Promise<void> {
-			this.gameService.spectate(socket, data);
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'spectate', data);
+			await this.gameService.spectate(socket, data);
 	}
 
 	@SubscribeMessage('roomlist')
 	async roomList(
 		@ConnectedSocket() socket: AuthSocket): Promise<void> {
-			this.gameService.spectatorList(socket);
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'roomlist');
+			await this.gameService.spectatorList(socket);
 	}
 
 	@SubscribeMessage('achievement')
 	async ahievement(
 		@ConnectedSocket() socket: AuthSocket): Promise<void> {
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'achievement');
 			await this.gameService.achievement(socket);
 	}
 
@@ -115,19 +127,37 @@ export class GameGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 	async dropUser(
 		@ConnectedSocket() socket: AuthSocket,
 		@MessageBody() data: JoinGameDto): Promise<void> {
+			if (this.coordinator.distributed) return this.coordinator.dispatch(socket, 'end', data);
 			await this.gameService.dropUser(socket);
 	}
 
 	afterInit(server: Server) {
 			const middle = WSAuthMiddleware(this.jwtService, this.userService);
 			server.use(middle);
+			this.coordinator.bindServer(server);
 	}
 
 	async handleConnection(@ConnectedSocket() socket: AuthSocket, ...args: any[]) {
-			this.gameService.addUser(socket);
+			if (this.coordinator.distributed) {
+				try {
+					const established = await this.coordinator.dispatch(socket, 'connect');
+					// A transport close permits Socket.IO to retry after a temporary
+					// authority/Redis outage. Explicit server disconnect does not.
+					if (!established && socket.connected) socket.client.conn.close();
+				} catch {
+					if (socket.connected) socket.client.conn.close();
+				}
+				return;
+			}
+			await this.gameService.addUser(socket);
 	}
 
 	async handleDisconnect(@ConnectedSocket() socket: AuthSocket, ...args: any[]) {
+			if (this.coordinator.distributed) {
+				try { await this.coordinator.dispatch(socket, 'disconnect'); }
+				catch { /* Presence expiry performs the same cleanup after recovery. */ }
+				return;
+			}
 			await this.gameService.dropUser(socket, true);
 	}
 }

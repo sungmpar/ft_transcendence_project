@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import User from '@/interfaces/User';
 import axios from 'axios';
 import type { GameState as CoreGameState } from '../../../shared/game-core';
+import { emptyOnlineMetrics } from '@/arcade/online-session';
 
 const store = createStore({
   state: {
@@ -75,7 +76,7 @@ const store = createStore({
 
 		mode: true,
 		onlineState: null as CoreGameState | null,
-		onlineMetrics: { ackRoundTripMs: null as number | null, transportRoundTripMs: null as number | null, snapshots: 0, inputMessages: 0, fps: 0, bufferDepth: 0, displayDelayMs: 0, underflows: 0 },
+		onlineMetrics: emptyOnlineMetrics(),
 
 		userInviteList: [],
 	},
@@ -147,10 +148,22 @@ const store = createStore({
 
 		// channel mutations
 		setSocket: (state, payload) => state.socket = payload,
-		setChannels: (state, payload) => state.channels = payload,
+		setChannels: (state, payload) => {
+			const previous = new Map(state.channels.map((channel: any) => [channel.id, channel]));
+			state.channels = payload.map((channel: any) => ({ ...channel, messages: (previous.get(channel.id) as any)?.messages || [] }));
+			if (!state.isDM && state.channel?.id != null) {
+				state.channel = state.channels.find((channel: any) => channel.id === state.channel.id) || { id: null, name: '', messages: [] };
+			}
+		},
 		setAllChannels: (state, payload) => state.allChannels = payload,
-		setUsers: (state, payload) => state.users = payload,
-		setChannel: (state, payload) => state.channel = payload,
+		setUsers: (state, payload) => {
+			const previous = new Map(state.users.map((user: any) => [user.id, user]));
+			state.users = payload.map((user: any) => ({ ...user, messages: user.messages || (previous.get(user.id) as any)?.messages || [] }));
+			if (state.isDM && state.channel?.id != null) {
+				state.channel = state.users.find((user: any) => user.id === state.channel.id) || { id: null, name: '', messages: [] };
+			}
+		},
+		setChannel: (state, payload) => state.channel = payload || { id: null, name: '', messages: [] },
 		setIsAdding: (state, payload) => state.isAdding = payload,
 		setIsSearching: (state, payload) => state.isSearching = payload,
 		setIsJoining: (state, payload) => state.isJoining = payload,
@@ -184,25 +197,19 @@ const store = createStore({
 					if (channel.messages === undefined) {
 						channel.messages = [];
 					}
-					//channel.messages.push({userId: payload.userId, userName: payload.userName, message: payload.message});
-					if (state.channel.id === payload.channel && state.isDM == false) {
-						store.getters.channel.messages.push({userId: payload.userId, userName: payload.userName, message: payload.message});
-					}
+					channel.messages.push({userId: payload.userId, userName: payload.userName, message: payload.message});
+					if (state.channel?.id === payload.channel && !state.isDM) state.channel = channel;
 				}
 			});
 		},
 		addDirectMessage: (state, payload) => {
-			console.log("dm", payload);
 			state.users.forEach((user: any) => {
 				if (user.id === payload.channel) {
 					if (user.messages === undefined) {
 						user.messages = [];
 					}
-					//user.messages.push({userId: payload.userId, userName: payload.userName, message: payload.message});
-					console.log("dm now")
-					if (state.channel.id === payload.channel && state.isDM == true) {
-						store.getters.channel.messages.push({userId: payload.userId, userName: payload.userName, message: payload.message});
-					}
+					user.messages.push({userId: payload.userId, userName: payload.userName, message: payload.message});
+					if (state.channel?.id === payload.channel && state.isDM) state.channel = user;
 				}
 			});
 		},

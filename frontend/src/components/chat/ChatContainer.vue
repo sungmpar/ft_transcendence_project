@@ -8,9 +8,9 @@
 		</div>
 		<div class="chat-composer flex items-center w-11/12">
 			<div class='bottom-bar'>
-				<input type='text' placeholder='Enter message...' class='bottom-bar-input' v-model="userText"/>
+				<input type='text' placeholder='Enter message...' class='bottom-bar-input' v-model="userText" @keydown.enter.prevent="sendMessage"/>
 			</div>
-			<button class="flex-auto normal-button" @click="sendMessage">Send</button>
+			<button class="flex-auto normal-button" :disabled="!canSend" @click="sendMessage">Send</button>
 		</div>
 	</div>
 </template>
@@ -22,8 +22,10 @@ import MessageBubble from "./MessageBubble.vue";
 
 const channel = computed(() => store.getters.channel ?? {});
 const userText = ref("");
+const canSend = computed(() => Boolean(channel.value.id && userText.value.trim() && store.getters.socket?.connected));
 
 function sendMessage() {
+	if (!canSend.value) return;
 	if (store.getters.isDM == true) {
 		store.getters.socket.emit("direct-message", {
 			userId: store.getters.userid,
